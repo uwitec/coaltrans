@@ -1,0 +1,65 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MenuTemplate.Master.cs" Inherits="User_Masters_MenuTemplate" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head id="Head1" runat="server">
+    <title></title>
+    <link href="../Includes/Guide.css" type="text/css" rel="stylesheet" />
+    <link href="../includes/index.css" type="text/css" rel="stylesheet" />
+    <link href="../includes/MasterPage.css" type="text/css" rel="stylesheet" />
+    <link href="../includes/xtree.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript">
+    function JumpToMainRight(url) { parent.frames["main_right"].location = url; }
+    function ReloadMainRight() { parent.frames["main_right"].location.reload(); }
+    function Switch(obj)
+    {
+        obj.className = (obj.className == "guideexpand") ? "guidecollapse" : "guideexpand";
+        var nextDiv;
+        if (obj.nextSibling)
+        {
+            if(obj.nextSibling.nodeName=="DIV")
+            {
+                nextDiv = obj.nextSibling;
+            }
+            else
+            {
+                if(obj.nextSibling.nextSibling)
+                {
+                    if(obj.nextSibling.nextSibling.nodeName=="DIV")
+                    {
+                        nextDiv = obj.nextSibling.nextSibling;
+                    }
+                }
+            }
+            if(nextDiv)
+            {
+                nextDiv.style.display = (nextDiv.style.display != "") ? "" : "none"; 
+            }
+        }
+    }
+    function keylock(evt)
+    {
+	    if((evt.keyCode == 13) && (this.OpenMainRight))
+	    {
+	        this.OpenMainRight();
+	    }
+    }
+    String.prototype.trim = function()
+    {
+        // 用正则表达式将前后空格
+        // 用空字符串替代。
+        return this.replace(/(^\s*)|(\s*$)/g, "");
+    }
+    </script>
+    </head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

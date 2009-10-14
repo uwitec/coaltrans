@@ -1,0 +1,14 @@
+D:\NewCoal\BusEntity\bin\Debug\BusEntity.dll
+D:\NewCoal\BusEntity\bin\Debug\BusEntity.pdb
+D:\NewCoal\BusEntity\obj\Debug\ResolveAssemblyReference.cache
+D:\NewCoal\BusEntity\obj\Debug\BusEntity.dll
+D:\NewCoal\BusEntity\obj\Debug\BusEntity.pdb
+D:\NewCoal\BusEntity\bin\Debug\DataEntity.dll
+D:\NewCoal\BusEntity\bin\Debug\DataEntity.pdb
+E:\rensq\CoalTrans\BusEntity\bin\Debug\BusEntity.dll
+E:\rensq\CoalTrans\BusEntity\bin\Debug\BusEntity.pdb
+E:\rensq\CoalTrans\BusEntity\bin\Debug\DataEntity.dll
+E:\rensq\CoalTrans\BusEntity\bin\Debug\DataEntity.pdb
+E:\rensq\CoalTrans\BusEntity\obj\Debug\ResolveAssemblyReference.cache
+E:\rensq\CoalTrans\BusEntity\obj\Debug\BusEntity.dll
+E:\rensq\CoalTrans\BusEntity\obj\Debug\BusEntity.pdb

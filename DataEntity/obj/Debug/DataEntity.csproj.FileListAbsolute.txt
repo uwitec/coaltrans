@@ -1,0 +1,10 @@
+D:\NewCoal\DataEntity\bin\Debug\DataEntity.dll
+D:\NewCoal\DataEntity\bin\Debug\DataEntity.pdb
+D:\NewCoal\DataEntity\obj\Debug\ResolveAssemblyReference.cache
+D:\NewCoal\DataEntity\obj\Debug\DataEntity.dll
+D:\NewCoal\DataEntity\obj\Debug\DataEntity.pdb
+E:\rensq\CoalTrans\DataEntity\bin\Debug\DataEntity.dll
+E:\rensq\CoalTrans\DataEntity\bin\Debug\DataEntity.pdb
+E:\rensq\CoalTrans\DataEntity\obj\Debug\ResolveAssemblyReference.cache
+E:\rensq\CoalTrans\DataEntity\obj\Debug\DataEntity.dll
+E:\rensq\CoalTrans\DataEntity\obj\Debug\DataEntity.pdb

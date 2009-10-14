@@ -1,0 +1,345 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml"><HEAD id=Head1><TITLE>后台管理</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<SCRIPT language=javascript src="images/jquery.pack.js" type=text/javascript></SCRIPT>
+<SCRIPT language=javascript src="images/AdminIndex.js" type=text/javascript></SCRIPT>
+<SCRIPT language=javascript src="images/FrameTab.js" type=text/javascript></SCRIPT>
+<!--<SCRIPT language=javascript type=text/JavaScript>
+<!--
+    setStyleSheetPath("");
+    setBasePath("/SiteFactory_Gov/", "Admin");
+    setAdminName("admin");
+    //-->
+</SCRIPT>
+--><LINK href="images/Guide.css" type=text/css rel=stylesheet>
+<LINK href="images/index.css" type=text/css rel=stylesheet>
+<LINK href="images/MasterPage.css" type=text/css rel=stylesheet>
+
+
+<META content="MSHTML 6.00.3790.0" name=GENERATOR></HEAD>
+<BODY id=Indexbody onload=onload();>
+<FORM id=myform name=myform action= method=post>
+<DIV>
+</DIV>
+<SCRIPT type=text/JavaScript>function show(id){
+var obj;
+obj=document.getElementById('PopMenu_'+id);	obj.style.visibility="visible";
+}
+function hide(id){
+var obj;
+obj=document.getElementById('PopMenu_'+id);	obj.style.visibility="hidden";
+}
+function hideOthers(id){
+var divs;
+if(document.all)
+{
+  divs = document.all.tags('DIV');
+}
+else
+{
+  divs = document.getElementsByTagName("DIV");
+}
+
+ for(var i = 0 ;i < divs.length;i++)
+{
+	if(divs[i].id != 'PopMenu_'+id && divs[i].id.indexOf('PopMenu_')>=0)
+	{	    divs[i].style.visibility="hidden";
+	}	}} </SCRIPT>
+
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+    <tbody>
+        <tr>
+            <td colspan="3">
+                <div id="content">
+                    <ul id="ChannelMenuItems">
+                        <li id="Menu0" onclick="ShowHideLayer('ChannelMenu_Menu0')"><a id="AChannelMenu_Menu0"
+                            href="javascript:ShowMain('QuickLinks.htm','MyWorktable.htm')"><span id="SpanChannelMenu_Menu0">
+                                我的工作台</span></a> </li>
+                        <li id="Menu1" onclick="ShowHideLayer('ChannelMenu_Menu1')"><a id="AChannelMenu_Menu1"
+                            href="javascript:ShowMain('menu1.htm','')"><span id="SpanChannelMenu_Menu1">系统</span></a>
+                        </li>
+                        <li id="Menu2" onclick="ShowHideLayer('ChannelMenu_Menu2')"><a id="AChannelMenu_Menu2"
+                            href="javascript:ShowMain('menu2.htm','')"><span id="SpanChannelMenu_Menu2">客商</span></a>
+                        </li>
+                        <li id="Menu3" onclick="ShowHideLayer('ChannelMenu_Menu3')"><a id="AChannelMenu_Menu3"
+                            href="javascript:ShowMain('menu3.htm','')"><span id="SpanChannelMenu_Menu3">合同</span></a>
+                        </li>
+                        <li id="Menu4" onclick="ShowHideLayer('ChannelMenu_Menu4')"><a id="AChannelMenu_Menu4"
+                            href="javascript:ShowMain('menu4.htm','')"><span id="SpanChannelMenu_Menu4">项目</span></a>
+                        </li>
+                        <li id="Menu5" onclick="ShowHideLayer('ChannelMenu_Menu5')"><a id="AChannelMenu_Menu5"
+                            href="javascript:ShowMain('menu5.htm','')"><span id="SpanChannelMenu_Menu5">销售</span></a>
+                        </li>
+                        <li id="Menu6" onclick="ShowHideLayer('ChannelMenu_Menu6')"><a id="AChannelMenu_Menu6"
+                            href="javascript:ShowMain('menu6.htm','')"><span id="SpanChannelMenu_Menu6">采购</span></a>
+                        </li>
+                        <li id="Menu7" onclick="ShowHideLayer('ChannelMenu_Menu7')"><a id="AChannelMenu_Menu7"
+                            href="javascript:ShowMain('menu7.htm','')"><span id="SpanChannelMenu_Menu7">仓库</span></a>
+                        </li>
+                        <li id="Menu8" onclick="ShowHideLayer('ChannelMenu_Menu8')"><a id="AChannelMenu_Menu8"
+                            href="javascript:ShowMain('menu8.htm','')"><span id="SpanChannelMenu_Menu8">财务</span></a>
+                        </li>
+                        <li id="Menu9" onclick="ShowHideLayer('ChannelMenu_Menu9')"><a id="AChannelMenu_Menu9"
+                            href="javascript:ShowMain('menu9.htm','')"><span id="SpanChannelMenu_Menu9">管理</span></a>
+                        </li>
+                        <li id="Menu10" onclick="ShowHideLayer('ChannelMenu_Menu10')"><a id="AChannelMenu_Menu10"
+                            href="javascript:ShowMain('menu10.htm','')"><span id="SpanChannelMenu_Menu10">报表</span></a>
+                        </li>
+                        <li id="Menu11" onclick="ShowHideLayer('ChannelMenu_Menu11')"><a id="AChannelMenu_Menu11"
+                            href="javascript:ShowMain('menu11.htm','')"><span id="SpanChannelMenu_Menu11">帮助</span></a>
+                        </li>
+                    </ul>
+                    <div id="SubMenu">
+                        <div id="ChannelMenu_" style="width: 100%">
+                            <ul>
+                                <li>管理员：<span class="AdminName"><strong>admin</strong></span>，欢迎您！&nbsp;&nbsp; </li>
+                                <li><a href="javascript:ShowMain('QuickLinks.htm','MyWorktable.htm')">工作台首页</a>
+                                </li>
+                                <li><a href="javascript:ShowMain('QuickLinks.htm','temp.htm')">我的权限</a> </li>
+                                <li><a onclick="javascript:HelpShow();" href="javascript:">使用帮助</a> </li>
+                                <li><a id="LinkButton1" href="Logout.aspx"><span class="SignOut">安全退出</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="ChannelMenu_MenuMyDeskTop" style="display: none; width: 100%">
+                            <ul>
+                            </ul>
+                        </div>
+                        <div id="ChannelMenu_Menu0" style="display: none; width: 100%">
+                            <ul>
+                            </ul>
+                        </div>
+                        <div id="ChannelMenu_Menu1" style="display: none; width: 100%">
+                            <ul>
+                            </ul>
+                        </div>
+                        <div id="ChannelMenu_Menu2" style="display: none; width: 100%">
+                            <ul>
+                            </ul>
+                        </div>
+                        <div id="ChannelMenu_Menu3" style="display: none; width: 100%">
+                            <ul>
+                            </ul>
+                        </div>
+                        <div id="ChannelMenu_Menu4" style="display: none; width: 100%">
+                            <ul>
+                            </ul>
+                        </div>
+                        <div id="ChannelMenu_Menu5" style="display: none; width: 100%">
+                            <ul>
+                            </ul>
+                        </div>
+                        <div id="ChannelMenu_Menu6" style="display: none; width: 100%">
+                            <ul>
+                            </ul>
+                        </div>
+                        <div id="ChannelMenu_Menu7" style="display: none; width: 100%">
+                            <ul>
+                            </ul>
+                        </div>
+                        <div id="ChannelMenu_Menu8" style="display: none; width: 100%">
+                            <ul>
+                            </ul>
+                        </div>
+                        <div id="ChannelMenu_Menu9" style="display: none; width: 100%">
+                            <ul>
+                            </ul>
+                        </div>
+                        <div id="ChannelMenu_Menu10" style="display: none; width: 100%">
+                            <ul>
+                            </ul>
+                        </div>
+                        <div id="ChannelMenu_Menu11" style="display: none; width: 100%">
+                            <ul>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="Announce">
+                        <a title="网站首页" href="/" target="_blank">
+                            <img height="14" alt="网站首页" src="images/Home.gif" width="37" border="0"></a>&nbsp;<a
+                                title="帮助" href="help.htm" target="_blank"><img height="14" alt="帮助" src="images/Help.gif"
+                                    width="37" border="0"></a>&nbsp;<a title="安全退出" href="Logout.aspx"><img height="14"
+                                        alt="安全退出" src="images/Exit.gif" width="37" border="0"></a></div>
+                </div>
+            </td>
+        </tr>
+        <tr style="vertical-align: top">
+            <td id="frmTitle">
+                <iframe id="left" style="z-index: 2; visibility: inherit; width: 195px; height: 800px"
+                    name="left" src="QuickLinks.htm" frameborder="0" tabid="1"></iframe>
+            </td>
+            <td class="but" onclick="switchSysBar();">
+                <img id="switchPoint" style="border-right: 0px; border-top: 0px; border-left: 0px;
+                    width: 12px; border-bottom: 0px" alt="关闭左栏" src="images/butClose.gif">
+            </td>
+            <td>
+                <!-- 书签浏览 -->
+                <div id="FrameTabs" style="overflow: hidden">
+                    <div class="tab-right" onmouseover="this.className='tab-right tab-right-over'" onmouseout="this.className='tab-right tab-right-disabled'">
+                    </div>
+                    <div class="tab-left" onmouseover="this.className='tab-left tab-left-over'" onmouseout="this.className='tab-left tab-left-disabled'">
+                    </div>
+                    <div class="tab-strip-wrap" style="width: 8000px">
+                        <ul class="tab-strip" style="float: left">
+                            <li class="current" id="iFrameTab1"><a href="javascript:"><span id="frameTabTitle">我的工作台</span></a><a
+                                class="closeTab"><img src="images/tab-close.gif" border="0"></a></A> </li>
+                            <li id="newFrameTab"><a title="新建标签页" href="javascript:"></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- 书签结束 -->
+                <div id="main_right_frame">
+                    <iframe id="main_right" style="z-index: 2; visibility: inherit; overflow-x: hidden;
+                        width: 1280px; height: 800px" name="main_right" src="MyWorktable.htm" frameborder="0"
+                        scrolling="yes" onload="SetTabTitle(this)" tabid="1"></iframe>
+                    <div class="clearbox2">
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</TABLE>
+<DIV id=iframeGuideTemplate style="DISPLAY: none"><IFRAME style="Z-INDEX: 2; VISIBILITY: inherit; WIDTH: 195px; HEIGHT: 800px" src="about:blank" frameBorder=0 tabid="0"></IFRAME></DIV>
+<DIV id=iframeMainTemplate style="DISPLAY: none"><IFRAME style="Z-INDEX: 2; VISIBILITY: inherit; OVERFLOW-X: hidden; WIDTH: 1280px; HEIGHT: 800px" src="about:blank" frameBorder=0 scrolling=yes onload=SetTabTitle(this) tabid="0">
+        </IFRAME></DIV>
+<SCRIPT type=text/javascript>
+    <!--
+
+        function onload() {
+            var width = document.body.clientWidth - 207;
+            var lHeight = document.body.clientHeight - 78;
+            var rHeight = lHeight - (jQuery("#FrameTabs").height() || 0);
+            document.getElementById("main_right").style.width = width > 0 ? width : 0;
+            document.getElementById("main_right").style.height = rHeight > 0 ? rHeight : 0;
+            document.getElementById("left").style.height = lHeight > 0 ? lHeight : 0;
+            jQuery("#FrameTabs").width(width);
+            if (CheckFramesScroll) { CheckFramesScroll(); }
+        }
+        window.onresize = onload;
+    //-->
+    </SCRIPT>
+
+<SCRIPT src="images/Version.aspx" type=text/javascript></SCRIPT>
+</FORM>
+<DIV class=popupTips id=showPop title=提示窗口>
+<DL>
+  <DT><A class=tips_close title=不再提示 onclick=javascript:ClosePop(); 
+  href="javascript:"></A><A class=tips_fold title=隐藏 onclick="javascript:$('#showPop').hide('slow');" href="javascript:"></A>温馨提示 </DT>
+  <DD id=info></DD></DL></DIV>
+<DIV class=HelpTips id=HelpTips title=帮助窗口>
+<DIV class=HelpTitle id=HelpTitle><A class=tips_close title=不再提示 onclick=javascript:dosomething(); href="javascript:"></A><SPAN id=LblHelpTitle>使用帮助</SPAN> </DIV>
+<DIV class=HelpInfo id=HelpInfo>
+	<IMG alt=正在载入...... src="images/loading.gif"> </DIV>
+<DIV class=HelpTipsb id=HelpTipsb><INPUT onclick=javascript:HelpShowCheck(); type=checkbox value=true name=HelpShowFalse>以后不再显示 </DIV></DIV>
+<DIV onmousedown="this.style.display='none';document.getElementById('HelpTips').style.display='none';" id=ly style="DISPLAY: none; Z-INDEX: 1000; FILTER: alpha(opacity=60); LEFT: 0px; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: #777; opacity: 0.5"></DIV>
+<SCRIPT type=text/javascript>
+    <!--
+        //移动窗口部份
+        var posX;
+        var posY;
+        fdiv = document.getElementById("HelpTips");
+        document.getElementById("HelpTitle").onmousedown = function(e) {
+            if (!e) e = window.event;  //如果是IE
+            posX = e.clientX - parseInt(fdiv.style.left);
+            posY = e.clientY - parseInt(fdiv.style.top);
+            document.onmousemove = mousemove;
+        }
+
+        document.onmouseup = function() {
+            document.onmousemove = null;
+        }
+
+        function mousemove(ev) {
+            if (ev == null) ev = window.event; //如果是IE
+            fdiv.style.left = (ev.clientX - posX) + "px";
+            fdiv.style.top = (ev.clientY - posY) + "px";
+        }
+
+     
+
+
+        function CreateSideBarCookie() {
+            var SideBarKey = document.getElementById("left").src.substring(document.getElementById("left").src.lastIndexOf('/') + 1, document.getElementById("left").src.lastIndexOf('.'));
+            var SideBarValue;
+            if (document.getElementById("frmTitle")) {
+                if (SideBarValue = document.getElementById("frmTitle").style.display == "") {
+                    SideBarValue = "block";
+                }
+                else {
+                    SideBarValue = document.getElementById("frmTitle").style.display;
+                }
+            }
+            var existentSideBarCookie = getCookie("SideBarCookie");
+            if (SideBarKey.length != 0 && SideBarValue.length != 0) {
+                var temp = "";
+                var SideBarKV = existentSideBarCookie;
+                if (existentSideBarCookie.length != 0) {
+                    if (SideBarKV.indexOf(SideBarKey) != -1) {
+                        var arrKV = existentSideBarCookie.split("&");
+                        for (var v in arrKV) {
+                            if (arrKV[v].indexOf(SideBarKey) != -1) {
+                                temp = existentSideBarCookie.replace(arrKV[v], SideBarKey + "=" + SideBarValue);
+                            }
+                        }
+                    }
+                    else {
+                        temp = SideBarKey + "=" + SideBarValue + "&" + existentSideBarCookie;
+                    }
+                }
+                else {
+                    temp = SideBarKey + "=" + SideBarValue;
+                }
+                setCookie("SideBarCookie", temp, 300, "/", "", false);
+            }
+            else {
+                return "";
+            }
+        }
+
+        function InitSideBarState() {
+            var existentSideBarCookie = getCookie("SideBarCookie");
+            var SideBarKey = document.getElementById("left").src.substring(document.getElementById("left").src.lastIndexOf('/') + 1, document.getElementById("left").src.lastIndexOf('.'));
+            if (existentSideBarCookie.length != 0 && SideBarKey.length != 0 && existentSideBarCookie.indexOf(SideBarKey) != -1) {
+                var arrKV = existentSideBarCookie.split("&");
+                for (var v in arrKV) {
+                    if (arrKV[v].indexOf(SideBarKey) != -1) {
+                        var currentValue = arrKV[v].split("=");
+                        ChangeSideBarState(currentValue[1]);
+                    }
+                }
+            }
+            else {
+                var obj = document.getElementById("switchPoint");
+                obj.alt = "关闭左栏";
+                obj.src = "Images/butClose.gif";
+                document.getElementById("frmTitle").style.display = "block";
+                onload();
+            }
+           
+        }
+
+        function ChangeSideBarState(temp) {
+            var obj = document.getElementById("switchPoint");
+            if (temp == "none") {
+                obj.alt = "打开左栏";
+                obj.src = "Images/butOpen.gif";
+                document.getElementById("frmTitle").style.display = "none";
+                var width, height;
+                width = document.body.clientWidth - 12;
+                height = document.body.clientHeight - 70;
+                document.getElementById("main_right").style.height = height;
+                document.getElementById("main_right").style.width = width;
+                document.getElementById("FrameTabs").style.width = width;
+                if (CheckFramesScroll) { CheckFramesScroll(); }
+            }
+            else {
+                obj.alt = "关闭左栏";
+                obj.src = "Images/butClose.gif";
+                document.getElementById("frmTitle").style.display = "block";
+                onload();
+            }
+        }
+    -->   
+    
+    </SCRIPT>
+</BODY></HTML>

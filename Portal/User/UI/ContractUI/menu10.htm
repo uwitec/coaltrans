@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="ctl00_Head1">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/Guide.css" type="text/css" rel="stylesheet" />
+<link href="images/index.css" type="text/css" rel="stylesheet" />
+<link href="images/MasterPage.css" type="text/css" rel="stylesheet" />
+<link href="images/xtree.css" type="text/css" rel="stylesheet" /><title>
+	快捷导航
+</title>
+
+    <script type="text/javascript">
+    function JumpToMainRight(url) { parent.frames["main_right"].location = url; }
+    function ReloadMainRight() { parent.frames["main_right"].location.reload(); }
+    function Switch(obj)
+    {
+        obj.className = (obj.className == "guideexpand") ? "guidecollapse" : "guideexpand";
+        var nextDiv;
+        if (obj.nextSibling)
+        {
+            if(obj.nextSibling.nodeName=="DIV")
+            {
+                nextDiv = obj.nextSibling;
+            }
+            else
+            {
+                if(obj.nextSibling.nextSibling)
+                {
+                    if(obj.nextSibling.nextSibling.nodeName=="DIV")
+                    {
+                        nextDiv = obj.nextSibling.nextSibling;
+                    }
+                }
+            }
+            if(nextDiv)
+            {
+                nextDiv.style.display = (nextDiv.style.display != "") ? "" : "none"; 
+            }
+        }
+    }
+    function keylock(evt)
+    {
+	    if((evt.keyCode == 13) && (this.OpenMainRight))
+	    {
+	        this.OpenMainRight();
+	    }
+    }
+    String.prototype.trim = function()
+    {
+        // 用正则表达式将前后空格
+        // 用空字符串替代。
+        return this.replace(/(^\s*)|(\s*$)/g, "");
+    }
+    </script>
+ <style type="text/css">
+    <!--
+        .skin1 {
+            cursor:default;
+            font:menutext;
+            position:absolute;
+            text-align:left;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 10pt;
+            width:120px;
+            background-color:#cccccc;
+            border:1 solid buttonface;
+            visibility:hidden;
+            border:2 outset buttonhighlight;
+        }
+        .menuitems {
+            padding-left:15px;
+            padding-right:10px;
+    }
+    -->
+    </style>
+</head>
+<body id="Guidebody" onkeydown="keylock(event)">
+    <form name="aspnetForm" method="post" action="" id="aspnetForm">
+        <div id="Guide_back">
+            <ul>
+                <li id="Guide_top">
+                    <div id="Guide_toptext">
+                        
+    报表管理
+
+                    </div>
+                </li>
+                <li id="Guide_main">
+                    <div id="Guide_box">
+                        
+    <div class="guideexpand" onclick="Switch(this)">
+        报表管理</div>
+    <div class="guide">
+        <ul>
+            <li><a href="temp.htm" target="main_right">项目报表</a></li>
+            <li><a href="temp.htm" target="main_right">合同报表</a></li>
+            <li><a href="temp.htm" target="main_right">合同已结未结统计</a></li>
+        </ul>
+    </div>
+    
+                    </div>
+                </li>
+                <li id="Guide_bottom"></li>
+            </ul>
+        </div>
+    </form>
+</body>
+</html>

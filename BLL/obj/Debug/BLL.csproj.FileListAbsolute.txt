@@ -1,0 +1,9 @@
+E:\rensq\CoalTrans\BLL\bin\Debug\BLL.dll
+E:\rensq\CoalTrans\BLL\bin\Debug\BLL.pdb
+E:\rensq\CoalTrans\BLL\bin\Debug\COMM.dll
+E:\rensq\CoalTrans\BLL\bin\Debug\DAL.dll
+E:\rensq\CoalTrans\BLL\bin\Debug\DAL.pdb
+E:\rensq\CoalTrans\BLL\bin\Debug\COMM.pdb
+E:\rensq\CoalTrans\BLL\obj\Debug\ResolveAssemblyReference.cache
+E:\rensq\CoalTrans\BLL\obj\Debug\BLL.dll
+E:\rensq\CoalTrans\BLL\obj\Debug\BLL.pdb
