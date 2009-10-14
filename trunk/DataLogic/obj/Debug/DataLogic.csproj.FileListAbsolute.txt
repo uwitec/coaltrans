@@ -1,0 +1,10 @@
+D:\NewCoal\DataLogic\bin\Debug\DataLogic.dll
+D:\NewCoal\DataLogic\bin\Debug\DataLogic.pdb
+D:\NewCoal\DataLogic\obj\Debug\ResolveAssemblyReference.cache
+D:\NewCoal\DataLogic\obj\Debug\DataLogic.dll
+D:\NewCoal\DataLogic\obj\Debug\DataLogic.pdb
+E:\rensq\CoalTrans\DataLogic\bin\Debug\DataLogic.dll
+E:\rensq\CoalTrans\DataLogic\bin\Debug\DataLogic.pdb
+E:\rensq\CoalTrans\DataLogic\obj\Debug\ResolveAssemblyReference.cache
+E:\rensq\CoalTrans\DataLogic\obj\Debug\DataLogic.dll
+E:\rensq\CoalTrans\DataLogic\obj\Debug\DataLogic.pdb

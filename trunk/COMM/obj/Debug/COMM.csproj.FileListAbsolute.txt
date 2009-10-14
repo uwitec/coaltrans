@@ -1,0 +1,5 @@
+E:\rensq\CoalTrans\COMM\obj\Debug\ResolveAssemblyReference.cache
+E:\rensq\CoalTrans\COMM\bin\Debug\COMM.dll
+E:\rensq\CoalTrans\COMM\bin\Debug\COMM.pdb
+E:\rensq\CoalTrans\COMM\obj\Debug\COMM.dll
+E:\rensq\CoalTrans\COMM\obj\Debug\COMM.pdb

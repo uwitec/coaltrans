@@ -1,0 +1,84 @@
+﻿<!-- 
+  Microsoft Visual Studio 2008 Web Deployment Project 
+  http://go.microsoft.com/fwlink/?LinkID=104956
+
+-->
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DC1F0CB7-D3AF-4B26-B46D-87A6612DF0DF}</ProjectGuid>
+    <SourceWebPhysicalPath>..\..\Portal</SourceWebPhysicalPath>
+    <SourceWebProject>{CCE376B5-5116-4968-A40D-9D16C1F4AA2C}|E:\rensq\CoalTrans\Portal</SourceWebProject>
+    <SourceWebVirtualPath>/Portal</SourceWebVirtualPath>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>.\Debug</OutputPath>
+    <EnableUpdateable>true</EnableUpdateable>
+    <UseMerge>true</UseMerge>
+    <SingleAssemblyName>Portal_deploy</SingleAssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>.\Release</OutputPath>
+    <EnableUpdateable>true</EnableUpdateable>
+    <UseMerge>true</UseMerge>
+    <SingleAssemblyName>Portal_deploy</SingleAssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\BLL\BLL.csproj">
+      <Project>{AF715B86-8C00-44D7-80AB-ACD5ED0CB0BD}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BusEntity\BusEntity.csproj">
+      <Project>{F0112B10-D989-4200-AE71-99D139E283D7}</Project>
+      <Name>BusEntity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BusFacade\BusFacade.csproj">
+      <Project>{9FECD447-5376-44F7-8223-9F530F166D37}</Project>
+      <Name>BusFacade</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BusRule\BusRule.csproj">
+      <Project>{F3F02446-5885-4832-83A3-E43D6FAB1BC3}</Project>
+      <Name>BusRule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Common.csproj">
+      <Project>{D8586A0A-80A7-418E-A25A-7553E2EB583E}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\COMM\COMM.csproj">
+      <Project>{53391FB4-9BA3-406B-9E41-AA3D0E4037E0}</Project>
+      <Name>COMM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DAL\DAL.csproj">
+      <Project>{A208AF32-F4C8-4BE0-9D9E-2B20562E85BC}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataEntity\DataEntity.csproj">
+      <Project>{3FD10115-5E78-4ABC-B865-9F66D9EFA768}</Project>
+      <Name>DataEntity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataLogic\DataLogic.csproj">
+      <Project>{1744E0D3-FAF3-43A2-B4CD-14285038EAA3}</Project>
+      <Name>DataLogic</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WebDeployment\v9.0\Microsoft.WebDeployment.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.WebDeployment.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="BeforeMerge">
+  </Target>
+  <Target Name="AfterMerge">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProductVersion>9.0.21022</ProductVersion>
+        <SchemaVersion>2.0</SchemaVersion>
+        <ProjectGuid>{1744E0D3-FAF3-43A2-B4CD-14285038EAA3}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>DataLogic</RootNamespace>
+        <AssemblyName>DataLogic</AssemblyName>
+        <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="System" />
+        <Reference Include="System.configuration" />
+        <Reference Include="System.Core">
+            <RequiredTargetFramework>3.5</RequiredTargetFramework>
+        </Reference>
+        <Reference Include="System.Xml.Linq">
+            <RequiredTargetFramework>3.5</RequiredTargetFramework>
+        </Reference>
+        <Reference Include="System.Data.DataSetExtensions">
+            <RequiredTargetFramework>3.5</RequiredTargetFramework>
+        </Reference>
+        <Reference Include="System.Data" />
+        <Reference Include="System.Xml" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="BaseExecute.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="LianXiXinXiByAll.cs" />
+        <Compile Include="LianXiXinXiByPK.cs" />
+        <Compile Include="LianXiXinXiDelete.cs" />
+        <Compile Include="LianXiXinXiInsert.cs" />
+        <Compile Include="LianXiXinXiUpdate.cs" />
+        <Compile Include="MeiTanByAll.cs" />
+        <Compile Include="MeiTanByPK.cs" />
+        <Compile Include="MeiTanDelete.cs" />
+        <Compile Include="MeiTanInsert.cs" />
+        <Compile Include="MeiTanUpdate.cs" />
+        <Compile Include="PinDaoSheZhiByAll.cs" />
+        <Compile Include="PinDaoSheZhiByPK.cs" />
+        <Compile Include="PinDaoSheZhiDelete.cs" />
+        <Compile Include="PinDaoSheZhiInsert.cs" />
+        <Compile Include="PinDaoSheZhiUpdate.cs" />
+        <Compile Include="QiYeXinXiByAll.cs" />
+        <Compile Include="QiYeXinXiByPK.cs" />
+        <Compile Include="QiYeXinXiDelete.cs" />
+        <Compile Include="QiYeXinXiInsert.cs" />
+        <Compile Include="QiYeXinXiUpdate.cs" />
+        <Compile Include="UsersByAll.cs" />
+        <Compile Include="UsersByPK.cs" />
+        <Compile Include="UsersDelete.cs" />
+        <Compile Include="UsersInsert.cs" />
+        <Compile Include="UsersUpdate.cs" />
+        <Compile Include="WenZhangLiuYanByAll.cs" />
+        <Compile Include="WenZhangLiuYanByPK.cs" />
+        <Compile Include="WenZhangLiuYanDelete.cs" />
+        <Compile Include="WenZhangLiuYanInsert.cs" />
+        <Compile Include="WenZhangLiuYanUpdate.cs" />
+        <Compile Include="ZhanNeiXinJianByAll.cs" />
+        <Compile Include="ZhanNeiXinJianByPK.cs" />
+        <Compile Include="ZhanNeiXinJianDelete.cs" />
+        <Compile Include="ZhanNeiXinJianInsert.cs" />
+        <Compile Include="ZhanNeiXinJianUpdate.cs" />
+        <Compile Include="UsersByUserName.cs" />
+        <Compile Include="UsersByUserNameAndUserPwd.cs" />
+        <Compile Include="CityByAll.cs" />
+        <Compile Include="CityByPK.cs" />
+        <Compile Include="CityDelete.cs" />
+        <Compile Include="CityInsert.cs" />
+        <Compile Include="CityUpdate.cs" />
+        <Compile Include="ProvinceByAll.cs" />
+        <Compile Include="ProvinceByPK.cs" />
+        <Compile Include="ProvinceDelete.cs" />
+        <Compile Include="ProvinceInsert.cs" />
+        <Compile Include="ProvinceUpdate.cs" />
+        <Compile Include="CityByProID.cs" />
+        <Compile Include="PinZhongByAll.cs" />
+        <Compile Include="PinZhongByPK.cs" />
+        <Compile Include="PinZhongDelete.cs" />
+        <Compile Include="PinZhongUpdate.cs" />
+        <Compile Include="PinZhongInsert.cs" />
+        <Compile Include="MeiZhongByAll.cs" />
+        <Compile Include="MeiZhongByPK.cs" />
+        <Compile Include="MeiZhongDelete.cs" />
+        <Compile Include="MeiZhongUpdate.cs" />
+        <Compile Include="MeiZhongInsert.cs" />
+        <Compile Include="XiangMuJieDuanByAll.cs" />
+        <Compile Include="XiangMuJieDuanByPK.cs" />
+        <Compile Include="XiangMuJieDuanDelete.cs" />
+        <Compile Include="XiangMuJieDuanUpdate.cs" />
+        <Compile Include="XiangMuJieDuanInsert.cs" />
+        <Compile Include="XiangMuFenLeiByAll.cs" />
+        <Compile Include="XiangMuFenLeiByPK.cs" />
+        <Compile Include="XiangMuFenLeiDelete.cs" />
+        <Compile Include="XiangMuFenLeiUpdate.cs" />
+        <Compile Include="XiangMuFenLeiInsert.cs" />
+        <Compile Include="QiYeLeiXingByAll.cs" />
+        <Compile Include="QiYeLeiXingByPK.cs" />
+        <Compile Include="QiYeLeiXingDelete.cs" />
+        <Compile Include="QiYeLeiXingUpdate.cs" />
+        <Compile Include="QiYeLeiXingInsert.cs" />
+        <Compile Include="JieSuanFangShiByAll.cs" />
+        <Compile Include="JieSuanFangShiByPK.cs" />
+        <Compile Include="JieSuanFangShiDelete.cs" />
+        <Compile Include="JieSuanFangShiUpdate.cs" />
+        <Compile Include="JieSuanFangShiInsert.cs" />
+        <Compile Include="GongShiXingZhiByAll.cs" />
+        <Compile Include="GongShiXingZhiByPK.cs" />
+        <Compile Include="GongShiXingZhiDelete.cs" />
+        <Compile Include="GongShiXingZhiUpdate.cs" />
+        <Compile Include="GongShiXingZhiInsert.cs" />
+        <Compile Include="BaoJiaFangShiByAll.cs" />
+        <Compile Include="BaoJiaFangShiByPK.cs" />
+        <Compile Include="BaoJiaFangShiDelete.cs" />
+        <Compile Include="BaoJiaFangShiUpdate.cs"  />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

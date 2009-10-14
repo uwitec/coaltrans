@@ -1,0 +1,108 @@
+.cp_all {
+	margin-top: 10px;
+	margin-right: 10px;
+	margin-bottom: 20px;
+	margin-left: 10px;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #CCCCCC;
+}
+.cp_images img {
+	height: 75px;
+	width: 100px;
+}
+.cp_images {
+	float: left;
+}
+.cp_cotton {
+	float: left;
+	margin-left: 10px;
+	text-align: left;
+	width: 470px;
+	margin-right: 10px;
+}
+.cp_cotton h1 {
+	font-size: 14px;
+}
+.cp_cotton li {
+	color: #999999;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	font-family: "ËÎÌו";
+	line-height: 16px;
+}
+.cp_cotton em {
+	font-style: normal;
+	color: #000000;
+}
+.jiage {
+	float: left;
+	height: 75px;
+	width: 100px;
+	line-height: 75px;
+}
+.jiage em {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-weight:bold;
+	color: #FF3300;
+}
+DIV.scott {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 3px; MARGIN: 3px; PADDING-TOP: 3px; TEXT-ALIGN: center
+}
+DIV.scott A {
+	BORDER-RIGHT: #ddd 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #ddd 1px solid; PADDING-LEFT: 5px; PADDING-BOTTOM: 2px; BORDER-LEFT: #ddd 1px solid; COLOR: #000000; MARGIN-RIGHT: 2px; PADDING-TOP: 2px; BORDER-BOTTOM: #ddd 1px solid; TEXT-DECORATION: none
+}
+DIV.scott A:hover {
+	COLOR: #F97A73;
+	BACKGROUND-COLOR: #FEEEED;
+	border: 1px solid #FFFFFF;
+}
+DIV.scott A:active {
+	BORDER-RIGHT: #85bd1e 1px solid; BORDER-TOP: #85bd1e 1px solid; BORDER-LEFT: #85bd1e 1px solid; COLOR: #F97A73; BORDER-BOTTOM: #85bd1e 1px solid; BACKGROUND-COLOR: #FEEEED
+}
+DIV.scott SPAN.current {
+	PADDING-RIGHT: 5px;
+	PADDING-LEFT: 5px;
+	FONT-WEIGHT: bold;
+	PADDING-BOTTOM: 2px;
+	COLOR: #fff;
+	MARGIN-RIGHT: 2px;
+	PADDING-TOP: 2px;
+	BACKGROUND-COLOR: #F97A73;
+	border: 1px solid #FEE0DE;
+}
+DIV.scott SPAN.disabled {
+	BORDER-RIGHT: #f3f3f3 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #f3f3f3 1px solid; PADDING-LEFT: 5px; PADDING-BOTTOM: 2px; BORDER-LEFT: #f3f3f3 1px solid; COLOR: #ccc; MARGIN-RIGHT: 2px; PADDING-TOP: 2px; BORDER-BOTTOM: #f3f3f3 1px solid
+}
+.searce_tj {
+	text-align: left;
+	color: #666666;
+}
+.searce_tj ul {
+	padding: 10px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #CCCCCC;
+}
+.searce_tj li {
+	line-height: 20px;
+}
+.now01 {
+	font-weight: bold;
+	font-style: normal;
+	text-decoration: none;
+	color: #FF6600;
+}
+.npw02 {
+	color: #0066CC;
+}
+
+.searce_tj a {
+	text-decoration: none;
+}
+.searce_tj a:hover {
+	text-decoration: underline;
+}
+
