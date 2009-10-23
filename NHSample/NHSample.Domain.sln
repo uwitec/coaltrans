@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHSample.Domain", "NHSample.Domain\NHSample.Domain.csproj", "{1883BBFC-EB39-4A78-8506-5194D299E75A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHTest", "NHTest\NHTest.csproj", "{664AFA09-ED3A-425A-B69C-6FCEE1AFFA11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1883BBFC-EB39-4A78-8506-5194D299E75A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1883BBFC-EB39-4A78-8506-5194D299E75A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1883BBFC-EB39-4A78-8506-5194D299E75A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1883BBFC-EB39-4A78-8506-5194D299E75A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{664AFA09-ED3A-425A-B69C-6FCEE1AFFA11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{664AFA09-ED3A-425A-B69C-6FCEE1AFFA11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{664AFA09-ED3A-425A-B69C-6FCEE1AFFA11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{664AFA09-ED3A-425A-B69C-6FCEE1AFFA11}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
