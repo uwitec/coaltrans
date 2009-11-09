@@ -1,5 +1,0 @@
-E:\workspace\NHSample\NHSample.Util\bin\Debug\NHSample.Util.dll
-E:\workspace\NHSample\NHSample.Util\bin\Debug\NHSample.Util.pdb
-E:\workspace\NHSample\NHSample.Util\obj\Debug\ResolveAssemblyReference.cache
-E:\workspace\NHSample\NHSample.Util\obj\Debug\NHSample.Util.dll
-E:\workspace\NHSample\NHSample.Util\obj\Debug\NHSample.Util.pdb

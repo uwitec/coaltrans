@@ -1,7 +1,0 @@
-E:\workspace\NHSample\Coal.DAL\obj\Debug\ResolveAssemblyReference.cache
-E:\workspace\NHSample\Coal.DAL\bin\Debug\Coal.DAL.dll
-E:\workspace\NHSample\Coal.DAL\bin\Debug\Coal.DAL.pdb
-E:\workspace\NHSample\Coal.DAL\bin\Debug\NHSample.Util.dll
-E:\workspace\NHSample\Coal.DAL\bin\Debug\NHSample.Util.pdb
-E:\workspace\NHSample\Coal.DAL\obj\Debug\Coal.DAL.dll
-E:\workspace\NHSample\Coal.DAL\obj\Debug\Coal.DAL.pdb
