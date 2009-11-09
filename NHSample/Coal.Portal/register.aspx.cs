@@ -4,8 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using NHibernate;
-using NHSample.Domain;
 using Coal.Util;
 
 public partial class _Default : System.Web.UI.Page 
@@ -25,17 +23,17 @@ public partial class _Default : System.Web.UI.Page
         if (this.validCode.Text.Trim().ToUpper() == Request.Cookies["valid_code"].Value)
         {
             //插入数据库
-            using (ISession session = NHSample.Domain.Session.Open())
-            {
-                NHSample.Domain.Entities.User u = new NHSample.Domain.Entities.User();
-                u.Email = email;
-                u.LoginName = loginName;
-                u.NickName = nickName;
-                u.Password = password;
-                u.ValidStatus = 0;
-                session.Save(u);
-                session.Flush();
-            }
+            //using (ISession session = NHSample.Domain.Session.Open())
+            //{
+            //    NHSample.Domain.Entities.User u = new NHSample.Domain.Entities.User();
+            //    u.Email = email;
+            //    u.LoginName = loginName;
+            //    u.NickName = nickName;
+            //    u.Password = password;
+            //    u.ValidStatus = 0;
+            //    session.Save(u);
+            //    session.Flush();
+            //}
 
             string key = loginName + "," + password;
             string validKey = CryptoHelper.Encrypt(key, "renshiqi");

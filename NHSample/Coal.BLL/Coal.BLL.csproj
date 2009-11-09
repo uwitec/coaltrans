@@ -48,6 +48,16 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Coal.DAL\Coal.DAL.csproj">
+      <Project>{F0B2DB69-C5AD-4AA2-8D17-858B0FC28FD8}</Project>
+      <Name>Coal.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Coal.Util\Coal.Util.csproj">
+      <Project>{F60709FF-1680-4918-891B-57F6C4AC1CE3}</Project>
+      <Name>Coal.Util</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -4,8 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using NHSample.Domain.Entities;
-using NHibernate;
 using Coal.Util;
 
 public partial class Login : System.Web.UI.Page

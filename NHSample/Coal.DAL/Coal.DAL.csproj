@@ -54,7 +54,7 @@
     <Compile Include="UsersEntity.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NHSample.Util\Coal.Util.csproj">
+    <ProjectReference Include="..\Coal.Util\Coal.Util.csproj">
       <Project>{F60709FF-1680-4918-891B-57F6C4AC1CE3}</Project>
       <Name>Coal.Util</Name>
     </ProjectReference>
