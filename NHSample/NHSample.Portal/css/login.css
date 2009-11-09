@@ -1,0 +1,130 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+	color: #767676;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.clear {
+	clear: both;
+}
+
+.login_all {
+	width: 1007px;
+	margin-top: 50px;
+	margin-right: auto;
+	margin-left: auto;
+}
+.logo_l {
+	background-image: url(../images/logo.jpg);
+	height: 203px;
+	width: 407px;
+	float: left;
+}
+.loginuser {
+	float: left;
+	width: 376px;
+	height: 202px;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-top-color: #C8C6C7;
+	border-right-color: #C8C6C7;
+	border-left-color: #C8C6C7;
+}
+.logo_r {
+	background-image: url(../images/logo02.jpg);
+	height: 203px;
+	width: 222px;
+	float: left;
+}
+.zc_user {
+	margin-right: 222px;
+	margin-left: 407px;
+	height: 200px;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: dashed;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #CCCCCC;
+	border-right-color: #CCCCCC;
+	border-bottom-color: #CCCCCC;
+	border-left-color: #CCCCCC;
+}
+.loginuser h1 {
+	color: #000000;
+	font-size: 14px;
+	font-family: "Î¢ÈíÑÅºÚ";
+	margin: 0px;
+	background-color: #F4F4F4;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+}
+.loginuser h1 em {
+	font-size: 12px;
+	font-weight: normal;
+	font-style: normal;
+	color: #999999;
+	font-family: "ËÎÌå";
+	margin-left: 10px;
+}
+.loginuser ul {
+	margin: 0px;
+	padding: 10px;
+}
+.login_tb td {
+	padding: 10px;
+}
+.zc_user h1 {
+	font-size: 14px;
+	color: #000000;
+	font-family: "Î¢ÈíÑÅºÚ";
+	margin: 0px;
+	padding: 10px;
+}
+.zc_user h2 {
+	margin-bottom: 10px;
+	margin-left: 20px;
+	margin-top: 0px;
+}
+.zc_user h3 {
+	font-size: 14px;
+	font-weight: normal;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 25px;
+}
+.zc_user ul {
+	margin-top: 10px;
+	margin-left: 50px;
+	list-style-position: inside;
+	line-height: 20px;
+	padding: 0px;
+}
+.zc_user li {
+	margin: 0px;
+}
+.endpage {
+	line-height: 30px;
+	text-align: center;
+}
+.endpage p {
+	margin: 0px;
+	padding: 0px;
+}
+.d_menu {
+	background-image: url(../images/menu_bg.jpg);
+	background-repeat: repeat-x;
+	height: 34px;
+	line-height: 34px;
+	text-align: center;
+	margin-top: 50px;
+}

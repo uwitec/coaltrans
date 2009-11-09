@@ -1,0 +1,201 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+	color: #767676;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.clear {
+	clear: both;
+}
+
+.userht_all {
+	width: 1007px;
+	margin-right: auto;
+	margin-left: auto;
+}
+.topban {
+	background-image: url(../images/ban.jpg);
+	height: 100px;
+	background-repeat: no-repeat;
+}
+.h_menu {
+	background-image: url(../images/menu_bg.jpg);
+	background-repeat: repeat-x;
+	height: 34px;
+	line-height: 34px;
+	text-align: right;
+	padding-right: 15px;
+}
+.d_menu {
+	background-image: url(../images/menu_bg.jpg);
+	background-repeat: repeat-x;
+	height: 34px;
+	line-height: 34px;
+	text-align: center;
+	margin-top: 15px;
+}
+.left_all {
+	float: left;
+	width: 186px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #DE8800;
+	background-color: #FFF0DD;
+}
+.right_all {
+	float: right;
+	width: 780px;
+}
+.left_all ul {
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+.left_all li {
+	text-indent: 25px;
+	color: #FF9E05;
+	font-size: 14px;
+	font-weight: bold;
+}
+.left_all li img {
+	margin-right: 10px;
+}
+.left_all h3 {
+	font-size: 14px;
+	margin: 0px;
+	text-indent: 15px;
+}
+
+
+
+.menu_a {
+	height: 22px;
+	background-color: #FFFFFF;
+	padding-top: 10px;
+}
+.menu_b {
+	background-image: url(../images/list_bg01.jpg);
+	height: 22px;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #E28700;
+	padding-top: 10px;
+}
+.menu_b a {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+.menu_b a:hover {
+	text-decoration: underline;
+}
+.menu_c {
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #E28700;
+}
+.menu_c a {
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: normal;
+	color: #DE8800;
+	display: block;
+	text-indent: 45px;
+	line-height: 30px;
+}
+.right_all h1 {
+	font-size: 18px;
+	font-weight: normal;
+	font-family: "Î¢ÈíÑÅºÚ";
+	margin-top: 10px;
+}
+.tishi {
+	font-size: 14px;
+	color: #FF053A;
+	font-weight: bold;
+	background-color: #FFFBF7;
+	border: 1px solid #FFD49D;
+	text-align: center;
+	padding: 10px;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+.loginuser {
+	margin-top: 15px;
+	width: 760px;
+	margin-right: auto;
+	margin-left: auto;
+}
+.l_login {
+	float: left;
+	width: 380px;
+	border: 1px solid #E0E0E0;
+}
+.l_login h1 {
+	color: #000000;
+	font-size: 14px;
+	margin: 0px;
+	background-color: #F4F4F4;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 10px;
+}
+.l_login h1 em {
+	font-size: 12px;
+	font-weight: normal;
+	font-style: normal;
+	color: #999999;
+	font-family: "ËÎÌå";
+	margin-left: 10px;
+}
+
+.r_login {
+	float: right;
+	width: 350px;
+}
+.l_login ul {
+	margin: 0px;
+	padding: 10px;
+}
+
+.login_tb {
+}
+.login_tb td {
+	padding: 10px;
+}
+.r_login h1 {
+	font-size: 14px;
+	color: #000000;
+	margin: 0px;
+	padding: 3px;
+}
+.r_login h2 {
+	margin: 10px;
+}
+.r_login h3 {
+	font-size: 14px;
+	font-weight: normal;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 15px;
+}
+.r_login ul {
+	margin-top: 10px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 25px;
+	list-style-position: inside;
+	line-height: 20px;
+	padding: 0px;
+}
+.r_login li {
+	margin: 0px;
+}
+.endpage {
+	line-height: 30px;
+	text-align: center;
+}
+.endpage p {
+	margin: 0px;
+	padding: 0px;
+}
