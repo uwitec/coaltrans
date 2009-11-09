@@ -17,14 +17,22 @@ public partial class Login : System.Web.UI.Page
     {
         if (!string.IsNullOrEmpty(this.email.Text) && !string.IsNullOrEmpty(this.password.Text))
         {
-            if (this.email.Text == "cheese" && this.password.Text == "windows")
+            if (this.email.Text == "cheese1@sina.com" && this.password.Text == "windows")
             { 
                 //写cookies
                 string key = this.email.Text + "," + this.password.Text;
                 string validKey = CryptoHelper.Encrypt(key, "renshiqi");
 
+                if (Request.Cookies["token"] != null)
+                {
+                    HttpCookie oldCookie = Request.Cookies["token"];
+                    oldCookie.Expires = DateTime.Now.AddDays(-1);
+                    Response.SetCookie(oldCookie);
+                }
+
                 HttpCookie cookie = new HttpCookie("token");
                 cookie.Value = validKey;
+                cookie.Expires = DateTime.Now.AddDays(1);
                 Response.SetCookie(cookie);
                 Response.Redirect("Default.aspx");
             }

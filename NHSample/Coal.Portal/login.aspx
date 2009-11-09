@@ -16,13 +16,13 @@
         <ul>
           <table border="0" cellspacing="0" cellpadding="0" class="login_tb">
             <tr>
-              <td>会员登录Email：</td>
+              <td>会员Email：</td>
               <td><asp:TextBox ID="email" runat="server"></asp:TextBox></td>
-              <td><a href="#">会员登录Email？</a></td>
+              <td><a href="#">忘记会员登录Email？</a></td>
             </tr>
             <tr>
               <td>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</td>
-              <td><asp:TextBox ID="password" runat="server"></asp:TextBox></td>
+              <td><asp:TextBox ID="password" runat="server" TextMode="Password"></asp:TextBox></td>
               <td><a href="#">忘了密码？</a></td>
             </tr>
             <tr>

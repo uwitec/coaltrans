@@ -10,50 +10,38 @@ using Coal.DAL;
 namespace Coal.Entity
 {
     [Serializable]
-    public partial class UsersEntity
+    public partial class UserGroupMapEntity
     {
         private SqlHelper sqlHelper;
 
         #region const fields
         public const string DBName = "Cheese";
-        public const string TableName = "Users";
-        public const string PrimaryKey = "PK_User";
+        public const string TableName = "UserGroupMap";
+        public const string PrimaryKey = "PK_UserGroupMap";
         #endregion
 
         #region columns
         public struct Columns
         {
             public const string ID = "ID";
-            public const string LoginName = "LoginName";
-            public const string Email = "Email";
-            public const string Password = "Password";
-            public const string NickName = "NickName";
-            public const string ValidStatus = "ValidStatus";
-            public const string CreateDate = "CreateDate";
+            public const string UserId = "UserId";
+            public const string GroupId = "GroupId";
         }
         #endregion
 
         #region constructors
-        public UsersEntity()
+        public UserGroupMapEntity()
         {
             sqlHelper = new SqlHelper(DBName);
         }
 
-        public UsersEntity(int id, string loginname, string email, string password, string nickname, int validstatus, DateTime createdate)
+        public UserGroupMapEntity(int id, int userid, int groupid)
         {
             this.ID = id;
 
-            this.LoginName = loginname;
+            this.UserId = userid;
 
-            this.Email = email;
-
-            this.Password = password;
-
-            this.NickName = nickname;
-
-            this.ValidStatus = validstatus;
-
-            this.CreateDate = createdate;
+            this.GroupId = groupid;
 
         }
         #endregion
@@ -67,42 +55,14 @@ namespace Coal.Entity
         }
 
 
-        public string LoginName
+        public int? UserId
         {
             get;
             set;
         }
 
 
-        public string Email
-        {
-            get;
-            set;
-        }
-
-
-        public string Password
-        {
-            get;
-            set;
-        }
-
-
-        public string NickName
-        {
-            get;
-            set;
-        }
-
-
-        public int? ValidStatus
-        {
-            get;
-            set;
-        }
-
-
-        public DateTime? CreateDate
+        public int? GroupId
         {
             get;
             set;
@@ -116,7 +76,7 @@ namespace Coal.Entity
         public bool Exists(int primaryKeyId)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select count(1) from Users");
+            strSql.Append("select count(1) from UserGroupMap");
             strSql.Append(" where ID= @primaryKeyId");
             SqlParameter[] parameters = {
 					new SqlParameter("@primaryKeyId", SqlDbType.Int)
@@ -135,64 +95,42 @@ namespace Coal.Entity
         }
 
         //add
-        public void Add(UsersEntity entity)
+        public void Add(UserGroupMapEntity entity)
         {
 
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("insert into Users(");
-            strSql.Append("ID,LoginName,Email,Password,NickName,ValidStatus,CreateDate)");
+            strSql.Append("insert into UserGroupMap(");
+            strSql.Append("UserId,GroupId)");
             strSql.Append(" values (");
-            strSql.Append("@ID,@LoginName,@Email,@Password,@NickName,@ValidStatus,@CreateDate)");
+            strSql.Append("@UserId,@GroupId)");
             SqlParameter[] parameters = {
-					new SqlParameter("@ID",SqlDbType.Int),
-					new SqlParameter("@LoginName",SqlDbType.VarChar),
-					new SqlParameter("@Email",SqlDbType.VarChar),
-					new SqlParameter("@Password",SqlDbType.VarChar),
-					new SqlParameter("@NickName",SqlDbType.NVarChar),
-					new SqlParameter("@ValidStatus",SqlDbType.Int),
-					new SqlParameter("@CreateDate",SqlDbType.DateTime)
+					new SqlParameter("@UserId",SqlDbType.Int),
+					new SqlParameter("@GroupId",SqlDbType.Int)
 					};
-            parameters[0].Value = entity.ID;
-            parameters[1].Value = entity.LoginName;
-            parameters[2].Value = entity.Email;
-            parameters[3].Value = entity.Password;
-            parameters[4].Value = entity.NickName;
-            parameters[5].Value = entity.ValidStatus;
-            parameters[6].Value = entity.CreateDate;
+            parameters[0].Value = entity.UserId;
+            parameters[1].Value = entity.GroupId;
 
             sqlHelper.ExecuteSql(strSql.ToString(), parameters);
         }
 
         //update
-        public void Update(UsersEntity entity)
+        public void Update(UserGroupMapEntity entity)
         {
 
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("update Users set ");
-            strSql.Append("LoginName=@LoginName,");
-            strSql.Append("Email=@Email,");
-            strSql.Append("Password=@Password,");
-            strSql.Append("NickName=@NickName,");
-            strSql.Append("ValidStatus=@ValidStatus,");
-            strSql.Append("CreateDate=@CreateDate");
+            strSql.Append("update UserGroupMap set ");
+            strSql.Append("UserId=@UserId,");
+            strSql.Append("GroupId=@GroupId");
 
             strSql.Append(" where ID=@ID");
             SqlParameter[] parameters = {
 					new SqlParameter("@ID",SqlDbType.Int),
-					new SqlParameter("@LoginName",SqlDbType.VarChar),
-					new SqlParameter("@Email",SqlDbType.VarChar),
-					new SqlParameter("@Password",SqlDbType.VarChar),
-					new SqlParameter("@NickName",SqlDbType.NVarChar),
-					new SqlParameter("@ValidStatus",SqlDbType.Int),
-					new SqlParameter("@CreateDate",SqlDbType.DateTime)
+					new SqlParameter("@UserId",SqlDbType.Int),
+					new SqlParameter("@GroupId",SqlDbType.Int)
 					};
             parameters[0].Value = entity.ID;
-            parameters[1].Value = entity.LoginName;
-            parameters[2].Value = entity.Email;
-            parameters[3].Value = entity.Password;
-            parameters[4].Value = entity.NickName;
-            parameters[5].Value = entity.ValidStatus;
-            parameters[6].Value = entity.CreateDate;
+            parameters[1].Value = entity.UserId;
+            parameters[2].Value = entity.GroupId;
 
             sqlHelper.ExecuteSql(strSql.ToString(), parameters);
         }
@@ -201,7 +139,7 @@ namespace Coal.Entity
         public void Delete(int primaryKeyId)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("delete from Users ");
+            strSql.Append("delete from UserGroupMap ");
             strSql.Append(" where ID=@primaryKeyId");
             SqlParameter[] parameters = {
 					new SqlParameter("@primaryKeyId", SqlDbType.Int)
@@ -211,10 +149,10 @@ namespace Coal.Entity
         }
 
         //Get entity
-        public UsersEntity GetEntity(int primaryKeyId)
+        public UserGroupMapEntity GetEntity(int primaryKeyId)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select * from Users ");
+            strSql.Append("select * from UserGroupMap ");
             strSql.Append(" where ID=@primaryKeyId");
             SqlParameter[] parameters = {
 					new SqlParameter("@primaryKeyId", SqlDbType.Int)};
@@ -223,22 +161,18 @@ namespace Coal.Entity
             if (dr.HasRows)
             {
                 dr.Read();
-                UsersEntity entity = new UsersEntity();
+                UserGroupMapEntity entity = new UserGroupMapEntity();
                 if (!Convert.IsDBNull(dr["ID"]))
                 {
                     entity.ID = (int)dr["ID"];
                 }
-                entity.LoginName = dr["LoginName"].ToString();
-                entity.Email = dr["Email"].ToString();
-                entity.Password = dr["Password"].ToString();
-                entity.NickName = dr["NickName"].ToString();
-                if (!Convert.IsDBNull(dr["ValidStatus"]))
+                if (!Convert.IsDBNull(dr["UserId"]))
                 {
-                    entity.ValidStatus = (int)dr["ValidStatus"];
+                    entity.UserId = (int)dr["UserId"];
                 }
-                if (!Convert.IsDBNull(dr["CreateDate"]))
+                if (!Convert.IsDBNull(dr["GroupId"]))
                 {
-                    entity.CreateDate = (DateTime)dr["CreateDate"];
+                    entity.GroupId = (int)dr["GroupId"];
                 }
                 dr.Close();
                 dr.Dispose();
@@ -258,7 +192,7 @@ namespace Coal.Entity
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("select *");
-            strSql.Append(" FROM Users(nolock)");
+            strSql.Append(" FROM UserGroupMap(nolock)");
             if (strWhere.Trim() != "")
             {
                 strSql.Append(" where " + strWhere);
@@ -267,35 +201,31 @@ namespace Coal.Entity
         }
 
         //getlist
-        public List<UsersEntity> GetList(string strWhere)
+        public List<UserGroupMapEntity> GetList(string strWhere)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("select *");
-            strSql.Append(" FROM Users(nolock) ");
+            strSql.Append(" FROM UserGroupMap(nolock) ");
             if (strWhere.Trim() != "")
             {
                 strSql.Append(" where " + strWhere);
             }
             SqlDataReader dr = sqlHelper.ExecuteReader(strSql.ToString());
-            List<UsersEntity> list = new List<UsersEntity>();
+            List<UserGroupMapEntity> list = new List<UserGroupMapEntity>();
             while (dr.Read())
             {
-                UsersEntity entity = new UsersEntity();
+                UserGroupMapEntity entity = new UserGroupMapEntity();
                 if (!Convert.IsDBNull(dr["ID"]))
                 {
                     entity.ID = (int)dr["ID"];
                 }
-                entity.LoginName = dr["LoginName"].ToString();
-                entity.Email = dr["Email"].ToString();
-                entity.Password = dr["Password"].ToString();
-                entity.NickName = dr["NickName"].ToString();
-                if (!Convert.IsDBNull(dr["ValidStatus"]))
+                if (!Convert.IsDBNull(dr["UserId"]))
                 {
-                    entity.ValidStatus = (int)dr["ValidStatus"];
+                    entity.UserId = (int)dr["UserId"];
                 }
-                if (!Convert.IsDBNull(dr["CreateDate"]))
+                if (!Convert.IsDBNull(dr["GroupId"]))
                 {
-                    entity.CreateDate = (DateTime)dr["CreateDate"];
+                    entity.GroupId = (int)dr["GroupId"];
                 }
                 list.Add(entity);
             }
@@ -317,7 +247,7 @@ namespace Coal.Entity
         /// <returns>返回记录总数</returns>
         public int GetPagerRowsCount(string where, SqlParameter[] param)
         {
-            string sql = "select count(*) from Users ";
+            string sql = "select count(*) from UserGroupMap ";
             if (!string.IsNullOrEmpty(where))
             {
                 sql += "where " + where;
@@ -353,7 +283,7 @@ namespace Coal.Entity
 
             }
 
-            sql += " AS RowNumber,* FROM Users";
+            sql += " AS RowNumber,* FROM UserGroupMap";
 
             if (!string.IsNullOrEmpty(where))
             {
@@ -366,50 +296,5 @@ namespace Coal.Entity
         }
 
         #endregion
-
-
-        public UsersEntity GetEntity(string where, SqlParameter[] param)
-        {
-            StringBuilder strSql = new StringBuilder();
-            strSql.Append("select * from Users ");
-
-            if (where != string.Empty)
-            {
-                strSql.Append(where);
-            }
-
-            SqlDataReader dr = sqlHelper.ExecuteReader(strSql.ToString(), param);
-            if (dr.HasRows)
-            {
-                dr.Read();
-                UsersEntity entity = new UsersEntity();
-                if (!Convert.IsDBNull(dr["ID"]))
-                {
-                    entity.ID = (int)dr["ID"];
-                }
-                entity.LoginName = dr["LoginName"].ToString();
-                entity.Email = dr["Email"].ToString();
-                entity.Password = dr["Password"].ToString();
-                entity.NickName = dr["NickName"].ToString();
-                if (!Convert.IsDBNull(dr["ValidStatus"]))
-                {
-                    entity.ValidStatus = (int)dr["ValidStatus"];
-                }
-                if (!Convert.IsDBNull(dr["CreateDate"]))
-                {
-                    entity.CreateDate = (DateTime)dr["CreateDate"];
-                }
-                dr.Close();
-                dr.Dispose();
-                return entity;
-            }
-            else
-            {
-                dr.Close();
-                dr.Dispose();
-                return null;
-            }
-        }
     }
 }
-
