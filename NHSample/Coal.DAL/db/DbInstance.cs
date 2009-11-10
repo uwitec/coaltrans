@@ -206,10 +206,5 @@ namespace Coal.DAL
             return this.DAO.GetParameterValue(this.iCmd, para_name);
         }
 
-        //2008-06-16 wengmj
-        public void SetIDs(int[] ids)
-        {
-            this.DAO.SetIDs(this.iCmd, ids);
-        }
     }
 }

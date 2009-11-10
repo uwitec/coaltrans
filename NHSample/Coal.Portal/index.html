@@ -1,0 +1,815 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>国家煤炭工业供需网</title>
+<link href="css/style_css.css" rel="stylesheet" type="text/css" />
+<script>
+<!--
+/*第一种形式 第二种形式 更换显示样式*/
+function setTab(name,cursel,n){
+ for(i=1;i<=n;i++){
+  var menu=document.getElementById(name+i);
+  var con=document.getElementById("con_"+name+"_"+i);
+  menu.className=i==cursel?"hover":"";
+  con.style.display=i==cursel?"block":"none";
+ }
+}
+//-->
+</script>
+</head>
+<body>
+<table width="948" border="0" align="center" cellpadding="0" cellspacing="0" class="top_bar">
+  <tr>
+    <td height="100" valign="top"><img src="images/banner707_243.jpg" width="950" height="100" /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="top_right_menu"><table width="900" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="78" align="center" class="linkf12_whiteb"><a href="#">[ 首页 ]</a></td>
+        <td width="53" height="25">&nbsp;</td>
+        <td width="769"><a href="#">协会动态</a> | <a href="#">行业动态</a> | <a href="#">经济运行</a> | <a href="#">煤炭市场</a> | <a href="#">统计信息</a> | <a href="#">科技发展</a> | <a href="#">国际合作</a> | <a href="#">安全生产</a> | <a href="#">公文下载</a></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td height="25">&nbsp;</td>
+        <td height="25"><a href="#">煤炭建设</a> | <a href="#">加工利用</a> | <a href="#">人事培训</a> | <a href="#">信用建设</a> | <a href="#">政策法规</a> | <a href="#">能源经济</a> | <a href="#">煤炭资源</a> | <a href="#">文化体育</a> | <a href="#">会员之家</a></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<table width="950" border="0" align="center" cellpadding="0" cellspacing="0" class="content_bar">
+  <tr>
+    <td class="content_bar_left"><div class="login mar_t16">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="15%" align="center" class="login_title"><img src="images/login_ico.jpg" width="19" height="31" /></td>
+          <td width="85%" class="login_title">会员登录</td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="top"><form id="form1" name="form1" method="post" action="">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class=" mar_t10 f12_grey_3">
+              <tr>
+                <td width="31%" height="30" align="right">用户名：</td>
+                <td width="69%" align="left"><input name="textfield" type="text" id="textfield" size="20" class="login_input"/></td>
+              </tr>
+              <tr>
+                <td height="30" align="right">密 &nbsp; 码：</td>
+                <td align="left"><input name="textfield2" type="text" id="textfield2" size="20" class="login_input"/></td>
+              </tr>
+              <tr>
+                <td height="30" align="right">验证码：</td>
+                <td align="left"><input name="textfield3" type="text" id="textfield3" size="20" class="login_code"/>
+                  <img src="images/code.gif" width="52" height="19" align="absmiddle" /></td>
+              </tr>
+              <tr>
+                <td height="40" colspan="2" align="center" valign="bottom"><img src="images/login_btn.gif" width="154" height="29" border="0" usemap="#Map" /></td>
+                </tr>
+            </table>
+                    </form>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="bars">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="14%" align="center" class="login_title"><img src="images/gxxx_ico.gif" width="19" height="31" /></td>
+          <td width="36%" class="login_title">供应中信息</td>
+          <td width="3%" class="login_title">&nbsp;</td>
+          <td width="24%" align="center" class="login_title">供应</td>
+          <td width="23%" align="center" class="login_title">需求</td>
+        </tr>
+        <tr>
+          <td colspan="5" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td align="center" class="date_bg f12_grey_3">煤 炭</td>
+              <td align="center" class="bor_bottom3 f12_grey_3">1</td>
+              <td align="center" class="bor_bottom3 f12_grey_3">1</td>
+            </tr>
+            <tr>
+              <td align="center" class="date_bg f12_grey_3">机 械</td>
+              <td align="center" class="bor_bottom3 f12_grey_3">1</td>
+             <td align="center" class="bor_bottom3 f12_grey_3">0</td>
+            </tr>
+            <tr>
+              <td align="center" class="date_bg f12_grey_3">物 流</td>
+              <td align="center" class="bor_bottom3 f12_grey_3">1</td>
+              <td align="center" class="bor_bottom3 f12_grey_3">1</td>
+            </tr>
+            <tr>
+              <td align="center" class="date_bg f12_grey_3">招 商</td>
+             <td align="center" class="bor_bottom3 f12_grey_3">1</td>
+             <td align="center" class="bor_bottom3 f12_grey_3">0</td>
+            </tr>
+            <tr>
+              <td align="center" class="date_bg_n f12b_grey_1">合 计</td>
+              <td align="center" class="f12b_grey_1">4</td>
+              <td align="center" class="f12b_grey_1">2</td>
+            </tr>
+          </table></td>
+        </tr>
+      </table>
+      </div>
+      <div class="bars">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="15%" align="center" class="login_title"><img src="images/dzzz_ico.jpg" width="19" height="31" /></td>
+            <td width="85%" class="login_title">电子杂志</td>
+          </tr>
+          <tr>
+            <td colspan="2" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="linkf12_greyb">
+              <tr>
+                <td height="155" align="center"><a href="#"><img src="images/dzzz_1.gif" width="86" height="116" class="dzzz_img"/></a></td>
+                <td align="center"><a href="#"><img src="images/dzzz_2.gif" width="86" height="116" class="dzzz_img"/></a></td>
+              </tr>
+              <tr>
+                <td height="0" align="center"><a href="#">安全生产</a></td>
+                <td align="center"><a href="#">当代矿工</a></td>
+              </tr>
+              <tr>
+                <td height="155" align="center"><a href="#"><img src="images/dzzz_3.gif" width="86" height="116" class="dzzz_img"/></a></td>
+                <td align="center"><a href="#"><img src="images/dzzz_4.gif" alt="" width="86" height="116" class="dzzz_img"/></a></td>
+              </tr>
+              <tr>
+                <td height="25" align="center"><a href="#">煤炭信息</a></td>
+                <td align="center"><a href="#">中国煤炭</a></td>
+              </tr>
+            </table></td>
+          </tr>
+        </table>
+      </div>
+           <div class="bars pad_tb text_align">
+             <a href="#"><img src="images/left_ad_1.gif" /></a>           </div>
+             <div class="bars pad_tb text_align">
+             <a href="#"><img src="images/left_ad_2.gif" /></a>           </div>
+             <div class="bars pad_tb text_align">
+             <a href="#"><img src="images/left_ad_3.gif" /></a>           </div>
+    </td>
+    <td align="right" valign="top"><table width="712" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><table width="712" border="0" align="right" cellpadding="0" cellspacing="0" class="content_bar_right mar_t16">
+          <tr>
+            <td width="252" valign="top"><script src="js/config.js"></script>
+                <script src="js/fun.js"></script></td>
+            <td align="right" valign="top"><table width="449" border="0" align="right" cellpadding="0" cellspacing="0" id="Tab1">
+                <tr>
+                  <td align="right" valign="top"><table width="449" border="0" cellspacing="0" cellpadding="0" class="news_bars">
+                      <tr>
+                        <td width="10">&nbsp;</td>
+                        <td width="383"><div class="Menubox">
+                            <ul>
+                              <li id="one1" onmouseover="setTab('one',1,2)"  class="hover">公告信息</li>
+                              <li id="one2" onmouseover="setTab('one',2,2)" >行业动态</li>
+                            </ul>
+                        </div></td>
+                        <td width="56" align="center"><a href="#"><img src="images/more.gif" width="32" height="6" /></a></td>
+                      </tr>
+                    </table>
+                      <table width="449" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td height="60"><div class="Contentbox">
+                              <div id="con_one_1" class="hover">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td width="6%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="72%" height="28" align="left" class="linkf12_grey"><a href="#">全国安全生产应急平台体系建设工作座谈会在... </a></td>
+                                    <td width="22%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="6%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="72%" height="28" align="left" class="linkf12_grey"><a href="#">中国首个大型煤制气项目内蒙古开工 2012年完...</a></td>
+                                    <td width="22%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="6%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="72%" height="28" align="left" class="linkf12_grey"><a href="#">霍林郭勒建成亚洲最大的节能环保型储煤仓... </a></td>
+                                    <td width="22%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="6%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="72%" height="28" align="left" class="linkf12_grey"><a href="#">发改委：2009年7月份煤炭行业运行情况... </a></td>
+                                    <td width="22%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="6%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="72%" height="28" align="left" class="linkf12_grey"><a href="#">痛定思痛山西终结“小煤矿经济”... </a></td>
+                                    <td width="22%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                </table>
+                              </div>
+                            <div id="con_one_2" style="display:none">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td width="6%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="72%" height="28" align="left" class="linkf12_grey"><a href="#">山西煤矿整合改革 当防过犹不及... </a></td>
+                                    <td width="22%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="6%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="72%" height="28" align="left" class="linkf12_grey"><a href="#">中国首个大型煤制气项目内蒙古开工 2012年完...</a></td>
+                                    <td width="22%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="6%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="72%" height="28" align="left" class="linkf12_grey"><a href="#">霍林郭勒建成亚洲最大的节能环保型储煤仓... </a></td>
+                                    <td width="22%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="6%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="72%" height="28" align="left" class="linkf12_grey"><a href="#">发改委：2009年7月份煤炭行业运行情况... </a></td>
+                                    <td width="22%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="6%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="72%" height="28" align="left" class="linkf12_grey"><a href="#">痛定思痛山西终结“小煤矿经济”... </a></td>
+                                    <td width="22%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                </table>
+                            </div>
+                          </div></td>
+                        </tr>
+                    </table></td>
+                </tr>
+            </table></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table>
+      <table width="712" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td height="204" valign="top"><table width="712" border="0" align="right" cellpadding="0" cellspacing="0" id="Tab2">
+            <tr>
+              <td align="left" valign="top"><table width="712" border="0" cellspacing="0" cellpadding="0" class="gongxu_bars mar_t12">
+                  <tr>
+                    <td width="110" align="center" class="f12b_grey">煤炭供需信息</td>
+                    <td width="541" class="pad_t4"><div class="Menubox">
+                        <ul>
+                          <li id="two1" onmouseover="setTab('two',1,2)"  class="hover">供应信息</li>
+                          <li id="two2" onmouseover="setTab('two',2,2)" >求购信息</li>
+                        </ul>
+                    </div></td>
+                    <td width="61" align="center"><a href="#"><img src="images/more.gif" width="32" height="6" /></a></td>
+                  </tr>
+                </table>
+                  <table width="712" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td height="60" valign="top"><div class="Contentbox_2">
+                          <div id="con_two_1" class="hover">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                              <tr>
+                                <td width="47%" class="bor_middle"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td width="8%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="65%" height="28" align="left" class="linkf12_grey"><a href="#">[供应] 临县主焦煤供应... </a></td>
+                                    <td width="27%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="8%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="65%" height="28" align="left" class="linkf12_grey"><a href="#">[供应] 出售神木店塔附近的电煤...</a></td>
+                                    <td width="27%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="8%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="65%" height="28" align="left" class="linkf12_grey"><a href="#">[供应] 木煤矿股东代办神木锦界... </a></td>
+                                    <td width="27%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="8%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="65%" height="28" align="left" class="linkf12_grey"><a href="#">[供应] 神木煤矿股东代办神木锦界... </a></td>
+                                    <td width="27%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="8%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="65%" height="28" align="left" class="linkf12_grey"><a href="#">[供应] 盐雾试验报告中性盐雾试验标准</a></td>
+                                    <td width="27%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="8%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="65%" height="28" align="left" class="linkf12_grey"><a href="#">[供应] 内蒙出售3500卡以上块煤 </a></td>
+                                    <td width="27%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                </table></td>
+                                <td width="53%"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td width="9%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="61%" height="28" align="left" class="linkf12_grey"><a href="#">[供应] 临县主焦煤供应... </a></td>
+                                    <td width="30%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="9%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="61%" height="28" align="left" class="linkf12_grey"><a href="#">[供应] 出售神木店塔附近的电煤...</a></td>
+                                    <td width="30%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="9%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="61%" height="28" align="left" class="linkf12_grey"><a href="#">[供应] 木煤矿股东代办神木锦界... </a></td>
+                                    <td width="30%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="9%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="61%" height="28" align="left" class="linkf12_grey"><a href="#">[供应] 神木煤矿股东代办神木锦界... </a></td>
+                                    <td width="30%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="9%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="61%" height="28" align="left" class="linkf12_grey"><a href="#">[供应] 盐雾试验报告中性盐雾试验标准</a></td>
+                                    <td width="30%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="9%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="61%" height="28" align="left" class="linkf12_grey"><a href="#">[供应] 内蒙出售3500卡以上块煤 </a></td>
+                                    <td width="30%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                </table></td>
+                              </tr>
+                            </table>
+                          </div>
+                        <div id="con_two_2" style="display:none">
+                           <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                              <tr>
+                                <td width="47%" class="bor_middle"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td width="8%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="65%" height="28" align="left" class="linkf12_grey"><a href="#">[求购] 出售神木店塔附近的电煤... </a></td>
+                                    <td width="27%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="8%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="65%" height="28" align="left" class="linkf12_grey"><a href="#">[求购] 临县主焦煤供应...</a></td>
+                                    <td width="27%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="8%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="65%" height="28" align="left" class="linkf12_grey"><a href="#">[求购] 木煤矿股东代办神木锦界... </a></td>
+                                    <td width="27%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="8%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="65%" height="28" align="left" class="linkf12_grey"><a href="#">[求购] 神木煤矿股东代办神木锦界... </a></td>
+                                    <td width="27%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="8%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="65%" height="28" align="left" class="linkf12_grey"><a href="#">[求购] 盐雾试验报告中性盐雾试验标准</a></td>
+                                    <td width="27%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="8%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="65%" height="28" align="left" class="linkf12_grey"><a href="#">[求购] 内蒙出售3500卡以上块煤 </a></td>
+                                    <td width="27%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                </table></td>
+                                <td width="53%"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td width="9%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="61%" height="28" align="left" class="linkf12_grey"><a href="#">[求购] 临县主焦煤供应... </a></td>
+                                    <td width="30%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="9%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="61%" height="28" align="left" class="linkf12_grey"><a href="#">[求购] 出售神木店塔附近的电煤...</a></td>
+                                    <td width="30%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="9%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="61%" height="28" align="left" class="linkf12_grey"><a href="#">[求购] 木煤矿股东代办神木锦界... </a></td>
+                                    <td width="30%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="9%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="61%" height="28" align="left" class="linkf12_grey"><a href="#">[求购] 神木煤矿股东代办神木锦界... </a></td>
+                                    <td width="30%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="9%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="61%" height="28" align="left" class="linkf12_grey"><a href="#">[求购] 盐雾试验报告中性盐雾试验标准</a></td>
+                                    <td width="30%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                  <tr>
+                                    <td width="9%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                                    <td width="61%" height="28" align="left" class="linkf12_grey"><a href="#">[求购] 内蒙出售3500卡以上块煤 </a></td>
+                                    <td width="30%" align="center" class="f12_grey_4">2009-08-22</td>
+                                  </tr>
+                                </table></td>
+                              </tr>
+                            </table>
+                        </div>
+                      </div></td>
+                    </tr>
+                </table></td>
+            </tr>
+          </table></td>
+        </tr>
+      </table>
+      <table width="712" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td height="204" valign="top"><table width="712" border="0" align="right" cellpadding="0" cellspacing="0" id="Tab2">
+            <tr>
+              <td align="left" valign="top"><table width="712" border="0" cellspacing="0" cellpadding="0" class="gongxu_bars mar_t12">
+                  <tr>
+                    <td width="139" align="center" class="f12b_grey">机械设备供需信息</td>
+                    <td width="512" class="pad_t4"><div class="Menubox">
+                        <ul>
+                          <li id="three1" onmouseover="setTab('three',1,2)"  class="hover">供应信息</li>
+                          <li id="three2" onmouseover="setTab('three',2,2)" >求购信息</li>
+                        </ul>
+                    </div></td>
+                    <td width="61" align="center"><a href="#"><img src="images/more.gif" width="32" height="6" /></a></td>
+                  </tr>
+                </table>
+                  <table width="712" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td height="60" valign="top"><div class="Contentbox_3">
+                          <div id="con_three_1" class="hover">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                              <tr>
+                                <td width="33%" height="100" align="center" valign="top"><table width="208" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td height="30" class="bor_b"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                        <td width="10%" align="left"><img src="images/jx_ico.gif" width="9" height="9" /></td>
+                                        <td width="90%" align="left" class="linkf12_greyb"><a href="#">斗式提升机</a></td>
+                                      </tr>
+                                    </table></td>
+                                  </tr>
+                                  <tr>
+                                    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                        <td width="43%" height="85" align="left"><a href="#"><img src="images/jx01.jpg" width="81" height="59" /></a></td>
+                                        <td width="57%" align="left" valign="middle" class="f12_grey_3">南通振强机械制造公司<br />
+                                          用途特点：（1）传动装置 TD型斗提机的传</td>
+                                      </tr>
+                                    </table></td>
+                                  </tr>
+                                </table></td>
+                                <td width="34%" align="center" valign="top"><table width="208" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td height="30" class="bor_b"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                          <td width="10%" align="left"><img src="images/jx_ico.gif" width="9" height="9" /></td>
+                                          <td width="90%" align="left" class="linkf12_greyb"><a href="#">斗式提升机</a></td>
+                                        </tr>
+                                    </table></td>
+                                  </tr>
+                                  <tr>
+                                    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                          <td width="43%" height="85" align="left"><a href="#"><img src="images/jx01.jpg" width="81" height="59" /></a></td>
+                                          <td width="57%" align="left" valign="middle" class="f12_grey_3">南通振强机械制造公司<br />
+                                            用途特点：（1）传动装置 TD型斗提机的传</td>
+                                        </tr>
+                                    </table></td>
+                                  </tr>
+                                </table></td>
+                                <td width="33%" align="center" valign="top"><table width="208" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td height="30" class="bor_b"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                          <td width="10%" align="left"><img src="images/jx_ico.gif" width="9" height="9" /></td>
+                                          <td width="90%" align="left" class="linkf12_greyb"><a href="#">斗式提升机</a></td>
+                                        </tr>
+                                    </table></td>
+                                  </tr>
+                                  <tr>
+                                    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                          <td width="43%" height="85" align="left"><a href="#"><img src="images/jx01.jpg" width="81" height="59" /></a></td>
+                                          <td width="57%" align="left" valign="middle" class="f12_grey_3">南通振强机械制造公司<br />
+                                            用途特点：（1）传动装置 TD型斗提机的传</td>
+                                        </tr>
+                                    </table></td>
+                                  </tr>
+                                </table></td>
+                              </tr>
+                            </table>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                              <tr>
+                                <td width="33%" height="100" align="center" valign="top"><table width="208" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td height="30" class="bor_b"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                        <td width="10%" align="left"><img src="images/jx_ico.gif" width="9" height="9" /></td>
+                                        <td width="90%" align="left" class="linkf12_greyb"><a href="#">斗式提升机</a></td>
+                                      </tr>
+                                    </table></td>
+                                  </tr>
+                                  <tr>
+                                    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                        <td width="43%" height="85" align="left"><a href="#"><img src="images/jx01.jpg" width="81" height="59" /></a></td>
+                                        <td width="57%" align="left" valign="middle" class="f12_grey_3">南通振强机械制造公司<br />
+                                          用途特点：（1）传动装置 TD型斗提机的传</td>
+                                      </tr>
+                                    </table></td>
+                                  </tr>
+                                </table></td>
+                                <td width="34%" align="center" valign="top"><table width="208" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td height="30" class="bor_b"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                          <td width="10%" align="left"><img src="images/jx_ico.gif" width="9" height="9" /></td>
+                                          <td width="90%" align="left" class="linkf12_greyb"><a href="#">斗式提升机</a></td>
+                                        </tr>
+                                    </table></td>
+                                  </tr>
+                                  <tr>
+                                    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                          <td width="43%" height="85" align="left"><a href="#"><img src="images/jx01.jpg" width="81" height="59" /></a></td>
+                                          <td width="57%" align="left" valign="middle" class="f12_grey_3">南通振强机械制造公司<br />
+                                            用途特点：（1）传动装置 TD型斗提机的传</td>
+                                        </tr>
+                                    </table></td>
+                                  </tr>
+                                </table></td>
+                                <td width="33%" align="center" valign="top"><table width="208" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td height="30" class="bor_b"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                          <td width="10%" align="left"><img src="images/jx_ico.gif" width="9" height="9" /></td>
+                                          <td width="90%" align="left" class="linkf12_greyb"><a href="#">斗式提升机</a></td>
+                                        </tr>
+                                    </table></td>
+                                  </tr>
+                                  <tr>
+                                    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                          <td width="43%" height="85" align="left"><a href="#"><img src="images/jx01.jpg" width="81" height="59" /></a></td>
+                                          <td width="57%" align="left" valign="middle" class="f12_grey_3">南通振强机械制造公司<br />
+                                            用途特点：（1）传动装置 TD型斗提机的传</td>
+                                        </tr>
+                                    </table></td>
+                                  </tr>
+                                </table></td>
+                              </tr>
+                            </table>
+                          </div>
+                        <div id="con_three_2" style="display:none">
+                           <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                              <tr>
+                                <td width="33%" height="100" align="center" valign="top"><table width="208" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td height="30" class="bor_b"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                        <td width="10%" align="left"><img src="images/jx_ico.gif" width="9" height="9" /></td>
+                                        <td width="90%" align="left" class="linkf12_greyb"><a href="#">给煤机</a></td>
+                                      </tr>
+                                    </table></td>
+                                  </tr>
+                                  <tr>
+                                    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                        <td width="43%" height="85" align="left"><a href="#"><img src="images/jx02.jpg" width="81" height="59" /></a></td>
+                                        <td width="57%" align="left" valign="middle" class="f12_grey_3">南通振强机械制造公司<br />
+                                          用途特点：（1）传动装置 TD型斗提机的传</td>
+                                      </tr>
+                                    </table></td>
+                                  </tr>
+                                </table></td>
+                                <td width="34%" align="center" valign="top"><table width="208" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td height="30" class="bor_b"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                          <td width="10%" align="left"><img src="images/jx_ico.gif" width="9" height="9" /></td>
+                                          <td width="90%" align="left" class="linkf12_greyb"><a href="#">给煤机</a></td>
+                                        </tr>
+                                    </table></td>
+                                  </tr>
+                                  <tr>
+                                    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                          <td width="43%" height="85" align="left"><a href="#"><img src="images/jx02.jpg" width="81" height="59" /></a></td>
+                                          <td width="57%" align="left" valign="middle" class="f12_grey_3">南通振强机械制造公司<br />
+                                            用途特点：（1）传动装置 TD型斗提机的传</td>
+                                        </tr>
+                                    </table></td>
+                                  </tr>
+                                </table></td>
+                                <td width="33%" align="center" valign="top"><table width="208" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td height="30" class="bor_b"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                          <td width="10%" align="left"><img src="images/jx_ico.gif" width="9" height="9" /></td>
+                                          <td width="90%" align="left" class="linkf12_greyb"><a href="#">给煤机</a></td>
+                                        </tr>
+                                    </table></td>
+                                  </tr>
+                                  <tr>
+                                    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                          <td width="43%" height="85" align="left"><a href="#"><img src="images/jx02.jpg" width="81" height="59" /></a></td>
+                                          <td width="57%" align="left" valign="middle" class="f12_grey_3">南通振强机械制造公司<br />
+                                            用途特点：（1）传动装置 TD型斗提机的传</td>
+                                        </tr>
+                                    </table></td>
+                                  </tr>
+                                </table></td>
+                              </tr>
+                            </table>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                              <tr>
+                                <td width="33%" height="100" align="center" valign="top"><table width="208" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td height="30" class="bor_b"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                        <td width="10%" align="left"><img src="images/jx_ico.gif" width="9" height="9" /></td>
+                                        <td width="90%" align="left" class="linkf12_greyb"><a href="#">给煤机</a></td>
+                                      </tr>
+                                    </table></td>
+                                  </tr>
+                                  <tr>
+                                    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                      <tr>
+                                        <td width="43%" height="85" align="left"><a href="#"><img src="images/jx02.jpg" width="81" height="59" /></a></td>
+                                        <td width="57%" align="left" valign="middle" class="f12_grey_3">南通振强机械制造公司<br />
+                                          用途特点：（1）传动装置 TD型斗提机的传</td>
+                                      </tr>
+                                    </table></td>
+                                  </tr>
+                                </table></td>
+                                <td width="34%" align="center" valign="top"><table width="208" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td height="30" class="bor_b"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                          <td width="10%" align="left"><img src="images/jx_ico.gif" width="9" height="9" /></td>
+                                          <td width="90%" align="left" class="linkf12_greyb"><a href="#">给煤机</a></td>
+                                        </tr>
+                                    </table></td>
+                                  </tr>
+                                  <tr>
+                                    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                          <td width="43%" height="85" align="left"><a href="#"><img src="images/jx02.jpg" width="81" height="59" /></a></td>
+                                          <td width="57%" align="left" valign="middle" class="f12_grey_3">南通振强机械制造公司<br />
+                                            用途特点：（1）传动装置 TD型斗提机的传</td>
+                                        </tr>
+                                    </table></td>
+                                  </tr>
+                                </table></td>
+                                <td width="33%" align="center" valign="top"><table width="208" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td height="30" class="bor_b"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                          <td width="10%" align="left"><img src="images/jx_ico.gif" width="9" height="9" /></td>
+                                          <td width="90%" align="left" class="linkf12_greyb"><a href="#">给煤机</a></td>
+                                        </tr>
+                                    </table></td>
+                                  </tr>
+                                  <tr>
+                                    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                          <td width="43%" height="85" align="left"><a href="#"><img src="images/jx02.jpg" width="81" height="59" /></a></td>
+                                          <td width="57%" align="left" valign="middle" class="f12_grey_3">南通振强机械制造公司<br />
+                                            用途特点：（1）传动装置 TD型斗提机的传</td>
+                                        </tr>
+                                    </table></td>
+                                  </tr>
+                                </table></td>
+                              </tr>
+                            </table>
+                        </div>
+                      </div></td>
+                    </tr>
+                </table></td>
+            </tr>
+          </table></td>
+        </tr>
+      </table>
+      <table width="712" border="0" cellspacing="0" cellpadding="0" class="mar_t12">
+        <tr>
+          <td><a href="#"><img src="images/banner.jpg" width="712" height="84" /></a></td>
+        </tr>
+      </table>
+      <table width="712" border="0" cellspacing="0" cellpadding="0" class="mar_t12">
+        <tr>
+          <td width="353" height="100" valign="top"><table width="345" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="21" align="left"><img src="images/ico.gif" width="19" height="17" align="absmiddle"/></td>
+              <td width="90" align="left" class="linkf12_greyb"><a href="#">物流供需信息</a> </td>
+              <td width="202"><img src="images/lines.gif" width="202" height="10" /></td>
+              <td width="32"><a href="#"><img src="images/more2.gif" width="30" height="10" /></a></td>
+            </tr>
+          </table>
+            <table width="345" border="0" cellspacing="0" cellpadding="0" class="bor_all mar_t4">
+              <tr>
+                <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="30%" height="108" align="center"><a href="#"><img src="images/pic01.gif" width="71" height="63" class="bor_img"/></a></td>
+                    <td width="70%" align="left" class="f12_grey_3 linkf12_grey line_h26">深圳翔盟国际货运代理有限公司<br />
+                      地址：深圳市翔盟国际货运代理有限公司 <br />
+                      [<a href="#">查看联系方式</a>]</td>
+                  </tr>
+                  <tr>
+                    <td height="108" align="center"><a href="#"><img src="images/pic02.gif" width="71" height="63" class="bor_img"/></a></td>
+                    <td align="left" class="f12_grey_3 linkf12_grey line_h26">深圳翔盟国际货运代理有限公司<br />
+                      地址：深圳市翔盟国际货运代理有限公司 <br />
+                      [<a href="#">查看联系方式</a>]</td>
+                  </tr>
+                </table></td>
+              </tr>
+            </table></td>
+          <td width="359" valign="top"><table width="345" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="21" align="left"><img src="images/ico.gif" width="19" height="17" align="absmiddle"/></td>
+              <td width="90" align="left" class="linkf12_greyb"><a href="#">招商信息 </a> </td>
+              <td width="202"><img src="images/lines.gif" width="202" height="10" /></td>
+              <td width="32"><a href="#"><img src="images/more2.gif" width="30" height="10" /></a></td>
+            </tr>
+          </table>
+            <table width="345" border="0" cellspacing="0" cellpadding="0" class="bor_all mar_t4">
+              <tr>
+                <td valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="9%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                    <td height="36" align="left" class="linkf12_grey"><a href="#">全国安全生产应急平台体系建设工作座谈会在... </a></td>
+                    </tr>
+                  <tr>
+                    <td width="9%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                    <td height="36" align="left" class="linkf12_grey"><a href="#">中国首个大型煤制气项目内蒙古开工 2012年完... </a></td>
+                    </tr>
+                  <tr>
+                    <td width="9%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                    <td height="36" align="left" class="linkf12_grey"><a href="#">霍林郭勒建成亚洲最大的节能环保型储煤仓</a> </td>
+                    </tr>
+                  <tr>
+                    <td width="9%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                    <td height="36" align="left" class="linkf12_grey"><a href="#">发改委：2009年7月份煤炭行业运行情况 </a></td>
+                    </tr>
+                  <tr>
+                    <td width="9%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                    <td height="36" align="left" class="linkf12_grey"><a href="#">痛定思痛山西终结“小煤矿经济”</a> </td>
+                    </tr>
+                  <tr>
+                    <td width="9%" align="center"><img src="images/news_ico.gif" width="8" height="8" align="absmiddle"/></td>
+                    <td height="36" align="left" class="linkf12_grey"><a href="#">山西煤矿整合改革 当防过犹不及 </a></td>
+                    </tr>
+                </table></td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="950" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td valign="top"><table width="950" border="0" align="right" cellpadding="0" cellspacing="0" id="Tab3">
+            <tr>
+              <td align="left" valign="top"><table width="712" border="0" cellspacing="0" cellpadding="0" class="friend_bars mar_t12">
+                  <tr>
+                    <td width="21" align="center" class="f12b_grey">&nbsp;</td>
+                    <td width="846" class="pad_t4"><div class="Menubox">
+                        <ul>
+                          <li id="four1" onmouseover="setTab('four',1,2)"  class="hover">相关链接</li>
+                          <li id="four2" onmouseover="setTab('four',2,2)" >友情链接</li>
+                        </ul>
+                    </div></td>
+                    <td width="83" align="center"><a href="#"><img src="images/more.gif" width="32" height="6" /></a></td>
+                  </tr>
+                </table>
+                  <table width="950" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td height="60" valign="top"><div class="Contentbox_4">
+                        <div id="con_four_1" class="hover">
+                          <table width="96%" border="0" align="center" cellpadding="0" cellspacing="0" class="linkf12_grey">
+                            <tr>
+                              <td height="30" align="left"><a href="#">中国政府网</a></td>
+                              <td height="30" align="left"><a href="#">国家发展和改革委员会</a></td>
+                              <td height="30" align="left"><a href="#">中华人民共和国铁道部</a> </td>
+                              <td height="30" align="left"><a href="#">中华人民共和国交通运输部</a></td>
+                              <td height="30" align="left"><a href="#">国家安全生产监督管理总局</a></td>
+                            </tr>
+                            <tr>
+                              <td height="30" align="left"><a href="#">国家统计局</a></td>
+                              <td height="30" align="left"><a href="#">中国电力企业联合会</a></td>
+                              <td height="30" align="left"><a href="#">中国钢铁工业协会</a></td>
+                              <td height="30" align="left"><a href="#">新华网</a></td>
+                              <td height="30" align="left"><a href="#">人民网</a> </td>
+                            </tr>
+                          </table>
+                        </div>
+                        <div id="con_four_2" style="display:none">
+                          
+                        </div>
+                      </div></td>
+                    </tr>
+                </table></td>
+            </tr>
+          </table></td>
+        </tr>
+</table>
+<table width="950" border="0" align="center" cellpadding="0" cellspacing="0" class="mar_t12">
+  <tr>
+    <td class="footer f12_white linkf12_white"><a href="#">网站地图</a>   |   <a href="#">版权声明</a>   |   <a href="#">设为首页</a>   |   <a href="#">关于我们</a></td>
+  </tr>
+  <tr>
+    <td height="120" align="center" class="f12_grey_3 line_h36">Copyright ©  2009 国家煤炭工业网<br />
+      主办:中国煤炭工业协会 技术支持:北京中煤易通科技有限公司<br />
+    (浏览本站主页,建议将电脑显示器分辨率调整为:1024*768)</td>
+  </tr>
+</table>
+<map name="Map" id="Map"><area shape="rect" coords="1,0,42,28" href="#" alt="登录" />
+<area shape="rect" coords="41,0,86,28" href="#" alt="注册" />
+<area shape="rect" coords="85,0,153,28" href="#" alt="忘记密码" />
+</map></body>
+</html>

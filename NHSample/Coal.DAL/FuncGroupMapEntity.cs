@@ -15,7 +15,7 @@ namespace Coal.Entity
         private SqlHelper sqlHelper;
 
         #region const fields
-        public const string DBName = "Cheese";
+        public const string DBName = "CoalTrans";
         public const string TableName = "FuncGroupMap";
         public const string PrimaryKey = "PK_FuncGroupMap";
         #endregion
@@ -30,6 +30,7 @@ namespace Coal.Entity
         #endregion
 
         #region constructors
+
         public FuncGroupMapEntity()
         {
             sqlHelper = new SqlHelper(DBName);
@@ -44,6 +45,7 @@ namespace Coal.Entity
             this.GroupId = groupid;
 
         }
+
         #endregion
 
         #region Properties
@@ -70,32 +72,9 @@ namespace Coal.Entity
 
         #endregion
 
-        #region CRUD Method
+        #region CUD Method
 
-        //Exists
-        public bool Exists(int primaryKeyId)
-        {
-            StringBuilder strSql = new StringBuilder();
-            strSql.Append("select count(1) from FuncGroupMap");
-            strSql.Append(" where ID= @primaryKeyId");
-            SqlParameter[] parameters = {
-					new SqlParameter("@primaryKeyId", SqlDbType.Int)
-				};
-            parameters[0].Value = primaryKeyId;
-            object obj = sqlHelper.GetSingle(strSql.ToString(), parameters);
-
-            if (obj != null && obj.ToString() != string.Empty)
-            {
-                return int.Parse(obj.ToString()) > 0;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        //add
-        public void Add(FuncGroupMapEntity entity)
+        public void Add()
         {
 
             StringBuilder strSql = new StringBuilder();
@@ -107,14 +86,12 @@ namespace Coal.Entity
 					new SqlParameter("@FuncId",SqlDbType.Int),
 					new SqlParameter("@GroupId",SqlDbType.Int)
 					};
-            parameters[0].Value = entity.FuncId;
-            parameters[1].Value = entity.GroupId;
+            parameters[0].Value = this.FuncId;
+            parameters[1].Value = this.GroupId;
 
             sqlHelper.ExecuteSql(strSql.ToString(), parameters);
         }
-
-        //update
-        public void Update(FuncGroupMapEntity entity)
+        public void Update()
         {
 
             StringBuilder strSql = new StringBuilder();
@@ -128,15 +105,13 @@ namespace Coal.Entity
 					new SqlParameter("@FuncId",SqlDbType.Int),
 					new SqlParameter("@GroupId",SqlDbType.Int)
 					};
-            parameters[0].Value = entity.ID;
-            parameters[1].Value = entity.FuncId;
-            parameters[2].Value = entity.GroupId;
+            parameters[0].Value = this.ID;
+            parameters[1].Value = this.FuncId;
+            parameters[2].Value = this.GroupId;
 
             sqlHelper.ExecuteSql(strSql.ToString(), parameters);
         }
-
-        //delete
-        public void Delete(int primaryKeyId)
+        public void Delete()
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("delete from FuncGroupMap ");
@@ -144,158 +119,166 @@ namespace Coal.Entity
             SqlParameter[] parameters = {
 					new SqlParameter("@primaryKeyId", SqlDbType.Int)
 				};
-            parameters[0].Value = primaryKeyId;
+            parameters[0].Value = this.ID;
             sqlHelper.ExecuteSql(strSql.ToString(), parameters);
         }
 
-        //Get entity
-        public FuncGroupMapEntity GetEntity(int primaryKeyId)
+        #endregion
+
+        public class FuncGroupMapEntityFinder
         {
-            StringBuilder strSql = new StringBuilder();
-            strSql.Append("select * from FuncGroupMap ");
-            strSql.Append(" where ID=@primaryKeyId");
-            SqlParameter[] parameters = {
+            private SqlHelper sqlHelper;
+            public const string DBName = "CoalTrans";
+
+            public FuncGroupMapEntityFinder()
+            {
+                sqlHelper = new SqlHelper(DBName);
+            }
+
+            public FuncGroupMapEntity FindById(int primaryKeyId)
+            {
+                StringBuilder strSql = new StringBuilder();
+                strSql.Append("select * from FuncGroupMap ");
+                strSql.Append(" where ID=@primaryKeyId");
+                SqlParameter[] parameters = {
 					new SqlParameter("@primaryKeyId", SqlDbType.Int)};
-            parameters[0].Value = primaryKeyId;
-            SqlDataReader dr = sqlHelper.ExecuteReader(strSql.ToString(), parameters);
-            if (dr.HasRows)
+                parameters[0].Value = primaryKeyId;
+                DataSet ds = sqlHelper.ExecuteDateSet(strSql.ToString(), parameters);
+                if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count == 1)
+                {
+                    DataRow row = ds.Tables[0].Rows[0];
+                    FuncGroupMapEntity entity = new FuncGroupMapEntity();
+
+                    if (!Convert.IsDBNull(row["ID"]))
+                    {
+                        entity.ID = (int)row["ID"];
+                    }
+
+                    if (!Convert.IsDBNull(row["FuncId"]))
+                    {
+                        entity.FuncId = (int)row["FuncId"];
+                    }
+
+                    if (!Convert.IsDBNull(row["GroupId"]))
+                    {
+                        entity.GroupId = (int)row["GroupId"];
+                    }
+
+                    return entity;
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+
+            public List<FuncGroupMapEntity> Find(string strWhere)
             {
-                dr.Read();
-                FuncGroupMapEntity entity = new FuncGroupMapEntity();
-                if (!Convert.IsDBNull(dr["ID"]))
+                StringBuilder strSql = new StringBuilder();
+                strSql.Append("select *");
+                strSql.Append(" FROM FuncGroupMap(nolock) ");
+                if (strWhere.Trim() != "")
                 {
-                    entity.ID = (int)dr["ID"];
+                    strSql.Append(" where " + strWhere);
                 }
-                if (!Convert.IsDBNull(dr["FuncId"]))
+                SqlDataReader dr = sqlHelper.ExecuteReader(strSql.ToString());
+                List<FuncGroupMapEntity> list = new List<FuncGroupMapEntity>();
+                while (dr.Read())
                 {
-                    entity.FuncId = (int)dr["FuncId"];
+                    FuncGroupMapEntity entity = new FuncGroupMapEntity();
+                    if (!Convert.IsDBNull(dr["ID"]))
+                    {
+                        entity.ID = (int)dr["ID"];
+                    }
+                    if (!Convert.IsDBNull(dr["FuncId"]))
+                    {
+                        entity.FuncId = (int)dr["FuncId"];
+                    }
+                    if (!Convert.IsDBNull(dr["GroupId"]))
+                    {
+                        entity.GroupId = (int)dr["GroupId"];
+                    }
+                    list.Add(entity);
                 }
-                if (!Convert.IsDBNull(dr["GroupId"]))
-                {
-                    entity.GroupId = (int)dr["GroupId"];
-                }
+
                 dr.Close();
                 dr.Dispose();
-                return entity;
-            }
-            else
-            {
-                dr.Close();
-                dr.Dispose();
-                return null;
-            }
-        }
 
-        //batch methods
-        //getDateSet
-        public DataSet GetDataSet(string strWhere, SqlParameter[] param)
-        {
-            StringBuilder strSql = new StringBuilder();
-            strSql.Append("select *");
-            strSql.Append(" FROM FuncGroupMap(nolock)");
-            if (strWhere.Trim() != "")
-            {
-                strSql.Append(" where " + strWhere);
+                return list;
             }
-            return sqlHelper.ExecuteDateSet(strSql.ToString(), param);
-        }
 
-        //getlist
-        public List<FuncGroupMapEntity> GetList(string strWhere)
-        {
-            StringBuilder strSql = new StringBuilder();
-            strSql.Append("select *");
-            strSql.Append(" FROM FuncGroupMap(nolock) ");
-            if (strWhere.Trim() != "")
+            public DataSet GetDataSet(string strWhere, SqlParameter[] param)
             {
-                strSql.Append(" where " + strWhere);
-            }
-            SqlDataReader dr = sqlHelper.ExecuteReader(strSql.ToString());
-            List<FuncGroupMapEntity> list = new List<FuncGroupMapEntity>();
-            while (dr.Read())
-            {
-                FuncGroupMapEntity entity = new FuncGroupMapEntity();
-                if (!Convert.IsDBNull(dr["ID"]))
+                StringBuilder strSql = new StringBuilder();
+                strSql.Append("select *");
+                strSql.Append(" FROM FuncGroupMap(nolock)");
+                if (strWhere.Trim() != "")
                 {
-                    entity.ID = (int)dr["ID"];
+                    strSql.Append(" where " + strWhere);
                 }
-                if (!Convert.IsDBNull(dr["FuncId"]))
+                return sqlHelper.ExecuteDateSet(strSql.ToString(), param);
+            }
+
+            #region paging methods
+
+            /// <summary>
+            /// 获取分页记录总数
+            /// </summary>
+            /// <param name="where">条件，等同于GetPaer()方法的where</param>
+            /// <returns>返回记录总数</returns>
+            public int GetPagerRowsCount(string where, SqlParameter[] param)
+            {
+                string sql = "select count(*) from FuncGroupMap ";
+                if (!string.IsNullOrEmpty(where))
                 {
-                    entity.FuncId = (int)dr["FuncId"];
+                    sql += "where " + where;
                 }
-                if (!Convert.IsDBNull(dr["GroupId"]))
+
+                object obj = sqlHelper.GetSingle(sql, param);
+
+                return obj == null ? 0 : Convert.ToInt32(obj);
+            }
+
+            /// <summary>
+            /// 查询分页信息，返回当前页码的记录集
+            /// </summary>
+            /// <param name="where">查询条件，可为empty</param>
+            /// <param name="orderBy">排序条件，可为empty</param>
+            /// <param name="pageSize">每页显示记录数</param>
+            /// <param name="pageNumber">当前页码</param>
+            /// <returns>datatable</returns>
+            public DataTable GetPager(string where, SqlParameter[] param, string orderBy, int pageSize, int pageNumber)
+            {
+                int startNumber = pageSize * (pageNumber - 1);
+
+                string sql = string.Format("SELECT TOP {0} * FROM (SELECT ROW_NUMBER() OVER", pageSize);
+
+                if (!string.IsNullOrEmpty(orderBy))
                 {
-                    entity.GroupId = (int)dr["GroupId"];
+                    sql += string.Format(" (ORDER BY {0})", orderBy);
                 }
-                list.Add(entity);
+                else
+                {
+
+                    sql += " (ORDER BY ID)";//默认按主键排序
+
+                }
+
+                sql += " AS RowNumber,* FROM FuncGroupMap";
+
+                if (!string.IsNullOrEmpty(where))
+                {
+                    sql += " where " + where;
+                }
+
+                sql += " ) _myResults WHERE RowNumber>" + startNumber.ToString();
+
+                return sqlHelper.ExecuteDateSet(sql, param).Tables[0];
             }
 
-            dr.Close();
-            dr.Dispose();
-
-            return list;
+            #endregion
         }
-
-        #endregion
-
-        #region paging methods
-
-        /// <summary>
-        /// 获取分页记录总数
-        /// </summary>
-        /// <param name="where">条件，等同于GetPaer()方法的where</param>
-        /// <returns>返回记录总数</returns>
-        public int GetPagerRowsCount(string where, SqlParameter[] param)
-        {
-            string sql = "select count(*) from FuncGroupMap ";
-            if (!string.IsNullOrEmpty(where))
-            {
-                sql += "where " + where;
-            }
-
-            object obj = sqlHelper.GetSingle(sql, param);
-
-            return obj == null ? 0 : Convert.ToInt32(obj);
-        }
-
-        /// <summary>
-        /// 查询分页信息，返回当前页码的记录集
-        /// </summary>
-        /// <param name="where">查询条件，可为empty</param>
-        /// <param name="orderBy">排序条件，可为empty</param>
-        /// <param name="pageSize">每页显示记录数</param>
-        /// <param name="pageNumber">当前页码</param>
-        /// <returns>datatable</returns>
-        public DataTable GetPager(string where, SqlParameter[] param, string orderBy, int pageSize, int pageNumber)
-        {
-            int startNumber = pageSize * (pageNumber - 1);
-
-            string sql = string.Format("SELECT TOP {0} * FROM (SELECT ROW_NUMBER() OVER", pageSize);
-
-            if (!string.IsNullOrEmpty(orderBy))
-            {
-                sql += string.Format(" (ORDER BY {0})", orderBy);
-            }
-            else
-            {
-
-                sql += " (ORDER BY ID)";//默认按主键排序
-
-            }
-
-            sql += " AS RowNumber,* FROM FuncGroupMap";
-
-            if (!string.IsNullOrEmpty(where))
-            {
-                sql += " where " + where;
-            }
-
-            sql += " ) _myResults WHERE RowNumber>" + startNumber.ToString();
-
-            return sqlHelper.ExecuteDateSet(sql, param).Tables[0];
-        }
-
-        #endregion
     }
 }
 

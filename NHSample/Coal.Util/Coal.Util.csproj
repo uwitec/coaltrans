@@ -48,6 +48,11 @@
   <ItemGroup>
     <Compile Include="ConfigUtility.cs" />
     <Compile Include="CryptoHelper.cs" />
+    <Compile Include="DataUtility.cs" />
+    <Compile Include="DTO\DataTransObject.cs" />
+    <Compile Include="DTO\DTO.cs" />
+    <Compile Include="DTO\InputObject.cs" />
+    <Compile Include="DTO\ResultObject.cs" />
     <Compile Include="EConvert.cs" />
     <Compile Include="LogUtility.cs" />
     <Compile Include="LogWriter.cs" />

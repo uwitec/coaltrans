@@ -133,7 +133,7 @@ namespace Coal.DAL
                     try
                     {
                         PrepareCommand(cmd, connection, null, SQLString, cmdParms);
-                        return cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                        return cmd.ExecuteReader();
                     }
                     catch
                     {
