@@ -57,10 +57,9 @@
             }
             else {
                 pager.append("<a id='next' href='javascript:void(null)'>下一页</a>");
+                var next_page = reqData.cur_page + 1;
+                $("#next").bind("click", { cur_id: next_page }, paging);
             }
-
-            var next_page = reqData.cur_page + 1;
-            $("#next").bind("click", { cur_id: next_page }, paging);
         }
 
         function SetPre(pager) {
@@ -69,10 +68,9 @@
             }
             else {
                 pager.append("<a id='pre' href='javascript:void(null)'>上一页</a>");
+                var pre_page = reqData.cur_page - 1;
+                $("#pre").bind("click", { cur_id: pre_page }, paging);
             }
-
-            var pre_page = reqData.cur_page - 1;
-            $("#pre").bind("click", { cur_id: pre_page }, paging);
         }
 
         function InitPager() {
@@ -109,9 +107,9 @@
                        content.append("<div class='cp_all'>");
                        content.append("<div class='cp_images'><img src='images/jx01.jpg' /></div>");
                        content.append("<div class='cp_cotton'>");
-                       content.append("<h1><a href='Detail.aspx?ID=" + row["ID"] + "'>");
+                       content.append("<h1><a href='SupplyDetail.aspx?ID=" + row["ID"] + "'>");
                        content.append(row["ID"]);
-                       content.append(row["Subject"]);
+                       content.append(row["Title"]);
                        content.append("</a></h1><ul><li>");
                        content.append("<em>公司名称：</em>");
                        content.append(row["CompanyName"]);
@@ -123,7 +121,7 @@
                        content.append(row["region"]);
                        content.append("</li><li>");
                        content.append(row["Description"]);
-                       content.append("&nbsp;&nbsp;&nbsp;<em>&nbsp;</em><strong>");
+                       content.append("<em>发布时间：</em><strong>");
                        content.append(row["CreatedOn"]);
                        content.append("</strong></li></ul></div><div class='jiage'>价格：￥<em>");
                        content.append(row["Price"]);

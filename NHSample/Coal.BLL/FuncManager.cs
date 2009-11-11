@@ -10,7 +10,6 @@ using Coal.Util;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.IO;
-using Coal.Entity;
 
 namespace Coal.BLL
 {

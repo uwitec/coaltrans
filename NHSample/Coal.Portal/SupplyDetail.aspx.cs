@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Coal.BLL;
+using Coal.Entity;
 
 public partial class Detail : System.Web.UI.Page
 {
@@ -25,54 +27,62 @@ public partial class Detail : System.Web.UI.Page
     }
     private void InitData(int id)
     {
-        //BusEntity.MeiTanBusEntity obj = BusFacade.MeiTanBusFacade.GetEntity(id);
-
-        //lblGongXu.Text = obj.GongXu;
-        //lblFaBuRiQi.Text = obj.FaBuRiQi.ToString("yyyy-MM-dd") == "1900-01-01" ? "----" : obj.FaBuRiQi.ToString("yyyy-MM-dd");
-        //lblXinXiYouXiaoQi.Text = obj.XinXiYouXiaoQi.ToString("yyyy-MM-dd") == "1900-01-01" ? "----" : obj.XinXiYouXiaoQi.ToString("yyyy-MM-dd");
-        //lblMeiZhong.Text = obj.MeiZhong;
-        //lblPinZhong.Text = obj.PinZhong;
-        //lblTHSheng.Text = obj.THSheng;
-        //lblTHShi.Text = obj.THShi;
-        //lblJHSheng.Text = obj.JHSheng;
-        //lblJHShi.Text = obj.JHShi;
-        //lblShuLiang.Text = obj.ShuLiang.ToString();
-        //lblJiaGe.Text = obj.JiaGe.ToString();
-        //lblBaoJiaFangShi.Text = obj.BaoJiaFangShi;
-        //lblJieSuanFangShi.Text = obj.JieSuanFangShi;
-        //lblFaReLiang.Text = obj.FaReLiang.ToString();
-        //lblLiDu.Text = obj.LiDu.ToString();
-        //lblHanLiuLiang.Text = obj.HanLiuLiang.ToString();
-        //lblHuiFen.Text = obj.HuiFen.ToString();
-        //lblShuiFen.Text = obj.ShuiFen.ToString();
-        //lblHuiFa.Text = obj.HuiFa.ToString();
-        //lblGuDingTan.Text = obj.GuDingTan.ToString();
-        //lblJiXieQiangDu.Text = obj.JiXieQiangDu.ToString();
-        //lblGuiGe.Text = obj.GuiGe.ToString();
-        //lblKangSuiQiangDu.Text = obj.KangSuiQiangDu.ToString();
-        //lblLaiMoQianDu.Text = obj.LaiMoQianDu.ToString();
-        //lblFanYingXing.Text = obj.FanYingXing.ToString();
-        //lblQiKongLv.Text = obj.QiKongLv.ToString();
-        //lblJiaoMoHanLiang.Text = obj.JiaoMoHanLiang.ToString();
-        //lblLianJieZhiShu.Text = obj.LianJieZhiShu.ToString();
-        //lblReWenDingXing.Text = obj.ReWenDingXing.ToString();
-        //lblHuiRongRongXing.Text = obj.HuiRongRongXing.ToString();
-        //lblKeMoXing.Text = obj.KeMoXing.ToString();
-        //lblXiangXiLeiRong.Text = obj.XiangXiLeiRong;
-        //lblIsTiGongYunShu.Text = obj.IsTiGongYunShu;
-        //lblYunshuFangShi.Text = obj.YunshuFangShi;
-        //lblYunShuShuoMing.Text = obj.YunShuShuoMing;
-        //lblDianJiLiang.Text = obj.DianJiLiang.ToString();
-        //lblLianXiRen.Text = obj.LianXiRen;
-        //lblPhone.Text = obj.Phone;
-        //lblMail.Text = obj.Mail;
-        //lblFax.Text = obj.Fax;
-        //lblMobile.Text = obj.Mobile;
-        //lblProvince.Text = obj.Province;
-        //lblCity.Text = obj.City;
-        //lblAddress.Text = obj.Address;
-        //lblPostCode.Text = obj.PostCode;
-        //AddClick(id);
-
+        LoginContext lc = new LoginContext();
+        TransListManager listManger = new TransListManager();
+        SupplyEntity entity = new SupplyEntity();
+        if (listManger.GetDetails(id, lc, ref entity))
+        {
+            if (entity != null)
+            {
+                lblGongXu.Text = entity.Title;
+                lblFaBuRiQi.Text = entity.CreatedOn.Value.ToString("yyyy-MM-dd");
+                lblXinXiYouXiaoQi.Text = entity.CreatedOn.Value.ToString("yyyy-MM-dd");
+                lblMeiZhong.Text = entity.CoalType.ToString();
+                lblPinZhong.Text = entity.Category.ToString();
+                lblTHSheng.Text = entity.Province.Value.ToString();
+                lblTHShi.Text = entity.City.Value.ToString();
+                //lblShuLiang.Text = entity.ShuLiang.ToString();
+                lblJiaGe.Text = entity.Price.Value.ToString();
+                lblBaoJiaFangShi.Text = entity.WholesaleDes;
+                lblJieSuanFangShi.Text = entity.WholesaleDes;
+                lblFaReLiang.Text = entity.CalorificPower.ToString();
+                lblLiDu.Text = entity.GrainSize.ToString();
+                lblHanLiuLiang.Text = entity.SurfurContent.ToString();
+                lblHuiFen.Text = entity.AshContent.ToString();
+                lblShuiFen.Text = entity.WaterContent.ToString();
+                lblHuiFa.Text = entity.Volatility.ToString();
+                //lblGuDingTan.Text = entity.GuDingTan.ToString();
+                //lblJiXieQiangDu.Text = entity.JiXieQiangDu.ToString();
+                //lblGuiGe.Text = entity.GuiGe.ToString();
+                //lblKangSuiQiangDu.Text = entity.KangSuiQiangDu.ToString();
+                //lblLaiMoQianDu.Text = entity.LaiMoQianDu.ToString();
+                //lblFanYingXing.Text = entity.FanYingXing.ToString();
+                //lblQiKongLv.Text = entity.QiKongLv.ToString();
+                //lblJiaoMoHanLiang.Text = entity.JiaoMoHanLiang.ToString();
+                //lblLianJieZhiShu.Text = entity.LianJieZhiShu.ToString();
+                //lblReWenDingXing.Text = entity.ReWenDingXing.ToString();
+                //lblHuiRongRongXing.Text = entity.HuiRongRongXing.ToString();
+                //lblKeMoXing.Text = entity.KeMoXing.ToString();
+                //lblXiangXiLeiRong.Text = entity.XiangXiLeiRong;
+                //lblIsTiGongYunShu.Text = entity.IsTiGongYunShu;
+                //lblYunshuFangShi.Text = entity.YunshuFangShi;
+                //lblYunShuShuoMing.Text = entity.YunShuShuoMing;
+                //lblDianJiLiang.Text = entity.DianJiLiang.ToString();
+                //lblLianXiRen.Text = entity.LianXiRen;
+                //lblPhone.Text = entity.Phone;
+                //lblMail.Text = entity.Mail;
+                //lblFax.Text = entity.Fax;
+                //lblMobile.Text = entity.Mobile;
+                //lblProvince.Text = entity.Province;
+                //lblCity.Text = entity.City;
+                //lblAddress.Text = entity.Address;
+                //lblPostCode.Text = entity.PostCode;
+                //AddClick(id);
+            }
+        }
+        else
+        {
+            Response.Redirect("login.aspx");
+        }
     }
 }

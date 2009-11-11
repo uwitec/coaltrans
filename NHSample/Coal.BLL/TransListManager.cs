@@ -17,5 +17,20 @@ namespace Coal.BLL
             rowCount = finder.GetPagerRowsCount(where, paramters);
             return finder.GetPager(where, paramters, string.Empty, pageSize, pageIndex);
         }
+
+        [Permission]
+        public bool GetDetails(int id, LoginContext loginContext, ref SupplyEntity entity)
+        {
+            SupplyEntity.SupplyEntityFinder finder = new SupplyEntity.SupplyEntityFinder();
+            entity = finder.FindById(id);
+            if (entity != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
