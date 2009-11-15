@@ -7,6 +7,11 @@ namespace Coal.BLL
 {
     public class LoginContext
     {
-        public int UserId { get; set; }
+        public static User CurrentUser;
+
+        public class User
+        {
+            public int UserId { get; set; }
+        }
     }
 }

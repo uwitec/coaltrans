@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-    <title>无标题文档</title>
+    <title>用户登录</title>
     <link href="css/login.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -15,6 +15,7 @@
 <h1>已经是会员<em>请输入登录名和密码，按“登录”即可。</em></h1>
         <ul>
           <table border="0" cellspacing="0" cellpadding="0" class="login_tb">
+            <asp:Label runat="server" ID="errorMsg" Visible="false">账号和密码不匹配，请想想，再试一次</asp:Label>
             <tr>
               <td>会员Email：</td>
               <td><asp:TextBox ID="email" runat="server"></asp:TextBox></td>

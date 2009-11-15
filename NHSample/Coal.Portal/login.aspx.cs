@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Coal.Util;
+using Coal.BLL;
 
 public partial class Login : System.Web.UI.Page
 {
@@ -18,7 +19,7 @@ public partial class Login : System.Web.UI.Page
         if (!string.IsNullOrEmpty(this.email.Text) && !string.IsNullOrEmpty(this.password.Text))
         {
             if (this.email.Text == "cheese1@sina.com" && this.password.Text == "windows")
-            { 
+            {
                 //写cookies
                 string key = this.email.Text + "," + this.password.Text;
                 string validKey = CryptoHelper.Encrypt(key, "renshiqi");
@@ -30,11 +31,18 @@ public partial class Login : System.Web.UI.Page
                     Response.SetCookie(oldCookie);
                 }
 
+                LoginContext.CurrentUser = new LoginContext.User();
+                LoginContext.CurrentUser.UserId = 0;
+
                 HttpCookie cookie = new HttpCookie("token");
                 cookie.Value = validKey;
                 cookie.Expires = DateTime.Now.AddDays(1);
                 Response.SetCookie(cookie);
                 Response.Redirect("Default.aspx");
+            }
+            else
+            {
+                this.errorMsg.Visible = true;
             }
         }
     }

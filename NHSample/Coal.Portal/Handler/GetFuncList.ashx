@@ -21,8 +21,15 @@ public class GetFuncList : IHttpHandler {
                 string password = nameAndPassword[1];
 
                 Coal.BLL.FuncManager func = new Coal.BLL.FuncManager();
-                string str = func.GetFunctionList(loginEmail);
-                context.Response.Write(str);
+                string str = string.Empty;
+                if (func.GetFunctionList(loginEmail, ref str))
+                {
+                    context.Response.Write(str);
+                }
+                else
+                {
+                    context.Response.Write("{status:-2,url:'http://localhost:2150/Coal.Portal/login.aspx'}");
+                }
             }
             else
             {
@@ -38,7 +45,7 @@ public class GetFuncList : IHttpHandler {
  
     public bool IsReusable {
         get {
-            return false;
+            return true;
         }
     }
 

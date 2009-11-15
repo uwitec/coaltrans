@@ -20,6 +20,9 @@
                     if (j.status == -1) {
                         $("#accordion").html("≤Àµ•º”‘ÿ“Ï≥£");
                     }
+                    else if (j.status == -2) {
+                        window.location = j.url;
+                    }
                     else {
                         var i;
                         var html = "";

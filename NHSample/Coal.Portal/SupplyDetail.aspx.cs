@@ -27,10 +27,9 @@ public partial class Detail : System.Web.UI.Page
     }
     private void InitData(int id)
     {
-        LoginContext lc = new LoginContext();
         TransListManager listManger = new TransListManager();
         SupplyEntity entity = new SupplyEntity();
-        if (listManger.GetDetails(id, lc, ref entity))
+        if (listManger.GetDetails(id, ref entity))
         {
             if (entity != null)
             {

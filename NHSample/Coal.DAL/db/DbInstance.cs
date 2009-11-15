@@ -137,7 +137,7 @@ namespace Coal.DAL
         protected string GetConnectionString(string key)
         {
             //return AppContext.StrConnList[key];
-            return ConfigUtility.GetConnectionString("CoalTrans");
+            return ConfigUtility.GetConnectionString("cheese");
         }
 
         private string GetConnectionString(int index)

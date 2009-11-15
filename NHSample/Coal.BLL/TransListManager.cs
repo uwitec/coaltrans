@@ -19,7 +19,7 @@ namespace Coal.BLL
         }
 
         [Permission]
-        public bool GetDetails(int id, LoginContext loginContext, ref SupplyEntity entity)
+        public bool GetDetails(int id, ref SupplyEntity entity)
         {
             SupplyEntity.SupplyEntityFinder finder = new SupplyEntity.SupplyEntityFinder();
             entity = finder.FindById(id);

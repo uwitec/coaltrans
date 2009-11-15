@@ -15,7 +15,8 @@ namespace Coal.BLL
 {
     public class FuncManager
     {
-        public string GetFunctionList(string userEmail)
+        [Permission]
+        public bool GetFunctionList(string userEmail, ref string result)
         {
             string sql = @"select f.[Name],f.url,f.ParentId from Users u 
 inner join UserGroupMap ugm on u.id = ugm.userid 
@@ -48,7 +49,8 @@ where u.email = @email";
                 jsonStr = Encoding.UTF8.GetString(ms2.ToArray());
             }
 
-            return jsonStr;
+            result = jsonStr;
+            return true;
         }
     }
 
