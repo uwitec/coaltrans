@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Coal.Util;
+using Coal.BLL;
 
 public partial class _Default : System.Web.UI.Page 
 {
@@ -20,33 +21,11 @@ public partial class _Default : System.Web.UI.Page
         string password = this.password.Text;
         string nickName = this.nick_name.Text;
 
-        if (this.validCode.Text.Trim().ToUpper() == Request.Cookies["valid_code"].Value)
-        {
-            //插入数据库
-            //using (ISession session = NHSample.Domain.Session.Open())
-            //{
-            //    NHSample.Domain.Entities.User u = new NHSample.Domain.Entities.User();
-            //    u.Email = email;
-            //    u.LoginName = loginName;
-            //    u.NickName = nickName;
-            //    u.Password = password;
-            //    u.ValidStatus = 0;
-            //    session.Save(u);
-            //    session.Flush();
-            //}
+        UserManager.AddUser(email, nickName, password);
 
-            string key = loginName + "," + password;
-            string validKey = CryptoHelper.Encrypt(key, "renshiqi");
-
-            this.valid.Text = "验证用户";
-            this.valid.NavigateUrl = "http://localhost:1615/NHSample.Portal/ValidateUser.ashx?key=" + Server.UrlEncode(validKey);
-
-            //对loginName 和 password 加密后作为参数 发信给用户。
-            //Validate.ashx?key= 加密（loginName&password）
-        }
-        else
-        {
-            Response.Write("验证码错误");
-        }
+        string key = loginName + "," + password;
+        string validKey = CryptoHelper.Encrypt(key, "renshiqi");
+        this.valid.Text = "验证用户";
+        this.valid.NavigateUrl = "http://localhost:1615/NHSample.Portal/ValidateUser.ashx?key=" + Server.UrlEncode(validKey);
     }
 }

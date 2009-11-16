@@ -4,8 +4,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>无标题文档</title>
+<title>用户注册</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#validCode").focus(function() {
+                //$(this).after("<img id='validimg' alt='点击图片刷新' src='ValidCodeGenerator.ashx' />");
+                $(this).attr("value","");
+                $("#validimg").attr("src", "Handler/ValidCodeGenerator.ashx?" + new Date).click(function() {
+                    $(this).attr("src", "Handler/ValidCodeGenerator.ashx?" + new Date);
+                });
+            });
+
+            $("#validCode").blur(function() {
+                $(this).unbind("focus");
+            });
+        });
+    </script>
 </head>
 <body>
 <form runat="server">
@@ -24,29 +40,28 @@
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <th width="200">Email地址：</th>
-    <td width="251"><input class="intxt" type="text" name="textfield" /></td>
+    <td width="251"><asp:TextBox ID="Email" class="intxt" type="text" name="Email" runat="server"></asp:TextBox></td>
     <td width="449">&nbsp;</td>
   </tr>
   <tr>
     <th>设置昵称：</th>
-    <td><input class="intxt" type="text" name="textfield2" /></td>
+    <td><asp:TextBox ID="NickName" class="intxt" type="text" name="NickName" runat="server"></asp:TextBox></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
     <th>设定密码：</th>
-    <td><input class="intxt" type="text" name="textfield3" /></td>
+    <td><asp:TextBox ID="Password" class="intxt" type="password" name="Password" runat="server"></asp:TextBox></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
     <th>再输一次密码：</th>
-    <td><input class="intxt" type="text" name="textfield4" /></td>
+    <td><asp:TextBox ID="ConfirmPassword" class="intxt" type="password" name="ConfirmPassword" runat="server"></asp:TextBox></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
     <th>验证码：</th>
-    <td><input class="in_no1" type="text" name="textfield5" />
-      <img src="images/show_vcode.gif" width="130" height="30" align="absmiddle" /></td>
-    <td><a href="#">看不清？换张图</a></td>
+    <td><asp:TextBox class="in_no1" id="validCode" type="text" name="textfield5" runat="server" Text="获取验证码" ></asp:TextBox>
+      <img id="validimg" width="130" height="30" align="absmiddle" /></td>
   </tr>
   <tr>
     <th>&nbsp;</th>
@@ -54,7 +69,8 @@
     </tr>
   <tr>
     <th>&nbsp;</th>
-    <td><a href="#"><img src="images/but0.jpg" width="184" height="35" border="0" /></a></td>
+    <td><asp:ImageButton ID="Submit" ImageUrl="images/but0.jpg" width="184" height="35" 
+            border="0" runat="server" onclick="Submit_Click" /></td>
     <td>&nbsp;</td>
   </tr>
 </table>
