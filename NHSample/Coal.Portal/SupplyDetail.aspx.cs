@@ -8,27 +8,27 @@ using Coal.Entity;
 
 public partial class Detail : System.Web.UI.Page
 {
-    int DetailID = 0;
+    long DetailID = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
             if (Request.QueryString["ID"] != null)
             {
-                DetailID = int.Parse(Request.QueryString["ID"].ToString());
+                DetailID = long.Parse(Request.QueryString["ID"].ToString());
                 InitData(DetailID);
             }
         }
     }
-    private bool AddClick(int id)
+    private bool AddClick(long id)
     {
         return false;// BusFacade.MeiTanBusFacade.AddClick(id);
 
     }
-    private void InitData(int id)
+    private void InitData(long id)
     {
         TransListManager listManger = new TransListManager();
-        SupplyEntity entity = new SupplyEntity();
+        TransEntity entity = new TransEntity();
         if (listManger.GetDetails(id, ref entity))
         {
             if (entity != null)

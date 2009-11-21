@@ -12,7 +12,7 @@ namespace Coal.Entity
     [Serializable]
     public partial class FuncGroupMapEntity
     {
-        private SqlHelper sqlHelper;
+        public static SqlDAO<FuncGroupMapEntity> EntityDAO = new FuncGroupMapDAO();
 
         #region const fields
         public const string DBName = "CoalTrans";
@@ -31,10 +31,7 @@ namespace Coal.Entity
 
         #region constructors
 
-        public FuncGroupMapEntity()
-        {
-            sqlHelper = new SqlHelper(DBName);
-        }
+        public FuncGroupMapEntity(){}
 
         public FuncGroupMapEntity(int id, int funcid, int groupid)
         {
@@ -72,70 +69,67 @@ namespace Coal.Entity
 
         #endregion
 
-        #region CUD Method
-
-        public void Add()
-        {
-
-            StringBuilder strSql = new StringBuilder();
-            strSql.Append("insert into FuncGroupMap(");
-            strSql.Append("FuncId,GroupId)");
-            strSql.Append(" values (");
-            strSql.Append("@FuncId,@GroupId)");
-            SqlParameter[] parameters = {
-					new SqlParameter("@FuncId",SqlDbType.Int),
-					new SqlParameter("@GroupId",SqlDbType.Int)
-					};
-            parameters[0].Value = this.FuncId;
-            parameters[1].Value = this.GroupId;
-
-            sqlHelper.ExecuteSql(strSql.ToString(), parameters);
-        }
-        public void Update()
-        {
-
-            StringBuilder strSql = new StringBuilder();
-            strSql.Append("update FuncGroupMap set ");
-            strSql.Append("FuncId=@FuncId,");
-            strSql.Append("GroupId=@GroupId");
-
-            strSql.Append(" where ID=@ID");
-            SqlParameter[] parameters = {
-					new SqlParameter("@ID",SqlDbType.Int),
-					new SqlParameter("@FuncId",SqlDbType.Int),
-					new SqlParameter("@GroupId",SqlDbType.Int)
-					};
-            parameters[0].Value = this.ID;
-            parameters[1].Value = this.FuncId;
-            parameters[2].Value = this.GroupId;
-
-            sqlHelper.ExecuteSql(strSql.ToString(), parameters);
-        }
-        public void Delete()
-        {
-            StringBuilder strSql = new StringBuilder();
-            strSql.Append("delete from FuncGroupMap ");
-            strSql.Append(" where ID=@primaryKeyId");
-            SqlParameter[] parameters = {
-					new SqlParameter("@primaryKeyId", SqlDbType.Int)
-				};
-            parameters[0].Value = this.ID;
-            sqlHelper.ExecuteSql(strSql.ToString(), parameters);
-        }
-
-        #endregion
-
-        public class FuncGroupMapEntityFinder
+        public class FuncGroupMapDAO : SqlDAO<FuncGroupMapEntity>
         {
             private SqlHelper sqlHelper;
-            public const string DBName = "CoalTrans";
+            public const string DBName = "cheese";
 
-            public FuncGroupMapEntityFinder()
+            public FuncGroupMapDAO()
             {
                 sqlHelper = new SqlHelper(DBName);
             }
 
-            public FuncGroupMapEntity FindById(int primaryKeyId)
+            public override void Add(FuncGroupMapEntity entity)
+            {
+                StringBuilder strSql = new StringBuilder();
+                strSql.Append("insert into FuncGroupMap(");
+                strSql.Append("FuncId,GroupId)");
+                strSql.Append(" values (");
+                strSql.Append("@FuncId,@GroupId)");
+                SqlParameter[] parameters = {
+					new SqlParameter("@FuncId",SqlDbType.Int),
+					new SqlParameter("@GroupId",SqlDbType.Int)
+					};
+                parameters[0].Value = entity.FuncId;
+                parameters[1].Value = entity.GroupId;
+
+                sqlHelper.ExecuteSql(strSql.ToString(), parameters);
+            }
+
+            public override void Update(FuncGroupMapEntity entity)
+            {
+
+                StringBuilder strSql = new StringBuilder();
+                strSql.Append("update FuncGroupMap set ");
+                strSql.Append("FuncId=@FuncId,");
+                strSql.Append("GroupId=@GroupId");
+
+                strSql.Append(" where ID=@ID");
+                SqlParameter[] parameters = {
+					new SqlParameter("@ID",SqlDbType.Int),
+					new SqlParameter("@FuncId",SqlDbType.Int),
+					new SqlParameter("@GroupId",SqlDbType.Int)
+					};
+                parameters[0].Value = entity.ID;
+                parameters[1].Value = entity.FuncId;
+                parameters[2].Value = entity.GroupId;
+
+                sqlHelper.ExecuteSql(strSql.ToString(), parameters);
+            }
+
+            public override void Delete(FuncGroupMapEntity entity)
+            {
+                StringBuilder strSql = new StringBuilder();
+                strSql.Append("delete from FuncGroupMap ");
+                strSql.Append(" where ID=@primaryKeyId");
+                SqlParameter[] parameters = {
+					new SqlParameter("@primaryKeyId", SqlDbType.Int)
+				};
+                parameters[0].Value = entity.ID;
+                sqlHelper.ExecuteSql(strSql.ToString(), parameters);
+            }
+
+            public override FuncGroupMapEntity FindById(long primaryKeyId)
             {
                 StringBuilder strSql = new StringBuilder();
                 strSql.Append("select * from FuncGroupMap ");
@@ -173,7 +167,7 @@ namespace Coal.Entity
 
             }
 
-            public List<FuncGroupMapEntity> Find(string strWhere)
+            public override List<FuncGroupMapEntity> Find(string strWhere, SqlParameter[] paramters)
             {
                 StringBuilder strSql = new StringBuilder();
                 strSql.Append("select *");
@@ -182,7 +176,7 @@ namespace Coal.Entity
                 {
                     strSql.Append(" where " + strWhere);
                 }
-                SqlDataReader dr = sqlHelper.ExecuteReader(strSql.ToString());
+                SqlDataReader dr = sqlHelper.ExecuteReader(strSql.ToString(), paramters);
                 List<FuncGroupMapEntity> list = new List<FuncGroupMapEntity>();
                 while (dr.Read())
                 {
@@ -208,7 +202,7 @@ namespace Coal.Entity
                 return list;
             }
 
-            public DataSet GetDataSet(string strWhere, SqlParameter[] param)
+            public override DataSet GetDataSet(string strWhere, SqlParameter[] param)
             {
                 StringBuilder strSql = new StringBuilder();
                 strSql.Append("select *");
@@ -217,7 +211,8 @@ namespace Coal.Entity
                 {
                     strSql.Append(" where " + strWhere);
                 }
-                return sqlHelper.ExecuteDateSet(strSql.ToString(), param);
+
+                return sqlHelper.ExecuteDateSet(strSql.ToString(), (SqlParameter[])param);
             }
 
             #region paging methods
