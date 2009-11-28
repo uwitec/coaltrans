@@ -78,11 +78,11 @@
             SetPre(pager);
             pager.append("<span id='1' class='current'>1</span>");
             var page_display_num;
-            if (reqData.page_count <= 10) {
+            if (reqData.page_count <= 9) {
                 page_display_num = reqData.page_count;
             }
             else {
-                page_display_num = 10;
+                page_display_num = 9;
             }
 
             for (var i = 2; i <= page_display_num; i++) {
@@ -150,68 +150,29 @@
             reqData.page_index = cur_page;
             reqData.cur_page = cur_page;
             Bind(false);
-
             var pager = $("#pager");
             pager.empty();
+            SetPre(pager);
 
-            var page_display_num;
-            if (reqData.page_count <= 10) {
-                page_display_num = reqData.page_count;
-            }
-            else {
-                page_display_num = 10;
-            }
-
-            if (cur_page <= 5) {
-
-                SetPre(pager);
-
-                for (var i = 1; i <= page_display_num; i++) {
-                    pager.append("<a id='" + i + "' class='page' href='javascript:void(null)'>" + i + "</a>");
+            for (var pre = 9; pre >= 0; pre--) {
+                var pre_index = cur_page - pre;
+                var x = cur_page - 4 < 0 ? 0 : cur_page - 4;
+                if (pre_index >= x && pre_index > 0) {
+                    pager.append("<a id='" + pre_index + "' class='page' href='javascript:void(null)'>" + pre_index + "</a>");
                 }
-
-                SetNext(pager);
-
-                $("#" + event.data.cur_id).replaceWith("<span id='" + cur_page + "' class='current'>" + cur_page + "</span>");
             }
-            else if (cur_page < reqData.page_count - 4) {
 
-                SetPre(pager);
-
-                for (var i = 4; i > 0; i--) {
-                    var index = cur_page - i;
-                    pager.append("<a id='" + index + "' class='page' href='javascript:void(null)'>" + index + "</a>");
+            for (var post = 1; post < 9; post++) {
+                var post_index = parseInt(cur_page) + post;
+                var y = parseInt(cur_page) + 4 < 9 ? 9 : parseInt(cur_page) + 4;
+                if (post_index <= y && post_index <= reqData.page_count) {
+                    pager.append("<a id='" + post_index + "' class='page' href='javascript:void(null)'>" + post_index + "</a>");
                 }
-
-                pager.append("<span id='" + cur_page + "' class='current'>" + cur_page + "</span>");
-
-                for (var j = 1; j < 6; j++) {
-                    var index = parseInt(cur_page) + j;
-                    pager.append("<a id='" + index + "' class='page' href='javascript:void(null)'>" + index + "</a>");
-                }
-
-                SetNext(pager);
             }
-            else {
 
-                SetPre(pager);
+            SetNext(pager);
 
-                var icur_page = parseInt(cur_page);
-                var flag = reqData.page_count - 9;
-                for (var i = flag; i < icur_page; i++) {
-                    pager.append("<a id='" + i + "' class='page' href='javascript:void(null)'>" + i + "</a>");
-                }
-
-                pager.append("<span id='" + cur_page + "' class='current'>" + cur_page + "</span>");
-
-                var after = reqData.page_count - icur_page;
-                for (var j = 1; j <= after; j++) {
-                    var index = icur_page + j;
-                    pager.append("<a id='" + index + "' class='page' href='javascript:void(null)'>" + index + "</a>");
-                }
-
-                SetNext(pager);
-            }
+            $("#" + event.data.cur_id).replaceWith("<span id='" + cur_page + "' class='current'>" + cur_page + "</span>");
 
             $(".page").each(function() {
                 var id = $(this).attr("id");
@@ -363,11 +324,10 @@
 				<li id="coal_type">煤种：<a href="javascript:void(null)" class="now01">不限</a>&nbsp;&nbsp;<a href="javascript:void(null)" class="npw02">洗精煤</a>&nbsp;&nbsp;<a href="javascript:void(null)" class="npw02">洗精煤</a>&nbsp;&nbsp;<a href="javascript:void(null)" class="npw02">动力煤</a></li>
 				<li id="power">发热量：<a href="javascript:void(null)" class="now01">不限</a>&nbsp;&nbsp;<a href="javascript:void(null)" class="npw02">3000以下</a>&nbsp;&nbsp;<a href="javascript:void(null)" class="npw02">3000-5000</a>&nbsp;&nbsp;<a href="javascript:void(null)" class="npw02">5000-7000</a>&nbsp;&nbsp;<a href="javascript:void(null)" class="npw02">7000以上</a></li>
 				</ul>
-				<img class="loading" src="images/loading.gif"/>
 				</div>    
                 <div id="pager" class="scott">
                 </div>  
-                <img class="loading" src="images/loading.gif"/>
+                <img alt="loading" class="loading" src="images/loading.gif"/>
                   </form>
 </td>
             </tr>

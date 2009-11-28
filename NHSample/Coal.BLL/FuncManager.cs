@@ -30,27 +30,34 @@ where u.email = @email";
             db.SetString("email",userEmail);
             DataTable dt = db.ExecuteTable();
 
-            List<Menu> menus = new List<Menu>();
-
-            foreach (DataRow row in dt.Rows)
+            if (dt != null)
             {
-                Menu menu = new Menu();
-                menu.Name = row["Name"].ToString();
-                menu.Url = row["Url"].ToString();
-                menu.Parent = int.Parse(row["ParentId"].ToString());
-                menus.Add(menu);
-            }
+                List<Menu> menus = new List<Menu>();
 
-            string jsonStr = string.Empty;
-            using (MemoryStream ms2 = new MemoryStream())
+                foreach (DataRow row in dt.Rows)
+                {
+                    Menu menu = new Menu();
+                    menu.Name = row["Name"].ToString();
+                    menu.Url = row["Url"].ToString();
+                    menu.Parent = int.Parse(row["ParentId"].ToString());
+                    menus.Add(menu);
+                }
+
+                string jsonStr = string.Empty;
+                using (MemoryStream ms2 = new MemoryStream())
+                {
+                    DataContractJsonSerializer ds = new DataContractJsonSerializer(typeof(List<Menu>));
+                    ds.WriteObject(ms2, menus);
+                    jsonStr = Encoding.UTF8.GetString(ms2.ToArray());
+                }
+
+                result = jsonStr;
+                return true;
+            }
+            else
             {
-                DataContractJsonSerializer ds = new DataContractJsonSerializer(typeof(List<Menu>));
-                ds.WriteObject(ms2, menus);
-                jsonStr = Encoding.UTF8.GetString(ms2.ToArray());
+                return false;
             }
-
-            result = jsonStr;
-            return true;
         }
     }
 

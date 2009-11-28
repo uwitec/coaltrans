@@ -5,153 +5,7 @@
 <title>国家煤炭工业网-供求平台</title>
 <link href="css/index.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        //load列表初始数据
-        $.ajax({
-            type: "POST",
-            url: "Handler/LatestList.ashx",
-            data: "coal_type=1&tran_type=1",
-            dataType: "json",
-            success: function(msg) {
-                var content = "<table width='100%' border='0' cellspacing='0' cellpadding='0' class='tb_bg'>\
-                                          <tr><th>煤种</th><th>发热量</th><th>价格(元)</th><th>提货地</th><th>日期</th></tr>";
-                $.each(msg.rows, function(i, row) {
-                    content += "<tr>";
-                    content += "<td><a href='SupplyDetail.aspx?ID=" + row.ID + "'>" + row.CategoryName + "</a></td>";
-                    content += "<td>" + row.CalorificPower + "大卡</td>";
-                    content += "<td>" + row.Price + "</td>";
-                    content += "<td>" + row.CityName + "</td>";
-                    content += "<td>" + row.CreatedOn + "</td>";
-                    content += "</tr>";
-                });
-                content += "<table>";
-                $("#supply_list").html(content);
-            }
-        });
-
-        //load列表初始数据
-        $.ajax({
-            type: "POST",
-            url: "Handler/LatestList.ashx",
-            data: "coal_type=1&tran_type=2",
-            dataType: "json",
-            success: function(msg) {
-                var content = "<table width='100%' border='0' cellspacing='0' cellpadding='0' class='tb_bg'>\
-                                          <tr><th>煤种</th><th>发热量</th><th>价格(元)</th><th>报价方式</th><th>日期</th></tr>";
-                $.each(msg.rows, function(i, row) {
-                    content += "<tr>";
-                    content += "<td><a href='SupplyDetail.aspx?ID=" + row.ID + "'>" + row.CategoryName + "</a></td>";
-                    content += "<td>" + row.CalorificPower + "大卡</td>";
-                    content += "<td>" + row.Price + "</td>";
-                    content += "<td>平仓价</td>";
-                    content += "<td>" + row.CreatedOn + "</td>";
-                    content += "</tr>";
-                });
-                content += "<table>";
-                $("#demand_list").html(content);
-            }
-        });
-
-        //图片轮转
-        $(".triggers").children().each(function() {
-            $(this).mouseover(function() {
-                var index = $(this).html() - 1;
-                $("#img_container li").each(function() {
-                    $(this).hide();
-                });
-                $("#img_container li").eq(index).show();
-
-                $("#slide_trigger li").each(function() {
-                    $(this).removeClass();
-                });
-                $(this).addClass("current");
-            });
-        });
-        //供应导航
-        $("#supply_nav a").each(function() {
-            $(this).click(function() {
-                $("#supply_nav a").each(function() {
-                    $(this).removeClass().addClass("bq02");
-                });
-                $(this).removeClass().addClass("bq01");
-                //载入数据
-                var type_id = $(this).attr("id");
-                var request_date = "tran_type=1&coal_type=" + type_id;
-                $.ajax({
-                    type: "POST",
-                    url: "Handler/LatestList.ashx",
-                    data: request_date,
-                    dataType: "json",
-                    success: function(msg) {
-                        var content = "<table width='100%' border='0' cellspacing='0' cellpadding='0' class='tb_bg'>\
-                                      <tr><th>煤种</th><th>发热量</th><th>价格(元)</th><th>提货地</th><th>日期</th></tr>";
-                        $.each(msg.rows, function(i, row) {
-                            content += "<tr>";
-                            content += "<td><a href='SupplyDetail.aspx?ID=" + row.ID + "'>" + row.CategoryName + "</a></td>";
-                            content += "<td>" + row.CalorificPower + "大卡</td>";
-                            content += "<td>" + row.Price + "</td>";
-                            content += "<td>" + row.CityName + "</td>";
-                            content += "<td>" + row.CreatedOn + "</td>";
-                            content += "</tr>";
-                        });
-                        content += "<table>";
-                        $("#supply_list").html(content);
-                    }
-                });
-            });
-        });
-
-        //需求导航
-        $("#demand_nav a").each(function() {
-            $(this).click(function() {
-                $("#demand_nav a").each(function() {
-                    $(this).removeClass().addClass("bq02");
-                });
-                $(this).removeClass().addClass("bq01");
-                //载入数据
-                var type_id = $(this).attr("id");
-                var request_date = "tran_type=2&coal_type=" + type_id;
-                $.ajax({
-                    type: "POST",
-                    url: "Handler/LatestList.ashx",
-                    data: request_date,
-                    dataType: "json",
-                    success: function(msg) {
-                        var content = "<table width='100%' border='0' cellspacing='0' cellpadding='0' class='tb_bg'>\
-                                      <tr><th>煤种</th><th>发热量</th><th>价格(元)</th><th>报价方式</th><th>日期</th></tr>";
-                        $.each(msg.rows, function(i, row) {
-                            content += "<tr>";
-                            content += "<td><a href='SupplyDetail.aspx?ID=" + row.ID + "'>" + row.CategoryName + "</a></td>";
-                            content += "<td>" + row.CalorificPower + "大卡</td>";
-                            content += "<td>" + row.Price + "</td>";
-                            content += "<td>平仓价</td>";
-                            content += "<td>" + row.CreatedOn + "</td>";
-                            content += "</tr>";
-                        });
-                        content += "<table>";
-                        $("#demand_list").html(content);
-                    }
-                });
-            });
-        });
-
-        $("#login_action").click(function() {
-            $.ajax({
-                type: "POST",
-                url: "Handler/Login.ashx",
-                data: "login_name=cheese&password=123",
-                success: function(msg) {
-                    var logon_content = "xxx欢迎回家，<a href=''>点击进入会员中心</a>或者<a href=''>直接发布信息</a>";
-                    $("#login_container").empty().html(logon_content);
-                },
-                beforeSend: function(){
-                    $("#login_container").empty().html("登录中……");
-                },
-            });
-        });
-    });
-</script>
+<script type="text/javascript" src="js/index.js"></script>
 <script type="text/javascript">
 <!--
 /*第一种形式 第二种形式 更换显示样式*/
@@ -181,7 +35,7 @@ function setTab(name,cursel,n){
       <div class="menulist">
         <ul>
           <li class="nav_a">首页</li>
-          <li class="nav_b"><a href="#">供应</a></li>
+          <li class="nav_b"><a href="SupplyList.aspx">供应</a></li>
           <li class="nav_b"><a href="#">采购</a></li>
           <li class="nav_b"><a href="#">招标</a></li>
           <li class="nav_b"><a href="#">投标</a></li>
@@ -261,6 +115,7 @@ function setTab(name,cursel,n){
         <li><a href="#">出售神木店塔附近的电煤... </a></li>
       </ul>
     </div>
+    <div class="r_ad"><img src="images/01_.jpg" /></div>
     <div class="r_cotton">
       <h1 id="supply_nav"><em>供应信息</em><a id="1" href="javascript:void(0)" class="bq01">煤炭</a><a id="2" href="javascript:void(0)" class="bq02">煤制品</a><a id="3" href="javascript:void(0)" class="bq02">机械设备</a><a id="4" href="javascript:void(0)" class="bq02">运输服务</a></h1>
       <ul id="supply_list"></ul>
@@ -269,6 +124,11 @@ function setTab(name,cursel,n){
       <h1 id="demand_nav"><em>采购信息</em><a id="1" href="javascript:void(0)" class="bq01">煤炭</a><a id="2" href="javascript:void(0)" class="bq02">煤制品</a><a id="3" href="javascript:void(0)" class="bq02">机械设备</a><a id="4" href="javascript:void(0)" class="bq02">运输服务</a></h1>
       <ul id="demand_list"></ul>
     </div>
+    <div class="clear"></div>
+  </div>
+  <div class="cotton04">
+    <div class="l_ad"><img src="images/jx02.jpg" /></div>
+    <div class="r_ad"><img src="images/05.jpg" /></div>
     <div class="clear"></div>
   </div>
   <div class="cotton02">
@@ -309,6 +169,29 @@ function setTab(name,cursel,n){
       </ul>
     </div>
     <div class="clear"></div>
+  </div>
+  <div class="linklist">
+    <h1>友情链接</h1>
+    <ul>
+      <li><a href="#">神木店塔电煤公司</a></li>
+      <li><a href="#">神木店塔电煤公司</a></li>
+      <li><a href="#">神木店塔电煤公司</a></li>
+      <li><a href="#">神木店塔电煤公司</a></li>
+      <li><a href="#">神木店塔电煤公司</a></li>
+      <li><a href="#">神木店塔电煤公司</a></li>
+      <li><a href="#">神木店塔电煤公司</a></li>
+      <li><a href="#">神木店塔电煤公司</a></li>
+      <li><a href="#">神木店塔电煤公司</a></li>
+      <li><a href="#">神木店塔电煤公司</a></li>
+    </ul>
+  </div>
+  <div class="bottom">
+    <h1><a href="#">网站地图</a> | <a href="#">版权声明</a> | <a href="#">设为首页</a> | <a href="#">关于我们</a></h1>
+    <ul>
+      <li>Copyright&copy;2009 国家煤炭工业网</li>
+      <li>主办:中国煤炭工业协会 技术支持:北京中煤易通科技有限公司</li>
+      <li>(浏览本站主页,建议将电脑显示器分辨率调整为:1024*768)</li>
+    </ul>
   </div>
 </div>
 </body>
