@@ -5,13 +5,9 @@ using System.Text;
 
 namespace Coal.BLL
 {
-    public class LoginContext
+    public class UserInfo
     {
-        public static User CurrentUser;
-
-        public class User
-        {
-            public int UserId { get; set; }
-        }
+        public int UserId { get; set; }
+        public string UserEmail { get; set; }
     }
 }

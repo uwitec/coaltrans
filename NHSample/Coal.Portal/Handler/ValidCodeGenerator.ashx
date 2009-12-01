@@ -6,7 +6,8 @@ using System.Drawing;
 using System.IO;
 using System.Drawing.Imaging;
 
-public class ValidCodeGenerator : IHttpHandler {
+public class ValidCodeGenerator : IHttpHandler 
+{
 
     public void ProcessRequest(HttpContext context)
     {

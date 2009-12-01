@@ -20,16 +20,19 @@ public partial class Detail : System.Web.UI.Page
             }
         }
     }
+
     private bool AddClick(long id)
     {
         return false;// BusFacade.MeiTanBusFacade.AddClick(id);
 
     }
+
     private void InitData(long id)
     {
         TransListManager listManger = new TransListManager();
         TransEntity entity = new TransEntity();
-        if (listManger.GetDetails(id, ref entity))
+
+        if (listManger.GetDetails(id, LoginContext.CurrentUser.UserEmail, ref entity))
         {
             if (entity != null)
             {

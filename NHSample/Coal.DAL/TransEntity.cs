@@ -10,13 +10,13 @@ using Coal.DAL;
 namespace Coal.Entity
 {
     [Serializable]
-    public partial class TransEntity
+    public partial class CoalTransEntity
     {
         private SqlHelper sqlHelper;
 
         #region const fields
         public const string DBName = "Cheese";
-        public const string TableName = "Trans";
+        public const string TableName = "CoalTrans";
         public const string PrimaryKey = "PK_Supply";
         #endregion
 
@@ -55,12 +55,12 @@ namespace Coal.Entity
         #endregion
 
         #region constructors
-        public TransEntity()
+        public CoalTransEntity()
         {
             sqlHelper = new SqlHelper(DBName);
         }
 
-        public TransEntity(int id, string title, string details, decimal price, int userid, int county, string countyname, int province, string provincename, int city, string cityname, string zipcode, int coaltype, string coaltypename, int category, string categotyname, DateTime createdon, DateTime validdate, string wholesaledes, string shipdes, double volatility, double grainsize, string grainsizedes, double ashcontent, double surfurcontent, double watercontent, double calorificpower, int transtype)
+        public CoalTransEntity(int id, string title, string details, decimal price, int userid, int county, string countyname, int province, string provincename, int city, string cityname, string zipcode, int coaltype, string coaltypename, int category, string categoryname, DateTime createdon, DateTime validdate, string wholesaledes, string shipdes, double volatility, double grainsize, string grainsizedes, double ashcontent, double surfurcontent, double watercontent, double calorificpower, int transtype)
         {
             this.ID = id;
 
@@ -92,7 +92,7 @@ namespace Coal.Entity
 
             this.Category = category;
 
-            this.CategoryName = categotyname;
+            this.CategoryName = categoryname;
 
             this.CreatedOn = createdon;
 
@@ -320,21 +320,21 @@ namespace Coal.Entity
 
         #endregion
 
-        public class TransDAO : SqlDAO<TransEntity>
+        public class CoalTransDAO : SqlDAO<CoalTransEntity>
         {
             private SqlHelper sqlHelper;
             public const string DBName = "cheese";
 
-            public TransDAO()
+            public CoalTransDAO()
             {
                 sqlHelper = new SqlHelper(DBName);
             }
 
-            public override void Add(TransEntity entity)
+            public override void Add(CoalTransEntity entity)
             {
 
                 StringBuilder strSql = new StringBuilder();
-                strSql.Append("insert into Trans(");
+                strSql.Append("insert into CoalTrans(");
                 strSql.Append("Title,Details,Price,UserId,County,CountyName,Province,ProvinceName,City,CityName,ZipCode,CoalType,CoalTypeName,Category,CategoryName,CreatedOn,ValidDate,WholesaleDes,ShipDes,Volatility,GrainSize,GrainSizeDes,AshContent,SurfurContent,WaterContent,CalorificPower,TransType)");
                 strSql.Append(" values (");
                 strSql.Append("@Title,@Details,@Price,@UserId,@County,@CountyName,@Province,@ProvinceName,@City,@CityName,@ZipCode,@CoalType,@CoalTypeName,@Category,@CategoryName,@CreatedOn,@ValidDate,@WholesaleDes,@ShipDes,@Volatility,@GrainSize,@GrainSizeDes,@AshContent,@SurfurContent,@WaterContent,@CalorificPower,@TransType)");
@@ -398,11 +398,11 @@ namespace Coal.Entity
                 sqlHelper.ExecuteSql(strSql.ToString(), parameters);
             }
 
-            public override void Update(TransEntity entity)
+            public override void Update(CoalTransEntity entity)
             {
 
                 StringBuilder strSql = new StringBuilder();
-                strSql.Append("update Trans set ");
+                strSql.Append("update CoalTrans set ");
                 strSql.Append("Title=@Title,");
                 strSql.Append("Details=@Details,");
                 strSql.Append("Price=@Price,");
@@ -494,10 +494,10 @@ namespace Coal.Entity
                 sqlHelper.ExecuteSql(strSql.ToString(), parameters);
             }
 
-            public override void Delete(TransEntity entity)
+            public override void Delete(CoalTransEntity entity)
             {
                 StringBuilder strSql = new StringBuilder();
-                strSql.Append("delete from Trans ");
+                strSql.Append("delete from CoalTrans ");
                 strSql.Append(" where ID=@primaryKeyId");
                 SqlParameter[] parameters = {
 						new SqlParameter("@primaryKeyId", SqlDbType.Int)
@@ -506,10 +506,10 @@ namespace Coal.Entity
                 sqlHelper.ExecuteSql(strSql.ToString(), parameters);
             }
 
-            public override TransEntity FindById(long primaryKeyId)
+            public override CoalTransEntity FindById(long primaryKeyId)
             {
                 StringBuilder strSql = new StringBuilder();
-                strSql.Append("select * from Trans ");
+                strSql.Append("select * from CoalTrans ");
                 strSql.Append(" where ID=@primaryKeyId");
                 SqlParameter[] parameters = {
 						new SqlParameter("@primaryKeyId", SqlDbType.Int)};
@@ -518,7 +518,7 @@ namespace Coal.Entity
                 if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count == 1)
                 {
                     DataRow row = ds.Tables[0].Rows[0];
-                    TransEntity entity = new TransEntity();
+                    CoalTransEntity entity = new CoalTransEntity();
                     if (!Convert.IsDBNull(row["ID"]))
                     {
                         entity.ID = (int)row["ID"];
@@ -606,142 +606,123 @@ namespace Coal.Entity
                 }
             }
 
-            public override List<TransEntity> Find(string strWhere, SqlParameter[] paramters)
+            public override List<CoalTransEntity> Find(string strWhere, SqlParameter[] parameters)
             {
                 StringBuilder strSql = new StringBuilder();
                 strSql.Append("select *");
-                strSql.Append(" FROM Trans(nolock) ");
+                strSql.Append(" FROM CoalTrans(nolock) ");
                 if (strWhere.Trim() != "")
                 {
                     strSql.Append(" where " + strWhere);
                 }
-                SqlDataReader dr = sqlHelper.ExecuteReader(strSql.ToString(), paramters);
-                List<TransEntity> list = new List<TransEntity>();
-                while (dr.Read())
+
+                DataSet ds = sqlHelper.ExecuteDateSet(strSql.ToString(), parameters);
+                if (ds != null && ds.Tables.Count > 0)
                 {
-                    TransEntity entity = new TransEntity();
-                    if (!Convert.IsDBNull(dr["ID"]))
+                    List<CoalTransEntity> list = new List<CoalTransEntity>();
+                    foreach (DataRow row in ds.Tables[0].Rows)
                     {
-                        entity.ID = (int)dr["ID"];
+                        CoalTransEntity entity = new CoalTransEntity();
+                        if (!Convert.IsDBNull(row["ID"]))
+                        {
+                            entity.ID = (int)row["ID"];
+                        }
+                        entity.Title = row["Title"].ToString();
+                        entity.Details = row["Details"].ToString();
+                        if (!Convert.IsDBNull(row["Price"]))
+                        {
+                            entity.Price = (decimal)row["Price"];
+                        }
+                        if (!Convert.IsDBNull(row["UserId"]))
+                        {
+                            entity.UserId = (int)row["UserId"];
+                        }
+                        if (!Convert.IsDBNull(row["County"]))
+                        {
+                            entity.County = (int)row["County"];
+                        }
+                        entity.CountyName = row["CountyName"].ToString();
+                        if (!Convert.IsDBNull(row["Province"]))
+                        {
+                            entity.Province = (int)row["Province"];
+                        }
+                        entity.ProvinceName = row["ProvinceName"].ToString();
+                        if (!Convert.IsDBNull(row["City"]))
+                        {
+                            entity.City = (int)row["City"];
+                        }
+                        entity.CityName = row["CityName"].ToString();
+                        entity.ZipCode = row["ZipCode"].ToString();
+                        if (!Convert.IsDBNull(row["CoalType"]))
+                        {
+                            entity.CoalType = (int)row["CoalType"];
+                        }
+                        entity.CoalTypeName = row["CoalTypeName"].ToString();
+                        if (!Convert.IsDBNull(row["Category"]))
+                        {
+                            entity.Category = (int)row["Category"];
+                        }
+                        entity.CategoryName = row["CategoryName"].ToString();
+                        if (!Convert.IsDBNull(row["CreatedOn"]))
+                        {
+                            entity.CreatedOn = (DateTime)row["CreatedOn"];
+                        }
+                        if (!Convert.IsDBNull(row["ValidDate"]))
+                        {
+                            entity.ValidDate = (DateTime)row["ValidDate"];
+                        }
+                        entity.WholesaleDes = row["WholesaleDes"].ToString();
+                        entity.ShipDes = row["ShipDes"].ToString();
+                        if (!Convert.IsDBNull(row["Volatility"]))
+                        {
+                            entity.Volatility = (double)row["Volatility"];
+                        }
+                        if (!Convert.IsDBNull(row["GrainSize"]))
+                        {
+                            entity.GrainSize = (double)row["GrainSize"];
+                        }
+                        entity.GrainSizeDes = row["GrainSizeDes"].ToString();
+                        if (!Convert.IsDBNull(row["AshContent"]))
+                        {
+                            entity.AshContent = (double)row["AshContent"];
+                        }
+                        if (!Convert.IsDBNull(row["SurfurContent"]))
+                        {
+                            entity.SurfurContent = (double)row["SurfurContent"];
+                        }
+                        if (!Convert.IsDBNull(row["WaterContent"]))
+                        {
+                            entity.WaterContent = (double)row["WaterContent"];
+                        }
+                        if (!Convert.IsDBNull(row["CalorificPower"]))
+                        {
+                            entity.CalorificPower = (double)row["CalorificPower"];
+                        }
+                        if (!Convert.IsDBNull(row["TransType"]))
+                        {
+                            entity.TransType = (int)row["TransType"];
+                        }
+
+                        list.Add(entity);
                     }
-                    entity.Title = dr["Title"].ToString();
-                    entity.Details = dr["Details"].ToString();
-                    if (!Convert.IsDBNull(dr["Price"]))
-                    {
-                        entity.Price = (decimal)dr["Price"];
-                    }
-                    if (!Convert.IsDBNull(dr["UserId"]))
-                    {
-                        entity.UserId = (int)dr["UserId"];
-                    }
-                    if (!Convert.IsDBNull(dr["County"]))
-                    {
-                        entity.County = (int)dr["County"];
-                    }
-                    entity.CountyName = dr["CountyName"].ToString();
-                    if (!Convert.IsDBNull(dr["Province"]))
-                    {
-                        entity.Province = (int)dr["Province"];
-                    }
-                    entity.ProvinceName = dr["ProvinceName"].ToString();
-                    if (!Convert.IsDBNull(dr["City"]))
-                    {
-                        entity.City = (int)dr["City"];
-                    }
-                    entity.CityName = dr["CityName"].ToString();
-                    entity.ZipCode = dr["ZipCode"].ToString();
-                    if (!Convert.IsDBNull(dr["CoalType"]))
-                    {
-                        entity.CoalType = (int)dr["CoalType"];
-                    }
-                    entity.CoalTypeName = dr["CoalTypeName"].ToString();
-                    if (!Convert.IsDBNull(dr["Category"]))
-                    {
-                        entity.Category = (int)dr["Category"];
-                    }
-                    entity.CategoryName = dr["CategoryName"].ToString();
-                    if (!Convert.IsDBNull(dr["CreatedOn"]))
-                    {
-                        entity.CreatedOn = (DateTime)dr["CreatedOn"];
-                    }
-                    if (!Convert.IsDBNull(dr["ValidDate"]))
-                    {
-                        entity.ValidDate = (DateTime)dr["ValidDate"];
-                    }
-                    entity.WholesaleDes = dr["WholesaleDes"].ToString();
-                    entity.ShipDes = dr["ShipDes"].ToString();
-                    if (!Convert.IsDBNull(dr["Volatility"]))
-                    {
-                        entity.Volatility = (double)dr["Volatility"];
-                    }
-                    if (!Convert.IsDBNull(dr["GrainSize"]))
-                    {
-                        entity.GrainSize = (double)dr["GrainSize"];
-                    }
-                    entity.GrainSizeDes = dr["GrainSizeDes"].ToString();
-                    if (!Convert.IsDBNull(dr["AshContent"]))
-                    {
-                        entity.AshContent = (double)dr["AshContent"];
-                    }
-                    if (!Convert.IsDBNull(dr["SurfurContent"]))
-                    {
-                        entity.SurfurContent = (double)dr["SurfurContent"];
-                    }
-                    if (!Convert.IsDBNull(dr["WaterContent"]))
-                    {
-                        entity.WaterContent = (double)dr["WaterContent"];
-                    }
-                    if (!Convert.IsDBNull(dr["CalorificPower"]))
-                    {
-                        entity.CalorificPower = (double)dr["CalorificPower"];
-                    }
-                    if (!Convert.IsDBNull(dr["TransType"]))
-                    {
-                        entity.TransType = (int)dr["TransType"];
-                    }
-                    list.Add(entity);
+
+                    return list;
                 }
-
-                dr.Close();
-                dr.Dispose();
-
-                return list;
+                else
+                {
+                    return null;
+                }
             }
 
-            public override DataSet GetDataSet(string strWhere, SqlParameter[] param)
+            public DataSet GetDataSet(string strWhere, SqlParameter[] param)
             {
                 StringBuilder strSql = new StringBuilder();
                 strSql.Append("select *");
-                strSql.Append(" FROM Trans(nolock)");
+                strSql.Append(" FROM CoalTrans(nolock)");
                 if (strWhere.Trim() != "")
                 {
                     strSql.Append(" where " + strWhere);
                 }
-                return sqlHelper.ExecuteDateSet(strSql.ToString(), param);
-            }
-
-            public DataSet GetDataSet(string strWhere, int topNum, string orderField, SqlParameter[] param)
-            {
-                StringBuilder strSql = new StringBuilder();
-                strSql.Append("select");
-                
-                if (topNum > 0)
-                {
-                    strSql.Append(" top ").Append(topNum.ToString());
-                }
-
-                strSql.Append(" * ").Append(" FROM Trans(nolock)");
-
-                if (strWhere.Trim() != "")
-                {
-                    strSql.Append(" where " + strWhere);
-                }
-
-                if (orderField.Trim() != "")
-                {
-                    strSql.Append(" order by " + orderField);
-                }
-
                 return sqlHelper.ExecuteDateSet(strSql.ToString(), param);
             }
 
@@ -754,7 +735,7 @@ namespace Coal.Entity
             /// <returns>返回记录总数</returns>
             public int GetPagerRowsCount(string where, SqlParameter[] param)
             {
-                string sql = "select count(*) from Trans ";
+                string sql = "select count(*) from CoalTrans ";
                 if (!string.IsNullOrEmpty(where))
                 {
                     sql += "where " + where;
@@ -790,7 +771,7 @@ namespace Coal.Entity
 
                 }
 
-                sql += " AS RowNumber,* FROM Trans";
+                sql += " AS RowNumber,* FROM CoalTrans";
 
                 if (!string.IsNullOrEmpty(where))
                 {
@@ -807,4 +788,3 @@ namespace Coal.Entity
         }
     }
 }
-

@@ -143,7 +143,7 @@ namespace Coal.DAL
         private string GetConnectionString(int index)
         {
             //return AppContext.StrConnList.Values[index];
-            return ConfigUtility.GetConnectionString("CoalTrans");
+            return ConfigUtility.GetConnectionString("cheese");
         }
 
         #region

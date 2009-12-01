@@ -15,7 +15,6 @@ namespace Coal.BLL
 {
     public class FuncManager
     {
-        [Permission]
         public bool GetFunctionList(string userEmail, ref string result)
         {
             string sql = @"select f.[Name],f.url,f.ParentId from Users u 

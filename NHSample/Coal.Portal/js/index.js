@@ -129,8 +129,8 @@
     });
 
     var logon = "<tr><td><div class='loginend'>\
-		  <h1><span>欢迎您</span><a href='#'>meitan@gmail.com</a><em><a id='login_out' href='#'>退出</a></em></h1>\
-		  <ul><li><a href='#'>进入功能一</a></li>\
+		  <h1><span>欢迎您</span><a id='nick_name' href='#'>meitan@gmail.com</a><em><a id='login_out' href='#'>退出</a></em></h1>\
+		  <ul><li><a href='Default.aspx'>进入用户中心首页</a></li>\
 		  <li><a href='#'>进入功能一</a></li>\
 		  <li><a href='#'>进入功能一</a></li>\
 		  <li><a href='#'>进入功能一</a></li>\
@@ -142,14 +142,18 @@
 
 
     $("#login_action").click(function() {
+        var password = $("#password").val();
+        var email = $("#email").val();
+        var login_data = { e: email, p: password };
         $.ajax({
             type: "POST",
             url: "Handler/Login.ashx",
-            data: "login_name=cheese&password=windows",
+            data: login_data,
             dataType: "json",
             success: function(msg) {
                 if (msg.status > 0) {
                     var logon_content = $("#login_container").children("tbody").empty().html(logon);
+                    $("#nick_name").html(msg.nick_name);
                     $(".laodinguser").hide();
                     $("#login_out").click(function() {
                         window.location = "http://localhost:2150/Coal.Portal/index.html";

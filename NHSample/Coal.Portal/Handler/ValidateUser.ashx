@@ -5,7 +5,8 @@ using System.Web;
 
 public class ValidateUser : IHttpHandler {
     
-    public void ProcessRequest (HttpContext context) {
+    public void ProcessRequest (HttpContext context) 
+    {
 
         string validKey = context.Request.QueryString[0];
         string keys = Coal.Util.CryptoHelper.Decrypt(validKey, "renshiqi");

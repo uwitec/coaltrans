@@ -100,88 +100,85 @@ namespace Coal.Entity
 
         #endregion
 
-        #region CUD Method
-
-        public void Add()
-        {
-            StringBuilder strSql = new StringBuilder();
-            strSql.Append("insert into Users(");
-            strSql.Append("ID,Email,Password,NickName,ValidStatus,CreateDate)");
-            strSql.Append(" values (");
-            strSql.Append("@ID,@Email,@Password,@NickName,@ValidStatus,@CreateDate)");
-            SqlParameter[] parameters = {
-					new SqlParameter("@ID",SqlDbType.Int),
-					new SqlParameter("@Email",SqlDbType.VarChar),
-					new SqlParameter("@Password",SqlDbType.VarChar),
-					new SqlParameter("@NickName",SqlDbType.NVarChar),
-					new SqlParameter("@ValidStatus",SqlDbType.Int),
-					new SqlParameter("@CreateDate",SqlDbType.DateTime)
-					};
-            parameters[0].Value = this.ID;
-            parameters[1].Value = this.Email;
-            parameters[2].Value = this.Password;
-            parameters[3].Value = this.NickName;
-            parameters[4].Value = this.ValidStatus;
-            parameters[5].Value = this.CreateDate;
-
-            sqlHelper.ExecuteSql(strSql.ToString(), parameters);
-        }
-
-        public void Update()
-        {
-
-            StringBuilder strSql = new StringBuilder();
-            strSql.Append("update Users set ");
-            strSql.Append("Email=@Email,");
-            strSql.Append("Password=@Password,");
-            strSql.Append("NickName=@NickName,");
-            strSql.Append("ValidStatus=@ValidStatus,");
-            strSql.Append("CreateDate=@CreateDate");
-
-            strSql.Append(" where ID=@ID");
-            SqlParameter[] parameters = {
-					new SqlParameter("@ID",SqlDbType.Int),
-					new SqlParameter("@Email",SqlDbType.VarChar),
-					new SqlParameter("@Password",SqlDbType.VarChar),
-					new SqlParameter("@NickName",SqlDbType.NVarChar),
-					new SqlParameter("@ValidStatus",SqlDbType.Int),
-					new SqlParameter("@CreateDate",SqlDbType.DateTime)
-					};
-            parameters[0].Value = this.ID;
-            parameters[1].Value = this.Email;
-            parameters[2].Value = this.Password;
-            parameters[3].Value = this.NickName;
-            parameters[4].Value = this.ValidStatus;
-            parameters[5].Value = this.CreateDate;
-
-            sqlHelper.ExecuteSql(strSql.ToString(), parameters);
-        }
-
-        public void Delete(int primaryKeyId)
-        {
-            StringBuilder strSql = new StringBuilder();
-            strSql.Append("delete from Users ");
-            strSql.Append(" where ID=@primaryKeyId");
-            SqlParameter[] parameters = {
-					new SqlParameter("@primaryKeyId", SqlDbType.Int)
-				};
-            parameters[0].Value = primaryKeyId;
-            sqlHelper.ExecuteSql(strSql.ToString(), parameters);
-        }
-
-        #endregion
-
-        public class UsersEntityFinder
+        public class UsersDAO : SqlDAO<UsersEntity>
         {
             private SqlHelper sqlHelper;
-            public const string DBName = "Cheese";
+            public const string DBName = "cheese";
 
-            public UsersEntityFinder()
+            public UsersDAO()
             {
                 sqlHelper = new SqlHelper(DBName);
             }
 
-            public UsersEntity FindById(int primaryKeyId)
+            public override void Add(UsersEntity entity)
+            {
+
+                StringBuilder strSql = new StringBuilder();
+                strSql.Append("insert into Users(");
+                strSql.Append("ID,Email,Password,NickName,ValidStatus,CreateDate)");
+                strSql.Append(" values (");
+                strSql.Append("@ID,@Email,@Password,@NickName,@ValidStatus,@CreateDate)");
+                SqlParameter[] parameters = {
+					new SqlParameter("@ID",SqlDbType.Int),
+					new SqlParameter("@Email",SqlDbType.VarChar),
+					new SqlParameter("@Password",SqlDbType.VarChar),
+					new SqlParameter("@NickName",SqlDbType.NVarChar),
+					new SqlParameter("@ValidStatus",SqlDbType.Int),
+					new SqlParameter("@CreateDate",SqlDbType.DateTime)
+					};
+                parameters[0].Value = entity.ID;
+                parameters[1].Value = entity.Email;
+                parameters[2].Value = entity.Password;
+                parameters[3].Value = entity.NickName;
+                parameters[4].Value = entity.ValidStatus;
+                parameters[5].Value = entity.CreateDate;
+
+                sqlHelper.ExecuteSql(strSql.ToString(), parameters);
+            }
+
+            public override void Update(UsersEntity entity)
+            {
+
+                StringBuilder strSql = new StringBuilder();
+                strSql.Append("update Users set ");
+                strSql.Append("Email=@Email,");
+                strSql.Append("Password=@Password,");
+                strSql.Append("NickName=@NickName,");
+                strSql.Append("ValidStatus=@ValidStatus,");
+                strSql.Append("CreateDate=@CreateDate");
+
+                strSql.Append(" where ID=@ID");
+                SqlParameter[] parameters = {
+					new SqlParameter("@ID",SqlDbType.Int),
+					new SqlParameter("@Email",SqlDbType.VarChar),
+					new SqlParameter("@Password",SqlDbType.VarChar),
+					new SqlParameter("@NickName",SqlDbType.NVarChar),
+					new SqlParameter("@ValidStatus",SqlDbType.Int),
+					new SqlParameter("@CreateDate",SqlDbType.DateTime)
+					};
+                parameters[0].Value = entity.ID;
+                parameters[1].Value = entity.Email;
+                parameters[2].Value = entity.Password;
+                parameters[3].Value = entity.NickName;
+                parameters[4].Value = entity.ValidStatus;
+                parameters[5].Value = entity.CreateDate;
+
+                sqlHelper.ExecuteSql(strSql.ToString(), parameters);
+            }
+
+            public override void Delete(UsersEntity entity)
+            {
+                StringBuilder strSql = new StringBuilder();
+                strSql.Append("delete from Users ");
+                strSql.Append(" where ID=@primaryKeyId");
+                SqlParameter[] parameters = {
+						new SqlParameter("@primaryKeyId", SqlDbType.Int)
+					};
+                parameters[0].Value = entity.ID;
+                sqlHelper.ExecuteSql(strSql.ToString(), parameters);
+            }
+
+            public override UsersEntity FindById(long primaryKeyId)
             {
                 StringBuilder strSql = new StringBuilder();
                 strSql.Append("select * from Users ");
@@ -217,7 +214,7 @@ namespace Coal.Entity
                 }
             }
 
-            public List<UsersEntity> Find(string strWhere)
+            public override List<UsersEntity> Find(string strWhere, SqlParameter[] parameters)
             {
                 StringBuilder strSql = new StringBuilder();
                 strSql.Append("select *");
@@ -226,33 +223,40 @@ namespace Coal.Entity
                 {
                     strSql.Append(" where " + strWhere);
                 }
-                SqlDataReader dr = sqlHelper.ExecuteReader(strSql.ToString());
-                List<UsersEntity> list = new List<UsersEntity>();
-                while (dr.Read())
-                {
-                    UsersEntity entity = new UsersEntity();
-                    if (!Convert.IsDBNull(dr["ID"]))
-                    {
-                        entity.ID = (int)dr["ID"];
-                    }
-                    entity.Email = dr["Email"].ToString();
-                    entity.Password = dr["Password"].ToString();
-                    entity.NickName = dr["NickName"].ToString();
-                    if (!Convert.IsDBNull(dr["ValidStatus"]))
-                    {
-                        entity.ValidStatus = (int)dr["ValidStatus"];
-                    }
-                    if (!Convert.IsDBNull(dr["CreateDate"]))
-                    {
-                        entity.CreateDate = (DateTime)dr["CreateDate"];
-                    }
-                    list.Add(entity);
-                }
+                
+                 DataSet ds = sqlHelper.ExecuteDateSet(strSql.ToString(), parameters);
+                 if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count == 1)
+                 {
+                     List<UsersEntity> list = new List<UsersEntity>();
+                     foreach (DataRow row in ds.Tables[0].Rows)
+                     {
+                         UsersEntity entity = new UsersEntity();
+                         if (!Convert.IsDBNull(row["ID"]))
+                         {
+                             entity.ID = (int)row["ID"];
+                         }
+                         entity.Email = row["Email"].ToString();
+                         entity.Password = row["Password"].ToString();
+                         entity.NickName = row["NickName"].ToString();
 
-                dr.Close();
-                dr.Dispose();
+                         if (!Convert.IsDBNull(row["ValidStatus"]))
+                         {
+                             entity.ValidStatus = (int)row["ValidStatus"];
+                         }
+                         if (!Convert.IsDBNull(row["CreateDate"]))
+                         {
+                             entity.CreateDate = (DateTime)row["CreateDate"];
+                         }
 
-                return list;
+                         list.Add(entity);
+                     }
+
+                     return list;
+                 }
+                 else
+                 {
+                     return null;
+                 }
             }
 
             public DataSet GetDataSet(string strWhere, SqlParameter[] param)
@@ -325,6 +329,7 @@ namespace Coal.Entity
             }
 
             #endregion
+
         }
     }
 }

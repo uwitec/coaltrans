@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6D9E4595-C083-4FF0-83FF-8E81ECFC1F2B}</ProjectGuid>
+    <ProjectGuid>{56BEAEFA-6519-4D2E-8FEA-9C80D4B846B1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Coal.BLL</RootNamespace>
-    <AssemblyName>Coal.BLL</AssemblyName>
+    <RootNamespace>Coal.AOP</RootNamespace>
+    <AssemblyName>Coal.AOP</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -37,15 +37,6 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Runtime.Serialization">
-      <RequiredTargetFramework>3.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.ServiceModel">
-      <RequiredTargetFramework>3.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.ServiceModel.Web">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -56,25 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FuncManager.cs" />
-    <Compile Include="LoginContext.cs" />
+    <Compile Include="Permission.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TransListManager.cs" />
-    <Compile Include="UserManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Coal.AOP\Coal.AOP.csproj">
-      <Project>{56BEAEFA-6519-4D2E-8FEA-9C80D4B846B1}</Project>
-      <Name>Coal.AOP</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Coal.DAL\Coal.DAL.csproj">
-      <Project>{F0B2DB69-C5AD-4AA2-8D17-858B0FC28FD8}</Project>
-      <Name>Coal.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Coal.Util\Coal.Util.csproj">
-      <Project>{F60709FF-1680-4918-891B-57F6C4AC1CE3}</Project>
-      <Name>Coal.Util</Name>
-    </ProjectReference>
+    <Content Include="components\PostSharp.Laos.dll" />
+    <Content Include="components\PostSharp.Public.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

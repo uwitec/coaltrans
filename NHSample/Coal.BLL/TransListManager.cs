@@ -6,6 +6,7 @@ using Coal.DAL;
 using System.Data;
 using System.Data.SqlClient;
 using Coal.Entity;
+using Coal.AOP;
 
 namespace Coal.BLL
 {
@@ -34,7 +35,7 @@ namespace Coal.BLL
         }
 
         [Permission]
-        public bool GetDetails(long id, ref TransEntity entity)
+        public bool GetDetails(long id, string userEmail, ref TransEntity entity)
         {
             TransEntity.TransDAO transDao = new TransEntity.TransDAO();
             entity = transDao.FindById(id);

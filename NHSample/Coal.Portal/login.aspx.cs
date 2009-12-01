@@ -31,9 +31,6 @@ public partial class Login : System.Web.UI.Page
                     Response.SetCookie(oldCookie);
                 }
 
-                LoginContext.CurrentUser = new LoginContext.User();
-                LoginContext.CurrentUser.UserId = 0;
-
                 HttpCookie cookie = new HttpCookie("token");
                 cookie.Value = validKey;
                 cookie.Expires = DateTime.Now.AddDays(1);
