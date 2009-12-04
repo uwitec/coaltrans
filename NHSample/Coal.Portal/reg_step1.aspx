@@ -9,9 +9,9 @@
 <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $("#validCode").focus(function() {
-                //$(this).after("<img id='validimg' alt='点击图片刷新' src='ValidCodeGenerator.ashx' />");
-                $(this).attr("value","");
+            $("#ValidCode").focus(function() {
+                $(this).attr("value", "");
+                alert($(this).attr("value"));
                 $("#validimg").attr("src", "Handler/ValidCodeGenerator.ashx?" + new Date).click(function() {
                     $(this).attr("src", "Handler/ValidCodeGenerator.ashx?" + new Date);
                 });
@@ -60,7 +60,7 @@
   </tr>
   <tr>
     <th>验证码：</th>
-    <td><asp:TextBox class="in_no1" id="validCode" type="text" name="textfield5" runat="server" Text="获取验证码" ></asp:TextBox>
+    <td><asp:TextBox class="in_no1" id="ValidCode" type="text" name="ValidCode" runat="server" Text="获取验证码" ></asp:TextBox>
       <img id="validimg" width="130" height="30" align="absmiddle" /></td>
   </tr>
   <tr>

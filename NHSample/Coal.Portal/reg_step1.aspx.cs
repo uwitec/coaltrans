@@ -16,14 +16,27 @@ public partial class reg_step1 : System.Web.UI.Page
 
     protected void Submit_Click(object sender, ImageClickEventArgs e)
     {
-        string email = this.Email.Text;
-        string password = this.Password.Text;
-        string nickName = this.NickName.Text;
+        if (Request.Cookies["valid_code"].Value == this.ValidCode.Text.ToUpper())
+        {
+            string email = this.Email.Text;
+            string password = this.Password.Text;
+            string nickName = this.NickName.Text;
 
-        UserManager.AddUser(email, nickName, password);
-
-        string key = email + "," + password;
-        string validKey = CryptoHelper.Encrypt(key, "renshiqi");
-        string validUrl = "http://localhost:1615/NHSample.Portal/ValidateUser.ashx?key=" + Server.UrlEncode(validKey);
+            if (UserManager.AddUser(email, nickName, password))
+            {
+                string key = email + "," + password;
+                string validKey = CryptoHelper.Encrypt(key, "coalchina");
+                string validUrl = "http://localhost:2150/Coal.Portal/ValidateUser.ashx?key=" + Server.UrlEncode(validKey);
+                Response.Redirect("reg_step2.aspx?email=" + email + "&test_url=" + validUrl);
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(typeof(reg_step1), "alert", "<script>alert('add user failed');</script>");
+            }
+        }
+        else
+        {
+            ClientScript.RegisterClientScriptBlock(typeof(reg_step1), "alert", "<script>alert('valid code is wrong');</script>");
+        }
     }
 }

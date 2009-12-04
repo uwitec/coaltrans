@@ -23,18 +23,18 @@
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <th width="200">&nbsp;</th>
-        <td width="292">已向 <em>mobido@yeah.net</em> 发送验证邮件<br />
-          点击邮件中的链接地址，即可完成注册。 </td>
-        <td width="408"><div class="goemail"><a href="#">前往freemail.yeah.net收信</a></div></td>
+        <td width="292">已向 <em><asp:Label ID="email" runat="server"></asp:Label></em> 发送验证邮件<br />
+          点击邮件中的链接地址，即可激活账号，完成注册。 </td>
+        <!--<td width="408"><div class="goemail"><a href="#">前往freemail.yeah.net收信</a></div></td>-->
       </tr>
     </table>
   </div>
   <div class="email_txt">
-    <h1>如长时间未收到邮件，请尝试：</h1>
+    <h1>如果2小时后，仍未收到激活邮件，请尝试：</h1>
     <ul>
-      <li>查看邮箱的垃圾箱或广告箱，邮件有可能被误放入。 </li>
-      <li>如确认无法找到验证邮件，可点此<a href="#"> 重新发送</a>。</li>
-      <li>也可点此 <a href="#">更换其他邮箱</a> 再收验证邮件。</li>
+      <li>检查邮箱中的垃圾邮件，激活邮件可能被误认为垃圾邮件。 </li>
+      <li>咨询客服，客服电话：010-88888888</li>
+      <li><asp:Label ID="ValidTest" runat="server"></asp:Label></li>
     </ul>
   </div>
   <div class="clear"></div>

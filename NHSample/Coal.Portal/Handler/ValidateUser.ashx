@@ -9,7 +9,7 @@ public class ValidateUser : IHttpHandler {
     {
 
         string validKey = context.Request.QueryString[0];
-        string keys = Coal.Util.CryptoHelper.Decrypt(validKey, "renshiqi");
+        string keys = Coal.Util.CryptoHelper.Decrypt(validKey, "coalchina");
 
         string[] nameAndPassword = keys.Split(',');
 
@@ -17,13 +17,14 @@ public class ValidateUser : IHttpHandler {
         {
             string loginName = nameAndPassword[0];
             string password = nameAndPassword[1];
-            
-            //根据loginname 和 password 获取用户， 把用户状态置为valid = 1
-            
-            //写cookie，并转向到频道首页
 
-            context.Response.ContentType = "text/plain";
-            context.Response.Write(loginName + " and " + password);
+            if (Coal.BLL.UserManager.ValidLogin(loginName, password))
+            {
+                //根据loginname 和 password 获取用户， 把用户状态置为valid = 1
+                //写cookie，并转向到频道首页
+                context.Response.ContentType = "text/plain";
+                context.Response.Redirect("../reg_end.aspx");
+            }
         }
     }
  
