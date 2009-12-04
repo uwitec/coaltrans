@@ -14,14 +14,14 @@ namespace Coal.BLL
     {
         public DataTable GetList(string where, SqlParameter[] paramters, int pageSize, int pageIndex, ref int rowCount)
         {
-            TransEntity.TransDAO transDao = new TransEntity.TransDAO();
+            CoalTransEntity.CoalTransDAO transDao = new CoalTransEntity.CoalTransDAO();
             rowCount = transDao.GetPagerRowsCount(where, paramters);
             return transDao.GetPager(where, paramters, string.Empty, pageSize, pageIndex);
         }
 
         public DataTable GetLastestList(string where, int topNum, string orderField, SqlParameter[] paramters)
         {
-            TransEntity.TransDAO transDao = new TransEntity.TransDAO();
+            CoalTransEntity.CoalTransDAO transDao = new CoalTransEntity.CoalTransDAO();
             DataSet ds = transDao.GetDataSet(where, topNum, orderField, paramters);
 
             if (ds != null && ds.Tables.Count > 0)
@@ -35,9 +35,9 @@ namespace Coal.BLL
         }
 
         [Permission]
-        public bool GetDetails(long id, string userEmail, ref TransEntity entity)
+        public bool GetDetails(long id, string userEmail, ref CoalTransEntity entity)
         {
-            TransEntity.TransDAO transDao = new TransEntity.TransDAO();
+            CoalTransEntity.CoalTransDAO transDao = new CoalTransEntity.CoalTransDAO();
             entity = transDao.FindById(id);
             if (entity != null)
             {

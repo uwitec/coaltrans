@@ -115,23 +115,22 @@ namespace Coal.Entity
 
                 StringBuilder strSql = new StringBuilder();
                 strSql.Append("insert into Users(");
-                strSql.Append("ID,Email,Password,NickName,ValidStatus,CreateDate)");
+                strSql.Append("Email,Password,NickName,ValidStatus,CreateDate)");
                 strSql.Append(" values (");
-                strSql.Append("@ID,@Email,@Password,@NickName,@ValidStatus,@CreateDate)");
+                strSql.Append("@Email,@Password,@NickName,@ValidStatus,@CreateDate)");
                 SqlParameter[] parameters = {
-					new SqlParameter("@ID",SqlDbType.Int),
 					new SqlParameter("@Email",SqlDbType.VarChar),
 					new SqlParameter("@Password",SqlDbType.VarChar),
 					new SqlParameter("@NickName",SqlDbType.NVarChar),
 					new SqlParameter("@ValidStatus",SqlDbType.Int),
 					new SqlParameter("@CreateDate",SqlDbType.DateTime)
 					};
-                parameters[0].Value = entity.ID;
-                parameters[1].Value = entity.Email;
-                parameters[2].Value = entity.Password;
-                parameters[3].Value = entity.NickName;
-                parameters[4].Value = entity.ValidStatus;
-                parameters[5].Value = entity.CreateDate;
+
+                parameters[0].Value = entity.Email;
+                parameters[1].Value = entity.Password;
+                parameters[2].Value = entity.NickName;
+                parameters[3].Value = entity.ValidStatus;
+                parameters[4].Value = entity.CreateDate;
 
                 sqlHelper.ExecuteSql(strSql.ToString(), parameters);
             }

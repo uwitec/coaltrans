@@ -13,8 +13,11 @@ namespace Coal.AOP
         public override void OnEntry(MethodExecutionEventArgs eventArgs)
         {
             object[] args = eventArgs.GetReadOnlyArgumentArray();
-            eventArgs.FlowBehavior = FlowBehavior.Return;
-            eventArgs.ReturnValue = args[1].ToString() == "cheese1@sina.com";
+            if (args[1].ToString() != "cheese1@sina.com")
+            {
+                eventArgs.FlowBehavior = FlowBehavior.Return;
+                eventArgs.ReturnValue = false;
+            }
         }
     }
 }

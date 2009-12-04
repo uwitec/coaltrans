@@ -320,7 +320,7 @@ namespace Coal.Entity
 
         #endregion
 
-        public class CoalTransDAO : SqlDAO<CoalTransEntity>
+        public partial class CoalTransDAO : SqlDAO<CoalTransEntity>
         {
             private SqlHelper sqlHelper;
             public const string DBName = "cheese";
@@ -714,7 +714,7 @@ namespace Coal.Entity
                 }
             }
 
-            public DataSet GetDataSet(string strWhere, SqlParameter[] param)
+            public override DataSet GetDataSet(string strWhere, SqlParameter[] param)
             {
                 StringBuilder strSql = new StringBuilder();
                 strSql.Append("select *");
@@ -785,6 +785,30 @@ namespace Coal.Entity
 
             #endregion
 
+            public DataSet GetDataSet(string where, int topNum, string orderField, SqlParameter[] paramters)
+            {
+                StringBuilder strSql = new StringBuilder();
+                strSql.Append("select");
+
+                if (topNum > 0)
+                {
+                    strSql.Append(" top ").Append(topNum.ToString());
+                }
+
+                strSql.Append(" * FROM CoalTrans(nolock)");
+                
+                if (where.Trim() != "")
+                {
+                    strSql.Append(" where " + where);
+                }
+
+                if (orderField != "")
+                {
+                    strSql.Append(" order by " + orderField);
+                }
+
+                return sqlHelper.ExecuteDateSet(strSql.ToString(), paramters);
+            }
         }
     }
 }

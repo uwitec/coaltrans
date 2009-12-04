@@ -31,6 +31,12 @@ namespace Coal.BLL
             }
         }
 
+        public static bool ValidLogin(string email, string password)
+        {
+            string name = string.Empty;
+            return ValidLogin(email, password, ref name);
+        }
+
         public static bool ValidLogin(string email, string password, ref string nickName)
         {
             UsersEntity.UsersDAO userDao = new UsersEntity.UsersDAO();

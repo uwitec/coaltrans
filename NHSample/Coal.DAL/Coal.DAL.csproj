@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CoalTransEntity.cs" />
     <Compile Include="db\DAO.cs" />
     <Compile Include="db\DbInstance.cs" />
     <Compile Include="db\IDAO.cs" />
@@ -55,7 +56,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="db\SqlHelper.cs" />
     <Compile Include="db\SqlServerDAO.cs" />
-    <Compile Include="TransEntity.cs" />
     <Compile Include="UserGroupMapEntity.cs" />
     <Compile Include="UsersEntity.cs" />
   </ItemGroup>
