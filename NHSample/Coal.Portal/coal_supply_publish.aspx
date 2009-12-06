@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="coal_publish.aspx.cs" Inherits="coal_publish" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="coal_supply_publish.aspx.cs" Inherits="coal_supply_publish" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -9,7 +9,7 @@
 <script type="text/javascript" src="js/menu.js"></script>
 </head>
 <body>
-    <form id="form1" runat="server">
+   <form id="form1" runat="server">
    <div id="h_wrapper">
 	<div id="h_header">
 		<h1 class="logo"><a href="/" title="国家煤炭工业网">国家煤炭工业网</a></h1>
@@ -35,8 +35,7 @@
 				<dt>为了让买家能更精确找到您的产品，您可以做以下几步提高您的信息精度，获得更好的排名：</dt>
 				<dd>1、一条信息只发布一个产品；</dd>
 				<dd>2、您的产品名称务必出现在标题中；</dd>
-				<dd>3、选择与您产品符合的类目，建议您使用“类目自动匹配”功能；</dd>
-				<dd>4、发布的信息带图且填写产品属性。</dd>
+				<dd>3、尽量完整填写供应信息</dd>
 			</dl>
 			<div class="h_columns clearfix">
 				<div class="h_column h_colW2">
@@ -46,16 +45,23 @@
 						</ul>
 					</div>
 					<div id="tabMenu_Content0">
-						<form name="form1" action="" method="post">
 							<div class="h_itemsBody h_item_bb">
 								<table>
+								    <tr>
+										<th width="15%"><span>*</span>标  题：</th>
+										<td width="30%">
+										    <input name="text" type="text" class="h_text" style="width:300px" /> 
+										    <div class="h_alert">请填写标题！</div><!-- 提示说明部分 -->
+										</td>
+									</tr>
 									<tr>
 										<th width="15%"><span>*</span>粒　度：</th>
 										<td width="30%">
-											<select>
-												<option value="0">请选择</option>
-											</select>
-											<div class="h_alert">请选择产品！</div><!-- 提示说明部分 -->
+										<asp:DropDownList ID="lidu" runat="server">
+										    <asp:ListItem Text="小粒度" Value="0"></asp:ListItem>
+										    <asp:ListItem Text="中粒度" Value="1"></asp:ListItem>
+										</asp:DropDownList>
+										<div class="h_alert">请选择产品！</div><!-- 提示说明部分 -->
 										</td>
 										<th width="15%"><span>*</span>焦炭类型：</th>
 										<td>
@@ -218,15 +224,17 @@
 									<tr>
 										<th> </th>
 										<td>
-											<input name="submit" type="submit" value="发 布" class="h_buttun1" /> 
+										    <asp:Button ID="submit" runat="server" Text="发 布" CssClass="h_buttun1" 
+                                                onclick="submit_Click" />
 											<input name="reset" type="reset" value="重 置" class="h_buttun1" />
+											<br />
+											<asp:Label ID="msg" runat="server"></asp:Label>
 										</td>
 										<th> </th>
 										<td> </td>
 									</tr>
 								</table>
 							</div>
-						</form>
 					</div>
 				</div>
 			</div>
