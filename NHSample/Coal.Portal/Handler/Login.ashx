@@ -20,12 +20,12 @@ public class Login : IHttpHandler {
             if (UserManager.ValidLogin(loginEmail, password, ref nickName))
             {
                 //写cookies
-                string key = loginEmail;
+                string key = nickName + "|" + loginEmail;
                 string validKey = CryptoHelper.Encrypt(key, "coalchina");
 
-                if (context.Request.Cookies["token"] != null)
+                if (context.Request.Cookies["login_info"] != null)
                 {
-                    HttpCookie oldCookie = context.Request.Cookies["token"];
+                    HttpCookie oldCookie = context.Request.Cookies["login_info"];
                     oldCookie.Expires = DateTime.Now.AddDays(-1);
                     context.Response.SetCookie(oldCookie);
                 }
@@ -33,7 +33,7 @@ public class Login : IHttpHandler {
                 //LoginContext.CurrentUser = new LoginContext.User();
                 //LoginContext.CurrentUser.UserId = 0;
 
-                HttpCookie cookie = new HttpCookie("token");
+                HttpCookie cookie = new HttpCookie("login_info");
                 cookie.Value = validKey;
                 cookie.Expires = DateTime.Now.AddDays(1);
                 context.Response.SetCookie(cookie);
@@ -49,8 +49,17 @@ public class Login : IHttpHandler {
         }
         else
         {
-            ro["status"] = -1;
-            ro["error_code"] = 1;
+            if (context.Request.Cookies["login_info"] != null)
+            {
+                string key = CryptoHelper.Decrypt(context.Request.Cookies["login_info"].Value,"coalchina");
+                ro["nick_name"] = key.Split('|')[0];
+                ro["status"] = 1;
+            }
+            else
+            {
+                ro["status"] = -1;
+                ro["error_code"] = 1;
+            }
         }
 
         //线程休眠500毫秒，为了看ajax的效果

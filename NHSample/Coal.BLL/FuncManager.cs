@@ -10,6 +10,7 @@ using Coal.Util;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.IO;
+using System.Collections;
 
 namespace Coal.BLL
 {
@@ -17,11 +18,11 @@ namespace Coal.BLL
     {
         public bool GetFunctionList(string userEmail, ref string result)
         {
-            string sql = @"select f.[Name],f.url,f.ParentId from Users u 
+            string sql = @"select f.id,f.[Name],f.url,f.ParentId from Users u 
 inner join UserGroupMap ugm on u.id = ugm.userid 
 inner join FuncGroupMap fgm on ugm.groupid = fgm.groupid
 inner join Functions f on f.id = fgm.funcid
-where u.email = @email";
+where u.email = @email order by [path]";
 
             DbInstance db = new DbInstance();
             db.Open();
@@ -31,26 +32,53 @@ where u.email = @email";
 
             if (dt != null)
             {
-                List<Menu> menus = new List<Menu>();
-
+                ArrayList menus = new ArrayList();
+                //List<Dictionary<string, object>> menus = new List<Dictionary<string, object>>();
                 foreach (DataRow row in dt.Rows)
                 {
-                    Menu menu = new Menu();
-                    menu.Name = row["Name"].ToString();
-                    menu.Url = row["Url"].ToString();
-                    menu.Parent = int.Parse(row["ParentId"].ToString());
-                    menus.Add(menu);
+                    int parent;
+                    if (int.TryParse(row["ParentId"].ToString(), out parent))
+                    {
+                        if (parent == -1)
+                        {
+                            SortedList menu = new SortedList();
+                            menu["id"] = int.Parse(row["id"].ToString());
+                            menu["name"] = row["Name"].ToString();
+                            menu["url"] = row["Url"].ToString();
+                            menu["children"] = new ArrayList();
+                            menus.Add(menu);
+                        }
+                        else
+                        {
+                            SortedList child = new SortedList();
+                            child["id"] =  row["id"].ToString();
+                            child["name"] = row["Name"].ToString();
+                            child["url"] = row["Url"].ToString();
+                            SortedList current = menus[menus.Count - 1] as SortedList;
+                            if (current != null)
+                            {
+                                ArrayList children = current["children"] as ArrayList;
+                                if (children != null)
+                                {
+                                    children.Add(child);
+                                }
+                            }
+                        }
+                    }
                 }
 
-                string jsonStr = string.Empty;
-                using (MemoryStream ms2 = new MemoryStream())
-                {
-                    DataContractJsonSerializer ds = new DataContractJsonSerializer(typeof(List<Menu>));
-                    ds.WriteObject(ms2, menus);
-                    jsonStr = Encoding.UTF8.GetString(ms2.ToArray());
-                }
+                ResultObject ro = new ResultObject();
+                ro["menus"] = menus;
+                result = ro.ToJSONString();
+                
+                //string jsonStr = string.Empty;
+                //using (MemoryStream ms2 = new MemoryStream())
+                //{
+                //    DataContractJsonSerializer ds = new DataContractJsonSerializer(typeof(List<Menu>));
+                //    ds.WriteObject(ms2, menus);
+                //    jsonStr = Encoding.UTF8.GetString(ms2.ToArray());
+                //}
 
-                result = jsonStr;
                 return true;
             }
             else
@@ -60,16 +88,22 @@ where u.email = @email";
         }
     }
 
-    [DataContractAttribute] 
+
     public class Menu
     {
-        [DataMember] 
+        public int Id { get; set; }
         public string Name { get; set; }
-
-        [DataMember] 
         public string Url { get; set; }
-
-        [DataMember] 
-        public int Parent { get; set; }
+        public List<Menu> children { get; set; }
     }
+
+    //[DataContractAttribute]
+    //public class Menu
+    //{
+    //    [DataMember]
+    //    public string Name { get; set; }
+
+    //    [DataMember]
+    //    public string Url { get; set; }
+    //}
 }

@@ -1,32 +1,16 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="coal_publish.aspx.cs" Inherits="coal_publish" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!--
-Author:hzhjun
-Url:http://www.hzhjun.cn
-Date:2009-12-02
--->
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>批量发布信息2</title>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>发布煤炭供应信息</title>
 <link href="css/admin_style.css" type="text/css" rel="stylesheet" rev="stylesheet" media="all" />
-<script src="js/changeTab.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("#5002").addClass("current");
-        $(".h_tree h2").each(function() {
-            var child_tree = $(this).next();
-            $(this).click(function() {
-                $(".h_tree ul").hide();
-                child_tree.show();
-            });
-        });
-    });
-</script>
+<script type="text/javascript" src="js/menu.js"></script>
 </head>
-
 <body>
-<div id="h_wrapper">
+    <form id="form1" runat="server">
+   <div id="h_wrapper">
 	<div id="h_header">
 		<h1 class="logo"><a href="/" title="国家煤炭工业网">国家煤炭工业网</a></h1>
 		<div class="h_topNav">
@@ -36,49 +20,15 @@ Date:2009-12-02
 		</div>
 		<div class="h_mainMenu clearfix">
 			<ul class="h_mainNav">
-				<li class="current"><a href="#">系统首页</a></li>
+				<li class="current"><a href="uc_index.aspx">系统首页</a></li>
 			</ul>
 			<div class="h_userInfo"><span>欢迎 DONGKUO 先生 登录系统 [<a href="#">退出系统</a>]</span></div>
 			<div class="h_userExplain"><a href="#">您目前是普通会员，点此升级为诚信通会员</a></div>
 		</div>
 	</div>
 	<div id="h_content" class="clearfix">
-		<div class="h_sideBar">
-			<div class="h_tree">
-				<!--第一个菜单 start-->
-				<h2 id="menu1" onclick="showSubMenu('menuList1','menuImg1')"><a href="#" id="menuImg1" class="on">供求信息</a><!-- class="on"为展开显示，"off"为合并显示 --></h2>
-				<ul class="h_treeChild" id="menuList1">
-					<li id="5001"><a href="publish_one.html">发布供求信息</a></li>
-					<li id="5002"><a href="#">批量发布信息</a></li>
-					<li id="5003"><a href="#">管理供求信息</a></li>
-					<li id="5004"><a href="#" id="childImg1">信息自定义分类</a></li>
-					<li><a href="#">订阅商机快递</a></li>
-					<li><a href="#">我的收藏</a></li>
-				</ul>
-				<!--第一个菜单 end-->
-				<!--第二个菜单 start-->
-				<h2 id="menu2" onclick="showSubMenu('menuList2','menuImg2')"><a href="#" id="menuImg2" class="off">会员资料</a></h2>
-				<ul class="h_treeChild" id="menuList2" style="display:none;">
-					<li><a href="#">发布供求信息</a></li>
-					<li><a href="#">批量发布信息</a></li>
-					<li><a href="#">管理供求信息</a></li>
-					<li><a href="#" id="childImg2">信息自定义分类</a></li>
-					<li><a href="#">订阅商机快递</a></li>
-					<li><a href="#">我的收藏</a></li>
-				</ul>
-				<!--第二个菜单 end-->
-				<!--第三个菜单 start-->
-				<h2 id="menu3" onclick="showSubMenu('menuList3','menuImg3')"><a href="#" id="menuImg3" class="off">商机参谋</a></h2>
-				<ul class="h_treeChild" id="menuList3" style="display:none;">
-					<li><a href="#">发布供求信息</a></li>
-					<li><a href="#">批量发布信息</a></li>
-					<li><a href="#">管理供求信息</a></li>
-					<li><a href="#" id="childImg3">信息自定义分类</a></li>
-					<li><a href="#">订阅商机快递</a></li>
-					<li><a href="#">我的收藏</a></li>
-				</ul>
-				<!--第三个菜单 end-->
-			</div>
+		<div id="nav" class="h_sideBar">
+			<div id="nav_tree" class="h_tree"></div>
 		</div>
 		<div class="h_main">
 			<dl class="h_tips">
@@ -92,8 +42,7 @@ Date:2009-12-02
 				<div class="h_column h_colW2">
 					<div class="h_mainTitle">
 						<ul class="h_itemsMenu" id="tabMenu">
-							<li class="active" onclick="nTabs(this,0)"><a href="javascript:void(0);">供应信息</a></li>
-							<li class="normal" onclick="nTabs(this,1)"><a href="javascript:void(0);">求购信息</a></li>
+							<li class="active"><a href="javascript:void(0);">煤炭供应</a></li>
 						</ul>
 					</div>
 					<div id="tabMenu_Content0">
@@ -279,80 +228,14 @@ Date:2009-12-02
 							</div>
 						</form>
 					</div>
-					<div id="tabMenu_Content1" style="display:none;">
-						<form name="form2" action="" method="post">
-							<div class="h_itemsBody">
-								<table>
-									<tr>
-										<th width="15%"><span>*</span>联系人：</th>
-										<td width="30%">
-											<input name="text" type="text" class="h_text" />
-											<div class="h_alert">请输入联系人姓名！</div><!-- 提示说明部分 -->
-										</td>
-										<th width="15%"> </th>
-										<td> </td>
-									</tr>
-									<tr>
-										<th><span>*</span>职　务：</th>
-										<td>
-											<select>
-												<option value="0">请选择</option>
-											</select>
-											<span class="h_over"></span><!-- 选择后状态 -->
-										</td>
-										<th> </th>
-										<td> </td>
-									</tr>
-									<tr>
-										<th><span>*</span>联系电话：</th>
-										<td>
-											<input name="text" type="text" class="h_text" /> -
-											<input name="text" type="text" class="h_text2" />
-										</td>
-										<th><span>*</span>传　真：</th>
-										<td>
-											<input name="text" type="text" class="h_text" /> -
-											<input name="text" type="text" class="h_text2" />
-										</td>
-									</tr>
-									<tr>
-										<th><span>*</span>手　机：</th>
-										<td>
-											<input name="text" type="text" class="h_text3" />
-										</td>
-										<th><span>*</span>电子邮件：</th>
-										<td>
-											<input name="text" type="text" class="h_text3" />
-										</td>
-									</tr>
-									<tr>
-										<th>公司地址：</th>
-										<td>
-											<input name="text" type="text" class="h_text4" />
-										</td>
-										<th> </th>
-										<td>
-											
-										</td>
-									</tr>
-									<tr>
-										<th> </th>
-										<td>
-											<input name="submit" type="submit" value="发 布" class="h_buttun1" /> 
-											<input name="reset" type="reset" value="重 置" class="h_buttun1" />
-										</td>
-										<th> </th>
-										<td> </td>
-									</tr>
-								</table>
-							</div>
-						</form>
-					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+<input id="current_menu" type="hidden" value="menu_5" />
+<input id="parent_menu" type="hidden" value="menu_4" />
 <p id="h_footer">Copyright &copy; 2009 国家煤炭工业网 主办：中国煤炭工业协会 技术支持：北京中煤易通科技有限公司</p>
+    </form>
 </body>
 </html>

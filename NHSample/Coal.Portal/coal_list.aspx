@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="SupplyList.aspx.cs" Inherits="SupplyList" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="coal_list.aspx.cs" Inherits="coal_list" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -49,7 +49,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
 
-        var reqData = { page_size: 5, page_index: 1, page_count: 1, cur_page: 1, region: -1 };
+        var reqData = { page_size: 10, page_index: 1, page_count: 1, cur_page: 1, region: -1 };
 
         function SetNext(pager) {
             if (reqData.cur_page == reqData.page_count) {

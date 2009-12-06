@@ -18,24 +18,25 @@ public partial class Login : System.Web.UI.Page
     {
         if (!string.IsNullOrEmpty(this.email.Text) && !string.IsNullOrEmpty(this.password.Text))
         {
-            if (this.email.Text == "cheese1@sina.com" && this.password.Text == "windows")
+            string nickName = string.Empty;
+            if (UserManager.ValidLogin(this.email.Text, this.password.Text, ref nickName))
             {
                 //写cookies
-                string key = this.email.Text + "," + this.password.Text;
-                string validKey = CryptoHelper.Encrypt(key, "renshiqi");
+                string key = nickName + "|" + this.email.Text;
+                string validKey = CryptoHelper.Encrypt(key, "coalchina");
 
-                if (Request.Cookies["token"] != null)
+                if (Request.Cookies["login_info"] != null)
                 {
-                    HttpCookie oldCookie = Request.Cookies["token"];
+                    HttpCookie oldCookie = Request.Cookies["login_info"];
                     oldCookie.Expires = DateTime.Now.AddDays(-1);
                     Response.SetCookie(oldCookie);
                 }
 
-                HttpCookie cookie = new HttpCookie("token");
+                HttpCookie cookie = new HttpCookie("login_info");
                 cookie.Value = validKey;
                 cookie.Expires = DateTime.Now.AddDays(1);
                 Response.SetCookie(cookie);
-                Response.Redirect("Default.aspx");
+                Response.Redirect("uc_index.aspx");
             }
             else
             {

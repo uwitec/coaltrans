@@ -24,10 +24,10 @@ public partial class reg_step1 : System.Web.UI.Page
 
             if (UserManager.AddUser(email, nickName, password))
             {
-                string key = email + "," + password;
-                string validKey = CryptoHelper.Encrypt(key, "coalchina");
-                string validUrl = "http://localhost:2150/Coal.Portal/ValidateUser.ashx?key=" + Server.UrlEncode(validKey);
-                Response.Redirect("reg_step2.aspx?email=" + email + "&test_url=" + validUrl);
+                //string key = email + "," + password;
+                //string validKey = CryptoHelper.Encrypt(key, "coalchina");
+                //string validUrl = "http://localhost:2150/Coal.Portal/ValidateUser.ashx?key=" + Server.UrlEncode(validKey);
+                Response.Redirect("uc_index.aspx");
             }
             else
             {

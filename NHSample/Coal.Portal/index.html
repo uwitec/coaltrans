@@ -35,7 +35,7 @@ function setTab(name,cursel,n){
       <div class="menulist">
         <ul>
           <li class="nav_a">首页</li>
-          <li class="nav_b"><a href="SupplyList.aspx">供应</a></li>
+          <li class="nav_b"><a href="coal_list.aspx">供应</a></li>
           <li class="nav_b"><a href="#">采购</a></li>
           <li class="nav_b"><a href="#">招标</a></li>
           <li class="nav_b"><a href="#">投标</a></li>
@@ -69,8 +69,9 @@ function setTab(name,cursel,n){
         </ul>
     </div>
     <div class="mt-login">
+      <span id='login_msg' style="display:none;">用户名密码不正确</span>
       <table id="login_container" width="100%" border="0" cellspacing="0" cellpadding="0" class="login01">
-        <tr>
+        <tr class="login_init">
           <th>用户名：</th>
           <td><input type="text" class="logintxt" id="email" name="email" /></td>
           <td rowspan="2"><a href="#" id="login_action"><img alt="do_login" border="0px" src="images/BUT01.jpg" /></a></td>
@@ -78,10 +79,12 @@ function setTab(name,cursel,n){
             <a href="#">忘记密码</a><br />
             <a href="#">帮助中心</a></td>
         </tr>
-        <tr>
+        <tr class="login_init">
           <th>密&nbsp;&nbsp;&nbsp;&nbsp;码：</th>
           <td><input type="password" class="logintxt" id="password" name="password" /></td>
         </tr>
+        <tr class="login_load" style="display:none;"><td><div class='laodinguser'><img src='images/loading01.gif' width='32' height='32' /><br />
+		    正在登录，请稍后......</div></td></tr>
       </table>
       <h1>免费注册会员后您可以</h1>
       <table width="100%" border="0" cellspacing="0" cellpadding="0" class="renext">

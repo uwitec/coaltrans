@@ -8,10 +8,10 @@ public class GetFuncList : IHttpHandler
 {
     public void ProcessRequest (HttpContext context) 
     {
-        if (context.Request.Cookies["token"] != null)
+        if (context.Request.Cookies["login_info"] != null)
         {
-            string validKey = context.Request.Cookies["token"].Value;
-            string loginEmail = CryptoHelper.Decrypt(validKey, "coalchina");
+            string validKey = context.Request.Cookies["login_info"].Value;
+            string loginEmail = CryptoHelper.Decrypt(validKey, "coalchina").Split('|')[1];
 
             Coal.BLL.FuncManager func = new Coal.BLL.FuncManager();
             string str = string.Empty;
@@ -26,7 +26,7 @@ public class GetFuncList : IHttpHandler
         }
         else
         {
-            context.Response.Write("{status:-1}");
+            context.Response.Write("{status:-1,url:'http://localhost:2150/Coal.Portal/login.aspx'}");
         }
 
     }

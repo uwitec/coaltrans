@@ -11,7 +11,6 @@
         $(document).ready(function() {
             $("#ValidCode").focus(function() {
                 $(this).attr("value", "");
-                alert($(this).attr("value"));
                 $("#validimg").attr("src", "Handler/ValidCodeGenerator.ashx?" + new Date).click(function() {
                     $(this).attr("src", "Handler/ValidCodeGenerator.ashx?" + new Date);
                 });
@@ -40,27 +39,27 @@
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <th width="200">Email地址：</th>
-    <td width="251"><asp:TextBox ID="Email" class="intxt" type="text" name="Email" runat="server"></asp:TextBox></td>
+    <td width="251"><asp:TextBox ID="Email" TextMode="SingleLine" name="Email" runat="server"></asp:TextBox></td>
     <td width="449">&nbsp;</td>
   </tr>
   <tr>
     <th>设置昵称：</th>
-    <td><asp:TextBox ID="NickName" class="intxt" type="text" name="NickName" runat="server"></asp:TextBox></td>
+    <td><asp:TextBox ID="NickName" class="intxt" TextMode="SingleLine" name="NickName" runat="server"></asp:TextBox></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
     <th>设定密码：</th>
-    <td><asp:TextBox ID="Password" class="intxt" type="password" name="Password" runat="server"></asp:TextBox></td>
+    <td><asp:TextBox ID="Password" class="intxt" TextMode="Password" name="Password" runat="server"></asp:TextBox></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
     <th>再输一次密码：</th>
-    <td><asp:TextBox ID="ConfirmPassword" class="intxt" type="password" name="ConfirmPassword" runat="server"></asp:TextBox></td>
+    <td><asp:TextBox ID="ConfirmPassword" class="intxt" TextMode="Password" name="ConfirmPassword" runat="server"></asp:TextBox></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
     <th>验证码：</th>
-    <td><asp:TextBox class="in_no1" id="ValidCode" type="text" name="ValidCode" runat="server" Text="获取验证码" ></asp:TextBox>
+    <td><asp:TextBox class="in_no1" id="ValidCode" name="ValidCode" TextMode="SingleLine" runat="server" Text="获取验证码" ></asp:TextBox>
       <img id="validimg" width="130" height="30" align="absmiddle" /></td>
   </tr>
   <tr>

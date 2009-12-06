@@ -8,29 +8,13 @@
 <title>首页</title>
 <link href="css/admin_style.css" type="text/css" rel="stylesheet" rev="stylesheet" media="all" />
 <script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $(".h_tree h2").each(function() {
-            var child_tree = $(this).next();
-            $(this).click(function() {
-                $(".h_tree h2 a").removeClass().addClass("off");
-                $(".h_tree ul").hide();
-                child_tree.show();
-                $(this).children("a").removeClass().addClass("on");
-                //$(this).children("a").each(function() {
-                //    var current_class = $(this).attr("class") == "on" ? "off" : "on";
-                //    $(this).removeClass().addClass(current_class);
-                //});
-            });
-        });
-    });
-</script>
+<script type="text/javascript" src="js/menu.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
     <div id="h_wrapper">
 	<div id="h_header">
-		<h1 class="logo"><a href="/" title="国家煤炭工业网">国家煤炭工业网</a></h1>
+		<h1 class="logo"><a href="index.html" title="国家煤炭工业网">国家煤炭工业网</a></h1>
 		<div class="h_topNav">
 			<div class="h_r1"></div>
 			<div class="h_navList"><a href="#">网站首页</a> | <a href="#">我要采购</a> | <a href="#">我要销售</a> | <a href="#">资讯</a> | <a href="#">论坛</a></div>
@@ -45,42 +29,8 @@
 		</div>
 	</div>
 	<div id="h_content" class="clearfix">
-		<div class="h_sideBar">
-			<div class="h_tree">
-				<!--第一个菜单 start-->
-				<h2 id="menu1"><a href="#" id="menuImg1" class="off">供求信息</a><!-- class="on"为展开显示，"off"为合并显示 --></h2>
-				<ul class="h_treeChild" id="menuList1"  style="display:none;">
-					<li><a href="publish_one.html">发布供求信息</a></li>
-					<li><a href="publish_two.html">批量发布信息</a></li>
-					<li><a href="#">管理供求信息</a></li>
-					<li id="child1"><a href="#">信息自定义分类</a></li>
-					<li><a href="#">订阅商机快递</a></li>
-					<li><a href="#">我的收藏</a></li>
-				</ul>
-				<!--第一个菜单 end-->
-				<!--第二个菜单 start-->
-				<h2 id="menu2"><a href="#" id="menuImg2" class="off">会员资料</a></h2>
-				<ul class="h_treeChild" id="menuList2" style="display:none;">
-					<li><a href="#">发布供求信息</a></li>
-					<li><a href="#">批量发布信息</a></li>
-					<li><a href="#">管理供求信息</a></li>
-					<li id="child2"><a href="#" id="childImg2">信息自定义分类</a></li>
-					<li><a href="#">订阅商机快递</a></li>
-					<li><a href="#">我的收藏</a></li>
-				</ul>
-				<!--第二个菜单 end-->
-				<!--第三个菜单 start-->
-				<h2 id="menu3"><a href="#" id="menuImg3" class="off">商机参谋</a></h2>
-				<ul class="h_treeChild" id="menuList3" style="display:none;">
-					<li><a href="#">发布供求信息</a></li>
-					<li><a href="#">批量发布信息</a></li>
-					<li><a href="#">管理供求信息</a></li>
-					<li id="child3"><a href="#" id="childImg3">信息自定义分类</a></li>
-					<li><a href="#">订阅商机快递</a></li>
-					<li><a href="#">我的收藏</a></li>
-				</ul>
-				<!--第三个菜单 end-->
-			</div>
+		<div id="nav" class="h_sideBar">
+			<div id="nav_tree" class="h_tree"></div>
 		</div>
 		<div class="h_main">
 			<div class="h_notice">
