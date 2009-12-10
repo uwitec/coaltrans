@@ -9,61 +9,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>国家煤炭工业供需网</title>
 <link href="css/style_css.css" rel="stylesheet" type="text/css" />
-    </head>
+<link href="css/index.css" rel="stylesheet" type="text/css" />
+</head>
 <body>
-    <form id="form2" runat="server">
-<table width="948" border="0" align="center" cellpadding="0" cellspacing="0" class="top_bar">
-  <tr>
-    <td height="100" valign="top"><img src="images/banner707_243.jpg" width="950" height="100" /></td>
-  </tr>
-  <tr>
-    <td valign="top" class="top_right_menu"><table width="900" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td width="78" align="center" class="linkf12_whiteb"><a href="#">[ 首页 ]</a></td>
-        <td width="53" height="25">&nbsp;</td>
-        <td width="769"><a href="#">协会动态</a> | <a href="#">行业动态</a> | <a href="#">经济运行</a> | <a href="#">煤炭市场</a> | <a href="#">统计信息</a> | <a href="#">科技发展</a> | <a href="#">国际合作</a> | <a href="#">安全生产</a> | <a href="#">公文下载</a></td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-        <td height="25">&nbsp;</td>
-        <td height="25"><a href="#">煤炭建设</a> | <a href="#">加工利用</a> | <a href="#">人事培训</a> | <a href="#">信用建设</a> | <a href="#">政策法规</a> | <a href="#">能源经济</a> | <a href="#">煤炭资源</a> | <a href="#">文化体育</a> | <a href="#">会员之家</a></td>
-      </tr>
-    </table></td>
-  </tr>
-</table>
+<form id="form2" runat="server">
+<!--#include File="top.inc"-->
 <table width="950" border="0" align="center" cellpadding="0" cellspacing="0" class="content_bar">
   <tr>
-    <td valign="top" class="content_bar_left"><div class="login mar_t16">
-      <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td width="15%" align="center" class="login_title"><img src="images/login_ico.jpg" width="19" height="31" /></td>
-          <td width="85%" class="login_title">会员登录</td>
-        </tr>
-        <tr>
-          <td colspan="2" valign="top">
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" class=" mar_t10 f12_grey_3">
-              <tr>
-                <td width="31%" height="30" align="right">用户名：</td>
-                <td width="69%" align="left"><input name="textfield" type="text" id="textfield" size="20" class="login_input"/></td>
-              </tr>
-              <tr>
-                <td height="30" align="right">密 &nbsp; 码：</td>
-                <td align="left"><input name="textfield2" type="text" id="textfield2" size="20" class="login_input"/></td>
-              </tr>
-              <tr>
-                <td height="30" align="right">验证码：</td>
-                <td align="left"><input name="textfield3" type="text" id="textfield3" size="20" class="login_code"/>
-                  <img src="images/code.gif" width="52" height="19" align="absmiddle" /></td>
-              </tr>
-              <tr>
-                <td height="40" colspan="2" align="center" valign="bottom"><img src="images/login_btn.gif" width="154" height="29" border="0" usemap="#Map" /></td>
-                </tr>
-            </table>
-                   
-          </td>
-        </tr>
-      </table>
-    </div>
+    <td valign="top" class="content_bar_left">
     <div class="bars">
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
@@ -117,11 +70,11 @@
       </table>
       </div>
       <div class="bars pad_tb text_align">
-             <a href="#"><img src="images/left_ad_1.gif" /></a>           </div>
-             <div class="bars pad_tb text_align">
-             <a href="#"><img src="images/left_ad_2.gif" /></a>           </div>
-             <div class="bars pad_tb text_align">
-             <a href="#"><img src="images/left_ad_3.gif" /></a>           </div>
+             <a href="#"><img src="images/left_ad_1.gif" /></a></div>
+      <div class="bars pad_tb text_align">
+             <a href="#"><img src="images/left_ad_2.gif" /></a></div>
+      <div class="bars pad_tb text_align">
+             <a href="#"><img src="images/left_ad_3.gif" /></a></div>
     </td>
     <td align="right" valign="top"><table width="712" border="0" cellspacing="0" cellpadding="0" class="mar_t16">
       <tr>

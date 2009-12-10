@@ -1,10 +1,10 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="supply_publish.aspx.cs" Inherits="supply_publish" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="demand_publish.aspx.cs" Inherits="demand_publish" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
 <title>批量发布信息</title>
 <link href="css/admin_style.css" type="text/css" rel="stylesheet" rev="stylesheet" media="all" />
 <script type="text/javascript" src="js/jquery.js"></script>
@@ -33,12 +33,12 @@
 						<div class="h_itemsList">
 							<img src="images/h_pic.jpg" alt="" />
 							<p>各种资金项目合作、技术专利、租赁转让。<br />如：项目、投资、招投标等。</p>
-							<span><a href="coal_supply_publish.aspx">煤炭供应信息发布</a></span>
+							<span><a href="coal_demand_publish.aspx">煤炭供应信息发布</a></span>
 						</div>
 						<div class="h_itemsList">
 							<img src="images/h_pic.jpg" alt="" />
 							<p>各种煤制品供应信息发布。<br />如：焦炭等。</p>
-							<span><a href="coalproduct_supply_publish.aspx">煤制品供应信息发布</a></span>
+							<span><a href="coalproduct_demand_publish.aspx">煤制品供应信息发布</a></span>
 						</div>
 						<div class="h_itemsList">
 							<img src="images/h_pic.jpg" alt="" />

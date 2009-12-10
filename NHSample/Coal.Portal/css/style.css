@@ -161,3 +161,33 @@ body {
 .email_txt h1 {
 	font-size: 14px;
 }
+.userht_all .login_xx .zhushi01 {
+	background-image: url(../images/zhushi01.gif);
+	background-repeat: no-repeat;
+	width: 300px;
+}
+.userht_all .login_xx .zhushi01 p {
+	padding-left: 20px;
+	margin: 0px;
+	line-height: 18px;
+}
+.userht_all .login_xx .zhushi02 {
+	background-image: url(../images/zhushi02.gif);
+	background-repeat: no-repeat;
+	width: 300px;
+}
+.userht_all .login_xx .zhushi02 p {
+	padding-left: 20px;
+	margin: 0px;
+	line-height: 18px;
+}
+.userht_all .login_xx .zhushi03 {
+	background-image: url(../images/zhushi03.gif);
+	background-repeat: no-repeat;
+	width: 300px;
+}
+.userht_all .login_xx .zhushi03 p {
+	padding-left: 20px;
+	margin: 0px;
+	line-height: 18px;
+}

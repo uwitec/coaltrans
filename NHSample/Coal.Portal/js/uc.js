@@ -1,4 +1,6 @@
-﻿$(document).ready(function() {
+﻿var user_group = { "1": "普通用户", "2": "认证用户", "3": "会员" };
+
+$(document).ready(function() {
     $.ajax({
         type: "POST",
         url: "Handler/GetFuncList.ashx",
@@ -15,7 +17,8 @@
                 var html = "";
                 for (var menu_i in j.menus) {
                     var menu = j.menus[menu_i];
-                    html += "<h2 id='menu_" + menu.id + "'><a href='#' class='off'>" + menu.name + "</a></h2>";
+                    var menu_url = menu.url == "" ? "#" : menu.url;
+                    html += "<h2 id='menu_" + menu.id + "'><a href='" + menu_url + "' class='off'>" + menu.name + "</a></h2>";
                     if (menu.children.length > 0) {
                         html += "<ul class='h_treeChild' id='menuList1'  style='display:none;'>";
                         for (var child_i in menu.children) {
@@ -42,7 +45,23 @@
                     $("#" + current_menu).parent().show();
                     $("#" + current_menu).addClass("current");
                     var parent_menu = $("#parent_menu").val();
-                    $("#" + parent_menu).children("a").removeClass().addClass("on");
+                    if (parent_menu != -1) {
+                        $("#" + parent_menu).children("a").removeClass().addClass("on");
+                    }
+                }
+
+                $("#welcome").prepend("欢迎 " + j.nick_name + " 登录系统 ");
+                $("#user_type").empty().html("您目前是" + user_group[j.user_group]);
+
+                if (j.user_group == "3") {
+                    $("#oprate_prompt").next("p").hide();
+                    $("#oprate_prompt").hide();
+                }
+                else if (j.user_group == "2") {
+                    $("#valid_user").hide();
+                }
+                else if (j.user_group == "1") {
+                    $("#join_member").hide();
                 }
             }
         },

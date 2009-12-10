@@ -34,7 +34,7 @@ public partial class Login : System.Web.UI.Page
 
                 HttpCookie cookie = new HttpCookie("login_info");
                 cookie.Value = validKey;
-                cookie.Expires = DateTime.Now.AddDays(1);
+                //cookie.Expires = DateTime.Now.AddDays(1);
                 Response.SetCookie(cookie);
                 Response.Redirect("uc_index.aspx");
             }

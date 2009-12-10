@@ -7,31 +7,105 @@
 <title>用户注册</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.validate.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $("#ValidCode").focus(function() {
-                $(this).attr("value", "");
-                $("#validimg").attr("src", "Handler/ValidCodeGenerator.ashx?" + new Date).click(function() {
-                    $(this).attr("src", "Handler/ValidCodeGenerator.ashx?" + new Date);
-                });
+            var validator = $("#form1").validate({
+                rules: {
+                    // simple rule, converted to {required:true}
+                    tbxEmail: {
+                        required: true,
+                        email: true
+                    },
+                    tbxNickName: "required",
+                    tbxPassword: {
+                        required: true
+                    },
+                    tbxConfirmPassword: {
+                        required: true,
+                        equalTo: "#tbxPassword"
+                    },
+                    tbxValidCode: {
+                        required: true,
+                        remote: {
+                            url: "Handler/ValidateCode.ashx",
+                            type: "post",
+                            data: {
+                                code: function() {
+                                    return $("#tbxValidCode").val();
+                                }
+                            }
+                        }
+                    }
+                },
+                messages: {
+                    tbxEmail: {
+                        required: "Email不能为空",
+                        email: "请填写有效的Email"
+                    },
+                    tbxNickName: "昵称不能为空",
+                    tbxPassword: {
+                        required: "密码不能为空"
+                    },
+                    tbxConfirmPassword: {
+                        required: "请确认密码",
+                        equalTo: "密码不一致"
+                    },
+                    tbxValidCode: {
+                        required: "请录入验证码",
+                        remote: "验证码错误"
+                    }
+                },
+                errorPlacement: function(error, element) {
+                    var error_container = element.parent("td").next("td").children("div");
+                    error.appendTo(error_container.children("p").empty());
+                    error_container.removeClass().addClass("zhushi02");
+                },
+                success: function(label) {
+                    label.parent("p").parent("div").removeClass().addClass("zhushi03");
+                    label.parent("p").empty().text("验证通过");
+                },
+                onkeyup: true
             });
 
-            $("#validCode").blur(function() {
-                $(this).unbind("focus");
+            var prompt = { tbxEmail: "请填写有效的Email",
+                tbxPassword: "密码由6-20个英文字母或者数字组成",
+                tbxConfirmPassword:"请再次输入密码，以确认",
+                tbxNickName: "昵称由6-10个英文字母或者数字组成"
+            };
+
+            $("input").focus(function() {
+                var id = $(this).attr("id");
+                var msg_container = $(this).parent("td").next("td").children("div");
+                msg_container.children("p").empty().html(prompt[id]);
+                msg_container.removeClass().addClass("zhushi01");
+
+                if (id == "tbxValidCode") {
+                    $(this).attr("value", "");
+                    $("#validimg").attr("src", "Handler/ValidCodeGenerator.ashx?" + new Date).click(function() {
+                        $(this).attr("src", "Handler/ValidCodeGenerator.ashx?" + new Date);
+                    });
+                }
+            });
+
+            $("input").blur(function() {
+                var id = $(this).attr("id");
+                validator.element("#" + id);
+                if ($(this).attr("id") == "tbxValidCode") {
+                    $(this).unbind("focus");
+                }
             });
         });
     </script>
 </head>
 <body>
-<form runat="server">
+<form id="form1" name="form1" runat="server">
 <div class="userht_all">
   <div class="topban"></div>
   <div class="h_menu">服务热线:010-88888888</div>
   <div class="login_bz">
     <ul>
-      <li class="bz_a">1.填写注册信息</li>
-      <li class="bz_b">2.通过邮件确认</li>
-      <li class="bz_b">3.注册成功</li>
+      <li class="bz_a">填写注册信息</li>
     </ul>
   </div>
   <div class="clear"></div>
@@ -39,28 +113,29 @@
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <th width="200">Email地址：</th>
-    <td width="251"><asp:TextBox ID="Email" TextMode="SingleLine" name="Email" runat="server"></asp:TextBox></td>
-    <td width="449">&nbsp;</td>
+    <td width="220"><asp:TextBox ID="tbxEmail" TextMode="SingleLine" name="tbxEmail" runat="server"></asp:TextBox></td>
+    <td width="480"><div><p></p></div></td>
   </tr>
   <tr>
     <th>设置昵称：</th>
-    <td><asp:TextBox ID="NickName" class="intxt" TextMode="SingleLine" name="NickName" runat="server"></asp:TextBox></td>
-    <td>&nbsp;</td>
+    <td><asp:TextBox ID="tbxNickName" TextMode="SingleLine" name="tbxNickName" runat="server"></asp:TextBox></td>
+    <td><div><p></p></div></td>
   </tr>
   <tr>
     <th>设定密码：</th>
-    <td><asp:TextBox ID="Password" class="intxt" TextMode="Password" name="Password" runat="server"></asp:TextBox></td>
-    <td>&nbsp;</td>
+    <td><asp:TextBox ID="tbxPassword" TextMode="Password" name="tbxPassword" runat="server"></asp:TextBox></td>
+    <td><div><p></p></div></td>
   </tr>
   <tr>
     <th>再输一次密码：</th>
-    <td><asp:TextBox ID="ConfirmPassword" class="intxt" TextMode="Password" name="ConfirmPassword" runat="server"></asp:TextBox></td>
-    <td>&nbsp;</td>
+    <td><asp:TextBox ID="tbxConfirmPassword" TextMode="Password" name="tbxConfirmPassword" runat="server"></asp:TextBox></td>
+    <td><div><p></p></div></td>
   </tr>
   <tr>
     <th>验证码：</th>
-    <td><asp:TextBox class="in_no1" id="ValidCode" name="ValidCode" TextMode="SingleLine" runat="server" Text="获取验证码" ></asp:TextBox>
-      <img id="validimg" width="130" height="30" align="absmiddle" /></td>
+    <td><asp:TextBox id="tbxValidCode" name="tbxValidCode" CssClass="in_no1" TextMode="SingleLine" runat="server" Text="获取验证码" ></asp:TextBox>
+      <img id="validimg" width="80" height="20" style="vertical-align:text-bottom" /></td>
+     <td><div><p></p></div></td>
   </tr>
   <tr>
     <th>&nbsp;</th>

@@ -17,9 +17,9 @@ public class LoginContext
     {
         get
         {
-            if (HttpContext.Current.Request.Cookies["token"] != null)
+            if (HttpContext.Current.Request.Cookies["login_info"] != null)
             {
-                string ticket = HttpContext.Current.Request.Cookies["token"].Value;
+                string ticket = HttpContext.Current.Request.Cookies["login_info"].Value;
                 UserInfo userInfo =  new UserInfo();
                 userInfo.UserEmail = Coal.Util.CryptoHelper.Decrypt(ticket, "coalchina");
                 return userInfo;

@@ -7,6 +7,7 @@
 <title>国家煤炭工业供需网</title>
 <link href="css/style_css.css" rel="stylesheet" type="text/css" />
 <link href="css/news.css" rel="stylesheet" type="text/css" />
+<link href="css/index.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript">
  function StringBuffer()   
@@ -107,7 +108,7 @@
                        content.append("<div class='cp_all'>");
                        content.append("<div class='cp_images'><img src='images/jx01.jpg' /></div>");
                        content.append("<div class='cp_cotton'>");
-                       content.append("<h1><a href='SupplyDetail.aspx?ID=" + row["ID"] + "'>");
+                       content.append("<h1><a href='coal_detail.aspx?ID=" + row["ID"] + "'>");
                        content.append(row["ID"]);
                        content.append(row["Title"]);
                        content.append("</a></h1><ul><li>");
@@ -217,25 +218,7 @@
 </script>
 </head>
 <body>
-<table width="948" border="0" align="center" cellpadding="0" cellspacing="0" class="top_bar">
-  <tr>
-    <td height="100" valign="top"><img src="images/banner707_243.jpg" width="950" height="100" /></td>
-  </tr>
-  <tr>
-    <td valign="top" class="top_right_menu"><table width="900" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td width="78" align="center" class="linkf12_whiteb"><a href="#">[ 首页 ]</a></td>
-        <td width="53" height="25">&nbsp;</td>
-        <td width="769"><a href="#">协会动态</a> | <a href="#">行业动态</a> | <a href="#">经济运行</a> | <a href="#">煤炭市场</a> | <a href="#">统计信息</a> | <a href="#">科技发展</a> | <a href="#">国际合作</a> | <a href="#">安全生产</a> | <a href="#">公文下载</a></td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-        <td height="25">&nbsp;</td>
-        <td height="25"><a href="#">煤炭建设</a> | <a href="#">加工利用</a> | <a href="#">人事培训</a> | <a href="#">信用建设</a> | <a href="#">政策法规</a> | <a href="#">能源经济</a> | <a href="#">煤炭资源</a> | <a href="#">文化体育</a> | <a href="#">会员之家</a></td>
-      </tr>
-    </table></td>
-  </tr>
-</table>
+<!--#include File="top.inc"-->
 <table width="950" border="0" align="center" cellpadding="0" cellspacing="0" class="content_bar">
   <tr>
     <td valign="top" class="content_bar_left">

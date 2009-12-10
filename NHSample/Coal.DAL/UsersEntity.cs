@@ -29,6 +29,7 @@ namespace Coal.Entity
             public const string NickName = "NickName";
             public const string ValidStatus = "ValidStatus";
             public const string CreateDate = "CreateDate";
+            public const string Group = "Group";
         }
         #endregion
 
@@ -38,7 +39,7 @@ namespace Coal.Entity
             sqlHelper = new SqlHelper(DBName);
         }
 
-        public UsersEntity(int id, string email, string password, string nickname, int validstatus, DateTime createdate)
+        public UsersEntity(int id, string email, string password, string nickname, int validstatus, DateTime createdate, int group)
         {
             this.ID = id;
 
@@ -51,6 +52,8 @@ namespace Coal.Entity
             this.ValidStatus = validstatus;
 
             this.CreateDate = createdate;
+
+            this.Group = group;
 
         }
         #endregion
@@ -98,6 +101,13 @@ namespace Coal.Entity
             set;
         }
 
+
+        public int? Group
+        {
+            get;
+            set;
+        }
+
         #endregion
 
         public class UsersDAO : SqlDAO<UsersEntity>
@@ -115,22 +125,23 @@ namespace Coal.Entity
 
                 StringBuilder strSql = new StringBuilder();
                 strSql.Append("insert into Users(");
-                strSql.Append("Email,Password,NickName,ValidStatus,CreateDate)");
+                strSql.Append("Email,Password,NickName,ValidStatus,CreateDate,Group)");
                 strSql.Append(" values (");
-                strSql.Append("@Email,@Password,@NickName,@ValidStatus,@CreateDate)");
+                strSql.Append("@Email,@Password,@NickName,@ValidStatus,@CreateDate,@Group)");
                 SqlParameter[] parameters = {
 					new SqlParameter("@Email",SqlDbType.VarChar),
 					new SqlParameter("@Password",SqlDbType.VarChar),
 					new SqlParameter("@NickName",SqlDbType.NVarChar),
 					new SqlParameter("@ValidStatus",SqlDbType.Int),
-					new SqlParameter("@CreateDate",SqlDbType.DateTime)
+					new SqlParameter("@CreateDate",SqlDbType.DateTime),
+					new SqlParameter("@Group",SqlDbType.Int)
 					};
-
                 parameters[0].Value = entity.Email;
                 parameters[1].Value = entity.Password;
                 parameters[2].Value = entity.NickName;
                 parameters[3].Value = entity.ValidStatus;
                 parameters[4].Value = entity.CreateDate;
+                parameters[5].Value = entity.Group;
 
                 sqlHelper.ExecuteSql(strSql.ToString(), parameters);
             }
@@ -144,7 +155,8 @@ namespace Coal.Entity
                 strSql.Append("Password=@Password,");
                 strSql.Append("NickName=@NickName,");
                 strSql.Append("ValidStatus=@ValidStatus,");
-                strSql.Append("CreateDate=@CreateDate");
+                strSql.Append("CreateDate=@CreateDate,");
+                strSql.Append("Group=@Group");
 
                 strSql.Append(" where ID=@ID");
                 SqlParameter[] parameters = {
@@ -153,7 +165,8 @@ namespace Coal.Entity
 					new SqlParameter("@Password",SqlDbType.VarChar),
 					new SqlParameter("@NickName",SqlDbType.NVarChar),
 					new SqlParameter("@ValidStatus",SqlDbType.Int),
-					new SqlParameter("@CreateDate",SqlDbType.DateTime)
+					new SqlParameter("@CreateDate",SqlDbType.DateTime),
+					new SqlParameter("@Group",SqlDbType.Int)
 					};
                 parameters[0].Value = entity.ID;
                 parameters[1].Value = entity.Email;
@@ -161,6 +174,7 @@ namespace Coal.Entity
                 parameters[3].Value = entity.NickName;
                 parameters[4].Value = entity.ValidStatus;
                 parameters[5].Value = entity.CreateDate;
+                parameters[6].Value = entity.Group;
 
                 sqlHelper.ExecuteSql(strSql.ToString(), parameters);
             }
@@ -205,6 +219,10 @@ namespace Coal.Entity
                     {
                         entity.CreateDate = (DateTime)row["CreateDate"];
                     }
+                    if (!Convert.IsDBNull(row["Group"]))
+                    {
+                        entity.Group = (int)row["Group"];
+                    }
                     return entity;
                 }
                 else
@@ -222,40 +240,43 @@ namespace Coal.Entity
                 {
                     strSql.Append(" where " + strWhere);
                 }
-                
-                 DataSet ds = sqlHelper.ExecuteDateSet(strSql.ToString(), parameters);
-                 if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count == 1)
-                 {
-                     List<UsersEntity> list = new List<UsersEntity>();
-                     foreach (DataRow row in ds.Tables[0].Rows)
-                     {
-                         UsersEntity entity = new UsersEntity();
-                         if (!Convert.IsDBNull(row["ID"]))
-                         {
-                             entity.ID = (int)row["ID"];
-                         }
-                         entity.Email = row["Email"].ToString();
-                         entity.Password = row["Password"].ToString();
-                         entity.NickName = row["NickName"].ToString();
 
-                         if (!Convert.IsDBNull(row["ValidStatus"]))
-                         {
-                             entity.ValidStatus = (int)row["ValidStatus"];
-                         }
-                         if (!Convert.IsDBNull(row["CreateDate"]))
-                         {
-                             entity.CreateDate = (DateTime)row["CreateDate"];
-                         }
+                DataSet ds = sqlHelper.ExecuteDateSet(strSql.ToString(), parameters);
+                if (ds != null && ds.Tables.Count > 0)
+                {
+                    List<UsersEntity> list = new List<UsersEntity>();
+                    foreach (DataRow row in ds.Tables[0].Rows)
+                    {
+                        UsersEntity entity = new UsersEntity();
+                        if (!Convert.IsDBNull(row["ID"]))
+                        {
+                            entity.ID = (int)row["ID"];
+                        }
+                        entity.Email = row["Email"].ToString();
+                        entity.Password = row["Password"].ToString();
+                        entity.NickName = row["NickName"].ToString();
+                        if (!Convert.IsDBNull(row["ValidStatus"]))
+                        {
+                            entity.ValidStatus = (int)row["ValidStatus"];
+                        }
+                        if (!Convert.IsDBNull(row["CreateDate"]))
+                        {
+                            entity.CreateDate = (DateTime)row["CreateDate"];
+                        }
+                        if (!Convert.IsDBNull(row["Group"]))
+                        {
+                            entity.Group = (int)row["Group"];
+                        }
 
-                         list.Add(entity);
-                     }
+                        list.Add(entity);
+                    }
 
-                     return list;
-                 }
-                 else
-                 {
-                     return null;
-                 }
+                    return list;
+                }
+                else
+                {
+                    return null;
+                }
             }
 
             public DataSet GetDataSet(string strWhere, SqlParameter[] param)

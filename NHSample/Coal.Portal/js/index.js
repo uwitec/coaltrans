@@ -60,6 +60,7 @@
             $(this).addClass("current");
         });
     });
+
     //供应导航
     $("#supply_nav a").each(function() {
         $(this).click(function() {
@@ -128,8 +129,9 @@
         });
     });
 
+    //登录
     var logon = "<tr><td><div class='loginend'>\
-		  <h1><span>欢迎您</span><a id='nick_name' href='#'>meitan@gmail.com</a><em><a id='login_out' href='#'>退出</a></em></h1>\
+		  <h1><span>欢迎您</span><a id='nick_name' href='#'>meitan@gmail.com</a><em><a id='login_out' href='log_out.aspx'>退出</a></em></h1>\
 		  <ul><li><a href='uc_index.aspx'>进入用户中心首页</a></li>\
 		  <li><a href='#'>进入功能一</a></li>\
 		  <li><a href='#'>进入功能一</a></li>\
@@ -139,16 +141,18 @@
 
     $.ajax({
         type: "POST",
-        url: "Handler/Login.ashx",
-        success: function(msg) {
-            if (msg.status > 0) {
+        url: "Handler/GetFuncList.ashx",
+        dataType: "json",
+        success: function(j) {
+            if (j.status == -1) {
+            }
+            else if (j.status == -2) {
+            }
+            else {
                 var logon_content = $("#login_container").children("tbody").empty().html(logon);
-                $("#nick_name").html(msg.nick_name);
+                $("#nick_name").html(j.nick_name);
                 $(".laodinguser").hide();
                 $("#login_msg").hide();
-                $("#login_out").click(function() {
-                    window.location = "http://localhost:2150/Coal.Portal/index.html";
-                });
             }
         }
     });
@@ -169,9 +173,6 @@
                     $("#nick_name").html(msg.nick_name);
                     $(".laodinguser").hide();
                     $("#login_msg").hide();
-                    $("#login_out").click(function() {
-                        window.location = "http://localhost:2150/Coal.Portal/index.html";
-                    });
                 }
                 else {
                     if (msg.error_code == 1) {

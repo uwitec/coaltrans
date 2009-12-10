@@ -16,11 +16,10 @@ namespace Coal.BLL
 {
     public class FuncManager
     {
-        public bool GetFunctionList(string userEmail, ref string result)
+        public bool GetFunctionList(string userEmail, ResultObject ro)
         {
-            string sql = @"select f.id,f.[Name],f.url,f.ParentId from Users u 
-inner join UserGroupMap ugm on u.id = ugm.userid 
-inner join FuncGroupMap fgm on ugm.groupid = fgm.groupid
+            string sql = @"select f.id,f.[Name],f.url,f.ParentId,u.[group] from Users u 
+inner join FuncGroupMap fgm on u.[group] = fgm.groupid
 inner join Functions f on f.id = fgm.funcid
 where u.email = @email order by [path]";
 
@@ -30,7 +29,7 @@ where u.email = @email order by [path]";
             db.SetString("email",userEmail);
             DataTable dt = db.ExecuteTable();
 
-            if (dt != null)
+            if (dt != null && dt.Rows.Count > 0)
             {
                 ArrayList menus = new ArrayList();
                 //List<Dictionary<string, object>> menus = new List<Dictionary<string, object>>();
@@ -67,9 +66,9 @@ where u.email = @email order by [path]";
                     }
                 }
 
-                ResultObject ro = new ResultObject();
                 ro["menus"] = menus;
-                result = ro.ToJSONString();
+                ro["user_group"] = dt.Rows[0]["group"].ToString();
+
                 
                 //string jsonStr = string.Empty;
                 //using (MemoryStream ms2 = new MemoryStream())

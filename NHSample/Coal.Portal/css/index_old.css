@@ -639,30 +639,3 @@ a:hover {
     width:59px;
     height:67px;
  }
-
-/*=== 新增页面头部样式 ===*/
-.header {width:950px; height:141px; background:url(../images/header_bg.gif) repeat-x; text-align:left; margin:0 auto; position:relative; z-index:1000;}
-.logo {width:270px; height:74px; background:url(../images/logo.gif) no-repeat; text-indent:-9999em; margin:15px 0 0 15px; display:inline; float:left; overflow:hidden;}
-.logo a {width:270px; height:74px; display:block; overflow:hidden;}
-.topNav {color:#000; font-size:12px; text-align:right; padding:30px 20px 0 0; display:inline; float:right;}
-.topNav a:link,.topNav a:visited {color:#000; text-decoration:none;}
-.topNav a:hover {color:#c00; text-decoration:underline;}
-.mainNav {width:400px; height:26px; background:url(../images/nav_bg.gif) no-repeat; list-style:none; margin:-12px 0 0 330px; padding:0; display:inline; float:left; text-align:left;}
-.mainNav li {width:78px; height:26px; background:url(../images/nav_bg3.gif) no-repeat right top; font-size:14px; font-weight:bold; line-height:26px; text-align:center; padding-right:2px; display:inline; float:left;}
-.mainNav li.current {width:83px; height:29px; background:url(../images/nav_bg2.gif) no-repeat; line-height:29px; padding:0; margin:-2px 0 0 -3px; position:relative;}
-.mainNav li a:link,.mainNav li a:visited {color:#F5F8D5; text-decoration:none;}
-.mainNav li a:hover {color:#F5F8D5; text-decoration:underline;}
-.mainNav li.current a:hover {text-decoration:none;}
-.searchBar {width:950px; height:38px; clear:both;}
-.searchBody {padding:8px 20px 0 15px; display:inline; float:left;}
-.searchKeyword {color:#fff; font-size:12px; line-height:38px; float:left;}
-.searchKeyword a:link,.searchKeyword a:visited {color:#fff; text-decoration:none;}
-.searchKeyword a:hover {color:#fff; text-decoration:underline;}
-.input_text {width:320px; height:14px; background:#fff; border:1px solid #C53C0E; color:#a0a0a0; font-size:12px; padding:3px; float:left;}
-.input_button {width:66px; height:22px; background:url(../images/btn_bg.gif) repeat-x; border:1px solid #C53C0E; color:#000; font-size:12px; line-height:22px; text-align:center; margin:0 0 0 8px; display:inline; float:left; cursor:pointer;}
-.selectBar{width:auto; border:1px solid #C53C0E; color:#000; font-size:12px; font-style:normal; margin-left:-1px; float:left; display:inline; position:relative; z-index:1000;}
-.selectBar .selectTitle {width:40px; background:#fff url(../images/icon_bg.gif) no-repeat right 8px; line-height:18px; padding:2px 18px 0 10px; cursor:pointer;}
-.selectBar .selectBody {width:58px; background:#fff; border:1px solid #C53C0E; border-top:none; list-style:none; padding:0; margin:0; position:absolute; top:20px; left:-1px; z-index:1000; display:none;}
-.selectBar .selectBody li {height:21px; line-height:21px; overflow:hidden;}
-.selectBar .selectBody a:link,.selectBar .selectBody a:visited,.selectBar .selectBody a:hover {color:#000; text-decoration:none; padding-left:10px; display:block;}
-.selectBar .selectBody a:hover {background:#e2e2e2;}

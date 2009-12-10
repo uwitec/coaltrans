@@ -19,6 +19,7 @@ namespace Coal.BLL
                 user.NickName = nickName;
                 user.Password = password;
                 user.ValidStatus = 0;
+                user.Group = (int)UserGroup.NewUser;
                 user.CreateDate = DateTime.Now;
                 UsersEntity.UsersDAO userDao = new UsersEntity.UsersDAO();
                 userDao.Add(user);

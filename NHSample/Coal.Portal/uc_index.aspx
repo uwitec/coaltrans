@@ -8,36 +8,23 @@
 <title>首页</title>
 <link href="css/admin_style.css" type="text/css" rel="stylesheet" rev="stylesheet" media="all" />
 <script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/menu.js"></script>
+<script type="text/javascript" src="js/uc.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
     <div id="h_wrapper">
-	<div id="h_header">
-		<h1 class="logo"><a href="index.html" title="国家煤炭工业网">国家煤炭工业网</a></h1>
-		<div class="h_topNav">
-			<div class="h_r1"></div>
-			<div class="h_navList"><a href="#">网站首页</a> | <a href="#">我要采购</a> | <a href="#">我要销售</a> | <a href="#">资讯</a> | <a href="#">论坛</a></div>
-			<div class="h_r1"></div>
-		</div>
-		<div class="h_mainMenu clearfix">
-			<ul class="h_mainNav">
-				<li class="current"><a href="#">系统首页</a></li>
-			</ul>
-			<div class="h_userInfo"><span>欢迎 DONGKUO 先生 登录系统 [<a href="#">退出系统</a>]</span></div>
-			<div class="h_userExplain"><a href="#">您目前是普通会员，点此升级为诚信通会员</a></div>
-		</div>
-	</div>
+	<!--#include File="uc_top.inc"-->
 	<div id="h_content" class="clearfix">
 		<div id="nav" class="h_sideBar">
 			<div id="nav_tree" class="h_tree"></div>
 		</div>
 		<div class="h_main">
 			<div class="h_notice">
-				<div class="h_mainTitle">
+				<div id="oprate_prompt" class="h_mainTitle">
 					<h3>重要操作提醒</h3>
 				</div>
-				<p class="h_check">您的账号还未通过验证，无法收到客户的任何反馈 <input name="check" type="button" value="点此验证" class="h_buttun1" /></p>
+				<p id="valid_user" class="h_check">您的账号还未通过验证，无法收到客户的任何反馈 <input name="check" type="button" value="点此验证" class="h_buttun1" /></p>
+				<p id="join_member" class="h_check">您已经是认证用户，但还无法享受到更多超值服务 <input name="check" type="button" value="点此了解成为会员" class="h_buttun1" /></p>
 				<dl class="clearfix">
 					<dt class="dtm"><span>商机快递</span></dt>
 					<dd class="ddw">您尚未订阅任何商机快递，无法第一时间掌握最新商机 <a href="#">立即免费订阅</a> 。由于近期qq和tom邮箱接收商机快递邮件不太稳定，为保证信息及时接收，请使用订阅邮箱为tom.com和qq.com的商机快递用户到"管理商机快递"更换订阅邮箱。</dd>

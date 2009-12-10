@@ -16,17 +16,28 @@ public partial class reg_step1 : System.Web.UI.Page
 
     protected void Submit_Click(object sender, ImageClickEventArgs e)
     {
-        if (Request.Cookies["valid_code"].Value == this.ValidCode.Text.ToUpper())
+        if (Request.Cookies["valid_code"].Value == this.tbxValidCode.Text.ToUpper())
         {
-            string email = this.Email.Text;
-            string password = this.Password.Text;
-            string nickName = this.NickName.Text;
+            string email = this.tbxEmail.Text;
+            string password = this.tbxPassword.Text;
+            string nickName = this.tbxNickName.Text;
 
             if (UserManager.AddUser(email, nickName, password))
             {
-                //string key = email + "," + password;
-                //string validKey = CryptoHelper.Encrypt(key, "coalchina");
-                //string validUrl = "http://localhost:2150/Coal.Portal/ValidateUser.ashx?key=" + Server.UrlEncode(validKey);
+                string key = nickName + "|" + email;
+                string validKey = CryptoHelper.Encrypt(key, "coalchina");
+
+                if (Request.Cookies["login_info"] != null)
+                {
+                    HttpCookie oldCookie = Request.Cookies["login_info"];
+                    oldCookie.Expires = DateTime.Now.AddDays(-1);
+                    Response.SetCookie(oldCookie);
+                }
+
+                HttpCookie cookie = new HttpCookie("login_info");
+                cookie.Value = validKey;
+                //cookie.Expires = DateTime.Now.AddDays(1);
+                Response.SetCookie(cookie);
                 Response.Redirect("uc_index.aspx");
             }
             else

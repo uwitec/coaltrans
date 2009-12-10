@@ -35,7 +35,7 @@ public class Login : IHttpHandler {
 
                 HttpCookie cookie = new HttpCookie("login_info");
                 cookie.Value = validKey;
-                cookie.Expires = DateTime.Now.AddDays(1);
+                //cookie.Expires = DateTime.Now.AddDays(1);
                 context.Response.SetCookie(cookie);
 
                 ro["nick_name"] = nickName;
