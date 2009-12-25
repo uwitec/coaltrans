@@ -8,6 +8,62 @@
 <link href="css/admin_style.css" type="text/css" rel="stylesheet" rev="stylesheet" media="all" />
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/uc.js"></script>
+<script type="text/javascript" src="js/jquery.validate.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var validator = $("#form1").validate({
+            rules: {
+                // simple rule, converted to {required:true}
+                tbxTrueName: {
+                    required: true
+                },
+                tbxFixedTel: {
+                    required: true
+                },
+                tbxFax: {
+                    required: true
+                },
+                tbxMoblieTel: {
+                    required: true
+                },
+                tbxEmail: {
+                    required: true,
+                    email: true
+                }
+            },
+            messages: {
+                tbxTrueName: {
+                    required: "该项不能为空"
+                },
+                tbxFixedTel: {
+                    required: "该项不能为空"
+                },
+                tbxFax: {
+                    required: "该项不能为空"
+                },
+                tbxMoblieTel: {
+                    required: "该项不能为空"
+                },
+                tbxEmail: {
+                    required: "该项不能为空",
+                    email: "请录入合法的Email"
+                }
+            },
+            errorPlacement: function(error, element) {
+                var error_container = element.next("div");
+                error.appendTo(error_container.empty());
+                error_container.addClass("h_alert");
+            },
+            success: function(label) {
+                label.parent("div").empty().removeClass("h_alert");
+            }
+        });
+
+        $("#btnSubmit").click(function() {
+            return validator.form();
+        });
+    });
+</script>
 </head>
 <body>
 <form id="form1" runat="server">
@@ -35,10 +91,10 @@
 			<div class="h_itemsBody">
 				<table>
 					<tr>
-						<th width="15%"><span>*</span>联系人：</th>
+						<th width="15%"><span>*</span>真实姓名：</th>
 						<td width="30%">
-							<input name="text" type="text" class="h_text" />
-							<div class="h_alert">请输入联系人姓名！</div><!-- 提示说明部分 -->
+						    <asp:TextBox ID="tbxTrueName" CssClass="h_text" runat="server"></asp:TextBox>
+						    <div></div>
 						</td>
 						<th width="15%"> </th>
 						<td> </td>
@@ -46,49 +102,48 @@
 					<tr>
 						<th><span>*</span>职　务：</th>
 						<td>
-							<select>
-								<option value="0">请选择</option>
-							</select>
+						    <asp:DropDownList ID="ddlOccupation" runat="server">
+						        <asp:ListItem Value="职员" Text="职员"></asp:ListItem>
+						        <asp:ListItem Value="主管" Text="主管"></asp:ListItem>
+						        <asp:ListItem Value="经理" Text="经理"></asp:ListItem>
+						        <asp:ListItem Value="总监" Text="总监"></asp:ListItem>
+						    </asp:DropDownList>
 						</td>
 						<th> </th>
 						<td> </td>
 					</tr>
 					<tr>
-						<th><span>*</span>联系电话：</th>
+						<th><span>*</span>固定电话：</th>
 						<td>
-							<input name="text" type="text" class="h_text" /> -
-							<input name="text" type="text" class="h_text2" />
+							<asp:TextBox ID="tbxFixedTel" runat="server" CssClass="h_text2"></asp:TextBox>
+							<div></div>
 						</td>
 						<th><span>*</span>传　真：</th>
 						<td>
-							<input name="text" type="text" class="h_text" /> -
-							<input name="text" type="text" class="h_text2" />
+							<asp:TextBox ID="tbxFax" runat="server" CssClass="h_text2"></asp:TextBox>
+							<div></div>
 						</td>
 					</tr>
 					<tr>
 						<th><span>*</span>手　机：</th>
 						<td>
-							<input name="text" type="text" class="h_text3" />
+							<asp:TextBox ID="tbxMoblieTel" runat="server" CssClass="h_text2"></asp:TextBox>
+							<div></div>
 						</td>
 						<th><span>*</span>电子邮件：</th>
 						<td>
-							<input name="text" type="text" class="h_text3" />
-						</td>
-					</tr>
-					<tr>
-						<th>公司地址：</th>
-						<td>
-							<input name="text" type="text" class="h_text4" />
-						</td>
-						<th> </th>
-						<td>
+							<asp:TextBox ID="tbxEmail" runat="server" CssClass="h_text2"></asp:TextBox>
+							<div></div>
 						</td>
 					</tr>
 					<tr>
 						<th> </th>
 						<td>
-                            <input name="submit" type="button" value="提 交" class="h_buttun1" />
-							<input name="reset" type="button" value="重 置" class="h_buttun1" />
+						    <asp:Button ID="btnSubmit" runat="server" Text="提 交" CssClass="h_buttun1" 
+                                onclick="btnSubmit_Click"/>
+                            <input name="reset" type="button" value="重 置" class="h_buttun1" />
+                            <br/>
+                            <asp:Label ID="lblMsg" runat="server"></asp:Label>
 						</td>
 						<th> </th>
 						<td> </td>
@@ -101,6 +156,7 @@
 </div>
 </div>
 </div>
+<asp:HiddenField id="hfInfoId" runat="server"/>
 <input id="current_menu" type="hidden" value="menu_2" />
 <input id="parent_menu" type="hidden" value="menu_1" />
 <p id="h_footer">Copyright &copy; 2009 国家煤炭工业网 主办：中国煤炭工业协会 技术支持：北京中煤易通科技有限公司</p>

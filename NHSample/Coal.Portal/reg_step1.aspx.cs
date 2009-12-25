@@ -21,10 +21,10 @@ public partial class reg_step1 : System.Web.UI.Page
             string email = this.tbxEmail.Text;
             string password = this.tbxPassword.Text;
             string nickName = this.tbxNickName.Text;
-
-            if (UserManager.AddUser(email, nickName, password))
+            int userId;
+            if (UserManager.AddUser(email, nickName, password, out userId))
             {
-                string key = nickName + "|" + email;
+                string key = nickName + "|" + email + "|" + userId.ToString();
                 string validKey = CryptoHelper.Encrypt(key, "coalchina");
 
                 if (Request.Cookies["login_info"] != null)

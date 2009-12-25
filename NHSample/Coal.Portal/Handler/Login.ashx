@@ -16,11 +16,11 @@ public class Login : IHttpHandler {
         if (!string.IsNullOrEmpty(loginEmail) && !string.IsNullOrEmpty(password))
         {
             string nickName = string.Empty;
-            
-            if (UserManager.ValidLogin(loginEmail, password, ref nickName))
+            int userId = -1;
+            if (UserManager.ValidLogin(loginEmail, password, ref nickName,ref userId))
             {
                 //写cookies
-                string key = nickName + "|" + loginEmail;
+                string key = nickName + "|" + loginEmail + "|" + userId.ToString();
                 string validKey = CryptoHelper.Encrypt(key, "coalchina");
 
                 if (context.Request.Cookies["login_info"] != null)

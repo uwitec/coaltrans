@@ -40,8 +40,9 @@
 	.h_text4 {width:220px; height:14px; padding:1px;}
 	.h_select1 {width:93px;}
 	.h_select2 {width:60px;}
+	.h_select3 {width:110px;}
 	.h_textarea1 {width:625px; height:72px; color:#000; line-height:18px; overflow:auto;}
-	.h_itemsBody table select {width:75px;}
+	.h_itemsBody table select {width:95px;}
 	
 	/*=== 页面布局 ===*/
 	body {background:#fff url(../images/h_body_bg.jpg) repeat-x left top; color:#000; font:12px "宋体"; line-height:100%; text-align:center; margin:0 auto;}

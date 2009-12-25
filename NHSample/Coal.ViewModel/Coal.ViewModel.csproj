@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F0B2DB69-C5AD-4AA2-8D17-858B0FC28FD8}</ProjectGuid>
+    <ProjectGuid>{AC0D92B3-8EBF-4FCB-B33D-2A4B50BB5D7B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Coal.DAL</RootNamespace>
-    <AssemblyName>Coal.DAL</AssemblyName>
+    <RootNamespace>Coal.ViewModel</RootNamespace>
+    <AssemblyName>Coal.ViewModel</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,7 +32,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -46,27 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CoalTransEntity.cs" />
-    <Compile Include="CompanyInfoEntity.cs" />
-    <Compile Include="db\DAO.cs" />
-    <Compile Include="db\DbInstance.cs" />
-    <Compile Include="db\IDAO.cs" />
-    <Compile Include="FuncGroupMapEntity.cs" />
-    <Compile Include="FunctionEntity.cs" />
-    <Compile Include="GroupsEntity.cs" />
+    <Compile Include="CompanyInfoModel.cs" />
+    <Compile Include="UserInfoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="db\SqlHelper.cs" />
-    <Compile Include="db\SqlServerDAO.cs" />
-    <Compile Include="RegionEntity.cs" />
-    <Compile Include="UserGroupMapEntity.cs" />
-    <Compile Include="UserInfoEntity.cs" />
-    <Compile Include="UsersEntity.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Coal.Util\Coal.Util.csproj">
-      <Project>{F60709FF-1680-4918-891B-57F6C4AC1CE3}</Project>
-      <Name>Coal.Util</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

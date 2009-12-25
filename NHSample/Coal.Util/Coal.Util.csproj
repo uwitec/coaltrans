@@ -56,7 +56,9 @@
     <Compile Include="EConvert.cs" />
     <Compile Include="LogUtility.cs" />
     <Compile Include="LogWriter.cs" />
+    <Compile Include="LRUObjectCache.cs" />
     <Compile Include="MailHelper.cs" />
+    <Compile Include="ObjectCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

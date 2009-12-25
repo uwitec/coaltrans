@@ -19,10 +19,11 @@ public partial class Login : System.Web.UI.Page
         if (!string.IsNullOrEmpty(this.email.Text) && !string.IsNullOrEmpty(this.password.Text))
         {
             string nickName = string.Empty;
-            if (UserManager.ValidLogin(this.email.Text, this.password.Text, ref nickName))
+            int userId = -1;
+            if (UserManager.ValidLogin(this.email.Text, this.password.Text, ref nickName, ref userId))
             {
                 //写cookies
-                string key = nickName + "|" + this.email.Text;
+                string key = nickName + "|" + this.email.Text + "|" + userId.ToString();
                 string validKey = CryptoHelper.Encrypt(key, "coalchina");
 
                 if (Request.Cookies["login_info"] != null)
@@ -36,7 +37,7 @@ public partial class Login : System.Web.UI.Page
                 cookie.Value = validKey;
                 //cookie.Expires = DateTime.Now.AddDays(1);
                 Response.SetCookie(cookie);
-                Response.Redirect("uc_index.aspx");
+                Response.Redirect("index.html");
             }
             else
             {

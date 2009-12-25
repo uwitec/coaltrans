@@ -18,8 +18,8 @@ namespace Coal.BLL
     {
         public bool GetFunctionList(string userEmail, ResultObject ro)
         {
-            string sql = @"select f.id,f.[Name],f.url,f.ParentId,u.[group] from Users u 
-inner join FuncGroupMap fgm on u.[group] = fgm.groupid
+            string sql = @"select f.id,f.[Name],f.url,f.ParentId,u.GroupId from Users u 
+inner join FuncGroupMap fgm on u.GroupId = fgm.groupid
 inner join Functions f on f.id = fgm.funcid
 where u.email = @email order by [path]";
 
@@ -67,7 +67,7 @@ where u.email = @email order by [path]";
                 }
 
                 ro["menus"] = menus;
-                ro["user_group"] = dt.Rows[0]["group"].ToString();
+                ro["user_group"] = dt.Rows[0]["GroupId"].ToString();
 
                 
                 //string jsonStr = string.Empty;

@@ -10,7 +10,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Coal.Portal", "Coal.Portal\", "{24AB8522-2698-407B-94A1-8505CF1E6854}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFramework = "3.5"
-		ProjectReferences = "{6D9E4595-C083-4FF0-83FF-8E81ECFC1F2B}|Coal.BLL.dll;{F0B2DB69-C5AD-4AA2-8D17-858B0FC28FD8}|Coal.DAL.dll;{F60709FF-1680-4918-891B-57F6C4AC1CE3}|NHSample.Util.dll;{56BEAEFA-6519-4D2E-8FEA-9C80D4B846B1}|Coal.AOP.dll;"
+		ProjectReferences = "{6D9E4595-C083-4FF0-83FF-8E81ECFC1F2B}|Coal.BLL.dll;{56BEAEFA-6519-4D2E-8FEA-9C80D4B846B1}|Coal.AOP.dll;{F0B2DB69-C5AD-4AA2-8D17-858B0FC28FD8}|Coal.DAL.dll;{AC0D92B3-8EBF-4FCB-B33D-2A4B50BB5D7B}|Coal.ViewModel.dll;{F60709FF-1680-4918-891B-57F6C4AC1CE3}|NHSample.Util.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/Coal.Portal"
 		Debug.AspNetCompiler.PhysicalPath = "Coal.Portal\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Coal.Portal\"
@@ -39,6 +39,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coal.AOP", "Coal.AOP\Coal.AOP.csproj", "{56BEAEFA-6519-4D2E-8FEA-9C80D4B846B1}"
 EndProject
 Project("{2CFEAB61-6A3B-4EB8-B523-560B4BEEF521}") = "Coal.Portal_deploy", "..\..\Coal_Publish\Coal.Portal_deploy\Coal.Portal_deploy.wdproj", "{EF00B468-F5BF-49FC-96AC-4A607B6E2F83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coal.ViewModel", "Coal.ViewModel\Coal.ViewModel.csproj", "{AC0D92B3-8EBF-4FCB-B33D-2A4B50BB5D7B}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -77,6 +79,10 @@ Global
 		{EF00B468-F5BF-49FC-96AC-4A607B6E2F83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF00B468-F5BF-49FC-96AC-4A607B6E2F83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF00B468-F5BF-49FC-96AC-4A607B6E2F83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC0D92B3-8EBF-4FCB-B33D-2A4B50BB5D7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC0D92B3-8EBF-4FCB-B33D-2A4B50BB5D7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC0D92B3-8EBF-4FCB-B33D-2A4B50BB5D7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC0D92B3-8EBF-4FCB-B33D-2A4B50BB5D7B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

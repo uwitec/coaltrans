@@ -15,7 +15,7 @@ namespace Coal.Entity
         private SqlHelper sqlHelper;
 
         #region const fields
-        public const string DBName = "Cheese";
+        public const string DBName = "Coal";
         public const string TableName = "Users";
         public const string PrimaryKey = "PK_User";
         #endregion
@@ -29,7 +29,7 @@ namespace Coal.Entity
             public const string NickName = "NickName";
             public const string ValidStatus = "ValidStatus";
             public const string CreateDate = "CreateDate";
-            public const string Group = "Group";
+            public const string GroupId = "GroupId";
         }
         #endregion
 
@@ -39,7 +39,7 @@ namespace Coal.Entity
             sqlHelper = new SqlHelper(DBName);
         }
 
-        public UsersEntity(int id, string email, string password, string nickname, int validstatus, DateTime createdate, int group)
+        public UsersEntity(int id, string email, string password, string nickname, int validstatus, DateTime createdate, int groupid)
         {
             this.ID = id;
 
@@ -53,7 +53,7 @@ namespace Coal.Entity
 
             this.CreateDate = createdate;
 
-            this.Group = group;
+            this.GroupId = groupid;
 
         }
         #endregion
@@ -102,7 +102,7 @@ namespace Coal.Entity
         }
 
 
-        public int? Group
+        public int? GroupId
         {
             get;
             set;
@@ -125,23 +125,23 @@ namespace Coal.Entity
 
                 StringBuilder strSql = new StringBuilder();
                 strSql.Append("insert into Users(");
-                strSql.Append("Email,Password,NickName,ValidStatus,CreateDate,Group)");
+                strSql.Append("Email,Password,NickName,ValidStatus,CreateDate,GroupId)");
                 strSql.Append(" values (");
-                strSql.Append("@Email,@Password,@NickName,@ValidStatus,@CreateDate,@Group)");
+                strSql.Append("@Email,@Password,@NickName,@ValidStatus,@CreateDate,@GroupId)");
                 SqlParameter[] parameters = {
 					new SqlParameter("@Email",SqlDbType.VarChar),
 					new SqlParameter("@Password",SqlDbType.VarChar),
 					new SqlParameter("@NickName",SqlDbType.NVarChar),
 					new SqlParameter("@ValidStatus",SqlDbType.Int),
 					new SqlParameter("@CreateDate",SqlDbType.DateTime),
-					new SqlParameter("@Group",SqlDbType.Int)
+					new SqlParameter("@GroupId",SqlDbType.Int)
 					};
                 parameters[0].Value = entity.Email;
                 parameters[1].Value = entity.Password;
                 parameters[2].Value = entity.NickName;
                 parameters[3].Value = entity.ValidStatus;
                 parameters[4].Value = entity.CreateDate;
-                parameters[5].Value = entity.Group;
+                parameters[5].Value = entity.GroupId;
 
                 sqlHelper.ExecuteSql(strSql.ToString(), parameters);
             }
@@ -156,7 +156,7 @@ namespace Coal.Entity
                 strSql.Append("NickName=@NickName,");
                 strSql.Append("ValidStatus=@ValidStatus,");
                 strSql.Append("CreateDate=@CreateDate,");
-                strSql.Append("Group=@Group");
+                strSql.Append("GroupId=@GroupId");
 
                 strSql.Append(" where ID=@ID");
                 SqlParameter[] parameters = {
@@ -166,7 +166,7 @@ namespace Coal.Entity
 					new SqlParameter("@NickName",SqlDbType.NVarChar),
 					new SqlParameter("@ValidStatus",SqlDbType.Int),
 					new SqlParameter("@CreateDate",SqlDbType.DateTime),
-					new SqlParameter("@Group",SqlDbType.Int)
+					new SqlParameter("@GroupId",SqlDbType.Int)
 					};
                 parameters[0].Value = entity.ID;
                 parameters[1].Value = entity.Email;
@@ -174,7 +174,7 @@ namespace Coal.Entity
                 parameters[3].Value = entity.NickName;
                 parameters[4].Value = entity.ValidStatus;
                 parameters[5].Value = entity.CreateDate;
-                parameters[6].Value = entity.Group;
+                parameters[6].Value = entity.GroupId;
 
                 sqlHelper.ExecuteSql(strSql.ToString(), parameters);
             }
@@ -219,9 +219,9 @@ namespace Coal.Entity
                     {
                         entity.CreateDate = (DateTime)row["CreateDate"];
                     }
-                    if (!Convert.IsDBNull(row["Group"]))
+                    if (!Convert.IsDBNull(row["GroupId"]))
                     {
-                        entity.Group = (int)row["Group"];
+                        entity.GroupId = (int)row["GroupId"];
                     }
                     return entity;
                 }
@@ -263,9 +263,9 @@ namespace Coal.Entity
                         {
                             entity.CreateDate = (DateTime)row["CreateDate"];
                         }
-                        if (!Convert.IsDBNull(row["Group"]))
+                        if (!Convert.IsDBNull(row["GroupId"]))
                         {
-                            entity.Group = (int)row["Group"];
+                            entity.GroupId = (int)row["GroupId"];
                         }
 
                         list.Add(entity);
@@ -349,6 +349,38 @@ namespace Coal.Entity
             }
 
             #endregion
+
+            #region extend methods
+            public void Add(UsersEntity entity, out int newId)
+            {
+                StringBuilder strSql = new StringBuilder();
+                strSql.Append("insert into Users(");
+                strSql.Append("Email,Password,NickName,ValidStatus,CreateDate,GroupId)");
+                strSql.Append(" values (");
+                strSql.Append("@Email,@Password,@NickName,@ValidStatus,@CreateDate,@GroupId)");
+                strSql.Append(";select SCOPE_IDENTITY();");
+
+                SqlParameter[] parameters = {
+					new SqlParameter("@Email",SqlDbType.VarChar),
+					new SqlParameter("@Password",SqlDbType.VarChar),
+					new SqlParameter("@NickName",SqlDbType.NVarChar),
+					new SqlParameter("@ValidStatus",SqlDbType.Int),
+					new SqlParameter("@CreateDate",SqlDbType.DateTime),
+					new SqlParameter("@GroupId",SqlDbType.Int),
+                    new SqlParameter("@newId",SqlDbType.Int)
+					};
+                parameters[0].Value = entity.Email;
+                parameters[1].Value = entity.Password;
+                parameters[2].Value = entity.NickName;
+                parameters[3].Value = entity.ValidStatus;
+                parameters[4].Value = entity.CreateDate;
+                parameters[5].Value = entity.GroupId;
+                parameters[6].Direction = ParameterDirection.Output;
+
+                Object obj = sqlHelper.GetSingle(strSql.ToString(), parameters);
+                newId = obj == null ? -1 : int.Parse(obj.ToString());
+            }
+            #endregion extend methods
 
         }
     }
