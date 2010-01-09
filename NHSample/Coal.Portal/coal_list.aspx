@@ -58,7 +58,7 @@
             }
             else {
                 pager.append("<a id='next' href='javascript:void(null)'>下一页</a>");
-                var next_page = reqData.cur_page + 1;
+                var next_page = parseInt(reqData.cur_page) + 1;
                 $("#next").bind("click", { cur_id: next_page }, paging);
             }
         }
@@ -69,7 +69,7 @@
             }
             else {
                 pager.append("<a id='pre' href='javascript:void(null)'>上一页</a>");
-                var pre_page = reqData.cur_page - 1;
+                var pre_page = parseInt(reqData.cur_page) - 1;
                 $("#pre").bind("click", { cur_id: pre_page }, paging);
             }
         }
