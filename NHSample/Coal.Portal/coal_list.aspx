@@ -85,6 +85,7 @@
             else {
                 page_display_num = 9;
             }
+            
 
             for (var i = 2; i <= page_display_num; i++) {
                 pager.append("<a id='" + i + "' class='page' href='javascript:void(null)'>" + i + "</a>");
