@@ -66,13 +66,15 @@ body {
 	color: #FFFFFF;
 	background-image: url(../images/bz-a.jpg);
 	background-repeat: no-repeat;
+	font-size: 16px;
+	font-weight: bold;
 }
 .login_bz .bz_b {
 	background-image: url(../images/bz-b.jpg);
 	background-repeat: no-repeat;
 }
 .login_xx {
-	width: 900px;
+	width: 835px;
 	margin-right: auto;
 	margin-left: auto;
 	margin-top: 20px;
@@ -190,4 +192,12 @@ body {
 	padding-left: 20px;
 	margin: 0px;
 	line-height: 18px;
+}.userht_all .txtbj {
+	background-image: url(../images/txtbj.jpg);
+	height: 408px;
+	width: 835px;
+	margin-right: auto;
+	margin-left: auto;
+	background-repeat: no-repeat;
+	margin-top: 10px;
 }

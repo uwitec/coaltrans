@@ -8,6 +8,7 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/uc.js"></script>
 <script type="text/javascript" src="js/jquery.validate.js"></script>
+<script type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
 
@@ -122,7 +123,7 @@
 
         $("#submit").click(function() {
             if (validator.form()) {
-                var reqeustString = "{";
+                var reqeustString = "{'action':'1',";
                 $("input[type='text']").each(function() {
                     var name = $(this).attr("name");
                     var value = $(this).val();
@@ -143,23 +144,22 @@
 
                 reqeustString = reqeustString.substr(0, reqeustString.length - 1);
                 reqeustString += "}";
-                var reqJson = eval("(" + reqeustString + ")");
-                alert(reqeustString);
-                //                $.ajax({
-                //                    type: "POST",
-                //                    url: "company_info.aspx",
-                //                    data: reqJson,
-                //                    dataType: "json",
-                //                    success: function(data) {
-                //                        if (data.statusCode == 1) {
-                //                            $("#msg").empty().html("提交成功");
-                //                        }
-                //                        else {
-                //                            $("#msg").empty().html("提交失败");
-                //                        }
-                //                    }
-                //                });
-            }
+                var reqJson = eval("(" + reqeustString + ")");                
+                $.ajax({
+                   type: "POST",
+                   url: "coal_supply_publish.aspx",
+                   data: reqJson,
+                   dataType: "json",
+                   success: function(data) {
+                        if (data.statusCode == 1) {
+                           alert("提交成功！");
+                       }
+                        else {
+                           alert("提交失败！");
+                        }
+                    }
+                });
+}
             else {
                 return false;
             }
@@ -200,7 +200,7 @@
 										</td>
 										<th><span>*</span>信息有效期：</th>
 										<td>
-											<input name="txtValidDate" type="text" class="h_text" /> 
+											<input name="txtValidDate" type="text" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="h_text" /> 
 											<div></div>
 										</td>
 									</tr>

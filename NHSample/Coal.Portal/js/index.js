@@ -156,6 +156,7 @@
             }
         }
     });
+    
 
     $("#login_action").click(function() {
         var password = $("#password").val();
@@ -188,4 +189,10 @@
             }
         });
     });
+    
+    var navlist=$("#selectSort").find("a");
+    $(navlist).click(function(){
+        $("#selectTitle").html($(this).html());
+    });
+    
 });

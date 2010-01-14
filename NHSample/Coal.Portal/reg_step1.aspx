@@ -103,9 +103,10 @@
 <div class="userht_all">
   <div class="topban"></div>
   <div class="h_menu">服务热线:010-88888888</div>
+  <div class="txtbj">
   <div class="login_bz">
     <ul>
-      <li class="bz_a">填写注册信息</li>
+      <li class="bz_a">1.填写注册信息</li>
     </ul>
   </div>
   <div class="clear"></div>
@@ -113,25 +114,25 @@
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <th width="200">Email地址：</th>
-    <td width="220"><asp:TextBox ID="tbxEmail" TextMode="SingleLine" name="tbxEmail" runat="server"></asp:TextBox></td>
-    <td width="480"><div><p></p></div></td>
+    <td width="220"><asp:TextBox CssClass="intxt" ID="tbxEmail" TextMode="SingleLine" name="tbxEmail" runat="server"></asp:TextBox></td>
+    <td width="420"><div class="zhushi01"><p></p></div></td>
   </tr>
   <tr>
     <th>设置昵称：</th>
-    <td><asp:TextBox ID="tbxNickName" TextMode="SingleLine" name="tbxNickName" runat="server"></asp:TextBox></td>
+    <td><asp:TextBox ID="tbxNickName" CssClass="intxt" TextMode="SingleLine" name="tbxNickName" runat="server"></asp:TextBox></td>
     <td><div><p></p></div></td>
   </tr>
   <tr>
     <th>设定密码：</th>
-    <td><asp:TextBox ID="tbxPassword" TextMode="Password" name="tbxPassword" runat="server"></asp:TextBox></td>
+    <td><asp:TextBox ID="tbxPassword" CssClass="intxt" TextMode="Password" name="tbxPassword" runat="server"></asp:TextBox></td>
     <td><div><p></p></div></td>
   </tr>
   <tr>
     <th>再输一次密码：</th>
-    <td><asp:TextBox ID="tbxConfirmPassword" TextMode="Password" name="tbxConfirmPassword" runat="server"></asp:TextBox></td>
+    <td><asp:TextBox ID="tbxConfirmPassword" CssClass="intxt" TextMode="Password" name="tbxConfirmPassword" runat="server"></asp:TextBox></td>
     <td><div><p></p></div></td>
   </tr>
-  <tr>
+  <tr>  
     <th>验证码：</th>
     <td><asp:TextBox id="tbxValidCode" name="tbxValidCode" CssClass="in_no1" TextMode="SingleLine" runat="server" Text="获取验证码" ></asp:TextBox>
       <img id="validimg" width="80" height="20" style="vertical-align:text-bottom" /></td>
@@ -144,19 +145,21 @@
   <tr>
     <th>&nbsp;</th>
     <td><asp:ImageButton ID="Submit" ImageUrl="images/but0.jpg" width="184" height="35" 
-            border="0" runat="server" onclick="Submit_Click" /></td>
+            border="0" runat="server"  /></td>
     <td>&nbsp;</td>
   </tr>
 </table>
 
   </div>
   <div class="clear"></div>
+  </div>
   <div class="d_menu">Copyright &copy; 2009 国家煤炭工业网</div>
   <div class="endpage">
     <p>主办:中国煤炭工业协会 技术支持:北京中煤易通科技有限公司 </p>
     <p>(浏览本站主页,建议将电脑显示器分辨率调整为:1024*768)</p>
   </div>
 </div>
+
 </form>
 </body>
 </html>

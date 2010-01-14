@@ -308,13 +308,13 @@ namespace Coal.Util
             }
             return text;
         }
-
+        
         private static void visit_json_object(StringBuilder sb, string key, object data)
         {
             string type_name = null;
             if (data != null)
                 type_name = data.GetType().Name;
-
+           
             switch (type_name)
             {
                 case "SortedList":

@@ -40,11 +40,12 @@ public partial class Detail : System.Web.UI.Page
                 {
                     lblGongXu.Text = entity.Title;
                     lblFaBuRiQi.Text = entity.CreatedOn.Value.ToString("yyyy-MM-dd");
-                    lblXinXiYouXiaoQi.Text = entity.CreatedOn.Value.ToString("yyyy-MM-dd");
-                    lblMeiZhong.Text = entity.CoalType.ToString();
-                    lblPinZhong.Text = entity.Category.ToString();
-                    lblTHSheng.Text = entity.Province.Value.ToString();
-                    lblTHShi.Text = entity.City.Value.ToString();
+                    lblXinXiYouXiaoQi.Text = entity.ValidDate.Value.ToString("yyyy-MM-dd");
+                    lblMeiZhong.Text = entity.CoalTypeName.ToString();
+                    lblPinZhong.Text = entity.CategoryName.ToString();
+                    lblTHSheng.Text = entity.ProvinceName.ToString();
+                    lblTHShi.Text = entity.CityName.ToString();
+                    
                     //lblShuLiang.Text = entity.ShuLiang.ToString();
                     lblJiaGe.Text = entity.Price.Value.ToString();
                     lblBaoJiaFangShi.Text = entity.WholesaleDes;
@@ -55,6 +56,7 @@ public partial class Detail : System.Web.UI.Page
                     lblHuiFen.Text = entity.AshContent.ToString();
                     lblShuiFen.Text = entity.WaterContent.ToString();
                     lblHuiFa.Text = entity.Volatility.ToString();
+                    UserId.Value = entity.UserId.Value.ToString();
                     //lblGuDingTan.Text = entity.GuDingTan.ToString();
                     //lblJiXieQiangDu.Text = entity.JiXieQiangDu.ToString();
                     //lblGuiGe.Text = entity.GuiGe.ToString();

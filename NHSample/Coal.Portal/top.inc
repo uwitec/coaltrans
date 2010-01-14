@@ -8,24 +8,24 @@
   </div>
   <ul class="mainNav">
     <li class="current">
-      <a href="#">首 页</a>
+      <a href="index.html">首 页</a>
     </li>
-    <li>
+    <li class="">
       <a href="coal_list.aspx">供 应</a>
     </li>
-    <li>
+    <li class="">
       <a href="coal_list.aspx">采 购</a>
     </li>
-    <li>
+    <li class="">
       <a href="in_construction.html">招 标</a>
     </li>
-    <li>
+    <li class="">
       <a href="in_construction.html">投 标</a>
     </li>
   </ul>
   <div class="searchBar">
     <div class="searchBody">
-      <form name="form1" action="" method="post">
+      <form name="TheSearchForm" action="Search/SearchList.aspx" method="post">
         <input name="keyword" type="text" class="input_text" value="请输入产品名称或公司名称" onFocus="this.style.color='#000';this.value=''" onBlur="if(this.value==''){this.value='请输入产品名称或公司名称';this.style.color='#a0a0a0'}" />
         <div class="selectBar">
           <div class="selectTitle" id="selectTitle">请选择</div>
@@ -45,23 +45,7 @@
           </ul>
         </div>
         <input name="button" type="submit" value="模糊查询" class="input_button" />
-        <script type="text/javascript">
-          var div1 = document.getElementById("selectTitle");
-          var div2 = document.getElementById("selectSort");
-          div1.onmouseover = function(e) {
-          div2.style.display = "block";
-          }
-          div2.onmouseout = function(e) {
-          e = e || window.event;
-          o = e.relatedTarget || e.toElement;
-          while (o.parentNode && o.id != "selectSort") {
-          o = o.parentNode;
-          }
-          if (o.id != "selectSort") {
-          div2.style.display = "none";
-          }
-          }
-        </script>
+        
       </form>
     </div>
     <div class="searchKeyword">
@@ -70,3 +54,28 @@
   </div>
 </div>
 <!--页面头部 结束-->
+
+<script type="text/javascript">
+  var div1 = document.getElementById("selectTitle");
+  var div2 = document.getElementById("selectSort");
+  div1.onmouseover = function(e) {
+  div2.style.display = "block";
+  }
+  div2.onmouseout = function(e) {
+  e = e || window.event;
+  o = e.relatedTarget || e.toElement;
+  while (o.parentNode && o.id != "selectSort") {
+  o = o.parentNode;
+  }
+  if (o.id != "selectSort") {
+  div2.style.display = "none";
+  }
+  }
+
+  var navlist=$("#selectSort").find("a");
+  $(navlist).click(function(){
+  $("#selectTitle").html($(this).html());
+  });
+
+
+</script>

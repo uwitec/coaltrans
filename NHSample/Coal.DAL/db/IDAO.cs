@@ -50,6 +50,10 @@ namespace Coal.DAL
         {
             throw new NotImplementedException();
         }
+        public virtual object FindByWhere(string StrWhere)
+        {
+            throw new NotImplementedException();
+        }
 
         #endregion
     }

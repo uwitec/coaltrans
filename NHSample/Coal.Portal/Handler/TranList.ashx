@@ -15,7 +15,7 @@ public class TranList : IHttpHandler
     {
         int pageIndex = EConvert.ToInt(context.Request.Form["page_index"]);
         int pageSize = EConvert.ToInt(context.Request.Form["page_size"]);
-        int region = EConvert.ToInt(context.Request.Form["region"]);
+        int City = EConvert.ToInt(context.Request.Form["City"]);
         int coalType = EConvert.ToInt(context.Request.Form["coal_type"]);
         int grainSize = EConvert.ToInt(context.Request.Form["grain_size"]);
         int volatility = EConvert.ToInt(context.Request.Form["volatility"]);
@@ -23,13 +23,13 @@ public class TranList : IHttpHandler
         int surfurContent = EConvert.ToInt(context.Request.Form["surfur_content"]);
         int waterContent = EConvert.ToInt(context.Request.Form["water_content"]);
         int calorificPower = EConvert.ToInt(context.Request.Form["calorific_power"]);
-
+        
         StringBuilder whereCluase = new StringBuilder();
         List<SqlParameter> paramList = new List<SqlParameter>();
-        
-        if (region > 0)
+
+        if (City > 0)
         {
-            BuildWhereClause("region", region, whereCluase, paramList);
+            BuildWhereClause("City", City, whereCluase, paramList);
         }
 
         if (coalType > 0)
@@ -71,11 +71,11 @@ public class TranList : IHttpHandler
         int rowCount = 0;
         DataTable dt = manager.GetList(whereCluase.ToString(), paramList.ToArray(), pageSize, pageIndex, ref rowCount);
 
-        if (dt != null)
+        if ((dt != null) && (dt.Rows.Count > 0))
         {
             ResultObject ro = DataUtility.ConvertToResultObject(dt);
             ro["totalCount"] = rowCount;
-            
+
             if (rowCount % pageSize == 0)
             {
                 ro["pageCount"] = rowCount / pageSize;
@@ -88,6 +88,12 @@ public class TranList : IHttpHandler
             //线程休眠500毫秒，为了看ajax的效果
             System.Threading.Thread.Sleep(500);
             context.Response.Clear();
+            context.Response.Write(ro.ToJSONString());
+            context.Response.End();
+        }
+        else
+        {
+            ResultObject ro = new ResultObject();
             context.Response.Write(ro.ToJSONString());
             context.Response.End();
         }
@@ -108,7 +114,7 @@ public class TranList : IHttpHandler
             whereClause.Append(" and ");
         }
 
-        whereClause.AppendFormat("{0} = @{1}",fieldName,fieldName);
+        whereClause.AppendFormat("{0} ="+value.ToString(),fieldName,fieldName);
         paramList.Add(new SqlParameter(fieldName, value));
     }
 }

@@ -10,6 +10,35 @@
 <title>国家煤炭工业供需网</title>
 <link href="css/style_css.css" rel="stylesheet" type="text/css" />
 <link href="css/index.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript"> 
+    
+    $(document).ready(function(){
+    
+        //用户留言
+        $("#BtnMessage").click(function(){
+            var Data=$("#UserId").val();            
+            window.open("Message.aspx?ID="+Data);
+        });
+        
+        //举报信息
+        $("#BtnReport").click(function(){
+            alert("举报该信息！");
+        });
+        
+        //诚信评论
+        $("#BtnReview").click(function(){
+            alert("诚信评论！");
+        });
+        
+    });
+    
+    
+    
+    
+    
+    
+</script>
 </head>
 <body>
 <form id="form2" runat="server">
@@ -92,8 +121,8 @@
                 
                   <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" class="bor_b">
                     <tr>
-                      <td width="35%" height="50" align="left" class="f12_grey_3">发布日期：<asp:Label id="lblFaBuRiQi" CssClass="lblCss" runat="server"></asp:Label><br>截止日期：<asp:Label id="lblXinXiYouXiaoQi" CssClass="lblCss" runat="server"></asp:Label></td>
-                      <td width="65%" align="right"><input type="submit" name="button" id="button" value="留言给该公司" class="content_btn"/>&nbsp;&nbsp;<input type="submit" name="button" id="button" value="举报此信息" class="content_btn"/>&nbsp;&nbsp;<input type="submit" name="button" id="button" value="对该公司发表诚信评论" class="content_btn"/></td>
+                      <td width="35%" height="50" align="left" class="f12_grey_3">发布日期：<asp:Label id="lblFaBuRiQi" CssClass="lblCss" runat="server"></asp:Label><input type="text" id="UserId" runat="server" style="display:none;"  /><br>截止日期：<asp:Label id="lblXinXiYouXiaoQi" CssClass="lblCss" runat="server"></asp:Label></td>
+                      <td width="65%" align="right"><input type="button" name="BtnMessage" id="BtnMessage" value="留言给该公司" class="content_btn"/>&nbsp;&nbsp;<input type="button" name="BtnReport" id="BtnReport" value="举报此信息" class="content_btn"/>&nbsp;&nbsp;<input type="button" name="BtnReview" id="BtnReview" value="对该公司发表诚信评论" class="content_btn"/></td>
                     </tr>
                   </table>
                   <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" class="mar_t10 bor_all mar_b10">
@@ -116,14 +145,14 @@
                     <tr>
                       <td height="35" align="center" class="f12b_grey c_b c_r">煤种： </td>
                       <td align="center" class="c_r c_b">	<asp:Label id="lblMeiZhong" CssClass="lblCss" runat="server"></asp:Label></td>
-                      <td align="center" class="f12b_grey c_r c_b">提货地：  </td>
-                      <td align="center" class="c_r c_b"><asp:Label id="lblTHSheng" CssClass="lblCss" runat="server"></asp:Label><br><asp:Label id="lblTHShi" CssClass="lblCss" runat="server"></asp:Label> </td>
+                      <td align="center" class="f12b_grey c_r c_b">产地：  </td>
+                      <td align="center" class="c_r c_b"><asp:Label id="lblTHSheng" CssClass="lblCss" runat="server"></asp:Label><asp:Label id="lblTHShi" CssClass="lblCss" runat="server"></asp:Label> </td>
                     </tr>
                     <tr >
                       <td height="35" align="center" class="f12b_grey c_b c_r">品种：</td>
                       <td align="center" class="c_r c_b"><asp:Label id="lblPinZhong" CssClass="lblCss" runat="server"></asp:Label></td>
-                      <td align="center" class="f12b_grey c_b c_r">接货地：    </td>              
-                      <td align="center" class="c_r c_b"><asp:Label id="lblJHSheng" CssClass="lblCss" runat="server"></asp:Label><br><asp:Label id="lblJHShi" CssClass="lblCss" runat="server"></asp:Label></td>
+                      <td align="center" class="f12b_grey c_b c_r">提货地：    </td>              
+                      <td align="center" class="c_r c_b"><asp:Label id="lblJHSheng" CssClass="lblCss" runat="server"></asp:Label></td>
                     </tr>
                     <tr>
                       <td height="35" align="center" class="f12b_grey c_b c_r">数量：</td>

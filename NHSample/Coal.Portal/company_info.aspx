@@ -9,6 +9,7 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/uc.js"></script>
 <script type="text/javascript" src="js/jquery.validate.js"></script>
+<script type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
 
@@ -208,7 +209,7 @@
 							<div></div>
 						</td>
 						<th width="15%"><span>*</span>成立日期：</th>
-						<td><input id="txtEstablishDate" name="txtEstablishDate" class="h_text2" type="text" />
+						<td><input id="txtEstablishDate" name="txtEstablishDate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"  class="h_text2" type="text" />
 							<div></div>
 						</td>
 					</tr>
@@ -273,7 +274,7 @@
 						</td>
 						<th>公司网址：</th>
 						<td>
-							<input id="txtWebSite" name="txtWebSite" CssClass="h_text4" type="text" />
+							<input id="txtWebSite" name="txtWebSite" class="h_text4" type="text" />
 							<div></div>
 						</td>
 					</tr>

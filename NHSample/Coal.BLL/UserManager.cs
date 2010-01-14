@@ -206,5 +206,86 @@ namespace Coal.BLL
             }
         }
 
+        public static bool AddOrUpdataCoalTransInfo(CoalTransModel Model)
+        {
+            try
+            {
+                CoalTransEntity CoalTransInfo;
+                CoalTransEntity.CoalTransDAO CoalTransInfoDao = new CoalTransEntity.CoalTransDAO();
+
+                if (Model.ID > 0)
+                {
+                    CoalTransInfo = CoalTransInfoDao.FindById(Model.ID);
+                    CoalTransInfo.Title = Model.Title;
+                    CoalTransInfo.Details = Model.Details;
+                    CoalTransInfo.Price = Model.Price;
+                    CoalTransInfo.UserId = Model.UserId;
+                    CoalTransInfo.County = Model.County;
+                    CoalTransInfo.CountyName = Model.CountyName;
+                    CoalTransInfo.Province = Model.Province;
+                    CoalTransInfo.ProvinceName = Model.ProvinceName;
+                    CoalTransInfo.City = Model.City;
+                    CoalTransInfo.CityName = Model.CityName;
+                    CoalTransInfo.ZipCode = Model.ZipCode;
+                    CoalTransInfo.CoalType = Model.CoalType;
+                    CoalTransInfo.CoalTypeName = Model.CoalTypeName;
+                    CoalTransInfo.Category = Model.Category;
+                    CoalTransInfo.CategoryName = Model.CategoryName;
+                    CoalTransInfo.CreatedOn = Model.CreatedOn;
+                    CoalTransInfo.ValidDate = Model.ValidDate;
+                    CoalTransInfo.WholesaleDes = Model.WholesaleDes;
+                    CoalTransInfo.ShipDes = Model.ShipDes;
+                    CoalTransInfo.Volatility = Model.Volatility;
+                    CoalTransInfo.GrainSize = Model.GrainSize;
+                    CoalTransInfo.GrainSizeDes = Model.GrainSizeDes;
+                    CoalTransInfo.AshContent = Model.AshContent;
+                    CoalTransInfo.SurfurContent = Model.SurfurContent;
+                    CoalTransInfo.WaterContent = Model.WaterContent;
+                    CoalTransInfo.CalorificPower = Model.CalorificPower;
+                    CoalTransInfo.TransType = Model.TransType;
+                    CoalTransInfoDao.Update(CoalTransInfo);
+                }
+                else
+                {
+                    CoalTransInfo = new CoalTransEntity();
+                    CoalTransInfo.Title = Model.Title;
+                    CoalTransInfo.Details = Model.Details;
+                    CoalTransInfo.Price = Model.Price;
+                    CoalTransInfo.UserId = Model.UserId;
+                    CoalTransInfo.County = Model.County;
+                    CoalTransInfo.CountyName = Model.CountyName;
+                    CoalTransInfo.Province = Model.Province;
+                    CoalTransInfo.ProvinceName = Model.ProvinceName;
+                    CoalTransInfo.City = Model.City;
+                    CoalTransInfo.CityName = Model.CityName;
+                    CoalTransInfo.ZipCode = Model.ZipCode;
+                    CoalTransInfo.CoalType = Model.CoalType;
+                    CoalTransInfo.CoalTypeName = Model.CoalTypeName;
+                    CoalTransInfo.Category = Model.Category;
+                    CoalTransInfo.CategoryName = Model.CategoryName;
+                    CoalTransInfo.CreatedOn = Model.CreatedOn;
+                    CoalTransInfo.ValidDate = Model.ValidDate;
+                    CoalTransInfo.WholesaleDes = Model.WholesaleDes;
+                    CoalTransInfo.ShipDes = Model.ShipDes;
+                    CoalTransInfo.Volatility = Model.Volatility;
+                    CoalTransInfo.GrainSize = Model.GrainSize;
+                    CoalTransInfo.GrainSizeDes = Model.GrainSizeDes;
+                    CoalTransInfo.AshContent = Model.AshContent;
+                    CoalTransInfo.SurfurContent = Model.SurfurContent;
+                    CoalTransInfo.WaterContent = Model.WaterContent;
+                    CoalTransInfo.CalorificPower = Model.CalorificPower;
+                    CoalTransInfo.TransType = Model.TransType;
+                    CoalTransInfoDao.Update(CoalTransInfo);
+                    CoalTransInfoDao.Add(CoalTransInfo);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                LogUtility.WriteErrLog(ex);
+                return false;
+            }
+        }
+
     }
 }

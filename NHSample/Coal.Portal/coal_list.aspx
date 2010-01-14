@@ -50,8 +50,8 @@
 <script type="text/javascript">
     $(document).ready(function() {
 
-        var reqData = { page_size: 10, page_index: 1, page_count: 1, cur_page: 1, region: -1 };
-
+        var reqData = { page_size: 10, page_index: 1, page_count: 1, cur_page: 1, City: -1 };
+       
         function SetNext(pager) {
             if (reqData.cur_page == reqData.page_count) {
                 pager.append("<span id='next' class='disabled'>下一页</span>");
@@ -60,7 +60,7 @@
                 pager.append("<a id='next' href='javascript:void(null)'>下一页</a>");
                 var next_page = parseInt(reqData.cur_page) + 1;
                 $("#next").bind("click", { cur_id: next_page }, paging);
-            }
+            }            
         }
 
         function SetPre(pager) {
@@ -74,7 +74,7 @@
             }
         }
 
-        function InitPager() {
+        function InitPager() {        
             var pager = $("#pager");
             SetPre(pager);
             pager.append("<span id='1' class='current'>1</span>");
@@ -102,6 +102,8 @@
             $.post("Handler/TranList.ashx",
                reqData,
                function(data, textStatus) {
+                if(data.rows!=null)
+                {
                    reqData.page_count = data.pageCount;
                    var content = new StringBuffer();
                    for (var one in data.rows) {
@@ -143,6 +145,25 @@
                    if (isInit) {
                        InitPager();
                    }
+                 }
+                 else
+                 {
+                    var content = new StringBuffer();
+                    content.append("<div class='cp_all'>");
+                    content.append("对不起，没有数据！</div>"); 
+                     
+                    if ($(".cp_all")) {
+                       $(".cp_all").each(function() {
+                           $(this).remove();
+                       });
+                   }
+
+                   $("#total_count").html("");
+
+                   $("#query_condition").after(content.toString());
+
+                                  
+                 }
                },
 	           "json");
         }
@@ -200,7 +221,7 @@
         });
 
         $("#query_condition a").each(function() {
-            $(this).click(function() {
+            $(this).click(function() {                     
                 var li = $(this).parent();
                 var key = li.attr("id");
                 var value = $(this).attr("id").split("_")[1];
@@ -209,7 +230,7 @@
                 });
                 $(this).removeClass("npw02").addClass("now01");
                 reqData[key] = value;
-                $("#pager").empty();
+                $("#pager").empty();                
                 Bind(true);
             });
         });
@@ -304,7 +325,7 @@
                 <form id="form2" name="form2" method="post" action="">
                 <div id="query_condition" class="searce_tj">
 				<ul>
-				<li id="region">产地：<a href="javascript:void(null)" class="now01">不限</a>&nbsp;&nbsp;<a href="javascript:void(null)" id="r_1" class="npw02">华北</a>&nbsp;&nbsp;<a href="javascript:void(null)" id="r_2" class="npw02">西北</a>&nbsp;&nbsp;<a href="javascript:void(null)" id="r_3" class="npw02">华南</a></li>
+				<li id="City">产地：<a href="javascript:void(null)" id="r_0" class="now01">不限</a>&nbsp;&nbsp;<a href="javascript:void(null)" id="r_101" class="npw02">华北</a>&nbsp;&nbsp;<a href="javascript:void(null)" id="r_904" class="npw02">西北</a>&nbsp;&nbsp;<a href="javascript:void(null)" id="r_112" class="npw02">华南</a></li>
 				<li id="coal_type">煤种：<a href="javascript:void(null)" class="now01">不限</a>&nbsp;&nbsp;<a href="javascript:void(null)" class="npw02">洗精煤</a>&nbsp;&nbsp;<a href="javascript:void(null)" class="npw02">洗精煤</a>&nbsp;&nbsp;<a href="javascript:void(null)" class="npw02">动力煤</a></li>
 				<li id="power">发热量：<a href="javascript:void(null)" class="now01">不限</a>&nbsp;&nbsp;<a href="javascript:void(null)" class="npw02">3000以下</a>&nbsp;&nbsp;<a href="javascript:void(null)" class="npw02">3000-5000</a>&nbsp;&nbsp;<a href="javascript:void(null)" class="npw02">5000-7000</a>&nbsp;&nbsp;<a href="javascript:void(null)" class="npw02">7000以上</a></li>
 				</ul>
