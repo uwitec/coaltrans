@@ -7,6 +7,155 @@
 <link href="css/admin_style.css" type="text/css" rel="stylesheet" rev="stylesheet" media="all" />
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/uc.js"></script>
+<script type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="js/jquery.validate.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    //加载第一级区域列表
+    $.post("Handler/RegionHandler.ashx", { parent_id: 9000 }, function(data, status) {
+        $("#selProvince").append("<option value='-1' >---请选择省份---</option>");
+        $("#selCity").append("<option value='-1' >---请选择城市---</option>");
+        for (var i = 0; i < data.regions.length; i++) {
+            $("#selProvince").append('<option value="' + data.regions[i].id + '">' + data.regions[i].name + '</option>');
+        }
+    }, "json");
+    
+    $("#selProvince").change(function() {
+        var provinceId = $(this).val();
+        if (provinceId > -1) {
+            $.post("Handler/RegionHandler.ashx", { parent_id: provinceId }, function(data, status) {
+                $("#selCity").html("<option value='-1'>---请选择城市---</option>");
+                for (var i = 0; i < data.regions.length; i++) {
+                    $("#selCity").append('<option value="' + data.regions[i].id + '">' + data.regions[i].name + '</option>');
+                }
+            }, "json");
+        }
+        else if (provinceId == -1) {
+            $("#selCity").html("");
+            $("#selCity").append("<option value='-1'>---请选择城市---</option>");
+        }
+    });
+    
+    $("#selIsTransport").change(function(){
+        if($(this).val()=="1")
+        {
+            $("#Price").show();
+        }
+        else
+        {
+            $("#Price").hide();
+        }
+    });
+    
+    function check()
+    {
+        var ErrMsg="";
+        var Flag=true;
+        if($("#txtDemandTitle").val()=="")
+        {
+            ErrMsg+="标题不能为空，\n";
+            Flag=false;
+        }
+        if($("#selCoalType").val()=="0")  
+        {  
+            ErrMsg+="请选择煤种，\n";
+            Flag=false;
+        }
+        if($("#selGranularity").val()=="0")
+        {
+            ErrMsg+="请选择煤炭粒度范围，\n";
+            Flag=false;
+        }   
+        if($("txtDemandQuantity").val()=="")
+        {
+            ErrMsg+="需求量不能为空，\n";
+            Flag=false;
+        }
+        if(($("#selProvince").val()=="-1")&& ($("selCity").val()=="-1"))
+        {
+            ErrMsg+="请选择交货地的省份以及城市，\n";
+            Flag=false;
+        }
+        if($("#txtInfoIndate").val()=="")
+        {
+            ErrMsg+="信息有限期不能为空，\n";
+            Flag=false;
+        }
+        if($("#selCalorificPower").val()=="0")
+        {
+            ErrMsg+="请选择发热量，\n";
+            Flag=false;
+        }
+        if(ErrMsg!="")
+        {
+            ErrMsg+="请您认真核对您所填的信息！";
+            alert(ErrMsg);
+        }        
+        return Flag;
+    }
+    
+    $("#BtnSubmit").click(function(){
+      if(check())
+      {
+      alert($("#txtEstimateStyle").val());
+        var RequestStr="({";
+        $("input[type='text']").each(function(){
+            var name=$(this).attr("name");
+            var val=$(this).val();
+            RequestStr+="'"+name+"':'"+val+"',";
+        });
+        $("select").each(function(){
+            var name=$(this).attr("name");
+            var val=$(this).children("option:selected").val();
+            RequestStr+="'"+name+"':'"+val+"',";
+        });
+        $("textarea").each(function(){
+            var name=$(this).attr("name");
+            var val=$(this).val();
+            RequestStr+="'"+name+"':'"+val+"',";
+        });
+        RequestStr+="'action':'1'})";
+        RequestStr=eval(RequestStr);
+        $.ajax({
+           type: "POST",
+           url: "coal_demand_publish.aspx",
+           data: RequestStr,
+           dataType: "json",
+           success: function(data) {
+                if (data.statusCode == 1) {
+                   alert("提交成功！");
+               }
+                else {
+                   alert("提交失败！");
+                }
+            }
+        });
+      }  
+    });
+});
+</script>
+<style type="text/css">
+    .style2
+    {
+        width: 75px;
+    }
+    .style3
+    {
+        width: 144px;
+    }
+    .style4
+    {
+        width: 80px;
+    }
+    .style5
+    {
+        width: 86px;
+    }
+    .style6
+    {
+        width: 154px;
+    }
+</style>
 </head>
 <body>
    <form id="form1" runat="server">
@@ -27,196 +176,167 @@
 				<div class="h_column h_colW2">
 					<div class="h_mainTitle">
 						<ul class="h_itemsMenu" id="tabMenu">
-							<li class="active"><a href="javascript:void(0);">煤炭供应</a></li>
+							<li class="active"><a href="javascript:void(0);">煤炭求购</a></li>
 						</ul>
 					</div>
 					<div id="tabMenu_Content0">
-							<div class="h_itemsBody h_item_bb">
-								<table>
-								    <tr>
-										<th width="15%"><span>*</span>标  题：</th>
-										<td width="30%">
-										    <input name="text" type="text" class="h_text" style="width:300px" />
-										    <div class="h_alert">请填写标题！</div><!-- 提示说明部分 -->
-										</td>
-									</tr>
-									<tr>
-										<th width="15%"><span>*</span>粒　度：</th>
-										<td width="30%">
-										<select>
-										    <option value="0">小粒度</option>
-										    <option value="1">中粒度</option>
-										</select>
-										<div class="h_alert">请选择产品！</div><!-- 提示说明部分 -->
-										</td>
-										<th width="15%"><span>*</span>焦炭类型：</th>
-										<td>
-											<select>
-												<option value="0">请选择</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<th><span>*</span>产　地：</th>
-										<td>
-											<select>
-												<option value="0">省份</option>
-											</select>
-											<select>
-												<option value="0">城市</option>
-											</select>
-											<span class="h_over"></span><!-- 选择后状态 -->
-										</td>
-										<th><span>*</span>数　量：</th>
-										<td>
-											<input name="text" type="text" class="h_text" /> 吨
-										</td>
-									</tr>
-									<tr>
-										<th><span>*</span>价　格：</th>
-										<td>
-											<input name="text" type="text" value="0" class="h_text" /> 元/吨
-										</td>
-										<th><span>*</span>提货地：</th>
-										<td>
-											<select>
-												<option value="0">省份</option>
-											</select>
-											<select>
-												<option value="0">城市</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<th>挥发份：</th>
-										<td>
-											<input name="text" type="text" value="0" class="h_text" /> %
-										</td>
-										<th>硫　份：</th>
-										<td>
-											<input name="text" type="text" value="0" class="h_text" /> %
-											<span class="h_over"></span><!-- 选择后状态 -->
-										</td>
-									</tr>
-									<tr>
-										<th>机械强度：</th>
-										<td>
-											<input name="text" type="text" value="0" class="h_text" /> %
-										</td>
-										<th>抗碎强度：</th>
-										<td>
-											<input name="text" type="text" value="0" class="h_text" /> %
-										</td>
-									</tr>
-									<tr>
-										<th>灰　份：</th>
-										<td>
-											<input name="text" type="text" value="0" class="h_text" /> %
-										</td>
-										<th>水　份：</th>
-										<td>
-											<input name="text" type="text" value="0" class="h_text" /> %
-										</td>
-									</tr>
-									<tr>
-										<th>耐磨强度：</th>
-										<td>
-											<input name="text" type="text" value="0" class="h_text" /> %
-										</td>
-										<th>气孔率：</th>
-										<td>
-											<input name="text" type="text" value="0" class="h_text" /> %
-										</td>
-									</tr>
-									<tr>
-										<th>反应性：</th>
-										<td>
-											<input name="text" type="text" value="0" class="h_text" />
-										</td>
-										<th>焦沫含量：</th>
-										<td>
-											<input name="text" type="text" value="0" class="h_text" /> %
-										</td>
-									</tr>
-									<tr>
-										<th><span>*</span>信息有效期：</th>
-										<td>
-											<select>
-												<option value="0">请选择</option>
-											</select>
-										</td>
-										<th><span>*</span>推销方式：</th>
-										<td>
-											<select>
-												<option value="0">请选择</option>
-											</select>
-										</td>
-									</tr>
-								</table>
-							</div>
-							<div class="h_itemsBody">
-								<table>
-									<tr>
-										<th width="15%"><span>*</span>联系人：</th>
-										<td width="30%">
-											<input name="text" type="text" class="h_text" />
-											<div class="h_alert">请输入联系人姓名！</div><!-- 提示说明部分 -->
-										</td>
-										<th width="15%"> </th>
-										<td> </td>
-									</tr>
-									<tr>
-										<th><span>*</span>职　务：</th>
-										<td>
-											<select>
-												<option value="0">请选择</option>
-											</select>
-										</td>
-										<th> </th>
-										<td> </td>
-									</tr>
-									<tr>
-										<th><span>*</span>联系电话：</th>
-										<td>
-											<input name="text" type="text" class="h_text" /> -
-											<input name="text" type="text" class="h_text2" />
-										</td>
-										<th><span>*</span>传　真：</th>
-										<td>
-											<input name="text" type="text" class="h_text" /> -
-											<input name="text" type="text" class="h_text2" />
-										</td>
-									</tr>
-									<tr>
-										<th><span>*</span>手　机：</th>
-										<td>
-											<input name="text" type="text" class="h_text3" />
-										</td>
-										<th><span>*</span>电子邮件：</th>
-										<td>
-											<input name="text" type="text" class="h_text3" />
-										</td>
-									</tr>
-									<tr>
-										<th>公司地址：</th>
-										<td>
-											<input name="text" type="text" class="h_text4" />
-										</td>
-										<th> </th>
-										<td>
-										</td>
-									</tr>
-									<tr>
-										<th> </th>
-										<td>
-                                            <input name="submit" type="button" value="发 布" class="h_buttun1" />
-											<input name="reset" type="button" value="重 置" class="h_buttun1" />
-										</td>
-										<th> </th>
-										<td> </td>
-									</tr>
-								</table>
-							</div>
+						<div class="h_itemsBody h_item_bb">
+							<table cellpadding="0" cellspacing="0" border="0">
+							   <tr>
+							        <td colspan="4"><span style="color:Red;font-size:14px; font-weight:bolder;">基本信息：</span></td>
+							   </tr>
+							   <tr>
+							        <td style="width:90px;text-align:right;"><span>*</span>标题：</td>
+							        <td align="left" colspan="3"><input type="text" size="50" id="txtDemandTitle" name="txtDemandTitle" /></td>							        
+							   </tr> 
+							   <tr>
+							        <td style="width:90px;text-align:right;"><span>*</span>煤种：</td>
+							        <td align="left">
+							            <select id="selCoalType" name="selCoalType">
+							                <option value="0">--请选择煤种--</option>
+							                <option value="动力煤">动力煤</option>
+										    <option value="炼焦煤">炼焦煤</option>
+										    <option value="喷吹煤">喷吹煤</option>
+										    <option value="无烟煤">无烟煤</option>
+										    <option value="洗精煤">洗精煤</option>
+										    <option value="中粒度">中粒度</option>
+							            </select>
+							        </td>
+							        <td style="width:90px; text-align:right;"><span>*</span>粒度：</td>
+							        <td align="left">
+							            <select id="selGranularity" name="selGranularity">
+							                <option value="0">---请选择粒度范围---</option>
+							                <option value="20~50毫米">20~50毫米</option>
+							            </select>
+							        </td>
+							   </tr>
+							   <tr>
+							        <td style="width:90px;text-align:right;"><span>*</span>需求量：</td>
+							        <td align="left">
+							            <input type="text" id="txtDemandQuantity" name="txtDemandQuantity" />（吨）
+							        </td>
+							        <td style="width:90px; text-align:right;"><span>*</span>交货地：</td>
+							        <td align="left">
+							            <select id="selProvince" name="selProvince"></select>-
+							            <select id="selCity" name="selCity"></select>
+							        </td>
+							   </tr>
+							   <tr>
+							        <td style="width:90px;text-align:right;"><span>*</span>信息有效期：</td>
+							        <td align="left" colspan="3"><input type="text" id="txtInfoIndate" name="txtInfoIndate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"  /></td>							        
+							   </tr> 
+							</table>
+						</div>
+						<div class="h_itemsBody h_item_bb">
+							<table cellpadding="0" cellspacing="0" border="0">
+							   <tr>
+							        <td colspan="6"><span style="color:Red;font-size:14px; font-weight:bolder;">相关指标：</span></td>
+							   </tr>
+							    
+							   <tr>
+							        <td style="text-align:right;" class="style2"><span>*</span>发热量：</td>
+							        <td align="left" class="style3">
+							            <select id="selCalorificPower" name="selCalorificPower">
+							                <option value="0">---请选择范围---</option>
+							                <option value="5000大卡">5000大卡</option>
+							            </select>
+							        </td>
+							        <td style="text-align:right;" class="style4">挥发份：</td>
+							        <td align="left" class="style6">
+							            <input type="text" size="5" id="txtVolatilize" name="txtVolatilize" />%
+							        </td>
+							        <td style="text-align:right;" class="style5">灰分：</td>
+							        <td align="left">
+							            <input type="text" size="5" id="txtAsh" name="txtAsh" />%
+							        </td>
+							   </tr>
+							   <tr>
+							        <td style="text-align:right;" class="style2">硫份：</td>
+							        <td align="left" class="style3">
+							            <input type="text" size="5" id="txtSulphur" name="txtSulphur" />%
+							        </td>
+							        <td style="text-align:right;" class="style4">水分：</td>
+							        <td align="left" class="style6">
+							             <input type="text" size="5" id="txtWater" name="txtWater"/>%
+							        </td>
+							        <td style="text-align:right;" class="style5">热稳定性：</td>
+							        <td align="left" style="width:100px;">
+							            <input type="text" size="5" id="txtHotStability" name="txtHotStability"/>
+							        </td>
+							   </tr>
+							   <tr>
+							        <td style="text-align:right;" class="style2">灰熔融性：</td>
+							        <td align="left" class="style3">
+							            <input type="text" size="5" id="txtAshFusing" name="txtAshFusing" />
+							        </td>
+							        <td style="text-align:right;" class="style4">可磨性：</td>
+							        <td align="left" class="style6">
+							             <input type="text" size="5" id="txtWearproof" name="txtWearproof"/>%
+							        </td>
+							        <td style="text-align:right;" class="style5">固定碳：</td>
+							        <td align="left" style="width:100px;">
+							            <select id="selCarbon" name="selCarbon">
+							                <option value="0">---请选择范围---</option>
+							                <option value="20%~50%">20%~50%</option>
+							            </select>
+							        </td>
+							   </tr>
+							   <tr>
+							        <td style="text-align:right;" class="style2">机械强度：</td>
+							        <td align="left" class="style3">
+							            <input type="text" size="5" id="txtMaStrength" name="txtMaStrength" />%
+							        </td>
+							        <td style="text-align:right;" class="style4">粘结指数：</td>
+							        <td align="left" class="style6">
+							             <input type="text" size="5" id="txtBinderMark" name="txtBinderMark"/>%
+							        </td>
+							        <td colspan="2"></td>							        
+							   </tr>							   
+							</table>
+						</div>
+						<div class="h_itemsBody h_item_bb">
+						    <table cellpadding="0" cellspacing="0" border="0">
+							   <tr>
+							        <td colspan="2"><span style="color:Red;font-size:14px; font-weight:bolder;">其他信息：</span></td>
+							   </tr>
+							    
+							   <tr>
+							        <td style="text-align:right; width:150px;">是否要卖家提供运输：</td>
+							        <td align="left">
+							            <select id="selIsTransport" name="selIsTransport">
+							                <option value="0">---请选择---</option>
+							                <option value="0">不需要</option>
+							                <option value="1">需要</option>
+							            </select>
+							        </td>
+							   </tr>
+							   <tr id="Price" style="display:none;">
+							        <td style="text-align:right; width:150px;">价格要求：</td>
+							        <td align="left">
+							            <input type="text" id="txtTransportPrice" name="txtTransportPrice" />
+							        </td>
+							   </tr>
+							   <tr>
+							        <td style="text-align:right; width:150px;">结算方法：</td>
+							        <td align="left">
+							            <textarea id="txtEstimateStyle" name="txtEstimateStyle" rows="5" cols="50"></textarea>
+							        </td>
+							   </tr>				   
+							</table>
+						</div>
+						<div class="h_itemsBody h_item_bb">
+						    <table cellpadding="0" cellspacing="0" border="0">
+							       <tr>
+							            <td style="width:300px; text-align:right;" >
+							            <input type="button" class="h_buttun1"  value="发布" id="BtnSubmit" name="BtnSubmit" /></td>
+							            <td style="width:50px;"></td>
+							            <td align="left"><input type="reset" class="h_buttun1"  value="重置" /></td>
+							       </tr>
+							    </table>
+						    </div>
+						</div>
+						<div style="height:20px; width:100%;">
+						    
 					</div>
 				</div>
 			</div>

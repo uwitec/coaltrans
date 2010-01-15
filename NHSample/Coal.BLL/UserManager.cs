@@ -6,6 +6,7 @@ using Coal.Entity;
 using System.Data.SqlClient;
 using Coal.Util;
 using Coal.ViewModel;
+using Coal.DAL;
 
 namespace Coal.BLL
 {
@@ -283,6 +284,20 @@ namespace Coal.BLL
             catch (Exception ex)
             {
                 LogUtility.WriteErrLog(ex);
+                return false;
+            }
+        }
+
+        public static bool AddDemandInfo(DemandInfoEntity Model)
+        {
+            DemandInfoEntity.DemandInfoDao Dao = new DemandInfoEntity.DemandInfoDao();
+            try
+            {
+                Dao.Add(Model);
+                return true;
+            }
+            catch
+            {
                 return false;
             }
         }

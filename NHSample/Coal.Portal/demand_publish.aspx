@@ -33,7 +33,7 @@
 						<div class="h_itemsList">
 							<img src="images/h_pic.jpg" alt="" />
 							<p>各种资金项目合作、技术专利、租赁转让。<br />如：项目、投资、招投标等。</p>
-							<span><a href="coal_demand_publish.aspx">煤炭供应信息发布</a></span>
+							<span><a href="coal_demand_publish.aspx">煤炭求购信息发布</a></span>
 						</div>
 						<div class="h_itemsList">
 							<img src="images/h_pic.jpg" alt="" />
