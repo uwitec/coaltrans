@@ -12,15 +12,8 @@
 <script type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-
-        //加载第一级区域列表
-        $.post("Handler/RegionHandler.ashx", { parent_id: 9000 }, function(data, status) {
-            $("#selProvince").append("<option value='-1'>请选择省份</option>");
-            $("#selCity").append("<option value='-1'>请选择城市</option>");
-            for (var i = 0; i < data.regions.length; i++) {
-                $("#selProvince").append('<option value="' + data.regions[i].id + '">' + data.regions[i].name + '</option>');
-            }
-        }, "json");
+        
+        
 
         //绑定下拉列表
         $("#selProvince").change(function() {
@@ -43,36 +36,78 @@
             type: "POST",
             url: "Handler/GetCorpInfoHandler.ashx",
             dataType: "json",
-            success: function(data) {
-                for (var field in data) {
-                    if (field.indexOf("sel") > -1) {
-                        $("#" + field).children("option").each(function() {
-                            if ($(this).val() == data[field]) {
-                                $(this).attr("selected", "true");
-                            }
-                        });
-                    }
-                    else {
-                        $("#" + field).val(data[field]);
-                    }
+            success: function(data) { 
+                for(var field in data)
+                {    
+                    if (field.indexOf("txt") > -1) {
+                       $("#"+field).val(data[field]);
+                    }  
                 }
-
-                var provinceId = data["selProvince"];
-                var cityId = data["selCity"];
-                $.post("Handler/RegionHandler.ashx", { parent_id: provinceId }, function(cityData, status) {
-                    $("#selCity").html("<option value='-1'>请选择城市</option>");
-                    for (var i = 0; i < cityData.regions.length; i++) {
-                        $("#selCity").append('<option value="' + cityData.regions[i].id + '">' + cityData.regions[i].name + '</option>');
-                    }
-                    $("#selCity").children("option").each(function() {
-                        if ($(this).val() == cityId) {
-                            $(this).attr("selected", "true");
-                        }
-                    });
-                }, "json");
+                $("#hdfCorpInfoId").val(data["ID"]);
+                var selOperType=data["selOperType"];
+                var selCorpType=data["selCorpType"];
+                GetCorInfo("selOperType",selOperType);
+                GetCorInfo("selCorpType",selCorpType);
+                var selProvince=data["selProvince"];
+                InnitArea(selProvince);
+                var selCity=data["selCity"];
+                InnitCity(selProvince,selCity);
             }
         });
+        
+        function GetCorInfo(StrId,Strdate)
+        {
+            $("#"+StrId).children("option").each(function(){
+               if($(this).val()==Strdate) 
+                  $(this).attr("selected","selected");
+            });
+        }
+        
+        function InnitArea(selProvince)
+        {
+            if(selProvince!="")
+            {
+                $.post("Handler/RegionHandler.ashx", { parent_id: 9000 }, function(data, status) {                    
+                    for (var i = 0; i < data.regions.length; i++) {
+                        if(data.regions[i].id==selProvince)
+                        {
+                            $("#selProvince").append("<option value=\"" + data.regions[i].id + "\" selected=\"selected\">" + data.regions[i].name + "</option>");
+                        }
+                        else
+                        {
+                            $("#selProvince").append("<option value=\"" + data.regions[i].id + "\">" + data.regions[i].name + "</option>");
+                        }
+                    }
+                }, "json");
+            }
+            else
+            {
+                //加载第一级区域列表
+                $.post("Handler/RegionHandler.ashx", { parent_id: 9000 }, function(data, status) {
+                    $("#selProvince").append("<option value='-1' >请选择省份</option>");
+                    $("#selCity").append("<option value='-1' >请选择城市</option>");
+                    for (var i = 0; i < data.regions.length; i++) {
+                        $("#selProvince").append('<option value="' + data.regions[i].id + '">' + data.regions[i].name + '</option>');
+                    }
+                }, "json");
+            }
+        }
 
+        function InnitCity(Province,City)
+        {
+            $.post("Handler/RegionHandler.ashx", { parent_id: Province }, function(data, status) {                    
+                for (var i = 0; i < data.regions.length; i++) {
+                    if(data.regions[i].id==City)
+                    {
+                        $("#selCity").append("<option value=\"" + data.regions[i].id + "\" selected=\"selected\">" + data.regions[i].name + "</option>");
+                    }
+                    else
+                    {
+                        $("#selCity").append("<option value=\"" + data.regions[i].id + "\">" + data.regions[i].name + "</option>");
+                    }
+                }
+            }, "json");
+        }    
         var validator = $("#form1").validate({
             rules: {
                 txtTrueName: {
@@ -216,7 +251,7 @@
 					<tr>
 						<th><span>*</span>公司所在地：</th>
 						<td>
-							<select id="selProvince" name="selProvince"></select> -
+							<select id="selProvince" name="selProvince"></select>-
 							<select id="selCity" name="selCity"></select>
 						</td>
 						<th> </th>
@@ -226,7 +261,7 @@
 						<th><span>*</span>公司性质：</th>
 						<td>
 						    <select id="selCorpType" name="selCorpType" class="h_select3">
-						        <option value="1" >国有企业</option>
+						        <option value="1"  >国有企业</option>
                                 <option value="2" >外资企业</option>
                                 <option value="3" >合资企业</option>
                                 <option value="4" >有限责任公司</option>
@@ -246,7 +281,7 @@
 						<th><span>*</span>公司类型：</th>
 						<td>
 							<select id="selOperType" name="selOperType">
-							    <option value="1" >生产企业</option>
+							    <option value="1"  >生产企业</option>
 							    <option value="2" >经销企业</option>
 							    <option value="3" >终端用户</option>
 							    <option value="4" >运输企业</option>

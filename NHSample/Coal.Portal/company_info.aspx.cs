@@ -31,6 +31,10 @@ public partial class company_info : System.Web.UI.Page
     private void SavaOrUpdate()
     {
         CompanyInfoModel corpInfoModel = new CompanyInfoModel();
+        if (Request.Form["hdfCorpInfoId"].Trim() != "")
+        {
+            corpInfoModel.ID = Convert.ToInt32(Request.Form["hdfCorpInfoId"]);
+        }        
         corpInfoModel.Address = Request.Form["txtAddress"];
         corpInfoModel.BusinessScope = Request.Form["txtBusinessScope"];
         corpInfoModel.CompanyName = Request.Form["txtTrueName"];

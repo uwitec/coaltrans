@@ -29,6 +29,7 @@ public class GetCorpInfoHandler : IHttpHandler {
         ro["txtRegisteredCapital"] = model.RegisteredCapital;
         ro["selProvince"] = model.Province;
         ro["selCity"] = model.City;
+        ro["ID"] = model.ID;
 
         context.Response.Write(ro.ToJSONString());
     }
