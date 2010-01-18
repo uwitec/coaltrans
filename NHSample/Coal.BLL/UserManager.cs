@@ -290,7 +290,7 @@ namespace Coal.BLL
 
         public static bool AddDemandInfo(DemandInfoEntity Model)
         {
-            DemandInfoEntity.DemandInfoDao Dao = new DemandInfoEntity.DemandInfoDao();
+            DemandInfoEntity.DemandInfoDAO Dao = new DemandInfoEntity.DemandInfoDAO();
             try
             {
                 Dao.Add(Model);

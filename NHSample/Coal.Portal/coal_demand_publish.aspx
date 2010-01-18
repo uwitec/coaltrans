@@ -49,55 +49,76 @@ $(document).ready(function(){
     
     function check()
     {
-        var ErrMsg="";
         var Flag=true;
         if($("#txtDemandTitle").val()=="")
         {
-            ErrMsg+="标题不能为空，\n";
+            $("#txtDemandTitle").next().html("标题不能为空！");
             Flag=false;
+        }
+        else
+        {
+            $("#txtDemandTitle").next().html("");
         }
         if($("#selCoalType").val()=="0")  
         {  
-            ErrMsg+="请选择煤种，\n";
+            $("#selCoalType").next().html("请选择煤种！");
             Flag=false;
+        }
+        else
+        {
+            $("#selCoalType").next().html("");
         }
         if($("#selGranularity").val()=="0")
         {
-            ErrMsg+="请选择煤炭粒度范围，\n";
+            $("#selGranularity").next().html("请选择煤炭粒度范围！");
             Flag=false;
-        }   
-        if($("txtDemandQuantity").val()=="")
+        } 
+        else
         {
-            ErrMsg+="需求量不能为空，\n";
+            $("#selGranularity").next().html("");
+        } 
+        if($("#txtDemandQuantity").val()=="")
+        {
+            $("#txtDemandQuantity").next().html("需求量不能为空！");
             Flag=false;
         }
-        if(($("#selProvince").val()=="-1")&& ($("selCity").val()=="-1"))
+        else
         {
-            ErrMsg+="请选择交货地的省份以及城市，\n";
+            $("#txtDemandQuantity").next().html("");
+        }
+        if(($("#selProvince").val()=="-1")&& ($("#selCity").val()=="-1"))
+        {
+            $("#selCity").next().html("请您选择具体的详细地址！");
             Flag=false;
+        }
+        else
+        {
+            $("#selCity").next().html("");
         }
         if($("#txtInfoIndate").val()=="")
         {
-            ErrMsg+="信息有限期不能为空，\n";
+            $("#txtInfoIndate").next().html("请您填写信息的有效期限！");
             Flag=false;
+        }
+        else
+        {
+            $("#txtInfoIndate").next().html("");
         }
         if($("#selCalorificPower").val()=="0")
         {
-            ErrMsg+="请选择发热量，\n";
+            $("#selCalorificPower").next().html("请您选择发热量！");
             Flag=false;
-        }
-        if(ErrMsg!="")
+        }  
+        else
         {
-            ErrMsg+="请您认真核对您所填的信息！";
-            alert(ErrMsg);
-        }        
+            $("#selCalorificPower").next().html("");
+        }    
         return Flag;
     }
     
     $("#BtnSubmit").click(function(){
       if(check())
       {
-      alert($("#txtEstimateStyle").val());
         var RequestStr="({";
         $("input[type='text']").each(function(){
             var name=$(this).attr("name");
@@ -123,10 +144,10 @@ $(document).ready(function(){
            dataType: "json",
            success: function(data) {
                 if (data.statusCode == 1) {
-                   alert("提交成功！");
-               }
+                   $("#Msg").html("恭喜您，提交成功！");
+                }
                 else {
-                   alert("提交失败！");
+                   $("#Msg").html("对不起，提交失败！请您认真核对您的信息！");
                 }
             }
         });
@@ -187,7 +208,7 @@ $(document).ready(function(){
 							   </tr>
 							   <tr>
 							        <td style="width:90px;text-align:right;"><span>*</span>标题：</td>
-							        <td align="left" colspan="3"><input type="text" size="50" id="txtDemandTitle" name="txtDemandTitle" /></td>							        
+							        <td align="left" colspan="3"><input type="text" size="50" id="txtDemandTitle" name="txtDemandTitle" /><span style="color:Red;"></span></td>							        
 							   </tr> 
 							   <tr>
 							        <td style="width:90px;text-align:right;"><span>*</span>煤种：</td>
@@ -201,6 +222,7 @@ $(document).ready(function(){
 										    <option value="洗精煤">洗精煤</option>
 										    <option value="中粒度">中粒度</option>
 							            </select>
+							            <span style="color:Red;"></span>
 							        </td>
 							        <td style="width:90px; text-align:right;"><span>*</span>粒度：</td>
 							        <td align="left">
@@ -208,22 +230,23 @@ $(document).ready(function(){
 							                <option value="0">---请选择粒度范围---</option>
 							                <option value="20~50毫米">20~50毫米</option>
 							            </select>
+							            <span style="color:Red;"></span>
 							        </td>
 							   </tr>
 							   <tr>
 							        <td style="width:90px;text-align:right;"><span>*</span>需求量：</td>
 							        <td align="left">
-							            <input type="text" id="txtDemandQuantity" name="txtDemandQuantity" />（吨）
+							            <input type="text" id="txtDemandQuantity" name="txtDemandQuantity" />（吨）<span style="color:Red;"></span>
 							        </td>
 							        <td style="width:90px; text-align:right;"><span>*</span>交货地：</td>
 							        <td align="left">
 							            <select id="selProvince" name="selProvince"></select>-
-							            <select id="selCity" name="selCity"></select>
+							            <select id="selCity" name="selCity"></select><span style="color:Red;"></span>
 							        </td>
 							   </tr>
 							   <tr>
 							        <td style="width:90px;text-align:right;"><span>*</span>信息有效期：</td>
-							        <td align="left" colspan="3"><input type="text" id="txtInfoIndate" name="txtInfoIndate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"  /></td>							        
+							        <td align="left" colspan="3"><input type="text" id="txtInfoIndate" name="txtInfoIndate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"  /><span style="color:Red;"></span></td>							        
 							   </tr> 
 							</table>
 						</div>
@@ -240,6 +263,7 @@ $(document).ready(function(){
 							                <option value="0">---请选择范围---</option>
 							                <option value="5000大卡">5000大卡</option>
 							            </select>
+							            <span style="color:Red;"></span>
 							        </td>
 							        <td style="text-align:right;" class="style4">挥发份：</td>
 							        <td align="left" class="style6">
@@ -331,6 +355,11 @@ $(document).ready(function(){
 							            <input type="button" class="h_buttun1"  value="发布" id="BtnSubmit" name="BtnSubmit" /></td>
 							            <td style="width:50px;"></td>
 							            <td align="left"><input type="reset" class="h_buttun1"  value="重置" /></td>
+							       </tr>
+							       <tr>
+							            <td style="text-align:center;" >
+							            <div id="Msg" style="color:Red; font-size:14px; font-weight:bolder;"></div>
+							            </td>							            
 							       </tr>
 							    </table>
 						    </div>

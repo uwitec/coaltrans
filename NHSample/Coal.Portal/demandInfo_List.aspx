@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="coal_list.aspx.cs" Inherits="coal_list" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="demandInfo_List.aspx.cs" Inherits="demandInfo_List" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -50,7 +50,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
 
-        var reqData = { page_size: 10, page_index: 1, page_count: 1, cur_page: 1, City: -1 };
+        var reqData = { page_size: 10, page_index: 1, page_count: 1, cur_page: 1, DeliveryPlace: -1 };
        
         function SetNext(pager) {
             if (reqData.cur_page == reqData.page_count) {
@@ -99,7 +99,7 @@
         }
 
         function Bind(isInit) {
-            $.post("Handler/TranList.ashx",
+            $.post("Handler/DemandList.ashx",
                reqData,
                function(data, textStatus) {
                 if(data.rows!=null)
@@ -111,9 +111,9 @@
                        content.append("<div class='cp_all'>");
                        content.append("<div class='cp_images'><img src='images/jx01.jpg' /></div>");
                        content.append("<div class='cp_cotton'>");
-                       content.append("<h1><a href='coal_detail.aspx?ID=" + row["ID"] + "&type=1'>");
+                       content.append("<h1><a href='coal_detail.aspx?ID=" + row["ID"] + "&type=2'>");
                        content.append(row["ID"]);
-                       content.append(row["Title"]);
+                       content.append(row["DemandTitle"]);
                        content.append("</a></h1><ul><li>");
                        content.append("<em>公司名称：</em>");
                        content.append(row["CompanyName"]);
@@ -121,14 +121,14 @@
                        content.append("<em>煤种：</em>");
                        content.append(row["CoalType"]);
                        content.append("&nbsp;&nbsp;&nbsp;&nbsp;");
-                       content.append("<em>所在地：</em>");
-                       content.append(row["region"]);
+                       content.append("<em>交货地：</em>");
+                       content.append(row["DeliveryPlace"]);
                        content.append("</li><li>");
                        content.append(row["Description"]);
                        content.append("<em>发布时间：</em><strong>");
-                       content.append(row["CreatedOn"]);
-                       content.append("</strong></li></ul></div><div class='jiage'>价格：￥<em>");
-                       content.append(row["Price"]);
+                       content.append(row["CreateTime"]);
+                       content.append("</strong></li></ul></div><div class='jiage'>需求量：<em>");
+                       content.append(row["DemandQuantity"]);
                        content.append("</em></div><div style='clear:both'></div></div>");
                    }
 
@@ -248,48 +248,48 @@
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td width="14%" align="center" class="login_title"><img src="images/gxxx_ico.gif" width="19" height="31" /></td>
-          <td class="login_title">最新会员供应信息</td>
+          <td class="login_title">最新会员求购信息</td>
           </tr>
         <tr>
           <td colspan="2" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="linkf12_grey">
             <tr>
-              <td width="23%" height="28" align="center" class="bor_b">[<a href="#">供应</a>]</td>
+              <td width="23%" height="28" align="center" class="bor_b">[<a href="#">求购</a>]</td>
               <td width="77%" align="left" class="bor_b"><a href="#">防爆电子皮带秤</a> </td>
             </tr>
             <tr>
-              <td width="23%" height="28" align="center" class="bor_b">[<a href="#">供应</a>]</td>
-              <td width="77%" align="left" class="bor_b"><a href="#">临县主焦煤供应 </a> </td>
+              <td width="23%" height="28" align="center" class="bor_b">[<a href="#">求购</a>]</td>
+              <td width="77%" align="left" class="bor_b"><a href="#">临县主焦煤求购 </a> </td>
             </tr>
             <tr>
-              <td width="23%" height="28" align="center" class="bor_b">[<a href="#">供应</a>]</td>
+              <td width="23%" height="28" align="center" class="bor_b">[<a href="#">求购</a>]</td>
               <td width="77%" align="left" class="bor_b"><a href="#">出售神木店塔附近的电煤</a> </td>
             </tr>
             <tr>
-              <td width="23%" height="28" align="center" class="bor_b">[<a href="#">供应</a>]</td>
+              <td width="23%" height="28" align="center" class="bor_b">[<a href="#">求购</a>]</td>
               <td width="77%" align="left" class="bor_b"><a href="#">木煤矿股东代办神</a> </td>
             </tr>
             <tr>
-              <td width="23%" height="28" align="center" class="bor_b">[<a href="#">供应</a>]</td>
+              <td width="23%" height="28" align="center" class="bor_b">[<a href="#">求购</a>]</td>
               <td width="77%" align="left" class="bor_b"><a href="#">神木煤矿股东代办神</a> </td>
             </tr>
             <tr>
-              <td width="23%" height="28" align="center" class="bor_b">[<a href="#">供应</a>]</td>
+              <td width="23%" height="28" align="center" class="bor_b">[<a href="#">求购</a>]</td>
               <td width="77%" align="left" class="bor_b"><a href="#">盐雾试验报告/中性盐雾</a> </td>
             </tr>
             <tr>
-              <td width="23%" height="28" align="center" class="bor_b">[<a href="#">供应</a>]</td>
+              <td width="23%" height="28" align="center" class="bor_b">[<a href="#">求购</a>]</td>
               <td width="77%" align="left" class="bor_b"><a href="#">内蒙出售3500卡以上块煤及4</a> </td>
             </tr>
             <tr>
-              <td width="23%" height="28" align="center" class="bor_b">[<a href="#">供应</a>]</td>
-              <td width="77%" align="left" class="bor_b"><a href="#">供应各种规格无烟块煤</a> </td>
+              <td width="23%" height="28" align="center" class="bor_b">[<a href="#">求购</a>]</td>
+              <td width="77%" align="left" class="bor_b"><a href="#">求购各种规格无烟块煤</a> </td>
             </tr>
             <tr>
-              <td width="23%" height="28" align="center" class="bor_b">[<a href="#">供应</a>]</td>
-              <td width="77%" align="left" class="bor_b"><a href="#">供应2-4公分无烟块煤</a> </td>
+              <td width="23%" height="28" align="center" class="bor_b">[<a href="#">求购</a>]</td>
+              <td width="77%" align="left" class="bor_b"><a href="#">求购2-4公分无烟块煤</a> </td>
             </tr>
             <tr>
-              <td width="23%" height="28" align="center" class="bor_b">[<a href="#">供应</a>]</td>
+              <td width="23%" height="28" align="center" class="bor_b">[<a href="#">求购</a>]</td>
               <td width="77%" align="left" class="bor_b"><a href="#">陕西省榆林市神木县 </a> </td>
             </tr>
           </table></td>
@@ -308,7 +308,7 @@
         <td height="300" align="left" valign="top"><table width="712" border="0" cellspacing="0" cellpadding="0" class="gongxu_bars">
           <tr>
             <td width="47" align="center" class="f12b_grey"><img src="images/locatioin.gif" width="26" height="23" /></td>
-            <td width="595" class="pad_t4 f12_grey_3 linkf12_grey"><strong>当前位置：</strong><a href="index.html">首页</a> &gt; 煤炭供需信息 &gt; 供应信息</td>
+            <td width="595" class="pad_t4 f12_grey_3 linkf12_grey"><strong>当前位置：</strong><a href="index.html">首页</a> &gt; 煤炭供需信息 &gt; 求购信息</td>
             <td width="70" align="center">&nbsp;</td>
           </tr>
         </table>
@@ -317,15 +317,15 @@
               <td height="60" align="center" valign="top" class="bor_all"><table width="680" border="0" align="center" cellpadding="0" cellspacing="0" class="mar_t16">
                 <tr>
                   <td width="28" align="left"><img src="images/ico.gif" width="19" height="17" align="absmiddle"/></td>
-                  <td width="62" align="left" class="linkf12_greyb"><a href="#">供应信息</a></td>
-                  <td width="406" align="left" class="linkf12_grey f12_grey_3"><a href="#"> </a> ( <a href="#">查看所有供应信息</a> | <a href="#">查看所有求购信息</a>) 共有此类信息<span id="total_count" class=" f12_red">301条</span> </td>
+                  <td width="62" align="left" class="linkf12_greyb"><a href="#">求购信息</a></td>
+                  <td width="406" align="left" class="linkf12_grey f12_grey_3"><a href="#"> </a> ( <a href="#">查看所有求购信息</a> | <a href="#">查看所有求购信息</a>) 共有此类信息<span id="total_count" class=" f12_red">301条</span> </td>
                   <td width="204"><img src="images/lines.gif" width="202" height="10" /></td>
                 </tr>
               </table>
                 <form id="form2" name="form2" method="post" action="">
                 <div id="query_condition" class="searce_tj">
 				<ul>
-				<li id="City">产地：<a href="javascript:void(null)" id="r_0" class="now01">不限</a>&nbsp;&nbsp;<a href="javascript:void(null)" id="r_101" class="npw02">华北</a>&nbsp;&nbsp;<a href="javascript:void(null)" id="r_904" class="npw02">西北</a>&nbsp;&nbsp;<a href="javascript:void(null)" id="r_112" class="npw02">华南</a></li>
+				<li id="DeliveryPlace">产地：<a href="javascript:void(null)" id="r_0" class="now01">不限</a>&nbsp;&nbsp;<a href="javascript:void(null)" id="r_111" class="npw02">华北</a>&nbsp;&nbsp;<a href="javascript:void(null)" id="r_112" class="npw02">西北</a>&nbsp;&nbsp;<a href="javascript:void(null)" id="r_112" class="npw02">华南</a></li>
 				<li id="coal_type">煤种：<a href="javascript:void(null)" class="now01">不限</a>&nbsp;&nbsp;<a href="javascript:void(null)" class="npw02">洗精煤</a>&nbsp;&nbsp;<a href="javascript:void(null)" class="npw02">洗精煤</a>&nbsp;&nbsp;<a href="javascript:void(null)" class="npw02">动力煤</a></li>
 				<li id="power">发热量：<a href="javascript:void(null)" class="now01">不限</a>&nbsp;&nbsp;<a href="javascript:void(null)" class="npw02">3000以下</a>&nbsp;&nbsp;<a href="javascript:void(null)" class="npw02">3000-5000</a>&nbsp;&nbsp;<a href="javascript:void(null)" class="npw02">5000-7000</a>&nbsp;&nbsp;<a href="javascript:void(null)" class="npw02">7000以上</a></li>
 				</ul>

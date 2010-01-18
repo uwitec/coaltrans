@@ -56,10 +56,12 @@
     <Compile Include="FuncGroupMapEntity.cs" />
     <Compile Include="FunctionEntity.cs" />
     <Compile Include="GroupsEntity.cs" />
+    <Compile Include="InviteInfoEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="db\SqlHelper.cs" />
     <Compile Include="db\SqlServerDAO.cs" />
     <Compile Include="RegionEntity.cs" />
+    <Compile Include="TenderInfoEntity.cs" />
     <Compile Include="UserGroupMapEntity.cs" />
     <Compile Include="UserInfoEntity.cs" />
     <Compile Include="UsersEntity.cs" />

@@ -19,6 +19,14 @@ namespace Coal.BLL
             return transDao.GetPager(where, paramters, string.Empty, pageSize, pageIndex);
         }
 
+        public DataTable GetDemandList(string where, SqlParameter[] paramters, int pageSize, int pageIndex, ref int rowCount)
+        {
+            DemandInfoEntity.DemandInfoDAO transDao = new DemandInfoEntity.DemandInfoDAO();
+            rowCount = transDao.GetPagerRowsCount(where, paramters);
+            return transDao.GetPager(where, paramters, string.Empty, pageSize, pageIndex);
+        }
+
+
         public DataTable GetLastestList(string where, int topNum, string orderField, SqlParameter[] paramters)
         {
             CoalTransEntity.CoalTransDAO transDao = new CoalTransEntity.CoalTransDAO();

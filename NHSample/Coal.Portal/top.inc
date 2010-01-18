@@ -14,7 +14,7 @@
       <a href="coal_list.aspx">供 应</a>
     </li>
     <li class="">
-      <a href="coal_list.aspx">采 购</a>
+      <a href="demandInfo_List.aspx">采 购</a>
     </li>
     <li class="">
       <a href="in_construction.html">招 标</a>

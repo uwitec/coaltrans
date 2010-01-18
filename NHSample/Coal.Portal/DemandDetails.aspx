@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="coal_detail.aspx.cs" Inherits="Detail" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="DemandDetails.aspx.cs" Inherits="DemandDetails" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -165,14 +165,14 @@
                                         <img src="images/locatioin.gif" width="26" height="23" />
                                     </td>
                                     <td width="595" class="pad_t4 f12_grey_3 linkf12_grey">
-                                        <strong>当前位置：</strong><a href="index.html">首页</a> &gt; 煤炭供需信息 &gt; 供应信息
+                                        <strong>当前位置：</strong><a href="index.html">首页</a> &gt; 煤炭求购信息 &gt; 求购信息
                                     </td>
                                     <td width="70" align="center">
                                         &nbsp;
                                     </td>
                                 </tr>
                             </table>
-                            <table width="712" border="0" cellspacing="0" cellpadding="0" class="mar_t4">
+                             <table width="712" border="0" cellspacing="0" cellpadding="0" class="mar_t4">
                                 <tr>
                                     <td height="60" align="center" valign="top" class="bor_all">
                                         <table width="700" border="0" align="center" cellpadding="0" cellspacing="0" class="mar_t16">
