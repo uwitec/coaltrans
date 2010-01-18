@@ -10,7 +10,7 @@
     <link href="css/index.css" rel="stylesheet" type="text/css" />
 
     <script type="text/javascript" src="js/jquery.js"></script>
-
+    <script type="text/javascript" src="js/public.js"></script>
     <script type="text/javascript"> 
     
     $(document).ready(function(){
@@ -18,7 +18,7 @@
         //用户留言
         $("#BtnMessage").click(function(){
             var Data=$("#UserId").val();            
-            window.open("Message.aspx?ID="+Data);
+            openWin("Message.aspx?ID="+Data);
         });
         
         //举报信息

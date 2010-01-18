@@ -10,7 +10,7 @@
     <link href="css/index.css" rel="stylesheet" type="text/css" />
 
     <script type="text/javascript" src="js/jquery.js"></script>
-
+    <script type="text/javascript" src="js/public.js"></script>
     <script type="text/javascript"> 
     
     $(document).ready(function(){
@@ -18,7 +18,8 @@
         //用户留言
         $("#BtnMessage").click(function(){
             var Data=$("#UserId").val();            
-            window.open("Message.aspx?ID="+Data);
+            
+            openWin("Message.aspx?ID="+Data);
         });
         
         //举报信息
@@ -180,9 +181,9 @@
                                         <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" class="bor_b">
                                             <tr>
                                                 <td width="35%" height="50" align="left" class="f12_grey_3">
-                                                    发布日期：<asp:Label ID="lblFaBuRiQi" CssClass="lblCss" runat="server"></asp:Label><input
+                                                    发布日期：<asp:Label ID="txtfbdate" CssClass="lblCss" runat="server"></asp:Label><input
                                                         type="text" id="UserId" runat="server" style="display: none;" /><br>
-                                                    截止日期：<asp:Label ID="lblXinXiYouXiaoQi" CssClass="lblCss" runat="server"></asp:Label>
+                                                    截止日期：<asp:Label ID="txtEnddate" CssClass="lblCss" runat="server"></asp:Label>
                                                 </td>
                                                 <td width="65%" align="right">
                                                     <input type="button" name="BtnMessage" id="BtnMessage" value="留言给该公司" class="content_btn" />&nbsp;&nbsp;<input
@@ -208,16 +209,16 @@
                                             </tr>
                                             <tr>
                                                 <td width="15%" height="35" align="center" class="f12b_grey c_r c_b">
-                                                    供需：
+                                                    标题：
                                                 </td>
                                                 <td width="15%" align="center" class="c_r c_b">
-                                                    <asp:Label ID="lblGongXu" CssClass="lblCss" runat="server"></asp:Label>
+                                                    <asp:Label ID="txtDemandTitle" CssClass="lblCss" runat="server"></asp:Label>
                                                 </td>
                                                 <td width="17%" align="center" class="f12b_grey c_r c_b">
                                                     被浏览次数：
                                                 </td>
                                                 <td width="13%" align="center" class="c_r c_b">
-                                                    <asp:Label ID="lblDianJiLiang" CssClass="lblCss" runat="server"></asp:Label>次
+                                                    <asp:Label ID="txt" CssClass="lblCss" runat="server"></asp:Label>次
                                                 </td>
                                             </tr>
                                             <tr>
@@ -225,58 +226,28 @@
                                                     煤种：
                                                 </td>
                                                 <td align="center" class="c_r c_b">
-                                                    <asp:Label ID="lblMeiZhong" CssClass="lblCss" runat="server"></asp:Label>
+                                                    <asp:Label ID="txtCoalType" CssClass="lblCss" runat="server"></asp:Label>
                                                 </td>
                                                 <td align="center" class="f12b_grey c_r c_b">
-                                                    产地：
+                                                    需求量：
                                                 </td>
                                                 <td align="center" class="c_r c_b">
-                                                    <asp:Label ID="lblTHSheng" CssClass="lblCss" runat="server"></asp:Label><asp:Label
-                                                        ID="lblTHShi" CssClass="lblCss" runat="server"></asp:Label>
+                                                    <asp:Label ID="txtDemandQuantity" CssClass="lblCss" runat="server"></asp:Label>
                                                 </td>
                                             </tr>
+                                            
                                             <tr>
                                                 <td height="35" align="center" class="f12b_grey c_b c_r">
-                                                    品种：
+                                                    交货地：
                                                 </td>
-                                                <td align="center" class="c_r c_b">
-                                                    <asp:Label ID="lblPinZhong" CssClass="lblCss" runat="server"></asp:Label>
+                                                <td align="center" class="c_r c_b" colspan="2">
+                                                    <asp:Label ID="txtDeliveryPlace" CssClass="lblCss" runat="server"></asp:Label>
                                                 </td>
-                                                <td align="center" class="f12b_grey c_b c_r">
-                                                    提货地：
-                                                </td>
-                                                <td align="center" class="c_r c_b">
-                                                    <asp:Label ID="lblJHSheng" CssClass="lblCss" runat="server"></asp:Label>
+                                                <td height="35" align="center" class="c_r c_b">
+                                                    &nbsp;
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td height="35" align="center" class="f12b_grey c_b c_r">
-                                                    数量：
-                                                </td>
-                                                <td align="center" class="c_r c_b">
-                                                    <asp:Label ID="lblShuLiang" CssClass="lblCss" runat="server"></asp:Label>
-                                                </td>
-                                                <td align="center" class="f12b_grey c_b c_r">
-                                                    报价方式：
-                                                </td>
-                                                <td align="center" class="c_r c_b">
-                                                    <asp:Label ID="lblBaoJiaFangShi" CssClass="lblCss" runat="server"></asp:Label>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td height="35" align="center" class="f12b_grey c_b c_r">
-                                                    价格：
-                                                </td>
-                                                <td align="center" class="c_r c_b">
-                                                    <asp:Label ID="lblJiaGe" CssClass="lblCss" runat="server"></asp:Label>
-                                                </td>
-                                                <td align="center" class="f12b_grey c_b c_r">
-                                                    结算方式：
-                                                </td>
-                                                <td align="center" class="c_r c_b">
-                                                    <asp:Label ID="lblJieSuanFangShi" CssClass="lblCss" runat="server"></asp:Label>
-                                                </td>
-                                            </tr>
+                                            
                                         </table>
                                         <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" class="mar_t10 bor_all mar_b10">
                                             <tr>
@@ -298,150 +269,89 @@
                                                     发热量：
                                                 </td>
                                                 <td width="15%" align="center" class="c_r c_b">
-                                                    <asp:Label ID="lblFaReLiang" CssClass="lblCss" runat="server"></asp:Label>KJ
+                                                    <asp:Label ID="txtCalorificPower" CssClass="lblCss" runat="server"></asp:Label>
                                                 </td>
                                                 <td width="17%" align="center" class="f12b_grey c_r c_b">
                                                     粒度：
                                                 </td>
                                                 <td width="13%" align="center" class="c_r c_b">
-                                                    <asp:Label ID="lblLiDu" CssClass="lblCss" runat="server"></asp:Label>CM
+                                                    <asp:Label ID="txtGranularity" CssClass="lblCss" runat="server"></asp:Label>
                                                 </td>
                                                 <td width="18%" align="center" class="f12b_grey c_r c_b">
-                                                    含硫量：
-                                                </td>
-                                                <td width="22%" align="center" class="c_b c_r">
-                                                    <asp:Label ID="lblHanLiuLiang" CssClass="lblCss" runat="server"></asp:Label>%
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td height="35" align="center" class="f12b_grey c_r c_b">
-                                                    水分：
-                                                </td>
-                                                <td align="center" class="c_r c_b">
-                                                    <asp:Label ID="lblShuiFen" CssClass="lblCss" runat="server"></asp:Label>%
-                                                </td>
-                                                <td align="center" class="f12b_grey c_b c_r">
-                                                    挥发：
-                                                </td>
-                                                <td align="center" class="c_b c_r">
-                                                    <asp:Label ID="lblHuiFa" CssClass="lblCss" runat="server"></asp:Label>%
-                                                </td>
-                                                <td align="center" class="f12b_grey c_b c_r">
                                                     灰分：
                                                 </td>
-                                                <td align="center" class="c_b c_r">
-                                                    <asp:Label ID="lblHuiFen" CssClass="lblCss" runat="server"></asp:Label>%
+                                                <td width="22%" align="center" class="c_b c_r">
+                                                    <asp:Label ID="txtAsh" CssClass="lblCss" runat="server"></asp:Label>%
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td height="35" align="center" class="f12b_grey c_r c_b">
-                                                    固定碳：
-                                                </td>
-                                                <td align="center" class="c_b c_r">
-                                                    <asp:Label ID="lblGuDingTan" CssClass="lblCss" runat="server"></asp:Label>
-                                                </td>
-                                                <td align="center" class="f12b_grey c_b c_r">
-                                                    机械强度：
-                                                </td>
-                                                <td align="center" class="c_b c_r">
-                                                    <asp:Label ID="lblJiXieQiangDu" CssClass="lblCss" runat="server"></asp:Label>%
-                                                </td>
-                                                <td align="center" class="f12b_grey c_b c_r">
-                                                    规格：
-                                                </td>
-                                                <td align="center" class="c_b c_r">
-                                                    <asp:Label ID="lblGuiGe" CssClass="lblCss" runat="server"></asp:Label>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td height="35" align="center" class="f12b_grey c_b c_r">
-                                                    耐磨强度：
-                                                </td>
-                                                <td align="center" class="c_b c_r">
-                                                    <asp:Label ID="lblLaiMoQianDu" CssClass="lblCss" runat="server"></asp:Label>%
-                                                </td>
-                                                <td align="center" class="f12b_grey c_b c_r">
-                                                    反应性：
+                                                    硫份：
                                                 </td>
                                                 <td align="center" class="c_r c_b">
-                                                    <asp:Label ID="lblFanYingXing" CssClass="lblCss" runat="server"></asp:Label>℃
+                                                    <asp:Label ID="txtSulphur" CssClass="lblCss" runat="server"></asp:Label>%
                                                 </td>
                                                 <td align="center" class="f12b_grey c_b c_r">
-                                                    抗碎强度：
+                                                    水分：
                                                 </td>
                                                 <td align="center" class="c_b c_r">
-                                                    <asp:Label ID="lblKangSuiQiangDu" CssClass="lblCss" runat="server"></asp:Label>%
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td height="35" align="center" class="f12b_grey c_b c_r">
-                                                    气孔率：
-                                                </td>
-                                                <td align="center" class="c_b c_r">
-                                                    <asp:Label ID="lblQiKongLv" CssClass="lblCss" runat="server"></asp:Label>%
-                                                </td>
-                                                <td align="center" class="f12b_grey c_b c_r">
-                                                    焦沫含量：
-                                                </td>
-                                                <td align="center" class="c_b c_r">
-                                                    <asp:Label ID="lblJiaoMoHanLiang" CssClass="lblCss" runat="server"></asp:Label>%
-                                                </td>
-                                                <td align="center" class="f12b_grey c_b c_r">
-                                                    沾结指数：
-                                                </td>
-                                                <td align="center" class="c_b c_r">
-                                                    <asp:Label ID="lblLianJieZhiShu" CssClass="lblCss" runat="server"></asp:Label>%
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td height="35" align="center" class="f12b_grey c_b c_r">
-                                                    灰熔融性：
-                                                </td>
-                                                <td align="center" class="c_b c_r">
-                                                    <asp:Label ID="lblHuiRongRongXing" CssClass="lblCss" runat="server"></asp:Label>
-                                                </td>
-                                                <td align="center" class="f12b_grey c_b c_r">
-                                                    可磨性：
-                                                </td>
-                                                <td align="center" class="c_b c_r">
-                                                    <asp:Label ID="lblKeMoXing" CssClass="lblCss" runat="server"></asp:Label>
+                                                    <asp:Label ID="txtWater" CssClass="lblCss" runat="server"></asp:Label>%
                                                 </td>
                                                 <td align="center" class="f12b_grey c_b c_r">
                                                     热稳定性：
                                                 </td>
                                                 <td align="center" class="c_b c_r">
-                                                    <asp:Label ID="lblReWenDingXing" CssClass="lblCss" runat="server"></asp:Label>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                        <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" class="mar_t10 bor_all mar_b10">
-                                            <tr>
-                                                <td>
-                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="content_title">
-                                                        <tr>
-                                                            <td width="12%" class="content_title_on f12b_grey">
-                                                                详细说明
-                                                            </td>
-                                                            <td width="88%" class=' td1234'>
-                                                                &nbsp;
-                                                            </td>
-                                                        </tr>
-                                                    </table>
+                                                    <asp:Label ID="txtHotStability" CssClass="lblCss" runat="server"></asp:Label>%
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td align="left" class="f12b_grey c_r c_b">
-                                                    <asp:Label ID="lblXiangXiLeiRong" CssClass="lblCss" runat="server"></asp:Label>
+                                                <td height="35" align="center" class="f12b_grey c_r c_b">
+                                                    灰熔融性：
+                                                </td>
+                                                <td align="center" class="c_b c_r">
+                                                    <asp:Label ID="txtAshFusing" CssClass="lblCss" runat="server"></asp:Label>
+                                                </td>
+                                                <td align="center" class="f12b_grey c_b c_r">
+                                                    可磨性：
+                                                </td>
+                                                <td align="center" class="c_b c_r">
+                                                    <asp:Label ID="txtWearproof" CssClass="lblCss" runat="server"></asp:Label>%
+                                                </td>
+                                                <td align="center" class="f12b_grey c_b c_r">
+                                                    固定碳含量：
+                                                </td>
+                                                <td align="center" class="c_b c_r">
+                                                    <asp:Label ID="txtCarbon" CssClass="lblCss" runat="server"></asp:Label>
                                                 </td>
                                             </tr>
-                                        </table>
+                                            <tr>
+                                                <td height="35" align="center" class="f12b_grey c_b c_r">
+                                                    机械强度：
+                                                </td>
+                                                <td align="center" class="c_b c_r">
+                                                    <asp:Label ID="txtMaStrength" CssClass="lblCss" runat="server"></asp:Label>%
+                                                </td>
+                                                <td align="center" class="f12b_grey c_b c_r">
+                                                    粘结指数：
+                                                </td>
+                                                <td align="center" class="c_r c_b">
+                                                    <asp:Label ID="txtBinderMark" CssClass="lblCss" runat="server"></asp:Label>%
+                                                </td>
+                                                <td align="center" class="f12b_grey c_b c_r">
+                                                    挥发份：
+                                                </td>
+                                                <td align="center" class="c_b c_r">
+                                                    <asp:Label ID="txtVolatilize" CssClass="lblCss" runat="server"></asp:Label>%
+                                                </td>
+                                            </tr>
+                                        </table>                                        
                                         <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" class="mar_t10 bor_all mar_b10">
                                             <tr>
                                                 <td colspan="4">
                                                     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="content_title">
                                                         <tr>
                                                             <td width="12%" class="content_title_on f12b_grey">
-                                                                运输信息
+                                                                其他信息
                                                             </td>
                                                             <td width="88%">
                                                                 &nbsp;
@@ -455,21 +365,21 @@
                                                     是否提供运输：
                                                 </td>
                                                 <td width="15%" align="center" class="c_r c_b">
-                                                    <asp:Label ID="lblIsTiGongYunShu" CssClass="lblCss" runat="server"></asp:Label>
+                                                    <asp:Label ID="txtIsTransport" CssClass="lblCss" runat="server"></asp:Label>
                                                 </td>
                                                 <td width="17%" align="center" class="f12b_grey c_r c_b">
-                                                    运输方式：
+                                                    运输价格：
                                                 </td>
                                                 <td width="13%" align="center" class="c_r c_b">
-                                                    <asp:Label ID="lblYunshuFangShi" CssClass="lblCss" runat="server"></asp:Label>
+                                                    <asp:Label ID="txtTransportPrice" CssClass="lblCss" runat="server"></asp:Label>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td height="35" align="center" class="f12b_grey c_b c_r">
-                                                    运输说明：
+                                                    结算方法：
                                                 </td>
                                                 <td colspan="3" align="center" class="c_r c_b">
-                                                    <asp:Label ID="lblYunShuShuoMing" CssClass="lblCss" runat="server"></asp:Label>
+                                                    <asp:Label ID="txtEstimateStyle" CssClass="lblCss" runat="server"></asp:Label>
                                                 </td>
                                             </tr>
                                         </table>

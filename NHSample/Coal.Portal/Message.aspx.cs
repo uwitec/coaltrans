@@ -18,7 +18,7 @@ public partial class Message : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        
     }
     protected void BtnSubmit_Click(object sender, EventArgs e)
     {
@@ -28,14 +28,28 @@ public partial class Message : System.Web.UI.Page
         //string MessageTitle = "测试";
         //string MessageContent = "测试内容";
         //int ParentId = 0;
-        CompanyMessageEntity Entity = new CompanyMessageEntity();
-        Entity.Sender = 1;
-        Entity.embracer =Convert.ToInt32(Request["ID"]);
-        Entity.IsSee = 0;
-        Entity.MessageTitle = Common.FiltrationMaliciousCode(MessageTitle.Value);
-        Entity.MessageContent = Common.FiltrationMaliciousCode(MessageContent.Value);
-        Entity.ParentId = 0;
-        AddMessage(Entity);        
+        if (MessageTitle.Value != "" && MessageContent.Value != "")
+        {
+            CompanyMessageEntity Entity = new CompanyMessageEntity();
+            Entity.Sender = 1;
+            Entity.embracer = Convert.ToInt32(Request.QueryString["ID"]);
+            Entity.IsSee = 0;
+            Entity.MessageTitle = Common.FiltrationMaliciousCode(MessageTitle.Value);
+            Entity.MessageContent = Common.FiltrationMaliciousCode(MessageContent.Value);
+            Entity.ParentId = 0;
+            if (AddMessage(Entity))
+            {
+                Msg.InnerHtml = "<span style=\"color:red; font-size:12px; font-weight:bold;\">提交成功！</span>";
+            }
+            else 
+            {
+                Msg.InnerHtml = "<span style=\"color:red; font-size:12px; font-weight:bold;\">提交失败！</span>";
+            }
+        }
+        else
+        {
+            Msg.InnerHtml = "<span style=\"color:red; font-size:12px; font-weight:bold;\">标题或者密码不能为空！</span>";
+        }
     }
     private bool AddMessage(CompanyMessageEntity Entity)
     {
