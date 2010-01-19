@@ -56,7 +56,7 @@
 		</div>
 	</div>
 </div>
-<input id="current_menu" type="hidden" value="menu_5" />
+<input id="current_menu" type="hidden" value="menu_6" />
 <input id="parent_menu" type="hidden" value="menu_4" />
 <p id="h_footer">Copyright &copy; 2009 国家煤炭工业网 主办：中国煤炭工业协会 技术支持：北京中煤易通科技有限公司</p>
 </form>

@@ -181,12 +181,17 @@ namespace Coal.Util
                 if (file.Length > 0)
                 {
                     string ToPath=HttpContext.Current.Server.MapPath(SavaPath + "\\" + FileName);
-
+                    //建立WebClient实例
                     WebClient MywebClient = new WebClient();
+                    //建立WebClient实例的windows网络认证方法
                     MywebClient.Credentials = CredentialCache.DefaultCredentials;
+                    //建立要上传文件的文件流
                     FileStream fs = new FileStream(FilePath, FileMode.Open, FileAccess.Read);
+                    //对上传文件流进行二进制编码
                     BinaryReader r = new BinaryReader(fs);
+                    //将BinaryReader的内容存入到byte[]中去
                     byte[] PostArry = r.ReadBytes((int)fs.Length);
+                    //通过PUT方法，向ToPath这个新文件上传最新内容
                     Stream postStream = MywebClient.OpenWrite(ToPath, "PUT");
                     if (postStream.CanWrite)
                     {

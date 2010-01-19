@@ -114,14 +114,18 @@ namespace   Coal.Util
 
         public static string UploadFile(string Filepath)
         {
+            
             string strFile = "";
-            FileInfo file = new FileInfo(Filepath);
-            string extension = file.Extension.ToUpper();
-            strFile =RandNumber() + extension.ToLower();
-            string path = ConfigurationManager.AppSettings["FCKeditor:UserFilesPath"].ToString();
-            path = path + "Info"; 
-            IOFile.UpLoadFileByPath(Filepath, strFile, path);
-            strFile = path + "/" + strFile;
+            if (!string.IsNullOrEmpty(Filepath))
+            {
+                FileInfo file = new FileInfo(Filepath);
+                string extension = file.Extension.ToUpper();
+                strFile = RandNumber() + extension.ToLower();
+                string path = ConfigurationManager.AppSettings["FCKeditor:UserFilesPath"].ToString();
+                path = path + "Info";
+                IOFile.UpLoadFileByPath(Filepath, strFile, path);
+                strFile = path + "/" + strFile;
+            }
             return strFile;
         }
 

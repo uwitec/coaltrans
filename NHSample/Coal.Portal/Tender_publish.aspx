@@ -14,41 +14,6 @@
 <script type="text/javascript" src="js/jquery.validate.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-    //加载第一级区域列表
-    $.post("Handler/RegionHandler.ashx", { parent_id: 9000 }, function(data, status) {
-        $("#selProvince").append("<option value='-1' >---请选择省份---</option>");
-        $("#selCity").append("<option value='-1' >---请选择城市---</option>");
-        for (var i = 0; i < data.regions.length; i++) {
-            $("#selProvince").append('<option value="' + data.regions[i].id + '">' + data.regions[i].name + '</option>');
-        }
-    }, "json");
-    
-    $("#selProvince").change(function() {
-        var provinceId = $(this).val();
-        if (provinceId > -1) {
-            $.post("Handler/RegionHandler.ashx", { parent_id: provinceId }, function(data, status) {
-                $("#selCity").html("<option value='-1'>---请选择城市---</option>");
-                for (var i = 0; i < data.regions.length; i++) {
-                    $("#selCity").append('<option value="' + data.regions[i].id + '">' + data.regions[i].name + '</option>');
-                }
-            }, "json");
-        }
-        else if (provinceId == -1) {
-            $("#selCity").html("");
-            $("#selCity").append("<option value='-1'>---请选择城市---</option>");
-        }
-    });
-    
-    $("#selIsTransport").change(function(){
-        if($(this).val()=="1")
-        {
-            $("#Price").show();
-        }
-        else
-        {
-            $("#Price").hide();
-        }
-    });
     
     function check()
     {
@@ -218,7 +183,7 @@ $(document).ready(function(){
 		</div>
 	</div>
 </div>
-<input id="current_menu" type="hidden" value="menu_5" />
+<input id="current_menu" type="hidden" value="menu_11" />
 <input id="parent_menu" type="hidden" value="menu_4" />
 <p id="h_footer">Copyright &copy; 2009 国家煤炭工业网 主办：中国煤炭工业协会 技术支持：北京中煤易通科技有限公司</p>
     </form>

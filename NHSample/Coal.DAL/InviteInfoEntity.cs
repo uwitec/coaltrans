@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Text;
 using Coal.DAL;
 
-namespace Coal.Entity
+namespace Coal.DAL
 {
     [Serializable]
     public partial class InviteInfoEntity

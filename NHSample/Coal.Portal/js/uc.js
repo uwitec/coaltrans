@@ -41,6 +41,7 @@ $(document).ready(function() {
                 });
 
                 var current_menu = $("#current_menu").val();
+                
                 if (current_menu != "") {
                     $("#" + current_menu).parent().show();
                     $("#" + current_menu).addClass("current");
