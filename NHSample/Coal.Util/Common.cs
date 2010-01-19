@@ -15,6 +15,7 @@ using System.Collections;
 using System.Data;
 using System.Xml;
 using System.Collections.Generic;
+using Microsoft.JScript;
 
 
 namespace   Coal.Util
@@ -51,5 +52,43 @@ namespace   Coal.Util
                 return null;
             }
         }
+        /// <summary>
+        /// 对字符串进行Escape编码
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string Escape(string str)
+        {
+            if (str == null)
+                return String.Empty;
+
+            StringBuilder sb = new StringBuilder();
+            int len = str.Length;
+
+            for (int i = 0; i < len; i++)
+            {
+                char c = str[i];
+
+                //everything other than the optionally escaped chars _must_ be escaped 
+                if (Char.IsLetterOrDigit(c) || c == '-' || c == '_' || c == '/' || c == '\\' || c == '.')
+                    sb.Append(c);
+                else
+                    sb.Append(Uri.HexEscape(c));
+            }
+
+            return sb.ToString();
+        }
+        /// <summary>
+        /// 对字符串进行UnEscape解码
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string UnEscape(string str)
+        {
+            string EncodeStr = Microsoft.JScript.GlobalObject.unescape(str);
+            return EncodeStr.Replace("\n", "");
+        }
+
+
     }
 }

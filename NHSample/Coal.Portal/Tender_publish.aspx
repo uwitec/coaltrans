@@ -1,4 +1,7 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeFile="Tender_publish.aspx.cs" Inherits="InfoPublish_Tender_publish" %>
+
+<%@ Register Assembly="FredCK.FCKeditorV2" Namespace="FredCK.FCKeditorV2" TagPrefix="FCKeditorV2" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
@@ -49,97 +52,54 @@ $(document).ready(function(){
     
     function check()
     {
-        var Flag=true;
-        if($("#txtDemandTitle").val()=="")
-        {
-            $("#txtDemandTitle").next().html("标题不能为空！");
+        var Flag=true;  
+        $("input[type='text']").each(function(){   
+            $(this).next().html("");         
+            var val=$.trim($(this).val());
+            if(val=="")
+            {                                
+                $(this).next().html("该项不能为空！");
+                Flag=false;
+            }
+        }); 
+        var oEditor = FCKeditorAPI.GetInstance('txtDetails');//content是fck实例的名称,也是表单文本框的名称 
+        oEditor.UpdateLinkedField();//获得内容更新，不做这步操作的话，可能要点第二次才能得到内容结果         
+        var content=$.trim(oEditor.GetXHTML(true));
+        if(content=="")
+        {     
+            $("#yztxtDetails").html("简介不能为空！");
             Flag=false;
         }
         else
         {
-            $("#txtDemandTitle").next().html("");
+            $("#yztxtDetails").html("");
         }
-        if($("#selCoalType").val()=="0")  
-        {  
-            $("#selCoalType").next().html("请选择煤种！");
-            Flag=false;
-        }
-        else
-        {
-            $("#selCoalType").next().html("");
-        }
-        if($("#selGranularity").val()=="0")
-        {
-            $("#selGranularity").next().html("请选择煤炭粒度范围！");
-            Flag=false;
-        } 
-        else
-        {
-            $("#selGranularity").next().html("");
-        } 
-        if($("#txtDemandQuantity").val()=="")
-        {
-            $("#txtDemandQuantity").next().html("需求量不能为空！");
-            Flag=false;
-        }
-        else
-        {
-            $("#txtDemandQuantity").next().html("");
-        }
-        if(($("#selProvince").val()=="-1")&& ($("#selCity").val()=="-1"))
-        {
-            $("#selCity").next().html("请您选择具体的详细地址！");
-            Flag=false;
-        }
-        else
-        {
-            $("#selCity").next().html("");
-        }
-        if($("#txtInfoIndate").val()=="")
-        {
-            $("#txtInfoIndate").next().html("请您填写信息的有效期限！");
-            Flag=false;
-        }
-        else
-        {
-            $("#txtInfoIndate").next().html("");
-        }
-        if($("#selCalorificPower").val()=="0")
-        {
-            $("#selCalorificPower").next().html("请您选择发热量！");
-            Flag=false;
-        }  
-        else
-        {
-            $("#selCalorificPower").next().html("");
-        }    
         return Flag;
     }
     
     $("#BtnSubmit").click(function(){
       if(check())
       {
-        var RequestStr="({";
+        var oEditor = FCKeditorAPI.GetInstance('txtDetails');//content是fck实例的名称,也是表单文本框的名称 
+        oEditor.UpdateLinkedField();//获得内容更新，不做这步操作的话，可能要点第二次才能得到内容结果 
+        
+        var content=$.trim(oEditor.GetXHTML(true));        
+        var RequestStr="({'txtDetails':'"+escape(content)+"',";
         $("input[type='text']").each(function(){
             var name=$(this).attr("name");
             var val=$(this).val();
             RequestStr+="'"+name+"':'"+val+"',";
         });
-        $("select").each(function(){
-            var name=$(this).attr("name");
-            var val=$(this).children("option:selected").val();
-            RequestStr+="'"+name+"':'"+val+"',";
-        });
-        $("textarea").each(function(){
+        $("input[type='file']").each(function(){
             var name=$(this).attr("name");
             var val=$(this).val();
             RequestStr+="'"+name+"':'"+val+"',";
         });
-        RequestStr+="'action':'1'})";
-        RequestStr=eval(RequestStr);
+        RequestStr+="'action':'TenderInfo'})";
+       RequestStr=eval(RequestStr);        
         $.ajax({
            type: "POST",
-           url: "coal_demand_publish.aspx",
+           url: "Handler/InfoManage.ashx",
            data: RequestStr,
            dataType: "json",
            success: function(data) {
@@ -202,152 +162,38 @@ $(document).ready(function(){
 					</div>
 					<div id="tabMenu_Content0">
 						<div class="h_itemsBody h_item_bb">
-							<table cellpadding="0" cellspacing="0" border="0">
-							   <tr>
-							        <td colspan="4"><span style="color:Red;font-size:14px; font-weight:bolder;">基本信息：</span></td>
-							   </tr>
+							<table cellpadding="0" cellspacing="0" border="0">							   
 							   <tr>
 							        <td style="width:90px;text-align:right;"><span>*</span>标题：</td>
-							        <td align="left" colspan="3"><input type="text" size="50" id="txtDemandTitle" name="txtDemandTitle" /><span style="color:Red;"></span></td>							        
+							        <td align="left" colspan="3"><input type="text" size="50" id="txtTenderTitle" name="txtTenderTitle" /><span style="color:Red;"></span></td>							        
 							   </tr> 
 							   <tr>
-							        <td style="width:90px;text-align:right;"><span>*</span>煤种：</td>
-							        <td align="left">
-							            <select id="selCoalType" name="selCoalType">
-							                <option value="0">--请选择煤种--</option>
-							                <option value="动力煤">动力煤</option>
-										    <option value="炼焦煤">炼焦煤</option>
-										    <option value="喷吹煤">喷吹煤</option>
-										    <option value="无烟煤">无烟煤</option>
-										    <option value="洗精煤">洗精煤</option>
-										    <option value="中粒度">中粒度</option>
-							            </select>
+							        <td style="width:90px;text-align:right;"><span>*</span>起始时间：</td>
+							        <td align="left" style="width:300px;">
+							            <input type="text" id="txtStartTime" name="txtStartTime" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"  />
 							            <span style="color:Red;"></span>
 							        </td>
-							        <td style="width:90px; text-align:right;"><span>*</span>粒度：</td>
+							        <td style="width:90px; text-align:right;"><span>*</span>结束时间：</td>
 							        <td align="left">
-							            <select id="selGranularity" name="selGranularity">
-							                <option value="0">---请选择粒度范围---</option>
-							                <option value="20~50毫米">20~50毫米</option>
-							            </select>
+							            <input type="text" id="txtEndTime" name="txtEndTime" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"  />
 							            <span style="color:Red;"></span>
 							        </td>
 							   </tr>
 							   <tr>
-							        <td style="width:90px;text-align:right;"><span>*</span>需求量：</td>
-							        <td align="left">
-							            <input type="text" id="txtDemandQuantity" name="txtDemandQuantity" />（吨）<span style="color:Red;"></span>
+							        <td style="width:90px;text-align:right;"><span>*</span>投标简介：</td>
+							        <td align="left" colspan="3">	
+                                        <FCKeditorV2:FCKeditor ID="txtDetails" runat="server" Height="400">
+                                        </FCKeditorV2:FCKeditor>					            
+                                        <span style="color:Red;" id="yztxtDetails"></span>							            
 							        </td>
-							        <td style="width:90px; text-align:right;"><span>*</span>交货地：</td>
-							        <td align="left">
-							            <select id="selProvince" name="selProvince"></select>-
-							            <select id="selCity" name="selCity"></select><span style="color:Red;"></span>
-							        </td>
-							   </tr>
+							        </tr>
 							   <tr>
-							        <td style="width:90px;text-align:right;"><span>*</span>信息有效期：</td>
-							        <td align="left" colspan="3"><input type="text" id="txtInfoIndate" name="txtInfoIndate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"  /><span style="color:Red;"></span></td>							        
+							        <td style="width:90px;text-align:right;">附件上传：</td>
+							        <td align="left" colspan="3">
+							        <input type="file" id="txtAdjunctUrl" name="txtAdjunctUrl" /></td>							        
 							   </tr> 
 							</table>
-						</div>
-						<div class="h_itemsBody h_item_bb">
-							<table cellpadding="0" cellspacing="0" border="0">
-							   <tr>
-							        <td colspan="6"><span style="color:Red;font-size:14px; font-weight:bolder;">相关指标：</span></td>
-							   </tr>
-							    
-							   <tr>
-							        <td style="text-align:right;" class="style2"><span>*</span>发热量：</td>
-							        <td align="left" class="style3">
-							            <select id="selCalorificPower" name="selCalorificPower">
-							                <option value="0">---请选择范围---</option>
-							                <option value="5000大卡">5000大卡</option>
-							            </select>
-							            <span style="color:Red;"></span>
-							        </td>
-							        <td style="text-align:right;" class="style4">挥发份：</td>
-							        <td align="left" class="style6">
-							            <input type="text" size="5" id="txtVolatilize" name="txtVolatilize" />%
-							        </td>
-							        <td style="text-align:right;" class="style5">灰分：</td>
-							        <td align="left">
-							            <input type="text" size="5" id="txtAsh" name="txtAsh" />%
-							        </td>
-							   </tr>
-							   <tr>
-							        <td style="text-align:right;" class="style2">硫份：</td>
-							        <td align="left" class="style3">
-							            <input type="text" size="5" id="txtSulphur" name="txtSulphur" />%
-							        </td>
-							        <td style="text-align:right;" class="style4">水分：</td>
-							        <td align="left" class="style6">
-							             <input type="text" size="5" id="txtWater" name="txtWater"/>%
-							        </td>
-							        <td style="text-align:right;" class="style5">热稳定性：</td>
-							        <td align="left" style="width:100px;">
-							            <input type="text" size="5" id="txtHotStability" name="txtHotStability"/>
-							        </td>
-							   </tr>
-							   <tr>
-							        <td style="text-align:right;" class="style2">灰熔融性：</td>
-							        <td align="left" class="style3">
-							            <input type="text" size="5" id="txtAshFusing" name="txtAshFusing" />
-							        </td>
-							        <td style="text-align:right;" class="style4">可磨性：</td>
-							        <td align="left" class="style6">
-							             <input type="text" size="5" id="txtWearproof" name="txtWearproof"/>%
-							        </td>
-							        <td style="text-align:right;" class="style5">固定碳：</td>
-							        <td align="left" style="width:100px;">
-							            <select id="selCarbon" name="selCarbon">
-							                <option value="0">---请选择范围---</option>
-							                <option value="20%~50%">20%~50%</option>
-							            </select>
-							        </td>
-							   </tr>
-							   <tr>
-							        <td style="text-align:right;" class="style2">机械强度：</td>
-							        <td align="left" class="style3">
-							            <input type="text" size="5" id="txtMaStrength" name="txtMaStrength" />%
-							        </td>
-							        <td style="text-align:right;" class="style4">粘结指数：</td>
-							        <td align="left" class="style6">
-							             <input type="text" size="5" id="txtBinderMark" name="txtBinderMark"/>%
-							        </td>
-							        <td colspan="2"></td>							        
-							   </tr>							   
-							</table>
-						</div>
-						<div class="h_itemsBody h_item_bb">
-						    <table cellpadding="0" cellspacing="0" border="0">
-							   <tr>
-							        <td colspan="2"><span style="color:Red;font-size:14px; font-weight:bolder;">其他信息：</span></td>
-							   </tr>
-							    
-							   <tr>
-							        <td style="text-align:right; width:150px;">是否要卖家提供运输：</td>
-							        <td align="left">
-							            <select id="selIsTransport" name="selIsTransport">
-							                <option value="0">---请选择---</option>
-							                <option value="0">不需要</option>
-							                <option value="1">需要</option>
-							            </select>
-							        </td>
-							   </tr>
-							   <tr id="Price" style="display:none;">
-							        <td style="text-align:right; width:150px;">价格要求：</td>
-							        <td align="left">
-							            <input type="text" id="txtTransportPrice" name="txtTransportPrice" />
-							        </td>
-							   </tr>
-							   <tr>
-							        <td style="text-align:right; width:150px;">结算方法：</td>
-							        <td align="left">
-							            <textarea id="txtEstimateStyle" name="txtEstimateStyle" rows="5" cols="50"></textarea>
-							        </td>
-							   </tr>				   
-							</table>
-						</div>
+						</div>						
 						<div class="h_itemsBody h_item_bb">
 						    <table cellpadding="0" cellspacing="0" border="0">
 							       <tr>
