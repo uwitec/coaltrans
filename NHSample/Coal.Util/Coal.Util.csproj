@@ -57,6 +57,7 @@
     <Compile Include="DTO\InputObject.cs" />
     <Compile Include="DTO\ResultObject.cs" />
     <Compile Include="EConvert.cs" />
+    <Compile Include="IOFile.cs" />
     <Compile Include="LogUtility.cs" />
     <Compile Include="LogWriter.cs" />
     <Compile Include="LRUObjectCache.cs" />

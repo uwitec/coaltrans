@@ -93,7 +93,7 @@ $(document).ready(function(){
         $("input[type='file']").each(function(){
             var name=$(this).attr("name");
             var val=$(this).val();
-            RequestStr+="'"+name+"':'"+val+"',";
+            RequestStr+="'"+name+"':'"+escape(val)+"',";
         });
         RequestStr+="'action':'TenderInfo'})";
        RequestStr=eval(RequestStr);        

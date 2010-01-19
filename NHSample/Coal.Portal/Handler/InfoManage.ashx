@@ -33,8 +33,7 @@ public class InfoManage : IHttpHandler {
     /// </summary>
     private void AddOrUpdateTenderInfo(HttpContext context)
     {
-        TenderInfoEntity entity = new TenderInfoEntity();
-        
+        TenderInfoEntity entity = new TenderInfoEntity();        
         entity.TenderTitle = Common.FiltrationMaliciousCode(context.Request.Form["txtTenderTitle"]);
         entity.StartTime = Convert.ToDateTime(context.Request.Form["txtStartTime"]);
         entity.EndTime = Convert.ToDateTime(context.Request.Form["txtEndTime"]);
@@ -44,6 +43,7 @@ public class InfoManage : IHttpHandler {
         entity.RankNum = 9999;
         entity.CreateTime = DateTime.Now;
         entity.UserId = LoginContext.CurrentUser.UserId;
+        entity.AdjunctUrl = Common.UploadFile(Common.UnEscape(context.Request.Form["txtAdjunctUrl"]));        
         ResultObject ro=new ResultObject();
         if (AddOrUpdateTender(entity))
         {

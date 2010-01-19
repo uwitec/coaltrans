@@ -16,7 +16,7 @@ using System.Data;
 using System.Xml;
 using System.Collections.Generic;
 using Microsoft.JScript;
-
+using Coal.Util;
 
 namespace   Coal.Util
 {
@@ -89,6 +89,41 @@ namespace   Coal.Util
             return EncodeStr.Replace("\n", "");
         }
 
+        /// <summary>
+        /// 生成时间+随机数
+        /// </summary>
+        /// <returns></returns>
+        public static string RandNumber()
+        {
+            string sYear = DateTime.Now.Year.ToString();//年
+            string sMonth = DateTime.Now.Month.ToString();//月
+            string sDay = DateTime.Now.Day.ToString();//日
+            string sHour = DateTime.Now.Hour.ToString();//小时
+            string sMinute = DateTime.Now.Minute.ToString();//分
+            string sSecond = DateTime.Now.Second.ToString();//秒
+
+            string strText = "";
+            strText = sYear + sMonth + sDay + sHour + sMinute + sSecond;
+
+            Random NumRand = new Random();
+            string sNumRand = NumRand.Next(100000).ToString();
+
+            strText += sNumRand;
+            return strText;
+        }
+
+        public static string UploadFile(string Filepath)
+        {
+            string strFile = "";
+            FileInfo file = new FileInfo(Filepath);
+            string extension = file.Extension.ToUpper();
+            strFile =RandNumber() + extension.ToLower();
+            string path = ConfigurationManager.AppSettings["FCKeditor:UserFilesPath"].ToString();
+            path = path + "Info"; 
+            IOFile.UpLoadFileByPath(Filepath, strFile, path);
+            strFile = path + "/" + strFile;
+            return strFile;
+        }
 
     }
 }
