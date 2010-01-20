@@ -27,7 +27,7 @@ $(document).ready(function(){
                 Flag=false;
             }
         }); 
-        var oEditor = FCKeditorAPI.GetInstance('txtDetails');//content是fck实例的名称,也是表单文本框的名称 
+        var oEditor = FCKeditorAPI.GetInstance('txtDetails');//txtDetails是fck实例的名称,也是表单文本框的名称 
         oEditor.UpdateLinkedField();//获得内容更新，不做这步操作的话，可能要点第二次才能得到内容结果         
         var content=$.trim(oEditor.GetXHTML(true));
         if(content=="")
@@ -45,7 +45,7 @@ $(document).ready(function(){
     $("#BtnSubmit").click(function(){
       if(check())
       {
-        var oEditor = FCKeditorAPI.GetInstance('txtDetails');//content是fck实例的名称,也是表单文本框的名称 
+        var oEditor = FCKeditorAPI.GetInstance('txtDetails');//txtDetails是fck实例的名称,也是表单文本框的名称 
         oEditor.UpdateLinkedField();//获得内容更新，不做这步操作的话，可能要点第二次才能得到内容结果 
         
         var content=$.trim(oEditor.GetXHTML(true));        

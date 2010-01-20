@@ -23,7 +23,7 @@ public class TranList : IHttpHandler
         int surfurContent = EConvert.ToInt(context.Request.Form["surfur_content"]);
         int waterContent = EConvert.ToInt(context.Request.Form["water_content"]);
         int calorificPower = EConvert.ToInt(context.Request.Form["calorific_power"]);
-        
+                
         StringBuilder whereCluase = new StringBuilder();
         List<SqlParameter> paramList = new List<SqlParameter>();
 

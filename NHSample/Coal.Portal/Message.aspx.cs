@@ -55,7 +55,7 @@ public partial class Message : System.Web.UI.Page
     {
         try
         {
-            CompanyMessageEntity.CompanyMessageInfoDao MessageInfoDao = new CompanyMessageEntity.CompanyMessageInfoDao();
+            CompanyMessageEntity.CompanyMessageDAO MessageInfoDao = new CompanyMessageEntity.CompanyMessageDAO();
             MessageInfoDao.Add(Entity);
             return true;
         }

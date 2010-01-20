@@ -16,17 +16,30 @@ public class MessageList : IHttpHandler {
         if (context.Request.Cookies["login_info"]!= null)
         {
             string StrWhere = " embracer="+GetUserId(context.Request.Cookies["login_info"].Value.ToString()).ToString();
+            int pageIndex = EConvert.ToInt(context.Request.Form["page_index"]);
+            int pageSize = EConvert.ToInt(context.Request.Form["page_size"]);
             int see = Convert.ToInt32(context.Request.Form["see"]);
             if (see == 0 || see == 1)
             {
                 StrWhere += " and IsSee=" + see;
             }
 
-            CompanyMessageEntity.CompanyMessageInfoDao Dao = new CompanyMessageEntity.CompanyMessageInfoDao();
-            DataTable dt = Dao.GetMessageTable(StrWhere, null);
+            CompanyMessageEntity.CompanyMessageDAO Dao =new CompanyMessageEntity.CompanyMessageDAO();
+            int rowCount = Dao.GetPagerRowsCount(StrWhere,null);
+            DataTable dt = Dao.GetPager(StrWhere, null, "", pageSize, pageIndex);
             if (dt != null && dt.Rows.Count > 0)
             {
                 ResultObject ro = DataUtility.ConvertToResultObject(dt);
+                ro["totalCount"] = rowCount;
+
+                if (rowCount % pageSize == 0)
+                {
+                    ro["pageCount"] = rowCount / pageSize;
+                }
+                else
+                {
+                    ro["pageCount"] = rowCount / pageSize + 1;
+                }
                 context.Response.Clear();
                 context.Response.Write(ro.ToJSONString());
                 context.Response.End();

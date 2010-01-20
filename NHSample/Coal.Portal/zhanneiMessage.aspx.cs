@@ -20,46 +20,27 @@ public partial class zhanneiMessage : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
-        { 
-            init();        
+        {
+            innit();
         }
     }
-    private void init()
+    private void innit()
     {
-        if (Context.Request.Cookies["login_info"] != null)
+        if (LoginContext.CurrentUser != null)
         {
-            int UserId = GetUserId(Context.Request.Cookies["login_info"].Value);
-            string StrWhere1 = " Where embracer=" + UserId.ToString();
-            string StrWhere2 = StrWhere1 + " and IsSee=0";
-            string StrWhere3 = StrWhere1 + " and IsSee=1";
-            CompanyMessageEntity.CompanyMessageInfoDao DTO = new CompanyMessageEntity.CompanyMessageInfoDao();
-            object val1 = DTO.FindByWhere(StrWhere1);
-            object val2 = DTO.FindByWhere(StrWhere2);
-            object val3 = DTO.FindByWhere(StrWhere3);
-            MessageCount.Text = Convert.ToInt32(val1).ToString();
-            SeeCount.Text = Convert.ToInt32(val3).ToString();
-            NoSeeCount.Text = Convert.ToInt32(val2).ToString();
+            string StrWhere = " embracer=" + LoginContext.CurrentUser.UserId;
+            string StrWhere1 = " embracer=" + LoginContext.CurrentUser.UserId + " and IsSee=0";
+            string StrWhere2 = " embracer=" + LoginContext.CurrentUser.UserId + " and IsSee=1";
+            CompanyMessageEntity.CompanyMessageDAO Dao = new CompanyMessageEntity.CompanyMessageDAO();
+            Total.Text = Dao.GetPagerRowsCount(StrWhere, null).ToString();
+            Nosee.Text = Dao.GetPagerRowsCount(StrWhere1, null).ToString();
+            Issee.Text = Dao.GetPagerRowsCount(StrWhere2, null).ToString();
         }
         else
         {
-            Context.Response.Redirect("login.aspx");
+            Response.Redirect("login.aspx");
         }
+
     }
-    /// <summary>
-    /// 获取用户ID
-    /// </summary>
-    /// <param name="Str">Coocie信息</param>
-    /// <returns></returns>
-    private int GetUserId(string Str)
-    {
-        if (Str == "")
-        {
-            return 0;
-        }
-        else
-        {
-            string[] userInfo = CryptoHelper.Decrypt(Str, "coalchina").Split('|');
-            return Convert.ToInt32(userInfo[2]);
-        }
-    }
+   
 }

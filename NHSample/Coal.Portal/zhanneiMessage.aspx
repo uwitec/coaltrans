@@ -6,48 +6,33 @@
 <head id="Head1" runat="server">
 <title>站内信息</title>
 <link href="css/admin_style.css" type="text/css" rel="stylesheet" rev="stylesheet" media="all" />
+<link href="css/pager.css" type="text/css" rel="stylesheet" rev="stylesheet" media="all" />
 <script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/Pager.js"></script>
 <script type="text/javascript" src="js/uc.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-        var RqData={ see: -1 };
+        var parameterList={"see":"-1"};        
+        var outStr="\"<tr class='TrLis'><td>\"+row['Sender']+\"</td><td>\"+row['MessageTitle']+\"</td><td>\"+row['MessageContent']+\"</td><td><a href='javascript:void(null);'>删除</a></td></tr>\"";
+	    
+		
         $("#SeeList").click(function(){
-           RqData["see"]=1;
+           parameterList["see"]="1";
+           $("#Pager").html("");
            Bind();
         });
         
         $("#NoSeeList").click(function(){
-           RqData["see"]=0; 
+           parameterList["see"]="0"; 
+           $("#Pager").html("");
            Bind();
         });
         function Bind()
         {
-            $.post("Handler/MessageList.ashx",
-            RqData,
-            function(data,textStatus){
-                if(data.rows!=null)
-                {
-                    var context="";
-                    context+="<table style=\"width:800px;font-size:12px; \"><tr><td>发件人</td><td>标题</td><td>内容</td><td>操作</td></tr>"                                
-                    for(var one in data.rows)
-                    {
-                        var row=data.rows[one];
-                        context+="<tr>";
-                        context+="<td>"+row["Sender"]+"</td><td>"+row["MessageTitle"]+"</td><td>"+row["MessageContent"]+"</td><td><a href=\"javascript:void(null);\">删除</a></td>";
-                        context+="</tr>";                    
-                    }
-                    context+="</table>";
-                    $("#MessageList").html(context);
-                }
-                else
-                {
-                    $("#MessageList").html("");
-                    $("#MessageList").html("对不起，没有数据！");
-                }
-            },
-            "json" 
-            );
+            IntPager=new Pager("DisplayList",outStr,"Handler/MessageList.ashx","Pager",10,true,true,parameterList);
+		    IntPager.innit();   
         }
+        
     });
 </script>
 </head>
@@ -61,13 +46,19 @@
 	    </div>
 	    <div class="h_main">
 	        <div>
-		        您收到的留言有&nbsp;<asp:Label ID="MessageCount" runat="server" Text=""></asp:Label>&nbsp;条<p />
-		        已查看留言&nbsp;<asp:Label ID="SeeCount" runat="server" Text=""></asp:Label>&nbsp;条&nbsp;&nbsp;<a href="javascript:void(null)" id="SeeList">查看</a><p />
-		        未查看留言&nbsp;<asp:Label ID="NoSeeCount" runat="server" Text=""></asp:Label>&nbsp;条&nbsp;&nbsp;<a href="javascript:void(null)" id="NoSeeList">查看</a>
-	        </div>
+		        您收到的留言有&nbsp;<asp:Label ID="Total" runat="server" Text="Label"></asp:Label>&nbsp;条<p />
+		        已查看留言&nbsp;<asp:Label ID="Issee" runat="server" Text="Label"></asp:Label>&nbsp;条&nbsp;&nbsp;<a href="javascript:void(null)" id="SeeList">查看</a><p />
+		        未查看留言&nbsp;<asp:Label ID="Nosee" runat="server" Text="Label"></asp:Label>&nbsp;条&nbsp;&nbsp;<a href="javascript:void(null)" id="NoSeeList">查看</a>
+	        </div>	        
 	        <div id="MessageList">
-	        
+	            <table class="HeadTable">
+	                <tr><td class="SenderClass">发件人</td><td class="TitleClass">标题</td><td class="ContentClass">内容</td><td>操作</td></tr>
+	                <tbody id="DisplayList"></tbody>
+	            </table>
 	        </div>
+	        <div id="Pager" class="Pager_display">
+        
+            </div>
 	    </div>
 	    
     </div>

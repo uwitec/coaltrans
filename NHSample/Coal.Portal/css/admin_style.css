@@ -162,3 +162,11 @@
 	/*=== 表单提示 ===*/
 	.h_alert {width:180px; height:17px; background-color:#fff4e0; background-position:3px -144px; border:1px solid #f2b096; line-height:17px; margin:10px 0 0; padding-left:24px; padding-top:2px;}/*=未添加提示=*/
 	.h_over {width:20px; height:20px; background:url(../images/h_icon_right.png) no-repeat; vertical-align:middle; display:inline-block;}/*=已添加提示=*/
+	
+	/*=== 站内消息样式 ===*/
+	.HeadTable{ margin-top:20px; width:100%; font-size:12px; border:1px solid gray; line-height:30px;}
+	.TrOnfocus{ background-color:gray;}
+	.HeadTable td{ height:30px; border-bottom:1px solid gray; border-right:1px solid gray;}
+	.SenderClass{width:100px; text-align:center;}
+	.TitleClass{width:150px; text-align:center;}
+	.ContentClass{width:510px; text-align:center;}
