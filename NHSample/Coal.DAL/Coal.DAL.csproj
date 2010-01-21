@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="CoalTransEntity.cs" />
     <Compile Include="CompanyInfoEntity.cs" />
+    <Compile Include="CompanyIntegrityEntity.cs" />
     <Compile Include="CompanyMessageEntity.cs" />
     <Compile Include="db\DAO.cs" />
     <Compile Include="db\DbInstance.cs" />

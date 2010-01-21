@@ -90,6 +90,17 @@ namespace   Coal.Util
         }
 
         /// <summary>
+        /// 对textarea的字符串进行UnEscape解码
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string textareaUnEscape(string str)
+        {
+            string EncodeStr = Microsoft.JScript.GlobalObject.unescape(str);
+            return EncodeStr.Replace("\n", "<br />");
+        }
+
+        /// <summary>
         /// 生成时间+随机数
         /// </summary>
         /// <returns></returns>

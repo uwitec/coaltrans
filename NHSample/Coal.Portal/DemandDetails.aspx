@@ -14,10 +14,10 @@
     <script type="text/javascript"> 
     
     $(document).ready(function(){
-    
+         var Data=$("#UserId").val(); 
+         
         //用户留言
-        $("#BtnMessage").click(function(){
-            var Data=$("#UserId").val();            
+        $("#BtnMessage").click(function(){                    
             
             openWin("Message.aspx?ID="+Data);
         });
@@ -29,7 +29,7 @@
         
         //诚信评论
         $("#BtnReview").click(function(){
-            alert("诚信评论！");
+            openWin("IntegrityDiscuss.aspx?UserId="+Data);
         });
         
     });
