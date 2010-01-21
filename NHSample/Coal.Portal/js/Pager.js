@@ -254,10 +254,22 @@ function DataBind(isInit)
           for(var one in data.rows)
           {
             var row=data.rows[one];            
-            eval(OutStr);            
+            eval(OutStr);  
+                      
           }
           $("#"+OutPut).html("");
           $("#"+OutPut).html(content);
+          $(".LookContent").each(function(){
+            var Info=$(this).attr("id");
+            $(this).bind("click",{ MsgInfo : Info},deal);
+          });
+          $(".DeleteInfo").each(function(){
+            var Info=$(this).attr("id");
+            $(this).bind("click",{ MsgInfo : Info},deal);
+          });
+          $("#Total").html(data.MsgTotalCount);
+          $("#Issee").html(data.MsgIsSeeCount);
+          $("#Nosee").html(data.MsgNoSeeCount);
           var List=$("#"+OutPut).children();
           List.hover(on,out);
           if(isInit)
@@ -306,6 +318,41 @@ function CreateJson(Data1,Data2)
             Str+="'"+one+"':'"+Data2[one]+"',";
         }
     }
-    Str+="'action':'nothing'})";
+    Str+="'action':'search'})";
     return Str;
+}
+function deal(event)
+{
+    var Str=event.data.MsgInfo;
+    var StrArry=Str.split('_');
+    switch(StrArry[0])
+    {
+        case "Look":
+            window.open("MessageDisplay.aspx?ID="+StrArry[1],"newwindow","width=400,height=300,scrollbars=yes");
+            if(StrArry[2]=="0")
+            {
+                TotalParamet["IsSee"]=0;   
+                $("#"+Display).html("");             
+                DataBind(true);
+            }            
+            break;
+        case "Delete":
+            if(confirm("您确定要删除该记录么？"))
+            {
+                TotalParamet["action"]="delete";
+                $.post("Handler/MessageList.ashx?ID="+StrArry[1],TotalParamet,function(data){
+                    if(data=="1")
+                    {
+                        TotalParamet["action"]="search";
+                        TotalParamet["IsSee"]=StrArry[2];   
+                        $("#"+Display).html("");             
+                        DataBind(true); 
+                    }
+                });
+            }
+            break;
+        default:
+            break;    
+            
+    }
 }

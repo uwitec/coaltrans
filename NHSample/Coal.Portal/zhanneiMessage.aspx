@@ -13,26 +13,34 @@
 <script type="text/javascript">
     $(document).ready(function(){
         var parameterList={"see":"-1"};        
-        var outStr="\"<tr class='TrLis'><td>\"+row['Sender']+\"</td><td>\"+row['MessageTitle']+\"</td><td>\"+row['MessageContent']+\"</td><td><a href='javascript:void(null);'>删除</a></td></tr>\"";
+        var outStr="\"<tr class='TrLis'><td>\"+row['Sender']+\"</td><td><a id='Look_\"+row['ID']+\"_\"+row['IsSee']+\"' class='LookContent' href='javascript:void(null);' title='点击查看'>";
+        outStr+="\"+row['MessageTitle'].substring(0,20)+\"</a></td><td>\"+row['MessageContent'].substring(0,50)+\"</td><td>";
+        outStr+="<a href='javascript:void(null);' id='Delete_\"+row['ID']+\"_\"+row['IsSee']+\"' class='DeleteInfo' title='删除该信息'>删除</a></td></tr>\"";
 	    
 		
         $("#SeeList").click(function(){
            parameterList["see"]="1";
            $("#Pager").html("");
+           $(".HeadTable").show();
            Bind();
         });
         
         $("#NoSeeList").click(function(){
            parameterList["see"]="0"; 
            $("#Pager").html("");
+           $(".HeadTable").show();
            Bind();
         });
+        
         function Bind()
         {
-            IntPager=new Pager("DisplayList",outStr,"Handler/MessageList.ashx","Pager",10,true,true,parameterList);
+            IntPager=new Pager("DisplayList",outStr,"Handler/MessageList.ashx","Pager",7,true,true,parameterList);
 		    IntPager.innit();   
         }
-        
+        function check()
+        {
+            alert("dasdas");
+        }
     });
 </script>
 </head>
@@ -45,13 +53,16 @@
 		    <div id="nav_tree" class="h_tree"></div>
 	    </div>
 	    <div class="h_main">
-	        <div>
-		        您收到的留言有&nbsp;<asp:Label ID="Total" runat="server" Text="Label"></asp:Label>&nbsp;条<p />
-		        已查看留言&nbsp;<asp:Label ID="Issee" runat="server" Text="Label"></asp:Label>&nbsp;条&nbsp;&nbsp;<a href="javascript:void(null)" id="SeeList">查看</a><p />
-		        未查看留言&nbsp;<asp:Label ID="Nosee" runat="server" Text="Label"></asp:Label>&nbsp;条&nbsp;&nbsp;<a href="javascript:void(null)" id="NoSeeList">查看</a>
+	        <div class="MessageHead">
+	            &nbsp;&nbsp;&nbsp;&nbsp;<b><asp:Label ID="LbGreetings" runat="server" Text=""></asp:Label></b>&nbsp;&nbsp;&nbsp;&nbsp;今天是&nbsp;
+	            <b><asp:Label  ID="LbDateTime" runat="server" Text=""></asp:Label></b>&nbsp;<p /><br />
+		        <b>欢迎您登陆煤炭供需平台，为了更好的了解您在平台中的动态，请您随时关注站内消息的查收。</b><p /><br />		       
+		        您已收到的留言有&nbsp;<asp:Label ID="Total" runat="server" Text="Label"></asp:Label>&nbsp;条，
+		        其中已查看留言&nbsp;<asp:Label ID="Issee" runat="server" Text="Label"></asp:Label>&nbsp;条(<a href="javascript:void(null)" id="SeeList">查看</a>)，
+		        未查看留言&nbsp;<asp:Label ID="Nosee" runat="server" Text="Label"></asp:Label>&nbsp;条(<a href="javascript:void(null)" id="NoSeeList">查看</a>)
 	        </div>	        
-	        <div id="MessageList">
-	            <table class="HeadTable">
+	        <div id="MessageList" class="MessageList">
+	            <table class="HeadTable" style="display:none;">
 	                <tr><td class="SenderClass">发件人</td><td class="TitleClass">标题</td><td class="ContentClass">内容</td><td>操作</td></tr>
 	                <tbody id="DisplayList"></tbody>
 	            </table>

@@ -31,7 +31,7 @@ public partial class Message : System.Web.UI.Page
         if (MessageTitle.Value != "" && MessageContent.Value != "")
         {
             CompanyMessageEntity Entity = new CompanyMessageEntity();
-            Entity.Sender = 1;
+            Entity.Sender = LoginContext.CurrentUser.UserId;
             Entity.embracer = Convert.ToInt32(Request.QueryString["ID"]);
             Entity.IsSee = 0;
             Entity.MessageTitle = Common.FiltrationMaliciousCode(MessageTitle.Value);
@@ -48,7 +48,7 @@ public partial class Message : System.Web.UI.Page
         }
         else
         {
-            Msg.InnerHtml = "<span style=\"color:red; font-size:12px; font-weight:bold;\">标题或者密码不能为空！</span>";
+            Msg.InnerHtml = "<span style=\"color:red; font-size:12px; font-weight:bold;\">标题或者内容不能为空！</span>";
         }
     }
     private bool AddMessage(CompanyMessageEntity Entity)

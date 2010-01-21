@@ -170,3 +170,5 @@
 	.SenderClass{width:100px; text-align:center;}
 	.TitleClass{width:150px; text-align:center;}
 	.ContentClass{width:510px; text-align:center;}
+	.MessageHead{ background-color:#fef3df; border:1px solid #e85d32; padding:10px; margin-top:5px;}
+	.MessageList{ height:270px; margin-bottom:15px; }
