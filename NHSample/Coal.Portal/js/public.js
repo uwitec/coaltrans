@@ -38,3 +38,8 @@ win.focus(); //新窗口获得焦点
 
 }
 
+function WindowOpen(Str)
+{
+    var Value=$("#"+Str).val();
+    window.open("IntegrityList.aspx?ID="+Value);
+}

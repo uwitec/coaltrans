@@ -59,6 +59,8 @@ public partial class DemandDetails : System.Web.UI.Page
         txtTransportPrice.Text = entity.TransportPrice;
         txtEstimateStyle.Text =entity.EstimateStyle;
         UserId.Value = entity.UserId.ToString();
+        txtfbdate.Text = entity.CreateTime.Value.ToString("yyyy年MM月dd日");
+        txtEnddate.Text = entity.InfoIndate.Value.ToString("yyyy年MM月dd日");
         contactInfoInnit(entity.UserId.Value);
     }
 

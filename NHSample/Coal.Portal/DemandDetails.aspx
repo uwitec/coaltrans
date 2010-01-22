@@ -200,8 +200,8 @@
                                                             <td width="12%" class="content_title_on f12b_grey">
                                                                 基本信息
                                                             </td>
-                                                            <td width="88%">
-                                                                &nbsp;
+                                                            <td width="88%" align="right">
+                                                                <a href="javascript:void(null);" onclick="WindowOpen('UserId')">查看该公司的诚信评论</a>&nbsp;&nbsp;&nbsp;&nbsp;
                                                             </td>
                                                         </tr>
                                                     </table>

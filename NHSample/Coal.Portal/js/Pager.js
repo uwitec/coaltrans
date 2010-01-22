@@ -242,10 +242,11 @@ function paging(event)
     innitPager();
 }
 function DataBind(isInit)
-{
+{   
    $.post(AshxUrl,
    TotalParamet,
-   function(data,textStatus) {    
+   function(data,textStatus) {  
+         
        if(data.rows!=null)
        {
           reqData.page_count = data.pageCount;       
@@ -254,8 +255,7 @@ function DataBind(isInit)
           for(var one in data.rows)
           {
             var row=data.rows[one];            
-            eval(OutStr);  
-                      
+            eval(OutStr);           
           }
           $("#"+OutPut).html("");
           $("#"+OutPut).html(content);

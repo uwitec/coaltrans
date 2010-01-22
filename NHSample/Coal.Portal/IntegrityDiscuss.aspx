@@ -10,41 +10,55 @@
     $(document).ready(function(){
         var UrlStr=location.toString();
         $("#BtnSubmit").click(function(){
-            var Reaqata="({";
-            $("input[type='radio']").each(function(){
-                if($(this).attr("checked"))
-                {
-                    Reaqata+="'"+$(this).attr("name")+"':'"+$(this).val()+"',";
-                }
-            }); 
-            $("textarea").each(function(){
-                Reaqata+="'"+$(this).attr("name")+"':'"+escape($(this).val())+"',";
-            });           
-            Reaqata+="'action':'add'})";
-            Reaqata=eval(Reaqata);
-            $.ajax({
-                type: "POST",
-                url: UrlStr,
-                data: Reaqata,
-                dataType: "json",
-                success: function(data) {
-                    if (data.statusCode == 1) {
-                        $("#Msg").empty().html("提交成功");
+            if(check())
+            {
+                var Reaqata="({";
+                $("input[type='radio']").each(function(){
+                    if($(this).attr("checked"))
+                    {
+                        Reaqata+="'"+$(this).attr("name")+"':'"+$(this).val()+"',";
                     }
-                    else {
-                        $("#Msg").empty().html("提交失败");
+                }); 
+                $("textarea").each(function(){
+                    Reaqata+="'"+$(this).attr("name")+"':'"+escape($(this).val())+"',";
+                });           
+                Reaqata+="'action':'add'})";
+                Reaqata=eval(Reaqata);
+                $.ajax({
+                    type: "POST",
+                    url: UrlStr,
+                    data: Reaqata,
+                    dataType: "json",
+                    success: function(data) {
+                        if (data.statusCode == 1) {
+                            $("#Msg").empty().html("提交成功");
+                        }
+                        else {
+                            $("#Msg").empty().html("提交失败");
+                        }
                     }
-                }
-            });
+                });
+            }
         });
+        
+        function check()
+        {
+            var Flag=true;
+            if($("#txtContent").val()=="")
+            {
+                $("#Msg").empty().html("内容不能为空！");
+                Flag=false;
+            }
+            return Flag;
+        }
     });
         
     </script>
 </head>
 <body>
     <form id="form1" runat="server">
-    <div style=" background-color:#fef3df; border:1px solid #e85d32; height:200px;  padding:15px; font-size:12px;">
-       <div style="width:100%; height:50px;">诚信分值：<br />
+    <div style=" background-color:#fef3df; border:1px solid #e85d32; height:auto;   padding:15px; font-size:12px;">
+       <div style="width:100%; height:auto; margin-bottom:10px;">诚信分值：<br />
        <input type="radio" name="txtIntegritynumber" value="0" />0分
        <input type="radio" name="txtIntegritynumber" value="1" />1分
        <input type="radio" name="txtIntegritynumber" value="2" />2分

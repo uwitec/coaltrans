@@ -37,10 +37,6 @@
             IntPager=new Pager("DisplayList",outStr,"Handler/MessageList.ashx","Pager",7,true,true,parameterList);
 		    IntPager.innit();   
         }
-        function check()
-        {
-            alert("dasdas");
-        }
     });
 </script>
 </head>

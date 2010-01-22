@@ -28,6 +28,7 @@ namespace Coal.DAL
             public const string Integritynumber = "Integritynumber";
             public const string Content = "Content";
             public const string Discusser = "Discusser";
+            public const string CreateTime = "CreateTime";
         }
         #endregion
 
@@ -37,7 +38,7 @@ namespace Coal.DAL
             sqlHelper = new SqlHelper(DBName);
         }
 
-        public CompanyIntegrityEntity(int id, int companyid, int integritynumber, string content, int discusser)
+        public CompanyIntegrityEntity(int id, int companyid, int integritynumber, string content, int discusser, DateTime createtime)
         {
             this.ID = id;
 
@@ -48,6 +49,8 @@ namespace Coal.DAL
             this.Content = content;
 
             this.Discusser = discusser;
+
+            this.CreateTime = createtime;
 
         }
         #endregion
@@ -98,6 +101,15 @@ namespace Coal.DAL
             set;
         }
 
+        /// <summary>
+        /// 评论时间
+        /// </summary>
+        public DateTime? CreateTime
+        {
+            get;
+            set;
+        }
+
         #endregion
 
         public class CompanyIntegrityDAO : SqlDAO<CompanyIntegrityEntity>
@@ -115,19 +127,21 @@ namespace Coal.DAL
 
                 StringBuilder strSql = new StringBuilder();
                 strSql.Append("insert into CompanyIntegrity(");
-                strSql.Append("CompanyId,Integritynumber,Content,Discusser)");
+                strSql.Append("CompanyId,Integritynumber,Content,Discusser,CreateTime)");
                 strSql.Append(" values (");
-                strSql.Append("@CompanyId,@Integritynumber,@Content,@Discusser)");
+                strSql.Append("@CompanyId,@Integritynumber,@Content,@Discusser,@CreateTime)");
                 SqlParameter[] parameters = {
 					new SqlParameter("@CompanyId",SqlDbType.Int),
 					new SqlParameter("@Integritynumber",SqlDbType.Int),
 					new SqlParameter("@Content",SqlDbType.Text),
-					new SqlParameter("@Discusser",SqlDbType.Int)
+					new SqlParameter("@Discusser",SqlDbType.Int),
+					new SqlParameter("@CreateTime",SqlDbType.DateTime)
 					};
                 parameters[0].Value = entity.CompanyId;
                 parameters[1].Value = entity.Integritynumber;
                 parameters[2].Value = entity.Content;
                 parameters[3].Value = entity.Discusser;
+                parameters[4].Value = entity.CreateTime;
 
                 sqlHelper.ExecuteSql(strSql.ToString(), parameters);
             }
@@ -140,7 +154,8 @@ namespace Coal.DAL
                 strSql.Append("CompanyId=@CompanyId,");
                 strSql.Append("Integritynumber=@Integritynumber,");
                 strSql.Append("Content=@Content,");
-                strSql.Append("Discusser=@Discusser");
+                strSql.Append("Discusser=@Discusser,");
+                strSql.Append("CreateTime=@CreateTime");
 
                 strSql.Append(" where ID=@ID");
                 SqlParameter[] parameters = {
@@ -148,13 +163,15 @@ namespace Coal.DAL
 					new SqlParameter("@CompanyId",SqlDbType.Int),
 					new SqlParameter("@Integritynumber",SqlDbType.Int),
 					new SqlParameter("@Content",SqlDbType.Text),
-					new SqlParameter("@Discusser",SqlDbType.Int)
+					new SqlParameter("@Discusser",SqlDbType.Int),
+					new SqlParameter("@CreateTime",SqlDbType.DateTime)
 					};
                 parameters[0].Value = entity.ID;
                 parameters[1].Value = entity.CompanyId;
                 parameters[2].Value = entity.Integritynumber;
                 parameters[3].Value = entity.Content;
                 parameters[4].Value = entity.Discusser;
+                parameters[5].Value = entity.CreateTime;
 
                 sqlHelper.ExecuteSql(strSql.ToString(), parameters);
             }
@@ -201,6 +218,10 @@ namespace Coal.DAL
                     {
                         entity.Discusser = (int)row["Discusser"];
                     }
+                    if (!Convert.IsDBNull(row["CreateTime"]))
+                    {
+                        entity.CreateTime = (DateTime)row["CreateTime"];
+                    }
                     return entity;
                 }
                 else
@@ -242,6 +263,10 @@ namespace Coal.DAL
                         if (!Convert.IsDBNull(row["Discusser"]))
                         {
                             entity.Discusser = (int)row["Discusser"];
+                        }
+                        if (!Convert.IsDBNull(row["CreateTime"]))
+                        {
+                            entity.CreateTime = (DateTime)row["CreateTime"];
                         }
 
                         list.Add(entity);
@@ -295,20 +320,25 @@ namespace Coal.DAL
             /// <param name="pageSize">每页显示记录数</param>
             /// <param name="pageNumber">当前页码</param>
             /// <returns>datatable</returns>
-            public DataTable GetPager(string where, SqlParameter[] param, string orderBy, int pageSize, int pageNumber)
+            public DataTable GetPager(string where, SqlParameter[] param, string orderBy, bool OrderMethod, int pageSize, int pageNumber)
             {
                 int startNumber = pageSize * (pageNumber - 1);
+
+                string method = "ASC";
+                if (OrderMethod)
+                    method = "DESC";
+
 
                 string sql = string.Format("SELECT TOP {0} * FROM (SELECT ROW_NUMBER() OVER", pageSize);
 
                 if (!string.IsNullOrEmpty(orderBy))
                 {
-                    sql += string.Format(" (ORDER BY {0})", orderBy);
+                    sql += string.Format(" (ORDER BY {0} {1})", orderBy, method);
                 }
                 else
                 {
 
-                    sql += " (ORDER BY ID)";//默认按主键排序
+                    sql += " (ORDER BY ID " + method + ")";//默认按主键排序
 
                 }
 

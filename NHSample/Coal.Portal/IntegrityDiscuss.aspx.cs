@@ -33,6 +33,7 @@ public partial class IntegrityDiscuss : System.Web.UI.Page
         entity.Integritynumber = EConvert.ToInt(Request.Form["txtIntegritynumber"]);
         entity.Content = Common.textareaUnEscape(Request.Form["txtContent"]);
         entity.Discusser = 0;
+        entity.CreateTime = DateTime.Now;
         if (LoginContext.CurrentUser != null)
         {
             entity.Discusser = LoginContext.CurrentUser.UserId;

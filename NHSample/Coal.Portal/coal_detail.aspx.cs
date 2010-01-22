@@ -5,6 +5,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Coal.BLL;
 using Coal.Entity;
+using Coal.DAL;
+using Coal.ViewModel;
 
 public partial class Detail : System.Web.UI.Page
 {
@@ -39,8 +41,8 @@ public partial class Detail : System.Web.UI.Page
                 if (entity != null)
                 {
                     lblGongXu.Text = entity.Title;
-                    lblFaBuRiQi.Text = entity.CreatedOn.Value.ToString("yyyy-MM-dd");
-                    lblXinXiYouXiaoQi.Text = entity.ValidDate.Value.ToString("yyyy-MM-dd");
+                    lblFaBuRiQi.Text = entity.CreatedOn.Value.ToString("yyyy年MM月dd日");
+                    lblXinXiYouXiaoQi.Text = entity.ValidDate.Value.ToString("yyyy年MM月dd日");
                     lblMeiZhong.Text = entity.CoalTypeName.ToString();
                     lblPinZhong.Text = entity.CategoryName.ToString();
                     lblTHSheng.Text = entity.ProvinceName.ToString();
@@ -57,6 +59,7 @@ public partial class Detail : System.Web.UI.Page
                     lblShuiFen.Text = entity.WaterContent.ToString();
                     lblHuiFa.Text = entity.Volatility.ToString();
                     UserId.Value = entity.UserId.Value.ToString();
+                   
                     //lblGuDingTan.Text = entity.GuDingTan.ToString();
                     //lblJiXieQiangDu.Text = entity.JiXieQiangDu.ToString();
                     //lblGuiGe.Text = entity.GuiGe.ToString();
@@ -84,6 +87,7 @@ public partial class Detail : System.Web.UI.Page
                     //lblAddress.Text = entity.Address;
                     //lblPostCode.Text = entity.PostCode;
                     //AddClick(id);
+                    contactInfoInnit(LoginContext.CurrentUser.UserId);
                 }
             }
             else
@@ -95,5 +99,17 @@ public partial class Detail : System.Web.UI.Page
         {
             Response.Redirect("login.aspx");
         }
+    }
+    private void contactInfoInnit(int UserId)
+    {
+        UserInfoModel model = new UserInfoModel();
+        UserManager.GetUserInfo(UserId, model);
+        lblLianXiRen.Text = model.TrueName;
+        lblPhone.Text = model.FixedTel;
+        lblMobile.Text = model.MobileTel;
+        lblFax.Text = model.Fax;
+        lblMail.Text = model.BizEmail;
+        //lblPostCode.Text=model.
+
     }
 }

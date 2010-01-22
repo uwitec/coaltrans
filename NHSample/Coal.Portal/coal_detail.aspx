@@ -199,8 +199,8 @@
                                                             <td width="12%" class="content_title_on f12b_grey">
                                                                 基本信息
                                                             </td>
-                                                            <td width="88%">
-                                                                &nbsp;
+                                                            <td width="88%" align="right">
+                                                                <a href="javascript:void(null);" onclick="WindowOpen('UserId')">查看该公司的诚信评论</a>&nbsp;&nbsp;&nbsp;&nbsp;
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -413,66 +413,7 @@
                                                     <asp:Label ID="lblReWenDingXing" CssClass="lblCss" runat="server"></asp:Label>
                                                 </td>
                                             </tr>
-                                        </table>
-                                        <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" class="mar_t10 bor_all mar_b10">
-                                            <tr>
-                                                <td>
-                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="content_title">
-                                                        <tr>
-                                                            <td width="12%" class="content_title_on f12b_grey">
-                                                                详细说明
-                                                            </td>
-                                                            <td width="88%" class=' td1234'>
-                                                                &nbsp;
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" class="f12b_grey c_r c_b">
-                                                    <asp:Label ID="lblXiangXiLeiRong" CssClass="lblCss" runat="server"></asp:Label>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                        <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" class="mar_t10 bor_all mar_b10">
-                                            <tr>
-                                                <td colspan="4">
-                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="content_title">
-                                                        <tr>
-                                                            <td width="12%" class="content_title_on f12b_grey">
-                                                                运输信息
-                                                            </td>
-                                                            <td width="88%">
-                                                                &nbsp;
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td width="15%" height="35" align="center" class="f12b_grey c_r c_b">
-                                                    是否提供运输：
-                                                </td>
-                                                <td width="15%" align="center" class="c_r c_b">
-                                                    <asp:Label ID="lblIsTiGongYunShu" CssClass="lblCss" runat="server"></asp:Label>
-                                                </td>
-                                                <td width="17%" align="center" class="f12b_grey c_r c_b">
-                                                    运输方式：
-                                                </td>
-                                                <td width="13%" align="center" class="c_r c_b">
-                                                    <asp:Label ID="lblYunshuFangShi" CssClass="lblCss" runat="server"></asp:Label>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td height="35" align="center" class="f12b_grey c_b c_r">
-                                                    运输说明：
-                                                </td>
-                                                <td colspan="3" align="center" class="c_r c_b">
-                                                    <asp:Label ID="lblYunShuShuoMing" CssClass="lblCss" runat="server"></asp:Label>
-                                                </td>
-                                            </tr>
-                                        </table>
+                                        </table>                                       
                                         <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" class="mar_t10 bor_all mar_b10">
                                             <tr>
                                                 <td colspan="6">

@@ -201,3 +201,11 @@ body {
 	background-repeat: no-repeat;
 	margin-top: 10px;
 }
+.DisplayItem{ margin-left:70px;
+	margin-bottom:15px;
+	border:1px solid gray; 
+	width:620px; 
+	color:Black;           
+}
+.DisplayItem dl,dt,dd{ margin-left:10px; margin-top:5px;}
+.DisplayItem span{ font-weight:bolder;}

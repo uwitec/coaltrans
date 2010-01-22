@@ -8,8 +8,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div style=" background-color:#fef3df; border:1px solid #e85d32; height:200px;  padding:15px; font-size:12px;">
-       <div style="width:100%; height:50px;">标题：<input runat="server" type="text" id="MessageTitle" /></div> 
+    <div style=" background-color:#fef3df; border:1px solid #e85d32; height:auto;  padding:15px; font-size:12px;">
+       <div style="width:100%; height:auto; margin-bottom:10px;">标题：<input runat="server" type="text" id="MessageTitle" /></div> 
         <div style="width:100%;">内容：<textarea runat="server" id="MessageContent" cols="30" rows="5"></textarea></div><p />
         <div style="width:100%; height:30px;"><div style="margin-left:70%;"><input type="button" ID="BtnSubmit" style="border:1px solid #000; width:60px; height:25px; " runat="server" value="提交" onserverclick="BtnSubmit_Click" /></div></div><p />
         <div runat="server" id="Msg"></div>

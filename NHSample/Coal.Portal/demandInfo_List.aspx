@@ -111,7 +111,7 @@
                        content.append("<div class='cp_all'>");
                        content.append("<div class='cp_images'><img src='images/jx01.jpg' /></div>");
                        content.append("<div class='cp_cotton'>");
-                       content.append("<h1><a href='DemandDetails.aspx?ID=" + row["ID"] + "'>");
+                       content.append("<h1><a href='DemandDetails.aspx?ID=" + row["ID"] + "&type=2'>");
                        content.append(row["ID"]);
                        content.append(row["DemandTitle"]);
                        content.append("</a></h1><ul><li>");
