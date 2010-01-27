@@ -32,6 +32,17 @@
            Bind();
         });
         
+        var List=$("#DisplayList").children();
+        List.hover(on,out);
+        
+        function on()
+        {
+            $(this).css({"background-color":"#999"});   
+        }
+        function out()
+        {
+            $(this).css({"background-color":"white"});
+        }
         function Bind()
         {
             IntPager=new Pager("DisplayList",outStr,"Handler/MessageList.ashx","Pager",7,true,true,parameterList);

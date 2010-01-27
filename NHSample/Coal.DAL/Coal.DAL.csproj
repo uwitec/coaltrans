@@ -46,6 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminLoginEntity.cs" />
+    <Compile Include="AdminManage.cs" />
+    <Compile Include="AdminModulesEntity.cs" />
+    <Compile Include="AdminRoleEntity.cs" />
     <Compile Include="CoalTransEntity.cs" />
     <Compile Include="CompanyInfoEntity.cs" />
     <Compile Include="CompanyIntegrityEntity.cs" />

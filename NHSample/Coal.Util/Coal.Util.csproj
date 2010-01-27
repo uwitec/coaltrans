@@ -62,6 +62,7 @@
     <Compile Include="LogWriter.cs" />
     <Compile Include="LRUObjectCache.cs" />
     <Compile Include="MailHelper.cs" />
+    <Compile Include="MessageBox.cs" />
     <Compile Include="ObjectCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

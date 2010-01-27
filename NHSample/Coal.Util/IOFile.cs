@@ -200,9 +200,9 @@ namespace Coal.Util
                     postStream.Close();
                 }                
             }
-            catch
-            { 
-            
+            catch(Exception e)
+            {
+                LogUtility.WriteErrLog(e);
             }
         }
         /// <summary>

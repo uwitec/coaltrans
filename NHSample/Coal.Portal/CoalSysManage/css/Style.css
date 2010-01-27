@@ -1,0 +1,67 @@
+﻿body 
+{
+	margin:0px;
+	font-size:12px;
+}
+a 
+{
+	text-decoration:none; 
+	color:Black;
+}
+
+/*Top.aspx*/
+.TopBar
+{
+	background-color:#f4f5f4; 
+	text-align:right; 
+	vertical-align:bottom; 
+	padding-right:50px; 
+	padding-bottom:10px;
+}
+/*menu.aspx*/
+.Menu
+{
+	width:95%; 
+	height:35px;
+	margin-bottom:10px;
+	}
+.Menu div
+{
+	display:inline;
+	height:35px;
+	line-height:35px;
+	width:45%;
+	background:url(../images/menu.gif) repeat-x;
+	float:left;
+	border:1px solid gray;
+	margin-left:5px;
+	text-align:center;
+	
+	}
+.link
+{
+	font-size:14px;
+	font-weight:bolder;
+	color:#9f1313;
+	}	
+.nolink
+{
+	font-size:14px;
+	color:Black;
+	font-weight:100;
+	}
+.MenuBottom{width:95%; height:35px; background-color:#f5dcdc; margin-left:2px; border:1px solid #cfcbcb; margin-top:10px; line-height:35px; text-align:center; font-weight:bold;}
+.Menulist1{ width:138px; height:20px; line-height:20px; background:url(../images/menulibg.gif) no-repeat; margin-top:5px; margin-left:2px; text-align:center; margin-bottom:5px;}
+.Menulist1 a{ text-decoration:none; color:Black;}
+.Menulist1 div{width:138px; height:20px; line-height:20px; float:left; margin-top:5px;  background:url(../images/menu_arrow.gif) no-repeat left #e8e2e2; }
+.NoMenulist1{ width:138px; height:20px; line-height:20px; background:url(../images/menulibg1.gif) no-repeat; margin-top:5px; margin-left:2px; text-align:center; margin-bottom:5px;}
+.NoMenulist1 a{ text-decoration:none; color:Black;}
+.NoMenulist1 div{width:138px; height:20px; line-height:20px; float:left; margin-top:5px; background:url(../images/menu_arrow.gif) no-repeat left #e8e2e2;}
+
+.NextMenulist1{width:138px; height:20px; line-height:20px; float:left; margin-top:5px;  background:url(../images/menu_arrow.gif) no-repeat left #e8e2e2; }
+.NextMenulist1 a{ text-decoration:none; color:Black;}
+.NextMenulist1 div{width:138px; height:20px; line-height:20px; float:left; margin-top:5px;  background:url(../images/menu_arrow.gif) no-repeat left #e8e2e2; }
+
+.NoNextMenulist1{width:138px; height:20px; line-height:20px; float:left; margin-top:5px;  background:url(../images/menu_arrow.gif) no-repeat left #e8e2e2; }
+.NoNextMenulist1 a{ text-decoration:none; color:Black;}
+.NoNextMenulist1 div{width:138px; height:20px; line-height:20px; float:left; margin-top:5px;  background:url(../images/menu_arrow.gif) no-repeat left #e8e2e2; }
