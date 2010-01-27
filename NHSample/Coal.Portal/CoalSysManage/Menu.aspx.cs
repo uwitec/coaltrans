@@ -54,7 +54,14 @@ public partial class CoalSysManage_Public_Menu : System.Web.UI.Page
                 int ModeleId = EConvert.ToInt(row["ModuleId"]);
                 string ModuleName = row["ModuleName"].ToString();
                 string ActionLink = row["ActionLink"].ToString();
-                InnerHtml += "<div class='Menulist1'><a ";
+                if (GetChildCount(RoleId, ModeleId) > 0)
+                {
+                    InnerHtml += "<div class='Menulist1'><a ";
+                }
+                else
+                {
+                    InnerHtml += "<div class='NoMenulist1'><a ";
+                }
                 if (!string.IsNullOrEmpty(ActionLink))
                 {
                     InnerHtml += "href='javascript:void(null);' pid='" + ActionLink + "'";
@@ -92,7 +99,14 @@ public partial class CoalSysManage_Public_Menu : System.Web.UI.Page
                 int ModeleId = EConvert.ToInt(row["ModuleId"]);
                 string ModuleName = row["ModuleName"].ToString();
                 string ActionLink = row["ActionLink"].ToString();
-                InnerHtml += "<div style='display:none;'>" + Str + "<a ";
+                if (GetChildCount(RoleId, ModeleId) > 0)
+                {
+                    InnerHtml += Str + "<div class='Menulist1' style='display:none;'><a ";
+                }
+                else
+                {
+                    InnerHtml += Str + "<div class='NoMenulist1' style='display:none;'><a ";
+                }
                 if (!string.IsNullOrEmpty(ActionLink))
                 {
                     InnerHtml += "href='javascript:void(null);' pid='"+ActionLink+"'";
@@ -112,5 +126,13 @@ public partial class CoalSysManage_Public_Menu : System.Web.UI.Page
         {
             return "";
         }
+    }
+    private int GetChildCount(int RoleId, int ParentId)
+    {
+        string SearchStr = string.Empty;
+        SearchStr += "SELECT A.* FROM PowerAssign as p,AdminModules as A ";
+        SearchStr += "WHERE p.ModuleId=A.ModuleId and p.RoleId=" + RoleId + " and A.ParentId=" + ParentId;
+        DataSet ds = AdminManage.GetAdminDs(SearchStr);
+        return ds.Tables[0].Rows.Count;
     }
 }

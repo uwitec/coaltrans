@@ -12,7 +12,7 @@
             setInterval(SetWindow,100);          
             $("#ShrinkBtn").click(function(){ 
                 var obj= parent.document.getElementById("frame-body");
-                if(obj.cols=="180, 10, *")
+                if(obj.cols=="200, 10, *")
                 {
                     $(this).attr("src","images/arrow_right.gif");
                     obj.cols="0, 10, *";
@@ -21,7 +21,7 @@
                 else
                 {
                     $(this).attr("src","images/arrow_left.gif");
-                    obj.cols="180, 10, *";
+                    obj.cols="200, 10, *";
                     $(this).parents("a").attr("title","关闭工作区");
                     
                 }

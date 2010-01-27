@@ -30,7 +30,7 @@
         <div><a href="javascript:void(null);" class="nolink" id="Help">帮助</a></div>
     </div>
     <div style="clear:both;"></div>
-    <div style="width:90%; height:auto; border:1px solid red; margin-left:2px; padding:2px;" id="MenuList" runat="server">
+    <div class="MenuFrame" id="MenuList" runat="server">
         
     </div>
     <div style="width:90%; height:auto; border:1px solid red; margin-left:2px; display:none;padding:2px;"></div>

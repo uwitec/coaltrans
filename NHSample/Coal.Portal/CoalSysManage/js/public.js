@@ -18,13 +18,16 @@ function Menu()
                     {
                         $(this).click(function(){
                             parent.document.getElementById("main-frame").src=$(this).attr("pid");
-                            ChildList.hide();
-                        });    
+                            DivHide(DivList);
+                            SetHeight();
+                        });     
                     } 
                     else
                     {
-                        $(this).click(function(){
-                            ChildList.hide();
+                        $(this).click(function(){                        
+                            DivList.children("div").hide(); 
+                            DivHide(DivList);
+                            SetHeight();
                         }); 
                     }               
                 }
@@ -33,15 +36,16 @@ function Menu()
                     $(this).click(function(){
                         if($(obj).attr("class")=="Menulist1")
                         {  
-                            DivList.children("div").hide();
-                            DivList.each(function(){$(this).attr("class","Menulist1");});                 
+                            DivHide(DivList);               
                             ChildList.show();
                             $(obj).attr("class","NoMenulist1");
+                            SetHeight();
                         }
                         else
                         {
                             ChildList.hide();
                             $(obj).attr("class","Menulist1");
+                            SetHeight();
                         }
                     });
                 }
@@ -65,34 +69,85 @@ function SetOthers(ChildList)
                 {
                     $(this).click(function(){
                         parent.document.getElementById("main-frame").src=$(this).attr("pid");
-                        DivList.children("div").hide(); 
+                        DivHide(DivList);
+                        SetHeight();
                     });    
                 } 
                 else
                 {
                     $(this).click(function(){                        
                         DivList.children("div").hide(); 
+                        DivHide(DivList);
+                        SetHeight();
                     });
                 }               
             }
             else
             {
                 $(this).click(function(){
-                    var Display=$(obj).attr("Lid");
-                    if(Display==null||Display=="display")
-                    {
-                        DivList.children("div").hide();                                       
+                    if($(obj).attr("class")=="Menulist1")
+                    {  
+                        DivHide(DivList);               
                         ChildListArr.show();
-                        $(obj).attr("Lid","Nodisplay");
+                        $(obj).attr("class","NoMenulist1");
+                        SetHeight();
                     }
                     else
                     {
                         ChildListArr.hide();
-                        $(obj).attr("Lid","display");
+                        $(obj).attr("class","Menulist1");
+                        SetHeight();
                     }
                 });
             }
             SetOthers(ChildListArr);
         });
     });
+}
+function DivHide(obj)
+{
+    obj.children("div").hide();
+    obj.each(function(){
+        if($(this).children("div").length>0)
+        {
+            $(this).attr("class","Menulist1");
+        }
+        else
+        {
+            $(this).attr("class","NoMenulist1");
+        }
+    });  
+}
+
+function SetHeight()
+{
+    if($.browser.mozilla )
+    {
+        var height=0;
+        $("#MenuList").children("div").each(function(){            
+            if(!$(this).is(":hidden"))
+            {
+                SetChildHeight(this);
+                height+=parseInt($(this).height());
+            }             
+        });    
+        $("#MenuList").height(height);
+    }
+}
+function SetChildHeight(obj)
+{
+    var height=parseInt($(obj).height())
+    if(parseInt($(obj).height())>20)
+    {
+        height=20;
+    }
+    $(obj).children("div").each(function(){
+        
+        if(!$(this).is(":hidden"))
+        {
+            SetChildHeight(this);
+            height+=parseInt($(this).height());
+        }
+    });
+    $(obj).height(height);
 }
