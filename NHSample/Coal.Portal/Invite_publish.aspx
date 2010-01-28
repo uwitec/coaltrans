@@ -73,7 +73,7 @@ $(document).ready(function(){
             var val=$(this).val();
             RequestStr+="'"+name+"':'"+val+"',";
         });
-        $("selelct").each(function(){
+        $("select").each(function(){
             var name=$(this).attr("name");
             var val=$(this).val();
             RequestStr+="'"+name+"':'"+val+"',";

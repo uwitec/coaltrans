@@ -50,11 +50,10 @@ namespace Coal.BLL
             parameters.Add(new SqlParameter("email", email));
             parameters.Add(new SqlParameter("password", password));
             List<UsersEntity> users = userDao.Find(sql, parameters.ToArray());
-
             if (users!= null && users.Count == 1)
             {
                 nickName = users[0].NickName;
-                userId = users[0].ID.Value;
+                userId =  users[0].ID.Value;
                 return true;
             }
             else

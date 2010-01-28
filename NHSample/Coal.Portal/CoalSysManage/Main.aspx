@@ -4,22 +4,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>无标题页</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#Btn").click(function(){
+                alert($("#FileName").val());
+            });
+        });
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
-    <div class='Menulist1'>
-        <a href='javascript:void(null);'>权限管理</a><div class='Menulist1' style='display: none;'>
-            <a href='javascript:void(null);'>角色管理</a>&nbsp;&nbsp;&nbsp;&nbsp;<div class='NoMenulist1'
-                style='display: none;'>
-                <a href='javascript:void(null);'>模块管理</a></div>
-            &nbsp;&nbsp;&nbsp;&nbsp;<div class='NoMenulist1' style='display: none;'>
-                <a href='javascript:void(null);'>广告位置</a></div>
-        </div>
-    </div>
-    <div class='Menulist1'>
-        <a href='javascript:void(null);'>广告管理</a><div class='NoMenulist1' style='display: none;'>
-            <a href='javascript:void(null);'>广告列表</a></div>
-    </div>
+    <input type="file" runat="server" id="FileName" /><p />
+    <asp:Button ID="BtnUpLoad" runat="server" Text="提交"  onclick="BtnUpLoad_Click" />
+    <input type="button" value="dsadas" id="Btn" />
     </form>
 </body>
 </html>

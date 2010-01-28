@@ -180,11 +180,16 @@ namespace Coal.Util
                 FileInfo file = new FileInfo(FilePath);
                 if (file.Length > 0)
                 {
-                    string ToPath=HttpContext.Current.Server.MapPath(SavaPath + "\\" + FileName);
+                    string ToPath = SavaPath + "\\" + FileName;
+                    //string ToPath=HttpContext.Current.Server.MapPath(SavaPath + "\\" + FileName);
                     //建立WebClient实例
                     WebClient MywebClient = new WebClient();
                     //建立WebClient实例的windows网络认证方法
+                    string struser = "adminsm";
+                    string strpassword = "malei@78";
                     MywebClient.Credentials = CredentialCache.DefaultCredentials;
+                    NetworkCredential mycred = new NetworkCredential(struser, strpassword);
+                    MywebClient.Credentials = mycred;
                     //建立要上传文件的文件流
                     FileStream fs = new FileStream(FilePath, FileMode.Open, FileAccess.Read);
                     //对上传文件流进行二进制编码
@@ -196,8 +201,9 @@ namespace Coal.Util
                     if (postStream.CanWrite)
                     {
                         postStream.Write(PostArry, 0, PostArry.Length);
+                        postStream.Close();
                     }                    
-                    postStream.Close();
+                    
                 }                
             }
             catch(Exception e)

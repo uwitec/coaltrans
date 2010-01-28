@@ -2,17 +2,13 @@ using System;
 using System.Web;
 using System.Text;
 using System.Web.UI.WebControls;
-namespace Coal.DAL
+namespace Coal.Util
 {
 	/// <summary>
 	/// 显示消息提示对话框。
 	/// </summary>
 	public class MessageBox
 	{		
-		private  MessageBox()
-		{			
-		}
-
 		/// <summary>
 		/// 显示消息提示对话框
 		/// </summary>

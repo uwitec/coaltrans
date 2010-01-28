@@ -35,7 +35,7 @@ public class InfoManage : IHttpHandler {
     /// <param name="context"></param>
     private void InviteInfoAdd(HttpContext context)
     {
-        InviteInfoEntity entity = new InviteInfoEntity();
+        InviteInfoEntity entity = new InviteInfoEntity(); 
         entity.InviteTitle = Common.FiltrationMaliciousCode(context.Request.Form["txtInviteTitle"]);
         entity.Region = Convert.ToInt32(context.Request.Form["selRegion"]);
         entity.StartTime = Convert.ToDateTime(context.Request.Form["txtStartTime"]);
@@ -66,7 +66,7 @@ public class InfoManage : IHttpHandler {
     /// </summary>
     private void TenderInfoAdd(HttpContext context)
     {
-        TenderInfoEntity entity = new TenderInfoEntity();        
+        TenderInfoEntity entity = new TenderInfoEntity();      
         entity.TenderTitle = Common.FiltrationMaliciousCode(context.Request.Form["txtTenderTitle"]);
         entity.StartTime = Convert.ToDateTime(context.Request.Form["txtStartTime"]);
         entity.EndTime = Convert.ToDateTime(context.Request.Form["txtEndTime"]);

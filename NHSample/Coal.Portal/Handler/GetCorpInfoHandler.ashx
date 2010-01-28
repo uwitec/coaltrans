@@ -15,7 +15,7 @@ public class GetCorpInfoHandler : IHttpHandler {
     private void BindData(HttpContext context)
     {
         CompanyInfoModel model = new CompanyInfoModel();
-        UserManager.GetCorpInfo(LoginContext.CurrentUser.UserId, model);
+        UserManager.GetCorpInfo(LoginContext.CurrentUser.UserId, model);        
         ResultObject ro = new ResultObject();
         ro["txtAddress"] = model.Address;
         ro["txtBusinessScope"] = model.BusinessScope;

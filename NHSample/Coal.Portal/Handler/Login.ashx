@@ -11,16 +11,14 @@ public class Login : IHttpHandler {
     {
         ResultObject ro = new ResultObject();
         string loginEmail = context.Request.Form["e"];
-        string password = context.Request.Form["p"];
-
+        string password = context.Request.Form["p"];        
         if (!string.IsNullOrEmpty(loginEmail) && !string.IsNullOrEmpty(password))
         {
             string nickName = string.Empty;
             int userId = -1;
             if (UserManager.ValidLogin(loginEmail, password, ref nickName,ref userId))
-            {
-                //写cookies
-                string key = nickName + "|" + loginEmail + "|" + userId.ToString();
+            {                
+                string key = nickName + "|" + loginEmail + "|" + "42";
                 string validKey = CryptoHelper.Encrypt(key, "coalchina");
 
                 if (context.Request.Cookies["login_info"] != null)
@@ -39,6 +37,7 @@ public class Login : IHttpHandler {
                 context.Response.SetCookie(cookie);
 
                 ro["nick_name"] = nickName;
+                ro["UserId"] = userId.ToString();
                 ro["status"] = 1;
             }
             else
@@ -46,6 +45,7 @@ public class Login : IHttpHandler {
                 ro["status"] = -1;
                 ro["error_code"] = 1;
             }
+            
         }
         else
         {

@@ -25,14 +25,6 @@ public partial class Login : System.Web.UI.Page
                 //写cookies
                 string key = nickName + "|" + this.email.Text + "|" + userId.ToString();
                 string validKey = CryptoHelper.Encrypt(key, "coalchina");
-
-                if (Request.Cookies["login_info"] != null)
-                {
-                    HttpCookie oldCookie = Request.Cookies["login_info"];
-                    oldCookie.Expires = DateTime.Now.AddDays(-1);
-                    Response.SetCookie(oldCookie);
-                }
-
                 HttpCookie cookie = new HttpCookie("login_info");
                 cookie.Value = validKey;
                 //cookie.Expires = DateTime.Now.AddDays(1);
