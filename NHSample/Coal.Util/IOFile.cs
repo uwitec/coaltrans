@@ -193,8 +193,9 @@ namespace Coal.Util
                     }
                 }
             }
-            catch
+            catch(Exception e)
             {
+                Console.WriteLine( "Generic Exception Handler: {0}", e );
             }
         }
 
@@ -237,7 +238,7 @@ namespace Coal.Util
             }
             catch(Exception e)
             {
-                MessageBox.Show(FilePath);
+                Console.WriteLine("Generic Exception Handler: {0}", e);
             }
         }
         /// <summary>

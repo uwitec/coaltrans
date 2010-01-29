@@ -68,7 +68,7 @@ $(document).ready(function(){
         oEditor.UpdateLinkedField();//获得内容更新，不做这步操作的话，可能要点第二次才能得到内容结果 
         
         var content=$.trim(oEditor.GetXHTML(true));        
-        var RequestStr="({'txtDetails':'"+escape(content)+"',";
+        var RequestStr="({";
         $("input[type='text']").each(function(){
             var name=$(this).attr("id");
             var val=$(this).val();
@@ -79,8 +79,10 @@ $(document).ready(function(){
             var val=$(this).val();
             RequestStr+="'"+name+"':'"+val+"',";
         });
-       RequestStr+="'action':'InviteInfo'})";
+       RequestStr+="'txtDetails':'"+escape(content)+"'})";
+       alert(RequestStr);
        RequestStr=eval(RequestStr);        
+       
        $.ajaxFileUpload({
            url: "Handler/InfoManage.ashx",
            secureuri:false,
@@ -99,7 +101,7 @@ $(document).ready(function(){
             {
                 $("#Msg").html(e);
             }  
-        });
+        });       
       }  
     });
 });
@@ -188,11 +190,11 @@ $(document).ready(function(){
 							        <td style="width:90px;text-align:right;">附件上传：</td>
 							        <td align="left" colspan="3">
 							        <input type="file" id="txtAdjunctUrl" name="txtAdjunctUrl" />
-							        
+							        <input type="text" id="Taction" name="Taction" value="InviteInfo" style="display:none;"  /><span style="color:Red;"></span>
 							        </td>							        
 							   </tr> 
 							</table>
-							<input type="hidden" id="txtaction" name="action" value="InviteInfo"  />
+							
 						</div>						
 						<div class="h_itemsBody h_item_bb">
 						    <table cellpadding="0" cellspacing="0" border="0">

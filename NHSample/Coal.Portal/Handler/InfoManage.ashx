@@ -4,6 +4,8 @@ using System;
 using System.Web;
 using Coal.Util;
 using Coal.DAL;
+using System.IO;
+using System.Configuration;
 
 public class InfoManage : IHttpHandler {
     
@@ -11,7 +13,7 @@ public class InfoManage : IHttpHandler {
 
         if (LoginContext.CurrentUser != null)
         {
-            string action = context.Request.Form["action"];
+            string action = context.Request.Form["Taction"];
             switch (action)
             {
                 case "InviteInfo":
@@ -46,7 +48,11 @@ public class InfoManage : IHttpHandler {
         entity.RankNum = 9999;
         entity.CreateTime = DateTime.Now;
         entity.UserId = LoginContext.CurrentUser.UserId;
-        //entity.AdjunctUrl = Common.UploadFile(Common.UnEscape(context.Request.Form["txtAdjunctUrl"]));
+        if (context.Request.Files.Count > 0)
+        {
+            HttpPostedFile file = context.Request.Files[0];
+            entity.AdjunctUrl = UploadFile(file);           
+        } 
         ResultObject ro = new ResultObject();
         if (AddOrUpdateInvite(entity))
         {
@@ -76,7 +82,11 @@ public class InfoManage : IHttpHandler {
         entity.RankNum = 9999;
         entity.CreateTime = DateTime.Now;
         entity.UserId = LoginContext.CurrentUser.UserId;
-        entity.AdjunctUrl = Common.UploadFile(Common.UnEscape(context.Request.Form["txtAdjunctUrl"]));        
+        if (context.Request.Files.Count > 0)
+        {
+            HttpPostedFile file = context.Request.Files[0];
+            entity.AdjunctUrl = UploadFile(file);
+        }      
         ResultObject ro=new ResultObject();
         if (AddOrUpdateTender(entity))
         {
@@ -158,5 +168,22 @@ public class InfoManage : IHttpHandler {
             }
         }
         return Flag;
+    }
+    private string UploadFile(HttpPostedFile FileUpLoad)
+    {
+
+        string strFile = "";
+        string Filepath = FileUpLoad.FileName;
+        if (!string.IsNullOrEmpty(Filepath))
+        {
+            FileInfo file = new FileInfo(Filepath);
+            string extension = file.Extension.ToUpper();
+            strFile = Common.RandNumber() + extension.ToLower();
+            string path = ConfigurationManager.AppSettings["FCKeditor:UserFilesPath"].ToString();
+            path = path + "Info";
+            IOFile.UploadFile(FileUpLoad, strFile, path);
+            strFile = path + "/" + strFile;
+        }
+        return strFile;
     }
 }

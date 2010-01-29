@@ -9,6 +9,7 @@
 <title>发布投标信息</title>
 <link href="css/admin_style.css" type="text/css" rel="stylesheet" rev="stylesheet" media="all" />
 <script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/ajaxfileupload.js"></script>
 <script type="text/javascript" src="js/uc.js"></script>
 <script type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
 <script type="text/javascript" src="js/jquery.validate.js"></script>
@@ -46,36 +47,35 @@ $(document).ready(function(){
       if(check())
       {
         var oEditor = FCKeditorAPI.GetInstance('txtDetails');//txtDetails是fck实例的名称,也是表单文本框的名称 
-        oEditor.UpdateLinkedField();//获得内容更新，不做这步操作的话，可能要点第二次才能得到内容结果 
-        
+        oEditor.UpdateLinkedField();//获得内容更新，不做这步操作的话，可能要点第二次才能得到内容结果         
         var content=$.trim(oEditor.GetXHTML(true));        
-        var RequestStr="({'txtDetails':'"+escape(content)+"',";
+        var RequestStr="({";
         $("input[type='text']").each(function(){
-            var name=$(this).attr("name");
+            var name=$(this).attr("id");
             var val=$(this).val();
             RequestStr+="'"+name+"':'"+val+"',";
-        });
-        $("input[type='file']").each(function(){
-            var name=$(this).attr("name");
-            var val=$(this).val();
-            RequestStr+="'"+name+"':'"+escape(val)+"',";
-        });
-        RequestStr+="'action':'TenderInfo'})";
-       RequestStr=eval(RequestStr);        
-        $.ajax({
-           type: "POST",
+        });        
+        RequestStr+="'txtDetails':'"+escape(content)+"'})";        
+        RequestStr=eval(RequestStr);        
+        $.ajaxFileUpload({
            url: "Handler/InfoManage.ashx",
-           data: RequestStr,
-           dataType: "json",
-           success: function(data) {
+           secureuri:false,
+           fileElementId:'txtAdjunctUrl',  
+           dataType: 'json', 
+           OtherData :RequestStr,
+           success: function(data,status) {
                 if (data.statusCode == 1) {
                    $("#Msg").html("恭喜您，提交成功！");
                 }
                 else {
                    $("#Msg").html("对不起，提交失败！请您认真核对您的信息！");
                 }
-            }
-        });
+            },
+            error: function (data, status, e) //有错误时进行操作
+            {
+                $("#Msg").html(e);
+            }  
+        });  
       }  
     });
 });
@@ -155,7 +155,9 @@ $(document).ready(function(){
 							   <tr>
 							        <td style="width:90px;text-align:right;">附件上传：</td>
 							        <td align="left" colspan="3">
-							        <input type="file" id="txtAdjunctUrl" name="txtAdjunctUrl" /></td>							        
+							        <input type="file" id="txtAdjunctUrl" name="txtAdjunctUrl" />
+							        <input type="text" id="Taction" name="Taction" value="TenderInfo" style="display:none;"  /><span style="color:Red;"></span>
+							        </td>							        
 							   </tr> 
 							</table>
 						</div>						
