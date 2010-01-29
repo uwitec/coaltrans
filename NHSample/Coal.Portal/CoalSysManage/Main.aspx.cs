@@ -16,11 +16,6 @@ public partial class CoalSysManage_Public_main : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
-    }
-    protected void BtnUpLoad_Click(object sender, EventArgs e)
-    {
-        string File =FileName.Value;
-        Common.UploadFile(File);
+        
     }
 }

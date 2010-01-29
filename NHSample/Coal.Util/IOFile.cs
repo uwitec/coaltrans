@@ -167,6 +167,36 @@ namespace Coal.Util
             {
             }
         }
+        /// <summary>
+        /// httppostfile控件上传
+        /// </summary>
+        /// <param name="uploadFile"></param>
+        /// <param name="fileName"></param>
+        /// <param name="savePath"></param>
+        public static void UploadFile(System.Web.HttpPostedFile uploadFile, string fileName, string savePath)
+        {
+            try
+            {
+                string path = HttpContext.Current.Server.MapPath(savePath);
+                if (Directory.Exists(path) == false)
+                {
+                    Directory.CreateDirectory(path);
+
+                }
+                if (uploadFile.ContentLength > 0)
+                {
+                    string file = HttpContext.Current.Server.MapPath(savePath + "\\" + fileName);
+
+                    if (File.Exists(file) == false)///检查是否存在同名文件
+                    {
+                        uploadFile.SaveAs(file);
+                    }
+                }
+            }
+            catch
+            {
+            }
+        }
 
         public static void UpLoadFileByPath(string FilePath,string FileName, string SavaPath)
         {
@@ -180,8 +210,7 @@ namespace Coal.Util
                 FileInfo file = new FileInfo(FilePath);
                 if (file.Length > 0)
                 {
-                    string ToPath = SavaPath + "\\" + FileName;
-                    //string ToPath=HttpContext.Current.Server.MapPath(SavaPath + "\\" + FileName);
+                    string ToPath=HttpContext.Current.Server.MapPath(SavaPath + "\\" + FileName);
                     //建立WebClient实例
                     WebClient MywebClient = new WebClient();
                     //建立WebClient实例的windows网络认证方法
@@ -208,7 +237,7 @@ namespace Coal.Util
             }
             catch(Exception e)
             {
-                LogUtility.WriteErrLog(e);
+                MessageBox.Show(FilePath);
             }
         }
         /// <summary>

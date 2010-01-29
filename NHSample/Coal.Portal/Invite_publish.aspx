@@ -9,6 +9,7 @@
 <title>发布招标信息</title>
 <link href="css/admin_style.css" type="text/css" rel="stylesheet" rev="stylesheet" media="all" />
 <script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/ajaxfileupload.js"></script>
 <script type="text/javascript" src="js/uc.js"></script>
 <script type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
 <script type="text/javascript" src="js/jquery.validate.js"></script>
@@ -69,35 +70,35 @@ $(document).ready(function(){
         var content=$.trim(oEditor.GetXHTML(true));        
         var RequestStr="({'txtDetails':'"+escape(content)+"',";
         $("input[type='text']").each(function(){
-            var name=$(this).attr("name");
+            var name=$(this).attr("id");
             var val=$(this).val();
             RequestStr+="'"+name+"':'"+val+"',";
         });
         $("select").each(function(){
-            var name=$(this).attr("name");
+            var name=$(this).attr("id");
             var val=$(this).val();
             RequestStr+="'"+name+"':'"+val+"',";
         });
-        $("input[type='file']").each(function(){
-            var name=$(this).attr("name");
-            var val=$(this).val();
-            RequestStr+="'"+name+"':'"+escape(val)+"',";
-        });
-        RequestStr+="'action':'InviteInfo'})";
+       RequestStr+="'action':'InviteInfo'})";
        RequestStr=eval(RequestStr);        
-        $.ajax({
-           type: "POST",
+       $.ajaxFileUpload({
            url: "Handler/InfoManage.ashx",
-           data: RequestStr,
-           dataType: "json",
-           success: function(data) {
+           secureuri:false,
+           fileElementId:'txtAdjunctUrl',  
+           dataType: 'json', 
+           OtherData :RequestStr,
+           success: function(data,status) {
                 if (data.statusCode == 1) {
                    $("#Msg").html("恭喜您，提交成功！");
                 }
                 else {
                    $("#Msg").html("对不起，提交失败！请您认真核对您的信息！");
                 }
-            }
+            },
+            error: function (data, status, e) //有错误时进行操作
+            {
+                $("#Msg").html(e);
+            }  
         });
       }  
     });
@@ -134,6 +135,7 @@ $(document).ready(function(){
 		<div id="nav" class="h_sideBar">
 			<div id="nav_tree" class="h_tree"></div>
 		</div>
+		
 		<div class="h_main">
 			<dl class="h_tips">
 				<dt>为了让买家能更精确找到您的产品，您可以做以下几步提高您的信息精度，获得更好的排名：</dt>
@@ -185,9 +187,12 @@ $(document).ready(function(){
 							   <tr>
 							        <td style="width:90px;text-align:right;">附件上传：</td>
 							        <td align="left" colspan="3">
-							        <input type="file" id="txtAdjunctUrl" name="txtAdjunctUrl" /></td>							        
+							        <input type="file" id="txtAdjunctUrl" name="txtAdjunctUrl" />
+							        
+							        </td>							        
 							   </tr> 
 							</table>
+							<input type="hidden" id="txtaction" name="action" value="InviteInfo"  />
 						</div>						
 						<div class="h_itemsBody h_item_bb">
 						    <table cellpadding="0" cellspacing="0" border="0">

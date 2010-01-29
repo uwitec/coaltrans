@@ -46,7 +46,7 @@ public class InfoManage : IHttpHandler {
         entity.RankNum = 9999;
         entity.CreateTime = DateTime.Now;
         entity.UserId = LoginContext.CurrentUser.UserId;
-        entity.AdjunctUrl = Common.UploadFile(Common.UnEscape(context.Request.Form["txtAdjunctUrl"]));
+        //entity.AdjunctUrl = Common.UploadFile(Common.UnEscape(context.Request.Form["txtAdjunctUrl"]));
         ResultObject ro = new ResultObject();
         if (AddOrUpdateInvite(entity))
         {
