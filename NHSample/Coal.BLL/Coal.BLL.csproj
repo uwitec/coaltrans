@@ -46,6 +46,7 @@
     <Reference Include="System.ServiceModel.Web">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -58,6 +59,9 @@
   <ItemGroup>
     <Compile Include="FuncManager.cs" />
     <Compile Include="LoginContext.cs" />
+    <Compile Include="MyPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegionManager.cs" />
     <Compile Include="TransListManager.cs" />
