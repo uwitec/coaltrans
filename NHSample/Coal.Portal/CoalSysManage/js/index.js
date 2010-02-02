@@ -77,6 +77,19 @@ function Display(obj,TabelName1,TabelName2,Key,foreignkey,value,type)
                 Content+="详细："+row["AdDetails"]+"<p/>";
                 Content+="类型："+row["AdType"];                    
                 break;
+            case "AdListDis":
+                Content+="广告名称："+row["AdName"]+"<p/>";
+                Content+="所属位置："+row["PositionName"]+"<p/>";
+                Content+="广告链接："+row["AdLink"]+"<p/>";
+                Content+="广告简介："+row["AdDesc"]+"<p/>";
+                Content+="开启时间："+row["StartTime"]+"<p/>";
+                Content+="结束时间："+row["EndTime"]+"<p/>";
+                Content+="是否开启："+row["IsOpen"]+"<p/>";
+                Content+="联系人："+row["LinkMan"]+"<p/>";
+                Content+="联系电话："+row["LinkPhone"]+"<p/>";
+                Content+="联系Email："+row["LinkEmail"]+"<p/>";
+                Content+="点击次数："+row["ClickNum"]+"<p/>";    
+                break;
             default:
                 break;
         }

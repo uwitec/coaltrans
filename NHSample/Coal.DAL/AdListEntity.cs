@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -295,6 +296,23 @@ namespace Coal.DAL
                 sqlHelper.ExecuteSql(strSql.ToString(), parameters);
             }
 
+            public bool UpdateSet(int AdId, string ColumnName, string Value)
+            {
+                try
+                {
+                    StringBuilder StrSql = new StringBuilder();
+                    StrSql.Append("update AdList set ");
+                    StrSql.Append(ColumnName + "='" + Value + "'");
+                    StrSql.Append(" where AdId=" + AdId);
+                    sqlHelper.ExecuteSql(StrSql.ToString(), null);
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
             public override void Delete(AdListEntity entity)
             {
                 StringBuilder strSql = new StringBuilder();
@@ -306,7 +324,19 @@ namespace Coal.DAL
                 parameters[0].Value = entity.AdId;
                 sqlHelper.ExecuteSql(strSql.ToString(), parameters);
             }
-
+            public bool Delete(int AdId)
+            {
+                string strSql = "delete from AdList where AdId=" + AdId;
+                try
+                {
+                    sqlHelper.ExecuteSql(strSql, null);
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
             public override AdListEntity FindById(long primaryKeyId)
             {
                 StringBuilder strSql = new StringBuilder();
@@ -465,25 +495,25 @@ namespace Coal.DAL
             /// <param name="pageSize">每页显示记录数</param>
             /// <param name="pageNumber">当前页码</param>
             /// <returns>datatable</returns>
-            public DataTable GetPager(string where, SqlParameter[] param, string orderBy, bool OrderMethod, int pageSize, int pageNumber)
+            public DataTable GetPager(string where, SqlParameter[] param , Hashtable ht, int pageSize, int pageNumber)
             {
                 int startNumber = pageSize * (pageNumber - 1);
 
-                string method = "ASC";
-                if (OrderMethod)
-                    method = "DESC";
-
-
                 string sql = string.Format("SELECT TOP {0} * FROM (SELECT ROW_NUMBER() OVER", pageSize);
 
-                if (!string.IsNullOrEmpty(orderBy))
+                if (ht != null && ht.Count > 0)
                 {
-                    sql += string.Format(" (ORDER BY {0} {1})", orderBy, method);
+                    sql += " (ORDER BY";
+                    foreach (string key in ht.Keys)
+                    {
+                        sql += string.Format(" {0} {1},", key, ht[key].ToString());
+                    }
+                    sql += "  AdId )";
                 }
                 else
                 {
 
-                    sql += " (ORDER BY AdId " + method + ")";//默认按主键排序
+                    sql += " (ORDER BY AdId )";//默认按主键排序
 
                 }
 
