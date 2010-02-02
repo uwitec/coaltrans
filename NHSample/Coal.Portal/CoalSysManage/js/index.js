@@ -90,6 +90,9 @@ function Display(obj,TabelName1,TabelName2,Key,foreignkey,value,type)
                 Content+="联系Email："+row["LinkEmail"]+"<p/>";
                 Content+="点击次数："+row["ClickNum"]+"<p/>";    
                 break;
+            case "DemandInfoList":
+                Content+="求购标题："+row["DemandTitle"];
+                break;
             default:
                 break;
         }

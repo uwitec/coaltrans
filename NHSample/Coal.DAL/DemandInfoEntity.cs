@@ -499,6 +499,23 @@ namespace Coal.DAL
                 sqlHelper.ExecuteSql(strSql.ToString(), parameters);
             }
 
+            public bool UpdateSet(int ID, string ColumnName, string Value)
+            {
+                try
+                {
+                    StringBuilder StrSql = new StringBuilder();
+                    StrSql.Append("update DemandInfo set ");
+                    StrSql.Append(ColumnName + "='" + Value + "'");
+                    StrSql.Append(" where ID=" + ID);
+                    sqlHelper.ExecuteSql(StrSql.ToString(), null);
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
             public override void Delete(DemandInfoEntity entity)
             {
                 StringBuilder strSql = new StringBuilder();
@@ -509,6 +526,20 @@ namespace Coal.DAL
 					};
                 parameters[0].Value = entity.ID;
                 sqlHelper.ExecuteSql(strSql.ToString(), parameters);
+            }
+
+            public bool Delete(int ID)
+            {
+                string strSql = "delete from DemandInfo where ID=" + ID;
+                try
+                {
+                    sqlHelper.ExecuteSql(strSql, null);
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
             }
 
             public override DemandInfoEntity FindById(long primaryKeyId)
