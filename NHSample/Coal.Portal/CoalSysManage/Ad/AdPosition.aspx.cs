@@ -126,4 +126,29 @@ public partial class CoalSysManage_Ad_AdPosition : System.Web.UI.Page
                 break;
         }
     }
+    protected void BtnDelete_Click(object sender, EventArgs e)
+    {
+        CheckBox chk;
+        Label lab;
+        string StrId = "";
+        foreach (RepeaterItem Item in List.Items)
+        {
+            chk = (CheckBox)Item.FindControl("PositionId");
+            lab = (Label)Item.FindControl("ID");
+            if (chk.Checked)
+            {
+                AdPositionEntity.AdPositionDAO Dao = new AdPositionEntity.AdPositionDAO();
+                bool result = Dao.Delete(EConvert.ToInt(lab.Text));
+                if (!result)
+                {
+                    StrId += lab.Text + " ";
+                }
+            }
+        }
+        if (StrId != "")
+        {
+            Response.Write("<script>alert('编号为：" + StrId + "的信息与其他信息关联，不能删除！');</script>");
+        }
+        AdsBind();
+    }
 }

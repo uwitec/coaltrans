@@ -18,7 +18,7 @@
     <form id="form1" runat="server">
     <div class="HeadBar">
         <div class="HeadBarNav">后台管理中心&nbsp;<span>--&nbsp;广告位置</span></div>
-        <div class="HeadBarOperate"><div class="Btn_Style1"><a href="#">添加广告位置</a></div></div>
+        <div class="HeadBarOperate"><div class="Btn_Style1"><a href="PositionEdit.aspx?ID=&act=add">添加广告位置</a></div></div>
     </div>
     <div class="SearchBar">
         <div style=" margin-left:50px;">&nbsp;</div>
@@ -62,7 +62,7 @@
                     <td><%# Eval("AdDetails")%></td>
                     <td><%# GetType(Eval("AdType").ToString())%></td>
                     <td>
-                        <span><a href="javascript:void(null);" title="查看"><img src="../images/icon_view.gif" alt="" /></a></span>
+                        <span><a href="javascript:void(null);" title="查看" onclick='Display("DisplayDiv","AdPosition","","PositionId","",<%# Eval("PositionId") %>,"AdPositionDis")'><img src="../images/icon_view.gif" alt="" /></a></span>
                         <span><a href='PositionEdit.aspx?ID=<%# Eval("PositionId") %>&act=edit' title="编辑"><img src="../images/icon_edit.gif" alt="" /></a></span>
                         <span><a href="javascript:void(null);" title="删除" onclick="javascript:listTable.remove(<%# Eval("PositionId") %>,'您确定要删除该记录么？','remove');location.reload();"><img src="../images/icon_drop.gif" alt="" /></a></span>
                     </td>
@@ -81,7 +81,11 @@
         </webdiyer:AspNetPager></div>
     </div>
     <div class="DealList">
-        <asp:Button ID="BtnDelete" CssClass="Btn_Style3" runat="server" Text="删除" />
+        <asp:Button ID="BtnDelete" CssClass="Btn_Style3" runat="server" Text="批量删除" 
+            onclick="BtnDelete_Click" />
+    </div>
+    <div id="DisplayDiv"  style="display:none; border:1px solid black; width:300px; height:auto; position:absolute; background:#f8e6ef;">
+        
     </div>
     </form>
 </body>
@@ -89,3 +93,4 @@
 <script type="text/javascript">
     ConverList();
 </script>
+

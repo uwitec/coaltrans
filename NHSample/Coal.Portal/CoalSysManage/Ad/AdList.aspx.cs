@@ -14,7 +14,7 @@ using Coal.BLL;
 using Coal.DAL;
 using Coal.Util;
 
-public partial class CoalSysManage_Ad_AdList : MyPage
+public partial class CoalSysManage_Ad_AdList : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {

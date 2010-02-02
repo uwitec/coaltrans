@@ -104,3 +104,6 @@ a
 .MainBottom div{ float:right; width:300px; }
 .ListTableBody{ height:25px; line-height:25px; background-color:#e9eef4;}
 .LinkListTableBody{height:25px; line-height:25px; background-color:#a8e1c4;}
+.EditTable{ margin-top:30px;}
+.EditTable td{ height:30px; font-weight:bold;}
+.EditTable td span{ color:Red; font-weight:normal;}
