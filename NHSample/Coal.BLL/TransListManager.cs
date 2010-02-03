@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,10 @@ namespace Coal.BLL
         {
             DemandInfoEntity.DemandInfoDAO transDao = new DemandInfoEntity.DemandInfoDAO();
             rowCount = transDao.GetPagerRowsCount(where, paramters);
-            return transDao.GetPager(where, paramters, string.Empty, pageSize, pageIndex);
+            Hashtable ht = new Hashtable();
+            ht.Add("Sequence", "ASC");
+            ht.Add("CreateTime", "DESC");
+            return transDao.GetPager(where, paramters, ht, pageSize, pageIndex);
         }
 
 

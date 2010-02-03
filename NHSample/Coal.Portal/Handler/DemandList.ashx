@@ -19,10 +19,11 @@ public class DemandList : IHttpHandler {
         int DeliveryPlace = EConvert.ToInt(context.Request.Form["DeliveryPlace"]);
 
         List<SqlParameter> paramList = new List<SqlParameter>();
-        string StrWhere = "";
+        string StrWhere = "IsAudit=1";
+        //string StrWhere = "IsAudit=1 and InfoIndate<=" + DateTime.Now.ToString("yyyy-MM-dd");
         if (DeliveryPlace > 0)
         {
-            StrWhere = "DeliveryPlace like '" + DeliveryPlace.ToString() + "&%'";
+            StrWhere = " and DeliveryPlace like '" + DeliveryPlace.ToString() + "&%'";
         }
 
         TransListManager manager = new TransListManager();

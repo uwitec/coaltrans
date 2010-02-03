@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -48,6 +49,7 @@ namespace Coal.DAL
             public const string CreateTime = "CreateTime";
             public const string IsAudit = "IsAudit";
             public const string Sequence = "Sequence";
+            public const string ViewCount = "ViewCount";
         }
         #endregion
 
@@ -57,7 +59,7 @@ namespace Coal.DAL
             sqlHelper = new SqlHelper(DBName);
         }
 
-        public DemandInfoEntity(int id, int userid, string demandtitle, DateTime infoindate, string coaltype, string granularity, string demandquantity, string deliveryplace, string calorificpower, string volatilize, string ash, string sulphur, string water, string hotstability, string ashfusing, string wearproof, string carbon, string mastrength, string bindermark, int istransport, string transportprice, string estimatestyle, DateTime createtime, int isaudit, int sequence)
+        public DemandInfoEntity(int id, int userid, string demandtitle, DateTime infoindate, string coaltype, string granularity, string demandquantity, string deliveryplace, string calorificpower, string volatilize, string ash, string sulphur, string water, string hotstability, string ashfusing, string wearproof, string carbon, string mastrength, string bindermark, int istransport, string transportprice, string estimatestyle, DateTime createtime, int isaudit, int sequence, int viewcount)
         {
             this.ID = id;
 
@@ -108,6 +110,8 @@ namespace Coal.DAL
             this.IsAudit = isaudit;
 
             this.Sequence = sequence;
+
+            this.ViewCount = viewcount;
 
         }
         #endregion
@@ -338,6 +342,15 @@ namespace Coal.DAL
             set;
         }
 
+        /// <summary>
+        /// 浏览数
+        /// </summary>
+        public int? ViewCount
+        {
+            get;
+            set;
+        }
+
         #endregion
 
         public class DemandInfoDAO : SqlDAO<DemandInfoEntity>
@@ -355,9 +368,9 @@ namespace Coal.DAL
 
                 StringBuilder strSql = new StringBuilder();
                 strSql.Append("insert into DemandInfo(");
-                strSql.Append("UserId,DemandTitle,InfoIndate,CoalType,Granularity,DemandQuantity,DeliveryPlace,CalorificPower,Volatilize,Ash,Sulphur,Water,HotStability,AshFusing,Wearproof,Carbon,MaStrength,BinderMark,IsTransport,TransportPrice,EstimateStyle,CreateTime,IsAudit,Sequence)");
+                strSql.Append("UserId,DemandTitle,InfoIndate,CoalType,Granularity,DemandQuantity,DeliveryPlace,CalorificPower,Volatilize,Ash,Sulphur,Water,HotStability,AshFusing,Wearproof,Carbon,MaStrength,BinderMark,IsTransport,TransportPrice,EstimateStyle,CreateTime,IsAudit,Sequence,ViewCount)");
                 strSql.Append(" values (");
-                strSql.Append("@UserId,@DemandTitle,@InfoIndate,@CoalType,@Granularity,@DemandQuantity,@DeliveryPlace,@CalorificPower,@Volatilize,@Ash,@Sulphur,@Water,@HotStability,@AshFusing,@Wearproof,@Carbon,@MaStrength,@BinderMark,@IsTransport,@TransportPrice,@EstimateStyle,@CreateTime,@IsAudit,@Sequence)");
+                strSql.Append("@UserId,@DemandTitle,@InfoIndate,@CoalType,@Granularity,@DemandQuantity,@DeliveryPlace,@CalorificPower,@Volatilize,@Ash,@Sulphur,@Water,@HotStability,@AshFusing,@Wearproof,@Carbon,@MaStrength,@BinderMark,@IsTransport,@TransportPrice,@EstimateStyle,@CreateTime,@IsAudit,@Sequence,@ViewCount)");
                 SqlParameter[] parameters = {
 					new SqlParameter("@UserId",SqlDbType.Int),
 					new SqlParameter("@DemandTitle",SqlDbType.NVarChar),
@@ -382,7 +395,8 @@ namespace Coal.DAL
 					new SqlParameter("@EstimateStyle",SqlDbType.NVarChar),
 					new SqlParameter("@CreateTime",SqlDbType.DateTime),
 					new SqlParameter("@IsAudit",SqlDbType.Int),
-					new SqlParameter("@Sequence",SqlDbType.Int)
+					new SqlParameter("@Sequence",SqlDbType.Int),
+					new SqlParameter("@ViewCount",SqlDbType.Int)
 					};
                 parameters[0].Value = entity.UserId;
                 parameters[1].Value = entity.DemandTitle;
@@ -408,6 +422,7 @@ namespace Coal.DAL
                 parameters[21].Value = entity.CreateTime;
                 parameters[22].Value = entity.IsAudit;
                 parameters[23].Value = entity.Sequence;
+                parameters[24].Value = entity.ViewCount;
 
                 sqlHelper.ExecuteSql(strSql.ToString(), parameters);
             }
@@ -440,7 +455,8 @@ namespace Coal.DAL
                 strSql.Append("EstimateStyle=@EstimateStyle,");
                 strSql.Append("CreateTime=@CreateTime,");
                 strSql.Append("IsAudit=@IsAudit,");
-                strSql.Append("Sequence=@Sequence");
+                strSql.Append("Sequence=@Sequence,");
+                strSql.Append("ViewCount=@ViewCount");
 
                 strSql.Append(" where ID=@ID");
                 SqlParameter[] parameters = {
@@ -468,7 +484,8 @@ namespace Coal.DAL
 					new SqlParameter("@EstimateStyle",SqlDbType.NVarChar),
 					new SqlParameter("@CreateTime",SqlDbType.DateTime),
 					new SqlParameter("@IsAudit",SqlDbType.Int),
-					new SqlParameter("@Sequence",SqlDbType.Int)
+					new SqlParameter("@Sequence",SqlDbType.Int),
+					new SqlParameter("@ViewCount",SqlDbType.Int)
 					};
                 parameters[0].Value = entity.ID;
                 parameters[1].Value = entity.UserId;
@@ -495,6 +512,7 @@ namespace Coal.DAL
                 parameters[22].Value = entity.CreateTime;
                 parameters[23].Value = entity.IsAudit;
                 parameters[24].Value = entity.Sequence;
+                parameters[25].Value = entity.ViewCount;
 
                 sqlHelper.ExecuteSql(strSql.ToString(), parameters);
             }
@@ -516,18 +534,6 @@ namespace Coal.DAL
                 }
             }
 
-            public override void Delete(DemandInfoEntity entity)
-            {
-                StringBuilder strSql = new StringBuilder();
-                strSql.Append("delete from DemandInfo ");
-                strSql.Append(" where ID=@primaryKeyId");
-                SqlParameter[] parameters = {
-						new SqlParameter("@primaryKeyId", SqlDbType.Int)
-					};
-                parameters[0].Value = entity.ID;
-                sqlHelper.ExecuteSql(strSql.ToString(), parameters);
-            }
-
             public bool Delete(int ID)
             {
                 string strSql = "delete from DemandInfo where ID=" + ID;
@@ -540,6 +546,18 @@ namespace Coal.DAL
                 {
                     return false;
                 }
+            }
+
+            public override void Delete(DemandInfoEntity entity)
+            {
+                StringBuilder strSql = new StringBuilder();
+                strSql.Append("delete from DemandInfo ");
+                strSql.Append(" where ID=@primaryKeyId");
+                SqlParameter[] parameters = {
+						new SqlParameter("@primaryKeyId", SqlDbType.Int)
+					};
+                parameters[0].Value = entity.ID;
+                sqlHelper.ExecuteSql(strSql.ToString(), parameters);
             }
 
             public override DemandInfoEntity FindById(long primaryKeyId)
@@ -600,6 +618,10 @@ namespace Coal.DAL
                     if (!Convert.IsDBNull(row["Sequence"]))
                     {
                         entity.Sequence = (int)row["Sequence"];
+                    }
+                    if (!Convert.IsDBNull(row["ViewCount"]))
+                    {
+                        entity.ViewCount = (int)row["ViewCount"];
                     }
                     return entity;
                 }
@@ -672,6 +694,10 @@ namespace Coal.DAL
                         {
                             entity.Sequence = (int)row["Sequence"];
                         }
+                        if (!Convert.IsDBNull(row["ViewCount"]))
+                        {
+                            entity.ViewCount = (int)row["ViewCount"];
+                        }
 
                         list.Add(entity);
                     }
@@ -724,20 +750,25 @@ namespace Coal.DAL
             /// <param name="pageSize">每页显示记录数</param>
             /// <param name="pageNumber">当前页码</param>
             /// <returns>datatable</returns>
-            public DataTable GetPager(string where, SqlParameter[] param, string orderBy, int pageSize, int pageNumber)
+            public DataTable GetPager(string where, SqlParameter[] param, Hashtable ht, int pageSize, int pageNumber)
             {
                 int startNumber = pageSize * (pageNumber - 1);
 
                 string sql = string.Format("SELECT TOP {0} * FROM (SELECT ROW_NUMBER() OVER", pageSize);
 
-                if (!string.IsNullOrEmpty(orderBy))
+                if (ht != null && ht.Count > 0)
                 {
-                    sql += string.Format(" (ORDER BY {0})", orderBy);
+                    sql += " (ORDER BY";
+                    foreach (string key in ht.Keys)
+                    {
+                        sql += string.Format(" {0} {1},", key, ht[key].ToString());
+                    }
+                    sql += "  ID )";
                 }
                 else
                 {
 
-                    sql += " (ORDER BY ID)";//默认按主键排序
+                    sql += " (ORDER BY ID )";//默认按主键排序
 
                 }
 

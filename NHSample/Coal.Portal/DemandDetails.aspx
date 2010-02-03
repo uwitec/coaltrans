@@ -218,7 +218,7 @@
                                                     被浏览次数：
                                                 </td>
                                                 <td width="13%" align="center" class="c_r c_b">
-                                                    <asp:Label ID="txt" CssClass="lblCss" runat="server"></asp:Label>次
+                                                    <asp:Label ID="txtViewCount" CssClass="lblCss" runat="server"></asp:Label>次
                                                 </td>
                                             </tr>
                                             <tr>

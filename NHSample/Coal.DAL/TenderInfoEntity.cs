@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -261,6 +262,37 @@ namespace Coal.DAL
                 sqlHelper.ExecuteSql(strSql.ToString(), parameters);
             }
 
+            public bool UpdateSet(int ID, string ColumnName, string Value)
+            {
+                try
+                {
+                    StringBuilder StrSql = new StringBuilder();
+                    StrSql.Append("update TenderInfo set ");
+                    StrSql.Append(ColumnName + "='" + Value + "'");
+                    StrSql.Append(" where ID=" + ID);
+                    sqlHelper.ExecuteSql(StrSql.ToString(), null);
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
+            public bool Delete(int ID)
+            {
+                string strSql = "delete from TenderInfo where ID=" + ID;
+                try
+                {
+                    sqlHelper.ExecuteSql(strSql, null);
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
             public override void Delete(TenderInfoEntity entity)
             {
                 StringBuilder strSql = new StringBuilder();
@@ -433,20 +465,25 @@ namespace Coal.DAL
             /// <param name="pageSize">每页显示记录数</param>
             /// <param name="pageNumber">当前页码</param>
             /// <returns>datatable</returns>
-            public DataTable GetPager(string where, SqlParameter[] param, string orderBy, int pageSize, int pageNumber)
+            public DataTable GetPager(string where, SqlParameter[] param, Hashtable ht , int pageSize, int pageNumber)
             {
                 int startNumber = pageSize * (pageNumber - 1);
 
                 string sql = string.Format("SELECT TOP {0} * FROM (SELECT ROW_NUMBER() OVER", pageSize);
 
-                if (!string.IsNullOrEmpty(orderBy))
+                if (ht != null && ht.Count > 0)
                 {
-                    sql += string.Format(" (ORDER BY {0})", orderBy);
+                    sql += " (ORDER BY";
+                    foreach (string key in ht.Keys)
+                    {
+                        sql += string.Format(" {0} {1},", key, ht[key].ToString());
+                    }
+                    sql += "  ID )";
                 }
                 else
                 {
 
-                    sql += " (ORDER BY ID)";//默认按主键排序
+                    sql += " (ORDER BY ID )";//默认按主键排序
 
                 }
 

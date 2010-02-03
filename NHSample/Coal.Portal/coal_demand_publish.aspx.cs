@@ -50,6 +50,7 @@ public partial class coal_demand_publish : System.Web.UI.Page
         Model.CreateTime = DateTime.Now;
         Model.IsAudit = 0;
         Model.Sequence = 9999;
+        Model.ViewCount = 0;
         ResultObject ro = new ResultObject();
         if (UserManager.AddDemandInfo(Model))
         {

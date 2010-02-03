@@ -66,7 +66,7 @@ public partial class CoalSysManage_Ad_AdList : System.Web.UI.Page
         ht.Add("RankNum", "ASC");
         AdListEntity.AdListDAO Dao=new AdListEntity.AdListDAO();
         PagerList.RecordCount = Dao.GetPagerRowsCount(StrWhere, null);
-        DataTable dt = Dao.GetPager(StrWhere, null, ht, 10, 1);
+        DataTable dt = Dao.GetPager(StrWhere, null, ht, PagerList.PageSize, PagerList.CurrentPageIndex);
         if (dt != null && dt.Rows.Count > 0)
         {
             List.DataSource = dt;

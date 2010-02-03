@@ -63,7 +63,13 @@ public partial class CoalSysManage_Info_DemandInfoList : System.Web.UI.Page
         string StrWhere = "ID>0";
         if (!string.IsNullOrEmpty(DemandTitle.Value))
         {
-            StrWhere += " and DemandTitle like '%" + DemandTitle.Value + "%'";
+            StrWhere += " and DemandTitle like '%";
+            string[] Str = DemandTitle.Value.Split(' ');
+            foreach (string obj in Str)
+            {
+                StrWhere += obj + "%";
+            }
+            StrWhere += "'";
         }
         if (CoalType.Value != "0")
         {
@@ -75,7 +81,10 @@ public partial class CoalSysManage_Info_DemandInfoList : System.Web.UI.Page
         }
         DemandInfoEntity.DemandInfoDAO Dao = new DemandInfoEntity.DemandInfoDAO();
         PagerList.RecordCount = Dao.GetPagerRowsCount(StrWhere, null);
-        DataTable dt = Dao.GetPager(StrWhere, null, "Sequence", PagerList.PageSize, PagerList.CurrentPageIndex);
+        Hashtable ht = new Hashtable();
+        ht.Add("Sequence", "ASC");
+        ht.Add("CreateTime", "DESC");
+        DataTable dt = Dao.GetPager(StrWhere, null, ht , PagerList.PageSize, PagerList.CurrentPageIndex);
         List.DataSource = dt;
         List.DataBind();
     }

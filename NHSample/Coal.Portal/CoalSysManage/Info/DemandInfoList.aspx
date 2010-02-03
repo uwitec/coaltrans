@@ -62,7 +62,7 @@
                     <td>发布时间</td>
                     <td>是否审核</td>
                     <td>信息排序</td>
-                    
+                    <td>浏览数</td>
                     <td style="width:60px;">操作</td>
                   </tr>                  
             </HeaderTemplate>
@@ -79,9 +79,9 @@
                     <td align="center"><%# Eval("CreateTime")%></td>
                     <td align="center"><img src='<%# GetImgUrl(Eval("IsAudit").ToString()) %>' alt="修改状态" title="修改状态" onclick="javascript:listTable.toggle(this,'edit status',<%# Eval("ID") %>)" style="" /></td>                    
                     <td align="center"><span title="点击修改排序" onclick="javascript:listTable.edit(this,'edit Sequence',<%# Eval("ID") %>)" style=""><%# Eval("Sequence").ToString()%></span></td>
-                    
+                    <td align="center"><%# Eval("ViewCount")%></td>
                     <td>
-                        <span><a href="javascript:void(null);" title="查看" onclick='Display("DisplayDiv","DemandInfo","","ID","",<%# Eval("ID") %>,"DemandInfoList")'><img src="../images/icon_view.gif" alt="" /></a></span>
+                        <span><a href="javascript:void(null);" title="查看" onclick='Display("DisplayDiv","DemandInfo","UserInfo","ID","UserId",<%# Eval("ID") %>,"DemandInfoList")'><img src="../images/icon_view.gif" alt="" /></a></span>
                         <span><a href='javascript:void(null);' title="编辑"><img src="../images/icon_edit.gif" alt="" /></a></span>
                         <span><a href="javascript:void(null);" title="删除" onclick="javascript:listTable.remove(<%# Eval("ID") %>,'您确定要删除该记录么？','remove');location.reload();"><img src="../images/icon_drop.gif" alt="" /></a></span>
                     </td>
@@ -95,7 +95,7 @@
     </div>
     <div class="MainBottom">
     <div>
-        <webdiyer:AspNetPager ID="PagerList" runat="server" AlwaysShow="True" PageSize="15"
+        <webdiyer:AspNetPager ID="PagerList" runat="server" AlwaysShow="True" PageSize="14"
             FirstPageText="首页" LastPageText="尾页" NextPageText="后页" 
             onpagechanging="AspNetPager1_PageChanging" PrevPageText="前页">
         </webdiyer:AspNetPager>
@@ -107,7 +107,7 @@
             <asp:Button ID="BtnAudit" CssClass="Btn_Style3" runat="server" Text="批量审核" 
             onclick="BtnAudit_Click" />
     </div>
-    <div id="DisplayDiv"  style="display:none; border:1px solid black; width:300px; height:auto; position:absolute; background:#f8e6ef;">
+    <div id="DisplayDiv"  style="display:none; border:1px solid black; width:600px; height:auto; position:absolute; background:#f8e6ef;" onmouseover='Move_obj("DisplayDiv")'>
         
     </div>
     </form>

@@ -82,7 +82,7 @@
     </div>
     <div class="MainBottom">
     <div>
-        <webdiyer:AspNetPager ID="PagerList" runat="server" FirstPageText="首页" PageSize="15" CssClass="Pager" 
+        <webdiyer:AspNetPager ID="PagerList" runat="server" FirstPageText="首页" PageSize="14" CssClass="Pager" 
             LastPageText="尾页" NextPageText="后页" onpagechanging="AspNetPager1_PageChanging" 
             PrevPageText="前页" AlwaysShow="true">
         </webdiyer:AspNetPager>
@@ -92,7 +92,7 @@
         <asp:Button ID="BtnDelete" CssClass="Btn_Style3" runat="server" Text="批量删除" 
             onclick="BtnDelete_Click" />
     </div>
-    <div id="DisplayDiv"  style="display:none; border:1px solid black; width:300px; height:auto; position:absolute; background:#f8e6ef;">
+    <div id="DisplayDiv"  style="display:none; border:1px solid black; width:300px; height:auto; position:absolute; background:#f8e6ef;" onmouseover='Move_obj("DisplayDiv")'>
         
     </div>
     </form>

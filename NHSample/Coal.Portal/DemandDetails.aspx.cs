@@ -25,8 +25,7 @@ public partial class DemandDetails : System.Web.UI.Page
             if (LoginContext.CurrentUser != null)
             {
                 long ID =EConvert.ToLong(Request.QueryString["ID"]);
-                DataInnit(ID);
-                
+                DataInnit(ID);                
             }
             else
             {
@@ -61,7 +60,9 @@ public partial class DemandDetails : System.Web.UI.Page
         UserId.Value = entity.UserId.ToString();
         txtfbdate.Text = entity.CreateTime.Value.ToString("yyyy年MM月dd日");
         txtEnddate.Text = entity.InfoIndate.Value.ToString("yyyy年MM月dd日");
+        txtViewCount.Text = entity.ViewCount.Value.ToString();
         contactInfoInnit(entity.UserId.Value);
+        Dao.UpdateSet(EConvert.ToInt(ID), "ViewCount", (entity.ViewCount + 1).ToString());
     }
 
     private void contactInfoInnit(int UserId)
