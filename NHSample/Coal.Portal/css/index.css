@@ -104,6 +104,8 @@ a:hover {
 	width: 220px;
 	float: left;
 }
+ul{ margin:0px; padding:0px;}
+li{margin:0px; padding:0px;}
 .mt_all .cotton01 .huizhanxinxi h1 {
 	background-image: url(../images/login_bg.gif);
 	background-repeat: repeat-x;
@@ -368,6 +370,7 @@ a:hover {
 	width: 715px;
 	float: right;
 	margin-bottom: 15px;
+	
 }
 .mt_all .cotton03 .r_ad img {
 	height: 80px;

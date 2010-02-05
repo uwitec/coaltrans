@@ -1,4 +1,8 @@
 ﻿$(document).ready(function() {
+
+    LoadAd('A1',1);
+    LoadAd('A2',5);
+    LoadAd('A3',6);
     //load列表初始数据
     $.ajax({
         type: "POST",
@@ -97,6 +101,31 @@
             $("#LinkNav").html(content);
         }
     });
+    
+    function LoadAd(obj,PositionId)
+    {
+         //load友情链接列表
+        $.ajax({
+            type: "POST",
+            url: "Handler/AdManage.ashx",
+            data: {"action":"Search","PositionId":PositionId},
+            dataType: "json",
+            success: function(msg) {  
+                var content="<ul>";          
+                $.each(msg.rows, function(i, row) {        
+                    if(row.AdType=="1")
+                    {            
+                        content += "<li>";
+                        content += "<a href='http://"+row.AdLink+"' title='"+row.AdName+"' target='_blank'><img src='"+row.AdUrl+"' width='"+row.AdWidth+"' height='"+row.AdHeight+"' border='0' ><a></li>";             
+                        content += "</li>";
+                    }
+                });
+                content+="</ul>";                
+                $("#"+obj).html(content);                
+            }
+        });
+    }
+    
     //图片轮转
     $(".triggers").children().each(function() {
         $(this).mouseover(function() {
