@@ -8,6 +8,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Collections.Generic;
 using Coal.BLL;
+using Coal.DAL;
+using Coal.Entity;
 using Coal.Util;
 
 public class DemandList : IHttpHandler {
@@ -32,6 +34,10 @@ public class DemandList : IHttpHandler {
 
         if ((dt != null) && (dt.Rows.Count > 0))
         {
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                dt.Rows[i]["DeliveryPlace"] = GetArea(dt.Rows[i]["DeliveryPlace"].ToString());
+            }
             ResultObject ro = DataUtility.ConvertToResultObject(dt);
             ro["totalCount"] = rowcount;
 
@@ -58,7 +64,25 @@ public class DemandList : IHttpHandler {
         }
         
     }
- 
+    protected string GetArea(string Area)
+    {
+        string Str = "";
+        if (!string.IsNullOrEmpty(Area))
+        {
+            string[] list = Area.Split('&');
+            RegionEntity.RegionDAO Dao = new RegionEntity.RegionDAO();
+
+            foreach (string obj in list)
+            {
+                RegionEntity entity = Dao.FindById(EConvert.ToLong(obj));
+                if (entity != null)
+                {
+                    Str += entity.Name + "  ";
+                }
+            }
+        }
+        return Str;
+    }
     public bool IsReusable {
         get {
             return false;

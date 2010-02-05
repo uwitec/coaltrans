@@ -44,7 +44,59 @@
             $("#demand_list").html(content);
         }
     });
-
+    
+    //load招标信息列表
+    $.ajax({
+        type: "POST",
+        url: "Handler/InfoList.ashx",
+        data: {"top": 7,"TableName":"InviteInfo","StrWhere":"IsAudit=1","OrderBy":" RankNum, CreateTime DESC"},
+        dataType: "json",
+        success: function(msg) {  
+            var content="";          
+            $.each(msg.rows, function(i, row) {
+                content += "<li>";
+                content += "<a href='javascript:void(null);' title='"+row.InviteTitle+"'>" + row.InviteTitle.substring(0,20)+ "...</a></td>";               
+                content += "</li>";
+            });
+            $("#InviteNav").html(content);
+        }
+    });
+    
+    //load投标信息列表
+    $.ajax({
+        type: "POST",
+        url: "Handler/InfoList.ashx",
+        data: {"top": 7,"TableName":"TenderInfo","StrWhere":"IsAudit=1","OrderBy":" RankNum, CreateTime DESC"},
+        dataType: "json",
+        success: function(msg) {  
+            var content="";          
+            $.each(msg.rows, function(i, row) {
+                content += "<li>";
+                content += "<a href='javascript:void(null);' title='"+row.TenderTitle+"'>" + row.TenderTitle.substring(0,20)+ "...</a></td>";               
+                content += "</li>";
+            });
+            $("#TenderNav").html(content);
+        }
+    });
+    
+    //load友情链接列表
+    $.ajax({
+        type: "POST",
+        url: "Handler/InfoList.ashx",
+        data: {"top": 10,"TableName":"FriendLink","StrWhere":"CategoryId=1","OrderBy":" ShowOrder"},
+        dataType: "json",
+        success: function(msg) {  
+            var content="";          
+            $.each(msg.rows, function(i, row) {
+                var Url= (row.LinkUrl==""? "javascript:void(null);": "http://"+row.LinkUrl);
+                var Img=(row.LinkLogo==""? row.LinkName : "<img src='"+row.LinkLogo+"' border='0' width='70px' height='25px'/>");
+                content += "<li>";
+                content += "<a href='"+Url+"' title='"+row.LinkName+"' target='_blanl'>" +Img + "<a></td>";               
+                content += "</li>";
+            });
+            $("#LinkNav").html(content);
+        }
+    });
     //图片轮转
     $(".triggers").children().each(function() {
         $(this).mouseover(function() {

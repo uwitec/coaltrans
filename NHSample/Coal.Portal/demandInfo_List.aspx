@@ -97,6 +97,7 @@
                 $(this).bind("click", { cur_id: id }, paging);
             });
         }
+       
 
         function Bind(isInit) {
             $.post("Handler/DemandList.ashx",
@@ -107,7 +108,8 @@
                    reqData.page_count = data.pageCount;
                    var content = new StringBuffer();
                    for (var one in data.rows) {
-                       var row = data.rows[one];
+                       
+                       var row = data.rows[one];                         
                        content.append("<div class='cp_all'>");
                        content.append("<div class='cp_images'><img src='images/jx01.jpg' /></div>");
                        content.append("<div class='cp_cotton'>");
@@ -122,7 +124,7 @@
                        content.append(row["CoalType"]);
                        content.append("&nbsp;&nbsp;&nbsp;&nbsp;");
                        content.append("<em>交货地：</em>");
-                       content.append(row["DeliveryPlace"]);
+                       content.append(row["DeliveryPlace"]);                       
                        content.append("</li><li>");
                        content.append(row["Description"]);
                        content.append("<em>发布时间：</em><strong>");

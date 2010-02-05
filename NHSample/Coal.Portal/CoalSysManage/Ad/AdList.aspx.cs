@@ -125,7 +125,12 @@ public partial class CoalSysManage_Ad_AdList : System.Web.UI.Page
                         bool RankResult = Dao.UpdateSet(EConvert.ToInt(id), "RankNum", Val);
                         res = "{\"error\":0,\"message\":\"\",\"content\":\"" + Val + "\"}";
                         break;
-                    case "remove":
+                    case "remove":                        
+                        string AdUrl = Dao.FindById(EConvert.ToLong(id)).AdUrl;
+                        if (!string.IsNullOrEmpty(AdUrl))
+                        {
+                            IOFile.DeleteFile("", AdUrl);
+                        }
                         bool DelResult = Dao.Delete(EConvert.ToInt(id));
                         break;
                     default:
@@ -154,6 +159,11 @@ public partial class CoalSysManage_Ad_AdList : System.Web.UI.Page
             if (chk.Checked)
             {
                 AdListEntity.AdListDAO Dao = new AdListEntity.AdListDAO();
+                string AdUrl = Dao.FindById(EConvert.ToLong(lab.Text)).AdUrl;
+                if (!string.IsNullOrEmpty(AdUrl))
+                {
+                    IOFile.DeleteFile("", AdUrl);
+                }
                 bool result = Dao.Delete(EConvert.ToInt(lab.Text));               
             }
         }

@@ -31,10 +31,17 @@
             <td colspan="3"><input type="text" id="AdLink" runat="server" /><span>*</span></td>
           </tr>
           <tr>
+            <td align="right">文件地址：</td>
+            <td colspan="3"><input type="file" id="AdUrl" runat="server" size="35" style="font-size:12px;" /></td>
+          </tr>
+          <tr>
+            <td align="right">或外部链接：</td>
+            <td colspan="3"><input type="text" id="ExternalAdUrl" runat="server" /></td>
+          </tr>
+          <tr>
             <td align="right">广告简介：</td>
             <td colspan="3"><textarea id="AdDesc" runat="server" rows="5" cols="30" style="font-size:12px;"></textarea><span>*</span></td>
           </tr>
-         
           <tr>
             <td align="right">开启时间：</td>
             <td colspan="3">

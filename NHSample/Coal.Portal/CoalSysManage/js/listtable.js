@@ -19,6 +19,17 @@ listTable.url += "?is_ajax=1";
 /**
  * 创建一个可编辑区
  */
+listTable.add = function(obj,act,obj1)
+{
+    var val = document.getElementById(obj1).value;
+
+    var res = Ajax.call(this.url, "act="+act+"&val=" + val + "&id=" +"", null, "POST", "JSON", false);
+    if (res.message)
+    {
+        alert(res.message);
+    }
+}
+ 
 listTable.edit = function(obj, act, id)
 {
   var tag = obj.firstChild.tagName;

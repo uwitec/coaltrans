@@ -24,6 +24,7 @@
         <div style=" margin-left:50px;">&nbsp;</div>
         <div><b>广告名称：</b><input type="text" id="AdName" runat="server" /></div>
         <div><b>广告位置：</b>
+        
             <select id="PositionId" runat="server">
                 
             </select>

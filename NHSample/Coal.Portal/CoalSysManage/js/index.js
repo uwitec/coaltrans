@@ -81,6 +81,7 @@ function Display(obj,TabelName1,TabelName2,Key,foreignkey,value,type)
                 Content+="广告名称："+row["AdName"]+"<p/>";
                 Content+="所属位置："+row["PositionName"]+"<p/>";
                 Content+="广告链接："+row["AdLink"]+"<p/>";
+                Content+="文件地址："+row["AdUrl"]+"<p/>";
                 Content+="广告简介："+row["AdDesc"]+"<p/>";
                 Content+="开启时间："+row["StartTime"]+"<p/>";
                 Content+="结束时间："+row["EndTime"]+"<p/>";
@@ -140,6 +141,15 @@ function Display(obj,TabelName1,TabelName2,Key,foreignkey,value,type)
                 Content+="<td align='right'>详细地址：</td><td colspan='3'></td></tr>";
                 Content+="</table>";
                 break;
+            case "FrendLinkDis":
+                Content+="<table style='width:100%;'>";                              
+                Content+="<tr><td align='right' style='width:15%;'>所属位置：</td><td colspan='3'>"+row["CategoryName"]+"</td></tr>";                
+                Content+="<tr><td align='right' style='width:15%;'>链接名称：</td><td colspan='3'>"+row["LinkName"]+"</td></tr>"; 
+                Content+="<tr><td align='right' style='width:15%;'>连接地址：</td><td colspan='3'><a href='http://"+row["LinkUrl"]+"' target='_blank'>"+row["LinkUrl"]+"</a></td></tr>"; 
+                Content+="<tr><td align='right' style='width:15%;'>图片Logo：</td><td colspan='3'><img src='"+row["LinkLogo"]+"' width='200px' height='150px' /></td></tr>"; 
+                Content+="<tr><td align='right' style='width:15%;'>详细描述：</td><td colspan='3'>"+row["LinkDesc"]+"</td></tr>";                 
+                Content+="</table>";
+                break;    
             default:
                 break;
         }
@@ -156,6 +166,15 @@ function Lclose(obj)
     document.getElementById(obj).style.display="none";
 }
 
+function LDisplay(obj)
+{
+    var Lobj=document.getElementById(obj);
+    var LWidth=document.body.scrollWidth/4;
+    var Lheigh=document.body.scrollHeight/3;
+    Lobj.style.left=LWidth+"px"; 
+    Lobj.style.top=Lheigh+"px";
+    Lobj.style.display="block";
+}
 
 var drag_=false
 var D=new Function('obj','return document.getElementById(obj);')

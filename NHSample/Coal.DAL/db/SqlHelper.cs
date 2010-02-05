@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -174,6 +175,26 @@ namespace Coal.DAL
             }
         }
 
-
+        public DataTable GetTableByTop(int top, string TableName, string StrWhere, string OrderBy)
+        {
+            string StrSql = "select top " + top + " * from " + TableName;
+            if (!string.IsNullOrEmpty(StrWhere))
+            {
+                StrSql += " where " + StrWhere;
+            }
+            if (!string.IsNullOrEmpty(OrderBy))
+            {
+                StrSql += " order by " + OrderBy;
+            }
+            DataSet ds = ExecuteDateSet(StrSql, null);
+            if (ds != null && ds.Tables.Count > 0)
+            {
+                return ds.Tables[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

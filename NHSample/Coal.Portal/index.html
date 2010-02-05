@@ -1,12 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>国家煤炭工业网-供求平台</title>
-<link href="css/index.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
-<script type="text/javascript">
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>国家煤炭工业网-供求平台</title>
+    <link href="css/index.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+
+    <script type="text/javascript" src="js/index.js"></script>
+
+    <script type="text/javascript">
 <!--
 /*第一种形式 第二种形式 更换显示样式*/
 function setTab(name,cursel,n){
@@ -18,36 +21,43 @@ function setTab(name,cursel,n){
  }
 }
 //-->
-</script>
+    </script>
+
 </head>
 <body>
-<div class="mt_all">
-<!--页面头部 开始-->
-<div class="header">
-<div class="logo"><a href="#" title="国家煤炭工业网">国家煤炭工业网</a></div>
-<div class="topNav"><a href="index.html">首页</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="in_construction.html">功能地图</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="in_construction.html">日志查询</a>&nbsp;&nbsp;</div>
-<ul class="mainNav">
-	<li class="current"><a href="#">首 页</a></li>
-	<li><a href="coal_list.aspx">供 应</a></li>
-	<li><a href="demandInfo_List.aspx">采 购</a></li>
-	<li><a href="in_construction.html">招 标</a></li>
-	<li><a href="in_construction.html">投 标</a></li>
-</ul>
-<div class="searchBar">
-	<div class="searchBody">
-		<form name="form1" action="Search/" method="post">
-			<input name="keyword" type="text" class="input_text" value="请输入产品名称或公司名称" onFocus="this.style.color='#000';this.value=''" onBlur="if(this.value==''){this.value='请输入产品名称或公司名称';this.style.color='#a0a0a0'}" />
-			<div class="selectBar">
-				<div class="selectTitle" id="selectTitle">请选择</div>
-				<ul class="selectBody" id="selectSort">
-					<li><a href="javascript:void(null);">供应</a></li>
-					<li><a href="javascript:void(null);">采购</a></li>
-					<li><a href="javascript:void(null);">招标</a></li>
-					<li><a href="javascript:void(null);">投标</a></li>
-				</ul>
-			</div>
-			<input name="button" type="submit" value="模糊查询" class="input_button" />
-			<script type="text/javascript">
+    <div class="mt_all">
+        <!--页面头部 开始-->
+        <div class="header">
+            <div class="logo">
+                <a href="#" title="国家煤炭工业网">国家煤炭工业网</a></div>
+            <div class="topNav">
+                <a href="index.html">首页</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="in_construction.html">功能地图</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+                    href="in_construction.html">日志查询</a>&nbsp;&nbsp;</div>
+            <ul class="mainNav">
+                <li class="current"><a href="#">首 页</a></li>
+                <li><a href="coal_list.aspx">供 应</a></li>
+                <li><a href="demandInfo_List.aspx">采 购</a></li>
+                <li><a href="in_construction.html">招 标</a></li>
+                <li><a href="in_construction.html">投 标</a></li>
+            </ul>
+            <div class="searchBar">
+                <div class="searchBody">
+                    <form name="form1" action="Search/" method="post">
+                    <input name="keyword" type="text" class="input_text" value="请输入产品名称或公司名称" onfocus="this.style.color='#000';this.value=''"
+                        onblur="if(this.value==''){this.value='请输入产品名称或公司名称';this.style.color='#a0a0a0'}" />
+                    <div class="selectBar">
+                        <div class="selectTitle" id="selectTitle">
+                            请选择</div>
+                        <ul class="selectBody" id="selectSort">
+                            <li><a href="javascript:void(null);">供应</a></li>
+                            <li><a href="javascript:void(null);">采购</a></li>
+                            <li><a href="javascript:void(null);">招标</a></li>
+                            <li><a href="javascript:void(null);">投标</a></li>
+                        </ul>
+                    </div>
+                    <input name="button" type="submit" value="模糊查询" class="input_button" />
+
+                    <script type="text/javascript">
 			    var div1 = document.getElementById("selectTitle");
 			    var div2 = document.getElementById("selectSort");
 			    div1.onmouseover = function(e) {
@@ -63,167 +73,215 @@ function setTab(name,cursel,n){
 			            div2.style.display = "none";
 			        }
 			    }
-			</script>
-		</form>
-	</div>
-	<div class="searchKeyword">热门搜索：<a href="#">神华</a> <a href="#">无煤烟</a> <a href="#">焦油</a> <a href="#">神华</a> <a href="#">无煤烟</a> <a href="#">焦油</a></div>
-</div>
-</div>
-<!--页面头部 结束-->
-  <div class="cotton01">
-    <div class="huizhanxinxi">
-      <h1>会展信息</h1>
-      <ul>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-      </ul>
+                    </script>
+
+                    </form>
+                </div>
+                <div class="searchKeyword">
+                    热门搜索：<a href="#">神华</a> <a href="#">无煤烟</a> <a href="#">焦油</a> <a href="#">神华</a>
+                    <a href="#">无煤烟</a> <a href="#">焦油</a></div>
+            </div>
+        </div>
+        <!--页面头部 结束-->
+        <div class="cotton01">
+            <div class="huizhanxinxi">
+                <h1>
+                    会展信息</h1>
+                <ul>
+                    <li><a href="#">出售神木店塔附近的电煤... </a></li>
+                    <li><a href="#">出售神木店塔附近的电煤... </a></li>
+                    <li><a href="#">出售神木店塔附近的电煤... </a></li>
+                    <li><a href="#">出售神木店塔附近的电煤... </a></li>
+                    <li><a href="#">出售神木店塔附近的电煤... </a></li>
+                    <li><a href="#">出售神木店塔附近的电煤... </a></li>
+                    <li><a href="#">出售神木店塔附近的电煤... </a></li>
+                </ul>
+            </div>
+            <div id="J_Slide" class="slide-player tb-slide">
+                <ul id="img_container" class="tb-slide-list">
+                    <li style="display: block">
+                        <img src="p_img/1.gif" alt="#" style="width: 390px; height: 210px" /></li>
+                    <li style="display: none">
+                        <img src="p_img/2.jpg" alt="#" style="width: 390px; height: 210px" /></li>
+                    <li style="display: none">
+                        <img src="p_img/3.jpg" alt="#" style="width: 390px; height: 210px" /></li>
+                </ul>
+                <ul id="slide_trigger" class="triggers">
+                    <li class="current">1</li>
+                    <li>2</li>
+                    <li>3</li>
+                </ul>
+            </div>
+            <div class="mt-login">
+                <span id='login_msg' style="display: none;">用户名密码不正确</span>
+                <table id="login_container" width="100%" border="0" cellspacing="0" cellpadding="0"
+                    class="login01">
+                    <tr class="login_init">
+                        <th>
+                            用户名：
+                        </th>
+                        <td>
+                            <input type="text" class="logintxt" id="email" name="email" />
+                        </td>
+                        <td rowspan="2">
+                            <a href="#" id="login_action">
+                                <img alt="do_login" border="0px" src="images/BUT01.jpg" /></a>
+                        </td>
+                        <td rowspan="2">
+                            <a href="reg_step1.aspx">免费注册</a><br />
+                            <a href="#">忘记密码</a><br />
+                            <a href="#">帮助中心</a>
+                        </td>
+                    </tr>
+                    <tr class="login_init">
+                        <th>
+                            密&nbsp;&nbsp;&nbsp;&nbsp;码：
+                        </th>
+                        <td>
+                            <input type="password" class="logintxt" id="password" name="password" />
+                        </td>
+                    </tr>
+                    <tr class="login_load" style="display: none;">
+                        <td>
+                            <div class='laodinguser'>
+                                <img src='images/loading01.gif' width='32' height='32' /><br />
+                                正在登录，请稍后......</div>
+                        </td>
+                    </tr>
+                </table>
+                <h1>
+                    免费注册会员后您可以</h1>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="renext">
+                    <tr>
+                        <td>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="renext01">
+                                <tr>
+                                    <td>
+                                        <a href="#">发布供应信息</a>
+                                    </td>
+                                    <td>
+                                        <a href="#">发布采购信息</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="#">发布招标信息</a>
+                                    </td>
+                                    <td>
+                                        <a href="#">发布投标信息</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td align="right">
+                            <a href="reg_step1.aspx">
+                                <img alt="" border="0px" src="images/but04.jpg" /></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="cotton03">
+            <div class="hangqing">
+                <h1>
+                    价格行情</h1>
+                <ul>
+                    <li><a href="#">出售神木店塔附近的电煤... </a></li>
+                    <li><a href="#">出售神木店塔附近的电煤... </a></li>
+                    <li><a href="#">出售神木店塔附近的电煤... </a></li>
+                    <li><a href="#">出售神木店塔附近的电煤... </a></li>
+                    <li><a href="#">出售神木店塔附近的电煤... </a></li>
+                    <li><a href="#">出售神木店塔附近的电煤... </a></li>
+                    <li><a href="#">出售神木店塔附近的电煤... </a></li>
+                </ul>
+            </div>
+            <div class="r_ad">
+                <img src="images/01_.jpg" /></div>
+            <div class="r_cotton">
+                <h1 id="supply_nav">
+                    <em>供应信息</em><a id="1" href="javascript:void(0)" class="bq01">煤炭</a><a id="2" href="javascript:void(0)"
+                        class="bq02">煤制品</a><a id="3" href="javascript:void(0)" class="bq02">机械设备</a><a id="4"
+                            href="javascript:void(0)" class="bq02">运输服务</a></h1>
+                <ul id="supply_list">
+                </ul>
+            </div>
+            <div class="r_cotton">
+                <h1 id="demand_nav">
+                    <em>采购信息</em><a id="1" href="javascript:void(0)" class="bq01">煤炭</a><a id="2" href="javascript:void(0)"
+                        class="bq02">煤制品</a><a id="3" href="javascript:void(0)" class="bq02">机械设备</a><a id="4"
+                            href="javascript:void(0)" class="bq02">运输服务</a></h1>
+                <ul id="demand_list">
+                </ul>
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="cotton04">
+            <div class="l_ad">
+                <img src="images/jx02.jpg" /></div>
+            <div class="r_ad">
+                <img src="images/05.jpg" /></div>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="cotton02">
+            <div class="tongjishuju">
+                <h1>
+                    统计数据</h1>
+                <ul>
+                    <li><a href="#">出售神木店塔附近的电煤... </a></li>
+                    <li><a href="#">出售神木店塔附近的电煤... </a></li>
+                    <li><a href="#">出售神木店塔附近的电煤... </a></li>
+                    <li><a href="#">出售神木店塔附近的电煤... </a></li>
+                    <li><a href="#">出售神木店塔附近的电煤... </a></li>
+                    <li><a href="#">出售神木店塔附近的电煤... </a></li>
+                    <li><a href="#">出售神木店塔附近的电煤... </a></li>
+                </ul>
+            </div>
+            <div class="r_cotton">
+                <h1>
+                    招标信息</h1>
+                <ul id="InviteNav">
+                   
+                </ul>
+            </div>
+            <div class="r_cotton">
+                <h1>
+                    投标信息</h1>
+                <ul id="TenderNav">
+                   
+                </ul>
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="linklist">
+            <h1>
+                友情链接</h1>
+            <ul id="LinkNav">
+                <li><a href="#">神木店塔电煤公司</a></li>
+                <li><a href="#">神木店塔电煤公司</a></li>
+                <li><a href="#">神木店塔电煤公司</a></li>
+                <li><a href="#">神木店塔电煤公司</a></li>
+                <li><a href="#">神木店塔电煤公司</a></li>
+                <li><a href="#">神木店塔电煤公司</a></li>
+                <li><a href="#">神木店塔电煤公司</a></li>
+                <li><a href="#">神木店塔电煤公司</a></li>
+                <li><a href="#">神木店塔电煤公司</a></li>
+                <li><a href="#">神木店塔电煤公司</a></li>
+            </ul>
+        </div>
+        <div class="bottom">
+            <h1>
+                <a href="#">网站地图</a> | <a href="#">版权声明</a> | <a href="#">设为首页</a> | <a href="#">关于我们</a></h1>
+            <ul>
+                <li>Copyright&copy;2009 国家煤炭工业网</li>
+                <li>主办:中国煤炭工业协会 技术支持:北京中煤易通科技有限公司</li>
+                <li>(浏览本站主页,建议将电脑显示器分辨率调整为:1024*768)</li>
+            </ul>
+        </div>
     </div>
-    <div id="J_Slide" class="slide-player tb-slide">
-        <ul id="img_container" class="tb-slide-list">
-            <li style="display:block"><img src="p_img/1.gif" alt="#" style="width:390px;height:210px" /></li>
-            <li style="display:none"><img src="p_img/2.jpg" alt="#" style="width:390px;height:210px" /></li>
-            <li style="display:none"><img src="p_img/3.jpg" alt="#" style="width:390px;height:210px" /></li>
-        </ul>
-        <ul id="slide_trigger" class="triggers">
-            <li class="current">1</li>
-            <li>2</li>
-            <li>3</li>
-        </ul>
-    </div>
-    <div class="mt-login">
-      <span id='login_msg' style="display:none;">用户名密码不正确</span>
-      <table id="login_container" width="100%" border="0" cellspacing="0" cellpadding="0" class="login01">
-        <tr class="login_init">
-          <th>用户名：</th>
-          <td><input type="text" class="logintxt" id="email" name="email" /></td>
-          <td rowspan="2"><a href="#" id="login_action"><img alt="do_login" border="0px" src="images/BUT01.jpg" /></a></td>
-          <td rowspan="2"><a href="reg_step1.aspx">免费注册</a><br />
-            <a href="#">忘记密码</a><br />
-            <a href="#">帮助中心</a></td>
-        </tr>
-        <tr class="login_init">
-          <th>密&nbsp;&nbsp;&nbsp;&nbsp;码：</th>
-          <td><input type="password" class="logintxt" id="password" name="password" /></td>
-        </tr>
-        <tr class="login_load" style="display:none;"><td><div class='laodinguser'><img src='images/loading01.gif' width='32' height='32' /><br />
-		    正在登录，请稍后......</div></td>
-		</tr>
-      </table>
-      <h1>免费注册会员后您可以</h1>
-      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="renext">
-        <tr>
-          <td><table width="100%" border="0" cellspacing="0" cellpadding="0" class="renext01">
-              <tr>
-                <td><a href="#">发布供应信息</a></td>
-                <td><a href="#">发布采购信息</a></td>
-              </tr>
-              <tr>
-                <td><a href="#">发布招标信息</a></td>
-                <td><a href="#">发布投标信息</a></td>
-              </tr>
-            </table></td>
-          <td align="right"><a href="reg_step1.aspx"><img alt="" border="0px" src="images/but04.jpg" /></a></td>
-        </tr>
-      </table>
-    </div>
-    <div class="clear"></div>
-  </div>
-  <div class="cotton03">
-    <div class="hangqing">
-      <h1>价格行情</h1>
-      <ul>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-      </ul>
-    </div>
-    <div class="r_ad"><img src="images/01_.jpg" /></div>
-    <div class="r_cotton">
-      <h1 id="supply_nav"><em>供应信息</em><a id="1" href="javascript:void(0)" class="bq01">煤炭</a><a id="2" href="javascript:void(0)" class="bq02">煤制品</a><a id="3" href="javascript:void(0)" class="bq02">机械设备</a><a id="4" href="javascript:void(0)" class="bq02">运输服务</a></h1>
-      <ul id="supply_list"></ul>
-    </div>
-    <div class="r_cotton">
-      <h1 id="demand_nav"><em>采购信息</em><a id="1" href="javascript:void(0)" class="bq01">煤炭</a><a id="2" href="javascript:void(0)" class="bq02">煤制品</a><a id="3" href="javascript:void(0)" class="bq02">机械设备</a><a id="4" href="javascript:void(0)" class="bq02">运输服务</a></h1>
-      <ul id="demand_list"></ul>
-    </div>
-    <div class="clear"></div>
-  </div>
-  <div class="cotton04">
-    <div class="l_ad"><img src="images/jx02.jpg" /></div>
-    <div class="r_ad"><img src="images/05.jpg" /></div>
-    <div class="clear"></div>
-  </div>
-  <div class="cotton02">
-    <div class="tongjishuju">
-      <h1>统计数据</h1>
-      <ul>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-      </ul>
-    </div>
-    <div class="r_cotton">
-      <h1>招标信息</h1>
-      <ul>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-      </ul>
-    </div>
-    <div class="r_cotton">
-      <h1>招标信息</h1>
-      <ul>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-        <li><a href="#">出售神木店塔附近的电煤... </a></li>
-      </ul>
-    </div>
-    <div class="clear"></div>
-  </div>
-  <div class="linklist">
-    <h1>友情链接</h1>
-    <ul>
-      <li><a href="#">神木店塔电煤公司</a></li>
-      <li><a href="#">神木店塔电煤公司</a></li>
-      <li><a href="#">神木店塔电煤公司</a></li>
-      <li><a href="#">神木店塔电煤公司</a></li>
-      <li><a href="#">神木店塔电煤公司</a></li>
-      <li><a href="#">神木店塔电煤公司</a></li>
-      <li><a href="#">神木店塔电煤公司</a></li>
-      <li><a href="#">神木店塔电煤公司</a></li>
-      <li><a href="#">神木店塔电煤公司</a></li>
-      <li><a href="#">神木店塔电煤公司</a></li>
-    </ul>
-  </div>
-  <div class="bottom">
-    <h1><a href="#">网站地图</a> | <a href="#">版权声明</a> | <a href="#">设为首页</a> | <a href="#">关于我们</a></h1>
-    <ul>
-      <li>Copyright&copy;2009 国家煤炭工业网</li>
-      <li>主办:中国煤炭工业协会 技术支持:北京中煤易通科技有限公司</li>
-      <li>(浏览本站主页,建议将电脑显示器分辨率调整为:1024*768)</li>
-    </ul>
-  </div>
-</div>
 </body>
 </html>

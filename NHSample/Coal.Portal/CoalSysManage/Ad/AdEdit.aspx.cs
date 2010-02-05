@@ -11,6 +11,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
+using System.IO;
 using Coal.DAL;
 using Coal.Util;
 
@@ -41,6 +42,7 @@ public partial class CoalSysManage_Ad_AdEdit : System.Web.UI.Page
                 positionInnit(entity.PositionId.ToString());
                 AdName.Value = entity.AdName;
                 AdLink.Value = entity.AdLink;
+                ExternalAdUrl.Value = entity.AdUrl;
                 AdDesc.Value = entity.AdDesc;
                 StartTime.Value = entity.StartTime.Value.ToString("yyyy-MM-dd");
                 EndTime.Value = entity.EndTime.Value.ToString("yyyy-MM-dd");
@@ -112,6 +114,14 @@ public partial class CoalSysManage_Ad_AdEdit : System.Web.UI.Page
                 entity.LinkEmail = Common.FiltrationMaliciousCode(LinkEmail.Value);
                 entity.IsOpen = EConvert.ToInt(IsOpen.Value);
                 entity.RankNum = EConvert.ToInt(RankNum.Value);
+                if (!string.IsNullOrEmpty(ExternalAdUrl.Value))
+                {
+                    entity.AdUrl = ExternalAdUrl.Value;
+                }
+                else
+                {
+                    entity.AdUrl = UploadFile(AdUrl);
+                }
                 entity.ClickNum = 0;
                 try 
                 {
@@ -131,6 +141,22 @@ public partial class CoalSysManage_Ad_AdEdit : System.Web.UI.Page
                 entity.AdName = Common.FiltrationMaliciousCode(AdName.Value);
                 entity.AdLink = Common.FiltrationMaliciousCode(AdLink.Value);
                 entity.AdDesc = Common.FiltrationMaliciousCode(AdDesc.Value);
+                if (!string.IsNullOrEmpty(ExternalAdUrl.Value))
+                {
+                    if (!string.IsNullOrEmpty(entity.AdUrl))
+                    {
+                        IOFile.DeleteFile("", entity.AdUrl);
+                    }
+                    entity.AdUrl = ExternalAdUrl.Value;
+                }
+                else
+                {
+                    if (!string.IsNullOrEmpty(entity.AdUrl))
+                    {
+                        IOFile.DeleteFile("", entity.AdUrl);
+                    }
+                    entity.AdUrl = UploadFile(AdUrl);
+                }
                 entity.StartTime = Convert.ToDateTime(StartTime.Value);
                 entity.EndTime = Convert.ToDateTime(EndTime.Value);
                 entity.LinkMan = Common.FiltrationMaliciousCode(LinkMan.Value);
@@ -141,7 +167,7 @@ public partial class CoalSysManage_Ad_AdEdit : System.Web.UI.Page
                 try
                 {
                     Dao.Update(entity);
-                    MessageBox.ShowAndBack("修改成功！");
+                    MessageBox.ShowAndRedirect("修改成功！", "AdList.aspx");
                 }
                 catch
                 {
@@ -153,5 +179,23 @@ public partial class CoalSysManage_Ad_AdEdit : System.Web.UI.Page
         {
             MessageBox.ShowAndBack("参数错误！");
         }
+    }
+
+    private string UploadFile(HtmlInputFile FileUpLoad)
+    {
+
+        string strFile = "";
+        string Filepath = FileUpLoad.PostedFile.FileName;
+        if (!string.IsNullOrEmpty(Filepath))
+        {
+            FileInfo file = new FileInfo(Filepath);
+            string extension = file.Extension.ToUpper();
+            strFile = Common.RandNumber() + extension.ToLower();
+            string path = ConfigurationManager.AppSettings["FCKeditor:UserFilesPath"].ToString();
+            path = path + "Ad";
+            IOFile.UploadFile(FileUpLoad, strFile, path);
+            strFile = path + "/" + strFile;
+        }
+        return strFile;
     }
 }

@@ -37,6 +37,7 @@ namespace Coal.DAL
             public const string LinkEmail = "LinkEmail";
             public const string IsOpen = "IsOpen";
             public const string RankNum = "RankNum";
+            public const string AdUrl = "AdUrl";
         }
         #endregion
 
@@ -46,7 +47,7 @@ namespace Coal.DAL
             sqlHelper = new SqlHelper(DBName);
         }
 
-        public AdListEntity(int adid, int positionid, string adname, string adlink, string addesc, DateTime starttime, DateTime endtime, int clicknum, string linkman, string linkphone, string linkemail, int isopen, int ranknum)
+        public AdListEntity(int adid, int positionid, string adname, string adlink, string addesc, DateTime starttime, DateTime endtime, int clicknum, string linkman, string linkphone, string linkemail, int isopen, int ranknum, string adurl)
         {
             this.AdId = adid;
 
@@ -73,6 +74,8 @@ namespace Coal.DAL
             this.IsOpen = isopen;
 
             this.RankNum = ranknum;
+
+            this.AdUrl = adurl;
 
         }
         #endregion
@@ -195,6 +198,15 @@ namespace Coal.DAL
             set;
         }
 
+        /// <summary>
+        /// 广告文件地址
+        /// </summary>
+        public string AdUrl
+        {
+            get;
+            set;
+        }
+
         #endregion
 
         public class AdListDAO : SqlDAO<AdListEntity>
@@ -212,9 +224,9 @@ namespace Coal.DAL
 
                 StringBuilder strSql = new StringBuilder();
                 strSql.Append("insert into AdList(");
-                strSql.Append("PositionId,AdName,AdLink,AdDesc,StartTime,EndTime,ClickNum,LinkMan,LinkPhone,LinkEmail,IsOpen,RankNum)");
+                strSql.Append("PositionId,AdName,AdLink,AdDesc,StartTime,EndTime,ClickNum,LinkMan,LinkPhone,LinkEmail,IsOpen,RankNum,AdUrl)");
                 strSql.Append(" values (");
-                strSql.Append("@PositionId,@AdName,@AdLink,@AdDesc,@StartTime,@EndTime,@ClickNum,@LinkMan,@LinkPhone,@LinkEmail,@IsOpen,@RankNum)");
+                strSql.Append("@PositionId,@AdName,@AdLink,@AdDesc,@StartTime,@EndTime,@ClickNum,@LinkMan,@LinkPhone,@LinkEmail,@IsOpen,@RankNum,@AdUrl)");
                 SqlParameter[] parameters = {
 					new SqlParameter("@PositionId",SqlDbType.Int),
 					new SqlParameter("@AdName",SqlDbType.VarChar),
@@ -227,7 +239,8 @@ namespace Coal.DAL
 					new SqlParameter("@LinkPhone",SqlDbType.VarChar),
 					new SqlParameter("@LinkEmail",SqlDbType.VarChar),
 					new SqlParameter("@IsOpen",SqlDbType.Int),
-					new SqlParameter("@RankNum",SqlDbType.Int)
+					new SqlParameter("@RankNum",SqlDbType.Int),
+					new SqlParameter("@AdUrl",SqlDbType.NVarChar)
 					};
                 parameters[0].Value = entity.PositionId;
                 parameters[1].Value = entity.AdName;
@@ -241,6 +254,7 @@ namespace Coal.DAL
                 parameters[9].Value = entity.LinkEmail;
                 parameters[10].Value = entity.IsOpen;
                 parameters[11].Value = entity.RankNum;
+                parameters[12].Value = entity.AdUrl;
 
                 sqlHelper.ExecuteSql(strSql.ToString(), parameters);
             }
@@ -261,7 +275,8 @@ namespace Coal.DAL
                 strSql.Append("LinkPhone=@LinkPhone,");
                 strSql.Append("LinkEmail=@LinkEmail,");
                 strSql.Append("IsOpen=@IsOpen,");
-                strSql.Append("RankNum=@RankNum");
+                strSql.Append("RankNum=@RankNum,");
+                strSql.Append("AdUrl=@AdUrl");
 
                 strSql.Append(" where AdId=@AdId");
                 SqlParameter[] parameters = {
@@ -277,7 +292,8 @@ namespace Coal.DAL
 					new SqlParameter("@LinkPhone",SqlDbType.VarChar),
 					new SqlParameter("@LinkEmail",SqlDbType.VarChar),
 					new SqlParameter("@IsOpen",SqlDbType.Int),
-					new SqlParameter("@RankNum",SqlDbType.Int)
+					new SqlParameter("@RankNum",SqlDbType.Int),
+					new SqlParameter("@AdUrl",SqlDbType.NVarChar)
 					};
                 parameters[0].Value = entity.AdId;
                 parameters[1].Value = entity.PositionId;
@@ -292,19 +308,34 @@ namespace Coal.DAL
                 parameters[10].Value = entity.LinkEmail;
                 parameters[11].Value = entity.IsOpen;
                 parameters[12].Value = entity.RankNum;
+                parameters[13].Value = entity.AdUrl;
 
                 sqlHelper.ExecuteSql(strSql.ToString(), parameters);
             }
 
-            public bool UpdateSet(int AdId, string ColumnName, string Value)
+            public bool UpdateSet(int ID, string ColumnName, string Value)
             {
                 try
                 {
                     StringBuilder StrSql = new StringBuilder();
                     StrSql.Append("update AdList set ");
                     StrSql.Append(ColumnName + "='" + Value + "'");
-                    StrSql.Append(" where AdId=" + AdId);
+                    StrSql.Append(" where AdId=" + ID);
                     sqlHelper.ExecuteSql(StrSql.ToString(), null);
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
+            public bool Delete(int ID)
+            {
+                string strSql = "delete from AdList where AdId=" + ID;
+                try
+                {
+                    sqlHelper.ExecuteSql(strSql, null);
                     return true;
                 }
                 catch
@@ -324,19 +355,7 @@ namespace Coal.DAL
                 parameters[0].Value = entity.AdId;
                 sqlHelper.ExecuteSql(strSql.ToString(), parameters);
             }
-            public bool Delete(int AdId)
-            {
-                string strSql = "delete from AdList where AdId=" + AdId;
-                try
-                {
-                    sqlHelper.ExecuteSql(strSql, null);
-                    return true;
-                }
-                catch
-                {
-                    return false;
-                }
-            }
+
             public override AdListEntity FindById(long primaryKeyId)
             {
                 StringBuilder strSql = new StringBuilder();
@@ -384,6 +403,7 @@ namespace Coal.DAL
                     {
                         entity.RankNum = (int)row["RankNum"];
                     }
+                    entity.AdUrl = row["AdUrl"].ToString();
                     return entity;
                 }
                 else
@@ -443,6 +463,7 @@ namespace Coal.DAL
                         {
                             entity.RankNum = (int)row["RankNum"];
                         }
+                        entity.AdUrl = row["AdUrl"].ToString();
 
                         list.Add(entity);
                     }
@@ -495,7 +516,7 @@ namespace Coal.DAL
             /// <param name="pageSize">每页显示记录数</param>
             /// <param name="pageNumber">当前页码</param>
             /// <returns>datatable</returns>
-            public DataTable GetPager(string where, SqlParameter[] param , Hashtable ht, int pageSize, int pageNumber)
+            public DataTable GetPager(string where, SqlParameter[] param, Hashtable ht, int pageSize, int pageNumber)
             {
                 int startNumber = pageSize * (pageNumber - 1);
 
