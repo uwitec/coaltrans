@@ -102,11 +102,7 @@ public partial class CoalSysManage_System_LinkEdit : System.Web.UI.Page
             entity.LinkDesc = LinkDesc.Value;
             entity.ShowOrder = EConvert.ToInt(ShowOrder.Value);
             if (!string.IsNullOrEmpty(ExternalLogo.Value))
-            {
-                if (!string.IsNullOrEmpty(entity.LinkLogo))
-                {
-                    IOFile.DeleteFile("", entity.LinkLogo);
-                }
+            {                
                 entity.LinkLogo = ExternalLogo.Value;
             }
             else

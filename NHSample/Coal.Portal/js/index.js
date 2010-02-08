@@ -1,8 +1,8 @@
 ﻿$(document).ready(function() {
 
     LoadAd('A1',1);
-    LoadAd('A2',5);
-    LoadAd('A3',6);
+    LoadAd("A2",5);
+    LoadAd("A3",6);
     //load列表初始数据
     $.ajax({
         type: "POST",
@@ -95,7 +95,7 @@
                 var Url= (row.LinkUrl==""? "javascript:void(null);": "http://"+row.LinkUrl);
                 var Img=(row.LinkLogo==""? row.LinkName : "<img src='"+row.LinkLogo+"' border='0' width='70px' height='25px'/>");
                 content += "<li>";
-                content += "<a href='"+Url+"' title='"+row.LinkName+"' target='_blanl'>" +Img + "<a></td>";               
+                content += "<a href='"+Url+"' title='"+row.LinkName+"' target='_blanl'>" +Img + "</a></td>";               
                 content += "</li>";
             });
             $("#LinkNav").html(content);
@@ -116,13 +116,15 @@
                     if(row.AdType=="1")
                     {            
                         content += "<li>";
-                        content += "<a href='http://"+row.AdLink+"' title='"+row.AdName+"' target='_blank'><img src='"+row.AdUrl+"' width='"+row.AdWidth+"' height='"+row.AdHeight+"' border='0' ><a></li>";             
+                        content += "<a href='http://"+row.AdLink+"' title='"+row.AdName+"' target='_blank'><img src='"+row.AdUrl+"' width='"+row.AdWidth+"' height='"+row.AdHeight+"' border='0' /></a></li>";             
                         content += "</li>";
                     }
                 });
-                content+="</ul>";                
-                $("#"+obj).html(content);                
-            }
+                content+="</ul>";       
+                        
+                $("#"+obj).html(content);   
+                 
+           }
         });
     }
     

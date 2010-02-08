@@ -142,11 +142,7 @@ public partial class CoalSysManage_Ad_AdEdit : System.Web.UI.Page
                 entity.AdLink = Common.FiltrationMaliciousCode(AdLink.Value);
                 entity.AdDesc = Common.FiltrationMaliciousCode(AdDesc.Value);
                 if (!string.IsNullOrEmpty(ExternalAdUrl.Value))
-                {
-                    if (!string.IsNullOrEmpty(entity.AdUrl))
-                    {
-                        IOFile.DeleteFile("", entity.AdUrl);
-                    }
+                {                    
                     entity.AdUrl = ExternalAdUrl.Value;
                 }
                 else

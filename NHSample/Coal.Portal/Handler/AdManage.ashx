@@ -2,6 +2,7 @@
 
 using System;
 using System.Web;
+using System.Data.SqlClient;
 using System.Data;
 using Coal.DAL;
 using Coal.Util;
@@ -17,11 +18,12 @@ public class AdManage : IHttpHandler {
             if (!string.IsNullOrEmpty(PositionId))
             {
                 SqlHelper sqlhelp = new SqlHelper("cheese");
-                string StrSql = "select * from AdList as A,AdPosition as B where A.PositionId=" + PositionId + " and A.PositionId=B.PositionId";
+                string StrSql = "select * from AdList as A, AdPosition as B where A.PositionId=" + PositionId + " and A.PositionId=B.PositionId";
+                StrSql += " and A.IsOpen=1 and A.StartTime<='" + DateTime.Now.ToString() + "' and A.EndTime>='" + DateTime.Now.ToString() + "'";
                 DataSet ds = sqlhelp.ExecuteDateSet(StrSql, null);
                 if (ds != null && ds.Tables.Count > 0)
                 {
-                    DataTable dt = ds.Tables[0];
+                    DataTable dt = ds.Tables[0];                    
                     ro = DataUtility.ConvertToResultObject(dt);
                 }
             }
