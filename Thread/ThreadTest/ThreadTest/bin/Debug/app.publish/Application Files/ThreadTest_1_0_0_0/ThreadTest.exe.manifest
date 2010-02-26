@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1">
+  <asmv1:assemblyIdentity name="ThreadTest.exe" version="1.0.0.0" publicKeyToken="9f6c362767d5b76f" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="ThreadTest" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="ThreadTest.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC 清单选项
+          如果要更改 Windows 用户帐户控制级别，请
+          用下面的某一项替换 requestedExecutionLevel 节点。
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         如果要利用文件和注册表虚拟化实现向后
+         兼容，请删除 requestedExecutionLevel 节点。
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="2.0.50727.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="System.Core" version="3.5.0.0" publicKeyToken="b77a5c561934e089" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="WindowsBase" version="3.0.0.0" publicKeyToken="31bf3856ad364e35" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ThreadTest.exe" size="5632">
+      <assemblyIdentity name="ThreadTest" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>ySoWC4cjaQbL0wzONbQpYjLkxm4=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+<publisherIdentity name="CN=20091224-1926\Administrator" issuerKeyHash="1bf806c642f4886efb291af34cba88b4fa3fbc0a" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>egdgEBgi9zKuZE4x/mI7ofC/oow=</DigestValue></Reference></SignedInfo><SignatureValue>e+hj+BuJ0vkPblhqZFlfOPmBQb6gFWCgmnKaY12Vm/uOfUJFW6PYvVw/+IED578UHW8pLzCs2Th3apZ93V41bRukA2krDI/gSQ02E4JJVdhqLQ+IUXkiUkFsFoR77NXZXbrBjvFKfcrmNmzEwT/VghDwCI7C4Vx4d50tfmvi68A=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>0858LGhDE8KO+zUk4TuVfoOyKE652bBG7hQFzxDDARfvTue1ak45s9kyjmlOiaB29nSytRCYOgaoSOEQ9+wu7w9R5xMgYLKqNqNDieZ3i90JiUPrx0becDgf++miZO6kl8jxb8HenNgbmdqX9N1wOaKGWPz+tA3DN94Xd1yL8Bk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="8ca2bff0a13b62fe314e64ae32f722181060077a" Description="" Url=""><as:assemblyIdentity name="ThreadTest.exe" version="1.0.0.0" publicKeyToken="9f6c362767d5b76f" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=20091224-1926\Administrator</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>zQpMJ+V9T9FDqjbqvXnojHPPfcQ=</DigestValue></Reference></SignedInfo><SignatureValue>foHwOy4FcX7x21AZOwsQmte9bjrlOOGRAPoRW1Y3Apiv8kXoJuZOerczWOAbPNnrXo+//cNyqlb3RN7Y0EQs9JD/7s6GSUearRu6fkYhsP8RUh7TVIMw6Y7dAowvtT5RI8aRVDwQzzBZM1O6Ojpke8ThTaGqQ1xkIntNmC2nGag=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>0858LGhDE8KO+zUk4TuVfoOyKE652bBG7hQFzxDDARfvTue1ak45s9kyjmlOiaB29nSytRCYOgaoSOEQ9+wu7w9R5xMgYLKqNqNDieZ3i90JiUPrx0becDgf++miZO6kl8jxb8HenNgbmdqX9N1wOaKGWPz+tA3DN94Xd1yL8Bk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB/TCCAWqgAwIBAgIQbRHQovDQeLhCmIo77slyxzAJBgUrDgMCHQUAMEExPzA9BgNVBAMeNgAyADAAMAA5ADEAMgAyADQALQAxADkAMgA2AFwAQQBkAG0AaQBuAGkAcwB0AHIAYQB0AG8AcjAeFw0xMDAyMjMwMTQ3MTZaFw0xMTAyMjMwNzQ3MTZaMEExPzA9BgNVBAMeNgAyADAAMAA5ADEAMgAyADQALQAxADkAMgA2AFwAQQBkAG0AaQBuAGkAcwB0AHIAYQB0AG8AcjCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA0858LGhDE8KO+zUk4TuVfoOyKE652bBG7hQFzxDDARfvTue1ak45s9kyjmlOiaB29nSytRCYOgaoSOEQ9+wu7w9R5xMgYLKqNqNDieZ3i90JiUPrx0becDgf++miZO6kl8jxb8HenNgbmdqX9N1wOaKGWPz+tA3DN94Xd1yL8BkCAwEAATAJBgUrDgMCHQUAA4GBAEmyDbXIBc5e8qR24NXSQJEy5zaTZwfdPnkB5uW5EAwCv9yNbE7PxxgRbb6R3H8UzOYmvc62T5PFJ9hrYDsaiP/RhlxM8EW1izaKsbegQ/vxdb98lMbAePGoj8PN0IIXm+pSeQ0DidkaMm2NOURnBy+CgU0+0C6jT9xnfGHUrtTq</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

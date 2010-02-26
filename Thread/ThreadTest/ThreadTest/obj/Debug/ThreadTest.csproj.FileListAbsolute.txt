@@ -1,0 +1,9 @@
+E:\Web\building\ThreadTest\ThreadTest\ThreadTest\obj\Debug\ResolveAssemblyReference.cache
+E:\Web\building\ThreadTest\ThreadTest\ThreadTest\bin\Debug\ThreadTest.exe
+E:\Web\building\ThreadTest\ThreadTest\ThreadTest\bin\Debug\ThreadTest.pdb
+E:\Web\building\ThreadTest\ThreadTest\ThreadTest\obj\Debug\ThreadTest.exe
+E:\Web\building\ThreadTest\ThreadTest\ThreadTest\obj\Debug\ThreadTest.pdb
+E:\Web\building\ThreadTest\ThreadTest\ThreadTest\bin\Debug\ThreadTest.exe.manifest
+E:\Web\building\ThreadTest\ThreadTest\ThreadTest\bin\Debug\ThreadTest.application
+E:\Web\building\ThreadTest\ThreadTest\ThreadTest\obj\Debug\ThreadTest.exe.manifest
+E:\Web\building\ThreadTest\ThreadTest\ThreadTest\obj\Debug\ThreadTest.application

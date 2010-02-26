@@ -1,0 +1,5 @@
+E:\Web\building\ThreadTest\ThreadTest\GetConcreteUrl\bin\Debug\GetConcreteUrl.exe
+E:\Web\building\ThreadTest\ThreadTest\GetConcreteUrl\bin\Debug\GetConcreteUrl.pdb
+E:\Web\building\ThreadTest\ThreadTest\GetConcreteUrl\obj\Debug\ResolveAssemblyReference.cache
+E:\Web\building\ThreadTest\ThreadTest\GetConcreteUrl\obj\Debug\GetConcreteUrl.exe
+E:\Web\building\ThreadTest\ThreadTest\GetConcreteUrl\obj\Debug\GetConcreteUrl.pdb
