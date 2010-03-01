@@ -7,3 +7,8 @@ E:\Web\building\ThreadTest\ThreadTest\ThreadTest\bin\Debug\ThreadTest.exe.manife
 E:\Web\building\ThreadTest\ThreadTest\ThreadTest\bin\Debug\ThreadTest.application
 E:\Web\building\ThreadTest\ThreadTest\ThreadTest\obj\Debug\ThreadTest.exe.manifest
 E:\Web\building\ThreadTest\ThreadTest\ThreadTest\obj\Debug\ThreadTest.application
+E:\Thread\ThreadTest\ThreadTest\obj\Debug\ThreadTest.exe
+E:\Thread\ThreadTest\ThreadTest\obj\Debug\ThreadTest.pdb
+E:\Thread\ThreadTest\ThreadTest\obj\Debug\ResolveAssemblyReference.cache
+E:\Thread\ThreadTest\ThreadTest\bin\Debug\ThreadTest.exe
+E:\Thread\ThreadTest\ThreadTest\bin\Debug\ThreadTest.pdb

@@ -21,7 +21,10 @@ namespace ThreadTest
                 string Title = GetTitle(Str.Split('※')[1]);
                 string[] TitleList = Title.Split('_');
                 ArticleTitle = TitleList[0];
-                SiteName = TitleList[1] + "  " + TitleList[2];
+                if (TitleList.Length >= 3)
+                {
+                    SiteName = TitleList[1] + "  " + TitleList[2];
+                }
                 ArticleContent = GetArticleContent(Str.Split('※')[1]);
             }
         }
@@ -36,27 +39,27 @@ namespace ThreadTest
 
             request.Method = "GET";//采用提交方式
             request.ContentType = "application/x-www-form-urlencoded";//同上           
-            WebResponse response = request.GetResponse();
-            StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("gb2312"));//中文编码 
-
-            string result = reader.ReadToEnd();
-            result = result.Replace("\r\n", "");//删除结果的所有换行回车
-            result = result.Replace("\t", "");//删除Tab 
-            MatchCollection jg = Regex.Matches(result, "<input type='hidden' name='idArticleslist'.+?.>", RegexOptions.IgnoreCase);//匹配结果
-            if (jg.Count > 0)
+            using (WebResponse response = request.GetResponse())
             {
-                string zzjg = jg[0].ToString();
-                string Str = zzjg.Replace("<input type='hidden' name='idArticleslist' value='", "");
-                Str = Str.Replace("'>", "");
-                return Str+"※"+result;
+                using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("gb2312")))//中文编码 
+                {
+                    string result = reader.ReadToEnd();
+                    result = result.Replace("\r\n", "");//删除结果的所有换行回车
+                    result = result.Replace("\t", "");//删除Tab 
+                    MatchCollection jg = Regex.Matches(result, "<input type='hidden' name='idArticleslist'.+?.>", RegexOptions.IgnoreCase);//匹配结果
+                    if (jg.Count > 0)
+                    {
+                        string zzjg = jg[0].ToString();
+                        string Str = zzjg.Replace("<input type='hidden' name='idArticleslist' value='", "");
+                        Str = Str.Replace("'>", "");
+                        return Str + "※" + result;
+                    }
+                    else
+                    {
+                        return " ※" + result;
+                    }
+                }
             }
-            else
-            {
-                return " ※" + result;
-            }
-            reader.Close();
-            reader.Dispose();
-            response.Close();
         }
         /// <summary>
         /// 获取标题及信息来源

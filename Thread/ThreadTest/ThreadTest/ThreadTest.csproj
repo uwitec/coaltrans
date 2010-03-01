@@ -12,10 +12,6 @@
     <AssemblyName>ThreadTest</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <ManifestCertificateThumbprint>A1552A61A212E00FA7C06EADC6EB30862AAFDA57</ManifestCertificateThumbprint>
-    <ManifestKeyFile>ThreadTest_TemporaryKey.pfx</ManifestKeyFile>
-    <GenerateManifests>true</GenerateManifests>
-    <SignManifests>true</SignManifests>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>E:\Web\已编译\ThreadTest\</PublishUrl>
     <Install>true</Install>
