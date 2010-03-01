@@ -1,0 +1,181 @@
+2010-02-22 22:48:33,203 [8] ERROR Handler [(null)] - write log successfully
+2010-02-22 22:57:51,734 [9] INFO  GetMapData [(null)] - start!
+2010-02-22 22:57:51,750 [9] INFO  GetMapData [(null)] - get response!
+2010-02-22 22:59:03,796 [9] INFO  GetMapData [(null)] - get response done!
+2010-02-22 22:59:03,796 [9] INFO  GetMapData [(null)] - iterate clusters_0
+2010-02-22 22:59:03,796 [9] INFO  GetMapData [(null)] - iterate clusters_1
+2010-02-22 22:59:03,796 [9] INFO  GetMapData [(null)] - iterate clusters_2
+2010-02-22 22:59:03,796 [9] INFO  GetMapData [(null)] - iterate clusters_3
+2010-02-22 22:59:03,796 [9] INFO  GetMapData [(null)] - iterate clusters_4
+2010-02-22 22:59:03,796 [9] INFO  GetMapData [(null)] - iterate clusters_5
+2010-02-22 22:59:03,796 [9] INFO  GetMapData [(null)] - iterate clusters_6
+2010-02-22 22:59:03,796 [9] INFO  GetMapData [(null)] - iterate clusters_7
+2010-02-22 22:59:03,812 [9] INFO  GetMapData [(null)] - iterate clusters_8
+2010-02-22 22:59:03,812 [9] INFO  GetMapData [(null)] - iterate clusters_9
+2010-02-22 22:59:03,812 [9] INFO  GetMapData [(null)] - iterate clusters_10
+2010-02-22 22:59:03,812 [9] INFO  GetMapData [(null)] - iterate clusters_11
+2010-02-22 22:59:03,812 [9] INFO  GetMapData [(null)] - iterate clusters_12
+2010-02-22 22:59:03,812 [9] INFO  GetMapData [(null)] - iterate clusters_13
+2010-02-22 22:59:03,812 [9] INFO  GetMapData [(null)] - iterate clusters_14
+2010-02-22 22:59:03,812 [9] INFO  GetMapData [(null)] - iterate clusters_15
+2010-02-22 22:59:03,812 [9] INFO  GetMapData [(null)] - iterate clusters_16
+2010-02-22 22:59:03,812 [9] INFO  GetMapData [(null)] - iterate clusters_17
+2010-02-22 22:59:03,812 [9] INFO  GetMapData [(null)] - iterate clusters_18
+2010-02-22 22:59:03,812 [9] INFO  GetMapData [(null)] - iterate clusters_19
+2010-02-22 22:59:03,812 [9] INFO  GetMapData [(null)] - iterate clusters_20
+2010-02-22 22:59:03,812 [9] INFO  GetMapData [(null)] - iterate clusters_21
+2010-02-22 22:59:03,812 [9] INFO  GetMapData [(null)] - iterate clusters_22
+2010-02-22 22:59:03,812 [9] INFO  GetMapData [(null)] - iterate clusters_23
+2010-02-22 22:59:03,812 [9] INFO  GetMapData [(null)] - iterate clusters_24
+2010-02-22 22:59:03,812 [9] INFO  GetMapData [(null)] - iterate clusters end!
+2010-02-22 23:02:37,640 [8] INFO  GetMapData [(null)] - get response
+2010-02-22 23:02:37,859 [8] INFO  GetMapData [(null)] - read response
+2010-02-22 23:03:46,703 [8] INFO  GetMapData [(null)] - load response xml
+2010-02-22 23:12:47,140 [9] INFO  GetMapData [(null)] - get response
+2010-02-22 23:12:47,359 [9] INFO  GetMapData [(null)] - read response
+2010-02-22 23:13:58,781 [9] INFO  GetMapData [(null)] - load response xml
+2010-02-22 23:31:00,656 [8] INFO  GetMapData [(null)] - get response
+2010-02-22 23:31:00,843 [8] INFO  GetMapData [(null)] - read response
+2010-02-22 23:32:01,687 [8] INFO  GetMapData [(null)] - load response xml
+2010-02-22 23:36:34,078 [12] INFO  GetMapData [(null)] - get response end
+2010-02-22 23:37:37,250 [12] INFO  GetMapData [(null)] - read response end
+2010-02-22 23:37:37,265 [12] INFO  GetMapData [(null)] - load response xml end
+2010-02-22 23:37:37,281 [12] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-22 23:43:49,875 [4] INFO  GetMapData [(null)] - get response end
+2010-02-24 14:31:16,863 [8] INFO  GetMapData [(null)] - get response end
+2010-02-24 14:31:29,191 [4] INFO  GetMapData [(null)] - get response end
+2010-02-24 14:31:33,504 [11] INFO  GetMapData [(null)] - get response end
+2010-02-24 14:32:34,160 [8] INFO  GetMapData [(null)] - read response end
+2010-02-24 14:32:34,176 [8] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 14:32:34,191 [8] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 14:32:37,754 [11] INFO  GetMapData [(null)] - read response end
+2010-02-24 14:32:37,785 [11] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 14:32:37,785 [11] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 14:32:50,707 [4] INFO  GetMapData [(null)] - read response end
+2010-02-24 14:32:50,723 [4] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 14:32:50,723 [4] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 14:33:58,410 [4] INFO  GetMapData [(null)] - get response end
+2010-02-24 14:35:08,957 [4] INFO  GetMapData [(null)] - read response end
+2010-02-24 14:35:08,973 [4] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 14:35:08,988 [4] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 14:35:59,894 [14] INFO  GetMapData [(null)] - get response end
+2010-02-24 14:37:13,098 [14] INFO  GetMapData [(null)] - read response end
+2010-02-24 14:37:13,129 [14] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 14:37:13,129 [14] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 14:37:49,582 [14] INFO  GetMapData [(null)] - get response end
+2010-02-24 14:38:00,410 [4] INFO  GetMapData [(null)] - get response end
+2010-02-24 14:39:02,832 [14] INFO  GetMapData [(null)] - read response end
+2010-02-24 14:39:02,848 [14] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 14:39:02,848 [14] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 14:39:13,691 [4] INFO  GetMapData [(null)] - read response end
+2010-02-24 14:39:13,707 [4] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 14:39:13,707 [4] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 14:39:14,238 [14] INFO  GetMapData [(null)] - get response end
+2010-02-24 14:40:29,426 [14] INFO  GetMapData [(null)] - read response end
+2010-02-24 14:40:29,441 [14] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 14:40:29,441 [14] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 14:41:10,973 [14] INFO  GetMapData [(null)] - get response end
+2010-02-24 14:42:23,488 [14] INFO  GetMapData [(null)] - read response end
+2010-02-24 14:42:23,519 [14] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 14:42:23,519 [14] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 14:49:20,394 [4] INFO  GetMapData [(null)] - get response end
+2010-02-24 14:50:33,363 [4] INFO  GetMapData [(null)] - read response end
+2010-02-24 14:50:33,394 [4] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 14:50:33,394 [4] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 14:50:53,473 [4] INFO  GetMapData [(null)] - get response end
+2010-02-24 14:52:04,785 [4] INFO  GetMapData [(null)] - read response end
+2010-02-24 14:52:04,801 [4] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 14:52:04,801 [4] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 14:54:29,301 [11] INFO  GetMapData [(null)] - get response end
+2010-02-24 14:57:03,676 [11] INFO  GetMapData [(null)] - read response end
+2010-02-24 14:57:07,035 [11] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 14:57:07,816 [11] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 14:57:38,598 [11] INFO  GetMapData [(null)] - get response end
+2010-02-24 15:00:20,160 [11] INFO  GetMapData [(null)] - read response end
+2010-02-24 15:00:20,191 [11] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 15:00:20,191 [11] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 15:05:40,879 [4] INFO  GetMapData [(null)] - get response end
+2010-02-24 15:14:01,723 [4] INFO  GetMapData [(null)] - get response end
+2010-02-24 15:15:15,988 [4] INFO  GetMapData [(null)] - read response end
+2010-02-24 15:15:16,004 [4] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 15:15:16,004 [4] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 15:26:05,519 [4] INFO  GetMapData [(null)] - get response end
+2010-02-24 15:26:31,988 [10] INFO  GetMapData [(null)] - get response end
+2010-02-24 15:27:19,707 [4] INFO  GetMapData [(null)] - read response end
+2010-02-24 15:27:19,723 [4] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 15:27:19,723 [4] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 15:27:43,535 [10] INFO  GetMapData [(null)] - read response end
+2010-02-24 15:27:43,566 [10] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 15:27:43,566 [10] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 15:31:05,113 [4] INFO  GetMapData [(null)] - get response end
+2010-02-24 15:31:08,723 [12] INFO  GetMapData [(null)] - get response end
+2010-02-24 15:31:11,082 [14] INFO  GetMapData [(null)] - get response end
+2010-02-24 15:31:15,488 [15] INFO  GetMapData [(null)] - get response end
+2010-02-24 15:32:36,144 [4] INFO  GetMapData [(null)] - read response end
+2010-02-24 15:32:36,160 [4] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 15:32:36,176 [4] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 15:32:36,566 [8] INFO  GetMapData [(null)] - get response end
+2010-02-24 15:32:38,473 [17] INFO  GetMapData [(null)] - get response end
+2010-02-24 15:32:40,004 [15] INFO  GetMapData [(null)] - read response end
+2010-02-24 15:32:40,019 [15] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 15:32:40,035 [15] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 15:32:40,207 [19] INFO  GetMapData [(null)] - get response end
+2010-02-24 15:32:40,410 [14] INFO  GetMapData [(null)] - read response end
+2010-02-24 15:32:40,426 [14] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 15:32:40,441 [14] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 15:32:56,801 [12] INFO  GetMapData [(null)] - read response end
+2010-02-24 15:32:56,816 [12] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 15:32:56,832 [12] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 15:32:57,582 [21] INFO  GetMapData [(null)] - get response end
+2010-02-24 15:34:01,769 [17] INFO  GetMapData [(null)] - read response end
+2010-02-24 15:34:01,785 [17] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 15:34:01,785 [17] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 15:34:02,707 [23] INFO  GetMapData [(null)] - get response end
+2010-02-24 15:34:11,941 [21] INFO  GetMapData [(null)] - read response end
+2010-02-24 15:34:11,957 [21] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 15:34:11,973 [21] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 15:34:12,457 [12] INFO  GetMapData [(null)] - get response end
+2010-02-24 15:34:12,707 [19] INFO  GetMapData [(null)] - read response end
+2010-02-24 15:34:12,723 [19] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 15:34:12,738 [19] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 15:34:12,816 [13] INFO  GetMapData [(null)] - get response end
+2010-02-24 15:34:25,769 [8] INFO  GetMapData [(null)] - read response end
+2010-02-24 15:34:25,785 [8] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 15:34:25,801 [8] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 15:35:19,301 [13] INFO  GetMapData [(null)] - read response end
+2010-02-24 15:35:19,316 [13] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 15:35:19,316 [13] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 15:35:28,644 [12] INFO  GetMapData [(null)] - read response end
+2010-02-24 15:35:28,660 [12] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 15:35:28,676 [12] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 15:35:28,894 [8] INFO  GetMapData [(null)] - get response end
+2010-02-24 15:35:50,879 [23] INFO  GetMapData [(null)] - read response end
+2010-02-24 15:35:50,894 [23] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 15:35:50,910 [23] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 15:36:31,863 [8] INFO  GetMapData [(null)] - read response end
+2010-02-24 15:36:31,879 [8] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 15:36:31,879 [8] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 15:37:19,191 [8] INFO  GetMapData [(null)] - get response end
+2010-02-24 15:37:57,660 [4] INFO  GetMapData [(null)] - get response end
+2010-02-24 15:38:30,004 [8] INFO  GetMapData [(null)] - read response end
+2010-02-24 15:38:30,035 [8] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 15:38:30,035 [8] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-24 15:39:07,926 [4] INFO  GetMapData [(null)] - read response end
+2010-02-24 15:39:07,941 [4] INFO  GetMapData [(null)] - load response xml end
+2010-02-24 15:39:07,941 [4] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-25 09:27:40,562 [8] INFO  GetMapData [(null)] - get response end
+2010-02-25 09:29:01,921 [8] INFO  GetMapData [(null)] - read response end
+2010-02-25 09:29:01,937 [8] INFO  GetMapData [(null)] - load response xml end
+2010-02-25 09:29:01,953 [8] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-25 11:22:45,687 [12] INFO  GetMapData [(null)] - get response end
+2010-02-25 11:24:03,671 [12] INFO  GetMapData [(null)] - read response end
+2010-02-25 11:24:03,703 [12] INFO  GetMapData [(null)] - load response xml end
+2010-02-25 11:24:03,703 [12] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-26 11:18:11,578 [4] INFO  GetMapData [(null)] - get response end
+2010-02-26 11:19:17,046 [4] INFO  GetMapData [(null)] - read response end
+2010-02-26 11:19:17,062 [4] INFO  GetMapData [(null)] - load response xml end
+2010-02-26 11:19:17,078 [4] INFO  GetMapData [(null)] - get hotpoint end
+2010-02-26 16:21:08,703 [8] INFO  GetMapData [(null)] - get response end
+2010-02-26 16:22:11,140 [8] INFO  GetMapData [(null)] - read response end
+2010-02-26 16:22:11,171 [8] INFO  GetMapData [(null)] - load response xml end
+2010-02-26 16:22:11,171 [8] INFO  GetMapData [(null)] - get hotpoint end

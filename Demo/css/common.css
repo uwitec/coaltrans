@@ -1,0 +1,28 @@
+/* CSS Document */
+	/*=== golbal ===*/
+	body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,button,p,blockquote,th,td {margin:0;padding:0;} /* 常用标签内外间距 */
+	h1,h2,h3,h4,h5,h6{font-size:100%; font-weight:normal;}/* h1-h16 字体定义 */
+	table{border-collapse:collapse; border-spacing:0;}/* table 间距与重合 */ 
+	caption,cite,em,strong,b,th {font-style:normal; font-weight:normal;} /* 字体定义 */ 
+	caption, th {text-align:left;}/* 文本对齐方式 */ 
+	fieldset, img {border:none;} /* 边框 */
+	img {vertical-align:top;} /* 解决ie6下边间距bug */
+	ul,ol,li {list-style:none;}
+	input,button,select {color:#555; font:100% arial; vertical-align:middle; overflow:visible;}/* 解决表单元素与文本的对齐问题 */
+	select {height:20px; line-height:20px;}
+	input::-moz-focus-inner{border-color:transparent!important;}
+
+	/*=== link === */
+	a:link{ color:#000; text-decoration:none;}/* 未访问的链接 */
+	a:visited{color:#000; text-decoration:none;}/* 已访问的链接 */
+	a:hover{color:#fe0000; text-decoration:underline;}/* 鼠标放上去的链接 */
+	a:active{ color:#999;}/* 激活链接 */
+	
+	/*=== float/clear ===*/
+	.left {float:left;}
+	.right {float:right;}
+	.clear {clear:both;}
+	.clearfix:after {content:"."; display:block; height:0px; clear:both; visibility:hidden; }
+	.clearfix {zoom:1;}
+	
+	.none {display:none;}
