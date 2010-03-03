@@ -6,67 +6,56 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Xml;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace ThreadTest
 {
     public class GetXmlStr
     {
-        private static XmlDocument XmlDoc1;        
-        private static IList<XmlNode> StringList;
-        private static Thread[] ThreadList;
-        private static int Num = 15;
-        private static int DieNum = 0;
-        private static StringBuilder XmlStr;
-        public GetXmlStr()
+        private ManualResetEvent _DoneEvent;
+        private XmlDocument _XmlDoc1;        
+        private IList<XmlNode> _StringList;        
+        private int Num = 25;
+        private int DieNum = 0;
+        private StringBuilder XmlStr;
+        private string _FileName;
+
+        public GetXmlStr(string Url,ManualResetEvent DoneEvent)
         {
-            //定义XmlDoc1
-            XmlDoc1 = CreateXmlDoc("ListUrl0226043242.xml");
-            //定义XmlDoc2
-            //XmlDoc2 = CreateXmlDoc("ListUrl.xml");
+            _FileName = Url;
+            _DoneEvent = DoneEvent;
+            _XmlDoc1 = CreateXmlDoc(Url);
+            _StringList = Create_StringList(_XmlDoc1);
+        }
+        public void Action(object Url)
+        {
+            string StrUrl = Url.ToString();            
+            LStart();           
             
-            //XmlNode root = XmlDoc2.SelectSingleNode("List_Url");
-            //root.RemoveAll();
-            //定义StringList
-            StringList = CreateStringList(XmlDoc1);
-            ThreadList = new Thread[Num];
+        }
+        public void LStart()
+        {       
+            Thread[] ThreadList = new Thread[Num];
             for (int i = 0; i < Num; i++)
             {
                 ThreadList[i] = new Thread(new ThreadStart(Run));
                 ThreadList[i].Name = i.ToString();
-            }
-        }
-        public static WaitCallback waitCallback = new WaitCallback(MyThreadWork);
-
-        public void LStart()
-        {
-            GetXmlStr Pro = new GetXmlStr();
+            }            
             XmlStr = new StringBuilder();
             XmlStr.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
-            XmlStr.Append("<docs>");
-            //int MaxWorkerThreads = 25;
-            //int MaxIOCompletionThreads = 2000;
-            //int MinWorkerThreads = 1;
-            //ThreadPool.GetMaxThreads(out MaxWorkerThreads, out MaxIOCompletionThreads);
-            //ThreadPool.GetMinThreads(out MinWorkerThreads, out MaxIOCompletionThreads);
-            Console.WriteLine("开始" + DateTime.Now.ToString());
-            //if (StringList.Count > 0)
-            //{                
-            //    ThreadPool.QueueUserWorkItem(waitCallback, StringList[0]);                
-            //}  
+            XmlStr.Append("<docs>"); 
             for (int i = 0; i < Num; i++)
             {
                 ThreadList[i].Start();
             }
         }
-        private static XmlDocument CreateXmlDoc(string fileName)
+        private static XmlDocument CreateXmlDoc(string _FileName)
         {
-            XmlDocument XmlDoc = new XmlDocument();
-            string path = System.Environment.CurrentDirectory.ToString();
-            path = path.Replace("bin\\Debug", "contet\\") + fileName;
-            XmlDoc.Load(path);
+            XmlDocument XmlDoc = new XmlDocument();            
+            XmlDoc.Load(_FileName);
             return XmlDoc;
         }
-        private static IList<XmlNode> CreateStringList(XmlDocument XmlDoc)
+        private static IList<XmlNode> Create_StringList(XmlDocument XmlDoc)
         {
             IList<XmlNode> List = new List<XmlNode>();
             XmlNodeList hits = XmlDoc.SelectNodes("docs")[0].ChildNodes;
@@ -76,42 +65,6 @@ namespace ThreadTest
             }
             return List;
         }
-        #region
-        public static void MyThreadWork(object state)
-        {
-            XmlStr.Append("<doc>");
-            XmlNode Node = (XmlNode)state;
-            string url = Node.SelectSingleNode("doc_url").InnerText;
-            Console.WriteLine("初始content" + DateTime.Now.ToString());
-            GetContent content = new GetContent(url);
-            Console.WriteLine("获得content" + DateTime.Now.ToString());
-            XmlStr.Append("<doc_url><![CDATA[" + Node.ChildNodes[0].InnerText + "]]></doc_url>");
-            XmlStr.Append("<doc_mySrcType><![CDATA[" + Node.ChildNodes[1].InnerText + "]]></doc_mySrcType>");
-            XmlStr.Append("<doc_MyDate><![CDATA[" + Node.ChildNodes[2].InnerText + "]]></doc_MyDate>");
-            XmlStr.Append("<doc_title><![CDATA[" + content.ArticleTitle + "]]></doc_title>");
-            XmlStr.Append("<doc_MySiteName><![CDATA[" + content.SiteName + "]]></doc_MySiteName>");
-            XmlStr.Append("<doc_content><![CDATA[" + content.ArticleContent + "]]></doc_content>");
-            XmlStr.Append("</doc>");
-            //WriteXml(_UrlList);
-            StringList.RemoveAt(0);
-            Console.WriteLine("赋值XmlStr" + DateTime.Now.ToString());
-            if (StringList.Count > 0)
-            {
-                ThreadPool.QueueUserWorkItem(waitCallback, StringList[0]);
-            }
-            else
-            {
-                XmlStr.Append("</docs>");
-                XmlDoc1.LoadXml(XmlStr.ToString());
-                string path = System.Environment.CurrentDirectory.ToString();
-                path = path.Replace("bin\\Debug", "contet\\") + "ListUrl0226043253.xml";
-                XmlDoc1.Save(path);
-                Console.WriteLine(DateTime.Now.ToString());
-                Console.WriteLine("三级页面链接抓取完毕！");
-            }
-
-        }
-        #endregion
         private void Run()
         {
             int Index = -1;
@@ -121,42 +74,56 @@ namespace ThreadTest
                 {
                     Index = Convert.ToInt32(Thread.CurrentThread.Name);
                 }
-                if (Index < StringList.Count)
+                if (Index < _StringList.Count)
                 {
                     try
                     {
-                        XmlNode Node = (XmlNode)StringList[Index];
-                        string url = Node.SelectSingleNode("doc_url").InnerText;
-                        Console.WriteLine(Thread.CurrentThread.Name + "初始content" + DateTime.Now.ToString() + "Index:" + Index.ToString());
+                        XmlNode Node = (XmlNode)_StringList[Index];
+                        string url = Node.SelectSingleNode("doc_url").InnerText;                        
                         GetContent content = new GetContent(url);
-                        Console.WriteLine(Thread.CurrentThread.Name + "获得content" + DateTime.Now.ToString() + "Index:" + Index.ToString());
+                        Console.WriteLine(_FileName);
+                        Console.WriteLine(url);
                         XmlStr.Append("<doc>");
                         XmlStr.Append("<doc_url><![CDATA[" + Node.ChildNodes[0].InnerText + "]]></doc_url>");
                         XmlStr.Append("<doc_mySrcType><![CDATA[" + Node.ChildNodes[1].InnerText + "]]></doc_mySrcType>");
                         XmlStr.Append("<doc_MyDate><![CDATA[" + Node.ChildNodes[2].InnerText + "]]></doc_MyDate>");
                         XmlStr.Append("<doc_title><![CDATA[" + content.ArticleTitle + "]]></doc_title>");
                         XmlStr.Append("<doc_MySiteName><![CDATA[" + content.SiteName + "]]></doc_MySiteName>");
-                        XmlStr.Append("<doc_content><![CDATA[" + content.ArticleContent + "]]></doc_content>");
+                        XmlStr.Append("<doc_content><![CDATA[" + RemoveHTML(content.ArticleContent) + "]]></doc_content>");
+                        //XmlStr.Append("<doc_comment><![CDATA[" + RemoveHTML(content.ArticleComment) + "]]></doc_comment>");
                         XmlStr.Append("</doc>");
                         Index = Index + Num;
                     }
                     catch { }
                 }
-                else if (Index >= StringList.Count)
+                else if (Index >= _StringList.Count)
                 {
                     DieNum = DieNum + 1;
                     if (DieNum == Num)
                     {
                         XmlStr.Append("</docs>");
-                        XmlDoc1.LoadXml(XmlStr.ToString());
-                        string path = System.Environment.CurrentDirectory.ToString();
-                        path = path.Replace("bin\\Debug", "contet\\") + "ListUrl0226043242.xml";
-                        XmlDoc1.Save(path);
+                        _XmlDoc1.LoadXml(XmlStr.ToString());  
+                        _XmlDoc1.Save(_FileName);
                         Console.WriteLine(DateTime.Now.ToString());
-                        Console.WriteLine("三级页面链接抓取完毕！");
+                        Console.WriteLine("三级页面" + _FileName + "抓取完毕！");
+                        _DoneEvent.Set();
                     }
                     Thread.CurrentThread.Abort();
                 }               
+            }
+        }
+        private string RemoveHTML(String text)
+        {
+            try
+            {
+                Regex regex = new Regex(@"<[^>]*>", RegexOptions.IgnoreCase);
+                text = regex.Replace(text, "");
+                text = Regex.Replace(text, "[\\s]{2,}", " ");//两个以上的空格
+                return text;
+            }
+            catch
+            {
+                return "";
             }
         }
     }

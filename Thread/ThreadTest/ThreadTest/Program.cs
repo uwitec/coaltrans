@@ -5,62 +5,37 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using System.Xml;
+using System.IO;
 
 namespace ThreadTest
 {
     class Program
     {
-        private static XmlDocument XmlDoc;
-        public Program()
+        static void Main()
         {
-            XmlDoc = new XmlDocument();
-            string path = System.Environment.CurrentDirectory.ToString();
-            path = path.Replace("bin\\Debug", "") + "weblist.xml";
-            XmlDoc.Load(path);
-            XmlNode root = XmlDoc.SelectSingleNode("Web_Url_List");
-            root.RemoveAll();
-        }
+            IList<string> FileNameList = GetFile();
+            int FibonacciCalculations = FileNameList.Count;
 
-        public static WaitCallback waitCallback = new WaitCallback(MyThreadWork);
-
-        public static void Main()
-        {
-            Program Pro = new Program();
-            //string rootUrl = "http://www.tianya.cn/publicforum/articleslist/0/free.shtml";
-            //ThreadPool.QueueUserWorkItem(waitCallback, rootUrl);
-            //Console.ReadLine();
-            //GetConcreteUrl Pro1 = new GetConcreteUrl();
-            //Pro1.LStart();
-            //Console.ReadLine();
-            GetXmlStr xmlstr = new GetXmlStr();
-            xmlstr.LStart();
-            Console.ReadLine();
-        }
-
-        public static void MyThreadWork(object state)
-        {
-            WriteXml(state.ToString());
-            WebList list = new WebList(state.ToString());
-            string rootUrl = list.ListStart();
-
-            if (!string.IsNullOrEmpty(rootUrl))
+            // One event is used for each Fibonacci object
+            ManualResetEvent[] doneEvents = new ManualResetEvent[FibonacciCalculations];           
+            Console.WriteLine("launching {0} tasks...{1}", FibonacciCalculations, DateTime.Now);
+            for (int i = 0; i < FibonacciCalculations; i++)
             {
-                ThreadPool.QueueUserWorkItem(waitCallback, rootUrl);
+                doneEvents[i] = new ManualResetEvent(false);
+                GetXmlStr f = new GetXmlStr(FileNameList[i], doneEvents[i]);                
+                ThreadPool.QueueUserWorkItem(f.Action, FileNameList[i]);
             }
-            else
-            {
-                Console.WriteLine("执行完毕，按回车键抓取列表");
-            }
+
+            // Wait for all threads in pool to calculation...
+            WaitHandle.WaitAll(doneEvents);
+            Console.WriteLine("All calculations are complete.结束{0}", FibonacciCalculations, DateTime.Now);            
         }
-        public static void WriteXml(string Url)
+        static IList<string> GetFile()
         {
-            XmlNode root = XmlDoc.SelectSingleNode("Web_Url_List");
-            XmlElement xe1 = XmlDoc.CreateElement("Web_Url");
-            xe1.InnerText = Url; 
-            root.AppendChild(xe1);  
             string path = System.Environment.CurrentDirectory.ToString();
-            path = path.Replace("bin\\Debug", "") + "weblist.xml";
-            XmlDoc.Save(path);
-        }        
+            path = path.Replace("bin\\Debug", "contet\\");
+            IList<string> filenames = Directory.GetFiles(path);
+            return filenames;
+        }     
     }
 }
