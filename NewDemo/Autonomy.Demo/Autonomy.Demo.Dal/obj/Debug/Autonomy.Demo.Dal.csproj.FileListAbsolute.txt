@@ -1,0 +1,5 @@
+E:\rensq\NewDemo\Autonomy.Demo\Autonomy.Demo.Dal\bin\Debug\Autonomy.Demo.Dal.dll
+E:\rensq\NewDemo\Autonomy.Demo\Autonomy.Demo.Dal\bin\Debug\Autonomy.Demo.Dal.pdb
+E:\rensq\NewDemo\Autonomy.Demo\Autonomy.Demo.Dal\obj\Debug\ResolveAssemblyReference.cache
+E:\rensq\NewDemo\Autonomy.Demo\Autonomy.Demo.Dal\obj\Debug\Autonomy.Demo.Dal.dll
+E:\rensq\NewDemo\Autonomy.Demo\Autonomy.Demo.Dal\obj\Debug\Autonomy.Demo.Dal.pdb
