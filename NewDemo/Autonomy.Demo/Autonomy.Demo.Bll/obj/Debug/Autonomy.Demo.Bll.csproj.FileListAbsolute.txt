@@ -1,5 +1,0 @@
-E:\rensq\NewDemo\Autonomy.Demo\Autonomy.Demo.Bll\bin\Debug\Autonomy.Demo.Bll.dll
-E:\rensq\NewDemo\Autonomy.Demo\Autonomy.Demo.Bll\bin\Debug\Autonomy.Demo.Bll.pdb
-E:\rensq\NewDemo\Autonomy.Demo\Autonomy.Demo.Bll\obj\Debug\ResolveAssemblyReference.cache
-E:\rensq\NewDemo\Autonomy.Demo\Autonomy.Demo.Bll\obj\Debug\Autonomy.Demo.Bll.dll
-E:\rensq\NewDemo\Autonomy.Demo\Autonomy.Demo.Bll\obj\Debug\Autonomy.Demo.Bll.pdb
