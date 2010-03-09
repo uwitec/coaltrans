@@ -7,6 +7,7 @@ namespace Coal.ViewModel
 {
     public class CoalTransModel
     {
+
         #region Properties
 
         public int ID
