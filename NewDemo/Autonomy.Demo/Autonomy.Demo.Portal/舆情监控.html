@@ -1,0 +1,527 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>舆情监控</title>
+<link href="css/common.css" type="text/css" rel="stylesheet" rev="stylesheet" media="all" />
+<link href="css/layout.css" type="text/css" rel="stylesheet" rev="stylesheet" media="all" />
+<script src="js/changeTab.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="wrapper">
+	<div class="header">
+		<h1 class="logo"><a href="#" title="网络舆情监控系统">网络舆情监控系统</a></h1>
+		<div class="userInfo">您好，<strong>张艺谋</strong>，今天是2010年3月6日， [ <a href="#">退出</a> ]</div>
+		<div class="search">
+			<ul id="searchTab" class="searchSort">
+				<li class="normal" onclick="nTabs(this,0)"><a href="javascript:void(0);" onfocus="blur()">全部</a></li>
+				<li class="active" onclick="nTabs(this,1)"><a href="javascript:void(0);" onfocus="blur()">新闻</a></li>
+				<li class="normal" onclick="nTabs(this,2)"><a href="javascript:void(0);" onfocus="blur()">博客</a></li>
+				<li class="normal" onclick="nTabs(this,3)"><a href="javascript:void(0);" onfocus="blur()">论坛</a></li>
+			</ul>
+			<div id="searchTab_Content0" class="searchBody">
+				<form name="search1" action="" method="post">
+					<fieldset>
+						<input name="keyword" type="text" class="input_text" />
+						<input name="searchButton" type="submit" value="搜索" class="input_button" />
+					</fieldset>
+				</form>
+			</div>
+			<div id="searchTab_Content1" class="searchBody none">
+				<form name="search2" action="" method="post">
+					<fieldset>
+						<input name="keyword" type="text" class="input_text" />
+						<input name="searchButton" type="submit" value="搜索" class="input_button" />
+					</fieldset>
+				</form>
+			</div>
+			<div id="searchTab_Content2" class="searchBody none">
+				<form name="search3" action="" method="post">
+					<fieldset>
+						<input name="keyword" type="text" class="input_text" />
+						<input name="searchButton" type="submit" value="搜索" class="input_button" />
+					</fieldset>
+				</form>
+			</div>
+			<div id="searchTab_Content3" class="searchBody none">
+				<form name="search" action="" method="post">
+					<fieldset>
+						<input name="keyword" type="text" class="input_text" />
+						<input name="searchButton" type="submit" value="搜索" class="input_button" />
+					</fieldset>
+				</form>
+			</div>
+		</div>
+		<ul class="nav">
+			<li><span><a href="#" onfocus="blur();">舆论专题</a></span></li>
+			<li><span><a href="#" onfocus="blur();">热点分布</a></span></li>
+			<li><span><a href="#" onfocus="blur();">舆情趋势</a></span></li>
+			<li><span><a href="#" onfocus="blur();">敏感信息</a></span></li>
+			<li class="current"><span><a href="#" onfocus="blur();">统计分析</a></span></li>
+			<li><span><a href="#" onfocus="blur();">舆情报告</a></span></li>
+			<li><span><a href="#" onfocus="blur();">系统设置</a></span></li>
+		</ul>
+	</div>
+	<div class="content">
+		<div class="saData">
+			<div class="crumbs">
+				<div class="crumbsTitle">当前位置：<strong>舆情监控</strong></div>
+			</div>
+			<div class="saDataColumns clearfix">
+				<div class="saDataColumn">
+					<div class="saDataColumnTitle">
+						<h2>关注事件</h2>
+					</div>
+					<div class="saDataList">
+						<table>
+							<tr>
+								<th class="pd_left" width="12%"> </th>
+								<th>事件</th>
+								<th width="12%">趋势</th>
+								<th width="25%" class="ta_right">条数</th>
+							</tr>
+							<tr>
+								<td class="pd_left pd_top"><em class="num01">1</em></td>
+								<td class="pd_top"><a href="#">美国对台军售</a></td>
+								<td class="pd_top"><span class="trend_up">上升</span></td>
+								<td class="pd_top ta_right"><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num02">2</em></td>
+								<td><a href="#">南沙群岛主权</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td class="ta_right"><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num03">3</em></td>
+								<td><a href="#">阿富汗战争</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td class="ta_right"><a href="#">1132条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num04">4</em></td>
+								<td><a href="#">美国对台军售</a></td>
+								<td><span class="trend_up">上升</span></td>
+								<td class="ta_right"><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num05">5</em></td>
+								<td><a href="#">南沙群岛主权</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td class="ta_right"><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num06">6</em></td>
+								<td><a href="#">阿富汗战争</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td class="ta_right"><a href="#">1132条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num07">7</em></td>
+								<td><a href="#">阿富汗战争</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td class="ta_right"><a href="#">1132条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num08">8</em></td>
+								<td><a href="#">美国对台军售</a></td>
+								<td><span class="trend_up">上升</span></td>
+								<td class="ta_right"><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num09">9</em></td>
+								<td><a href="#">南沙群岛主权</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td class="ta_right"><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num10">10</em></td>
+								<td><a href="#">阿富汗战争</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td class="ta_right"><a href="#">1132条</a></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="saDataColumn">
+					<div class="saDataColumnTitle">
+						<h2>敏感信息</h2>
+					</div>
+					<div class="saDataList">
+						<table>
+							<tr>
+								<th class="pd_left" width="12%"> </th>
+								<th>敏感词</th>
+								<th width="12%">趋势</th>
+								<th width="25%" class="ta_right">条数</th>
+							</tr>
+							<tr>
+								<td class="pd_left pd_top"><em class="num01">1</em></td>
+								<td class="pd_top"><a href="#">美国对台军售</a></td>
+								<td class="pd_top"><span class="trend_up">上升</span></td>
+								<td class="pd_top ta_right"><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num02">2</em></td>
+								<td><a href="#">南沙群岛主权</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td class="ta_right"><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num03">3</em></td>
+								<td><a href="#">阿富汗战争</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td class="ta_right"><a href="#">1132条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num04">4</em></td>
+								<td><a href="#">美国对台军售</a></td>
+								<td><span class="trend_up">上升</span></td>
+								<td class="ta_right"><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num05">5</em></td>
+								<td><a href="#">南沙群岛主权</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td class="ta_right"><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num06">6</em></td>
+								<td><a href="#">阿富汗战争</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td class="ta_right"><a href="#">1132条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num07">7</em></td>
+								<td><a href="#">阿富汗战争</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td class="ta_right"><a href="#">1132条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num08">8</em></td>
+								<td><a href="#">美国对台军售</a></td>
+								<td><span class="trend_up">上升</span></td>
+								<td class="ta_right"><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num09">9</em></td>
+								<td><a href="#">南沙群岛主权</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td class="ta_right"><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num10">10</em></td>
+								<td><a href="#">阿富汗战争</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td class="ta_right"><a href="#">1132条</a></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="saDataColumn">
+					<div class="saDataColumnTitle">
+						<h2>热点人物</h2>
+					</div>
+					<div class="saDataList">
+						<table>
+							<tr>
+								<th class="pd_left" width="12%"> </th>
+								<th>人物</th>
+								<th width="12%">趋势</th>
+								<th width="25%" class="ta_right">条数</th>
+							</tr>
+							<tr>
+								<td class="pd_left pd_top"><em class="num01">1</em></td>
+								<td class="pd_top"><a href="#">胡锦涛</a></td>
+								<td class="pd_top"><span class="trend_up">上升</span></td>
+								<td class="pd_top ta_right"><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num02">2</em></td>
+								<td><a href="#">温家宝</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td class="ta_right"><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num03">3</em></td>
+								<td><a href="#">李长春</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td class="ta_right"><a href="#">1132条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num04">4</em></td>
+								<td><a href="#">郭伯雄</a></td>
+								<td><span class="trend_up">上升</span></td>
+								<td class="ta_right"><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num05">5</em></td>
+								<td><a href="#">胡锦涛</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td class="ta_right"><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num06">6</em></td>
+								<td><a href="#">温家宝</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td class="ta_right"><a href="#">1132条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num07">7</em></td>
+								<td><a href="#">李长春</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td class="ta_right"><a href="#">1132条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num08">8</em></td>
+								<td><a href="#">郭伯雄</a></td>
+								<td><span class="trend_up">上升</span></td>
+								<td class="ta_right"><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num09">9</em></td>
+								<td><a href="#">李长春</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td class="ta_right"><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num10">10</em></td>
+								<td><a href="#">郭伯雄</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td class="ta_right"><a href="#">1132条</a></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="saDataColumn">
+					<div class="saDataColumnTitle">
+						<h2>热点机构</h2>
+					</div>
+					<div class="saDataList">
+						<table>
+							<tr>
+								<th class="pd_left" width="12%"> </th>
+								<th>机构</th>
+								<th width="12%">趋势</th>
+								<th width="25%" class="ta_right">条数</th>
+							</tr>
+							<tr>
+								<td class="pd_left pd_top"><em class="num01">1</em></td>
+								<td class="pd_top"><a href="#">热点机构</a></td>
+								<td class="pd_top"><span class="trend_up">上升</span></td>
+								<td class="pd_top ta_right"><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num02">2</em></td>
+								<td><a href="#">热点机构</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td class="ta_right"><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num03">3</em></td>
+								<td><a href="#">热点机构</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td class="ta_right"><a href="#">1132条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num04">4</em></td>
+								<td><a href="#">热点机构</a></td>
+								<td><span class="trend_up">上升</span></td>
+								<td class="ta_right"><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num05">5</em></td>
+								<td><a href="#">热点机构</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td class="ta_right"><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num06">6</em></td>
+								<td><a href="#">热点机构</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td class="ta_right"><a href="#">1132条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num07">7</em></td>
+								<td><a href="#">热点机构</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td class="ta_right"><a href="#">1132条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num08">8</em></td>
+								<td><a href="#">热点机构</a></td>
+								<td><span class="trend_up">上升</span></td>
+								<td class="ta_right"><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num09">9</em></td>
+								<td><a href="#">热点机构</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td class="ta_right"><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num10">10</em></td>
+								<td><a href="#">热点机构</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td class="ta_right"><a href="#">1132条</a></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="saDataColumn">
+					<div class="saDataColumnTitle">
+						<h2>热点地名</h2>
+					</div>
+					<div class="saDataList">
+						<table>
+							<tr>
+								<th class="pd_left" width="12%"> </th>
+								<th>地名</th>
+								<th width="12%">趋势</th>
+								<th width="25%" class="ta_right">条数</th>
+							</tr>
+							<tr>
+								<td class="pd_left pd_top"><em class="num01">1</em></td>
+								<td class="pd_top"><a href="#">热点地名</a></td>
+								<td class="pd_top"><span class="trend_up">上升</span></td>
+								<td class="pd_top ta_right"><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num02">2</em></td>
+								<td><a href="#">热点地名</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td class="ta_right"><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num03">3</em></td>
+								<td><a href="#">热点地名</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td class="ta_right"><a href="#">1132条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num04">4</em></td>
+								<td><a href="#">热点地名</a></td>
+								<td><span class="trend_up">上升</span></td>
+								<td class="ta_right"><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num05">5</em></td>
+								<td><a href="#">热点地名</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td class="ta_right"><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num06">6</em></td>
+								<td><a href="#">热点地名</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td class="ta_right"><a href="#">1132条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num07">7</em></td>
+								<td><a href="#">热点地名</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td class="ta_right"><a href="#">1132条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num08">8</em></td>
+								<td><a href="#">热点地名</a></td>
+								<td><span class="trend_up">上升</span></td>
+								<td class="ta_right"><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num09">9</em></td>
+								<td><a href="#">热点地名</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td class="ta_right"><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num10">10</em></td>
+								<td><a href="#">热点地名</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td class="ta_right"><a href="#">1132条</a></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="saDataColumn">
+					<div class="saDataColumnTitle">
+						<h2>热点人物</h2>
+					</div>
+					<div class="saDataList">
+						<table>
+							<tr>
+								<th class="pd_left" width="12%"> </th>
+								<th>人物</th>
+								<th width="12%">趋势</th>
+								<th width="25%" class="ta_right">条数</th>
+							</tr>
+							<tr>
+								<td class="pd_left pd_top"><em class="num01">1</em></td>
+								<td class="pd_top"><a href="#">胡锦涛</a></td>
+								<td class="pd_top"><span class="trend_up">上升</span></td>
+								<td class="pd_top ta_right"><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num02">2</em></td>
+								<td><a href="#">温家宝</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td class="ta_right"><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num03">3</em></td>
+								<td><a href="#">李长春</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td class="ta_right"><a href="#">1132条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num04">4</em></td>
+								<td><a href="#">郭伯雄</a></td>
+								<td><span class="trend_up">上升</span></td>
+								<td class="ta_right"><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num05">5</em></td>
+								<td><a href="#">胡锦涛</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td class="ta_right"><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num06">6</em></td>
+								<td><a href="#">温家宝</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td class="ta_right"><a href="#">1132条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num07">7</em></td>
+								<td><a href="#">李长春</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td class="ta_right"><a href="#">1132条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num08">8</em></td>
+								<td><a href="#">郭伯雄</a></td>
+								<td><span class="trend_up">上升</span></td>
+								<td class="ta_right"><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num09">9</em></td>
+								<td><a href="#">李长春</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td class="ta_right"><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><em class="num10">10</em></td>
+								<td><a href="#">郭伯雄</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td class="ta_right"><a href="#">1132条</a></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<p class="footer">Copyright &copy; 2009-2014 Beijing People Co.LTD &nbsp;&nbsp;业务联系:Tel (86)10-58289500&nbsp;&nbsp;京ICP证090267号</p>
+</div>
+</body>
+</html>

@@ -2,190 +2,345 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>舆情监控系统</title>
+<title>首页</title>
 <link href="css/common.css" type="text/css" rel="stylesheet" rev="stylesheet" media="all" />
-<link href="css/style.css" type="text/css" rel="stylesheet" rev="stylesheet" media="all" />
+<link href="css/layout.css" type="text/css" rel="stylesheet" rev="stylesheet" media="all" />
 <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript">
-        function initDate() {
-            var taday = new Date();
-            var month = taday.getMonth() + 1;
-            var taday_show = taday.getFullYear() + "年" + month + "月" + taday.getDate() + "日";
-            $("#today").html(taday_show);
-        }
-
-        $(document).ready(function() {
-
-            initDate();
-
-            $("#keyword").focus(function() {
-                $(this).val("");
-            });
-
-            $("#keyword").blur(function() {
-                $("#keyword").unbind("focus");
-            });
-
-            $("#btnSearch").click(function() {
-                var keyword = $("#keywords").val();
-                $.get("Handler/Handler.ashx", { 'keyword': keyword },
-                    function(data) {
-                        $("#result").html(data);
-                        $("#result").show(800);
-                    }
-                );
-            });
-
-            //加载初始数据
-            $.get("Handler/Handler.ashx", { 'category': 'feiwen' },
-                    function(data) {
-                        var query_content = $("#query_content");
-                        query_content.html(data);
-                        query_content.show(300);
-                    });
-
-            $(".tab_click").each(function() {
-                $(this).click(function() {
-                    //删除所有tab的样式
-                    $("#sortTab").children("li").each(function() {
-                        $(this).removeClass();
-                    });
-                    //给选中的tab设置样式
-                    $(this).parent().removeClass("normal").addClass("active");
-                    //内容填充
-                    var category = $(this).attr("id");
-                    $.get("Handler/Handler.ashx", { 'category': category },
-                    function(data) {
-                        var query_content = $("#query_content");
-                        query_content.hide(300);
-                        query_content.html(data);
-                        query_content.show(300);
-                    });
-                });
-            });
-
-            $.ajax({
-                type: "get",
-                url: "Handler/GetMapData.ashx",
-                beforeSend: function(XMLHttpRequest) {
-                    $("#hot_image").html("热点数据加载中……");
-                },
-                success: function(data, textStatus) {
-                    var map = $("#map");
-                    map.after(data);
-                    //隐藏文字说明
-                    $(".node_text").each(function() {
-                        $(this).hide();
-                    });
-
-                    $(".node").each(function() {
-                        $(this).mouseover(function() {
-                            var num = $(this).attr("id").split("_")[1];
-                            $("#clustertitle_" + num).show();
-                        });
-
-                        $(this).mouseout(function() {
-                            var num = $(this).attr("id").split("_")[1];
-                            $("#clustertitle_" + num).hide();
-                        });
-
-                        $(this).click(function() {
-                            var cluster_id = $(this).attr("id").split("_")[1];
-                            $.get("Handler/GetClusterResults.ashx", { 'cluster_id': cluster_id },
-                                    function(data) {
-                                        $("#whats_hot").empty().html(data);
-                                        $("#whats_hot").show(200);
-                                    }
-                                );
-                        });
-                    }); //each end
-                },
-                complete: function(XMLHttpRequest, textStatus) {
-                    $("#hot_image").html("舆情热点图<br/>(点击红色方块，可在右侧区域获取文章列表)");
-                },
-                error: function() {
-                    //请求出错处理
-                }
-            });
-
-        });
-        
-//            加载热点图数据，这里要做一个异步处理
-//            $.get("Handler/GetMapData.ashx", { 'db': 'demo1' },
-//                    function(data) {
-//                     alert(data); });
-                     
-    </script>
+<script type="text/javascript" src="js/util.js"></script>
+<script type="text/javascript" src="js/Default.js"></script>
+<script src="js/changeTab.js" type="text/javascript"></script>
 </head>
-
 <body>
 <div id="wrapper">
-	<!-- 头部开始 -->
-	<div id="header" class="clearfix">
-		<div class="topInfo">您好，<strong>张艺谋</strong> 今天是<em id="today"></em>，欢迎进入国科安信舆情监控系统 <a href="#">退出</a></div>
-		<h1><a href="#"><img src="images/logo.jpg" alt="舆情监控系统" /></a></h1>
+	<div class="header">
+		<h1 class="logo"><a href="index.html" title="网络舆情监控系统">网络舆情监控系统</a></h1>
+		<div class="userInfo">您好，<strong>张艺谋</strong>，今天是2010年3月6日， [ <a href="#">退出</a> ]</div>
 		<div class="search">
-			<fieldset>
-			<form action="search.html" method="get">
-				<input id="keyword" name="keyword" type="text" class="input_text" value="请输入查询内容" />
-				<input name="search" type="submit" value="搜索" class="input_button" />
-			</form>
-			</fieldset>
-		</div>
-		<p class="notice">过去 <strong>一周</strong> 约有 <strong>2378</strong> 篇与您相关的舆情，涉及 <strong>23</strong> 个事件，其中 <strong>2</strong> 个新事件。</p>
-		<div class="nav clearfix">
-			<ul class="mainNav">
-				<li class="current"><a href="#">全部</a></li>
-				<li><a href="news.html">新闻</a></li>
-				<li><a href="#">博客</a></li>
-				<li><a href="#">论坛</a></li>
+			<ul id="searchTab" class="searchSort">
+				<li class="normal" onclick="nTabs(this,0)"><a href="javascript:void(0);" onfocus="blur()">全部</a></li>
+				<li class="active" onclick="nTabs(this,1)"><a href="javascript:void(0);" onfocus="blur()">新闻</a></li>
+				<li class="normal" onclick="nTabs(this,2)"><a href="javascript:void(0);" onfocus="blur()">博客</a></li>
+				<li class="normal" onclick="nTabs(this,3)"><a href="javascript:void(0);" onfocus="blur()">论坛</a></li>
 			</ul>
-			<ul class="periodNav">
-				<li><a href="#">过去一天</a></li>
-				<li class="current"><a href="#">过去一周</a></li>
-				<li><a href="#">过去一月</a></li>
-			</ul>
-		</div>
-	</div>
-	<!-- 头部结束 -->
-	<!-- 内容开始 -->
-	<div id="content" class="clearfix">
-		<div class="main">
-			<ul id="sortTab" class="newsSort">
-				<li class="active"><a class="tab_click" id="feiwen" href="javascript:void(null)">绯闻</a></li>
-				<li class="normal"><a class="tab_click" id="sanqiang" href="javascript:void(null)">《三枪》</a></li>
-			</ul>
-			<div id="sortTab_Content" class="newsSort_body clearfix">
-				<div id="query_content" class="newsSort_list">
-				</div>
-				<div id="map" class="topNews">
-				<!--
-					<img src="http://121.101.220.143:9000/action=clusterserve2dmap&sourcejobname=myjob_clusters" alt="" />
-					<h3><a id="hot_image" href="#"></a></h3>
-				-->
-				</div>
-			</div>		
-			<div>
-				<embed height="485" align="middle" width="485" type="application/x-shockwave-flash" salign="" 
-				src="flash/BookRelations.swf?doc_id=100" 
-				allowscriptaccess="sameDomain" allowfullscreen="false" menu="true" name="expo" bgcolor="#ffffff" devicefont="false" wmode="window" scale="showall" loop="true" play="true" quality="high">
+			<div id="searchTab_Content0" class="searchBody">
+				<form name="search1" action="" method="post">
+					<fieldset>
+						<input name="keyword" type="text" class="input_text" />
+						<input name="searchButton" type="submit" value="搜索" class="input_button" />
+					</fieldset>
+				</form>
+			</div>
+			<div id="searchTab_Content1" class="searchBody none">
+				<form name="search2" action="" method="post">
+					<fieldset>
+						<input name="keyword" type="text" class="input_text" />
+						<input name="searchButton" type="submit" value="搜索" class="input_button" />
+					</fieldset>
+				</form>
+			</div>
+			<div id="searchTab_Content2" class="searchBody none">
+				<form name="search3" action="" method="post">
+					<fieldset>
+						<input name="keyword" type="text" class="input_text" />
+						<input name="searchButton" type="submit" value="搜索" class="input_button" />
+					</fieldset>
+				</form>
+			</div>
+			<div id="searchTab_Content3" class="searchBody none">
+				<form name="search" action="" method="post">
+					<fieldset>
+						<input name="keyword" type="text" class="input_text" />
+						<input name="searchButton" type="submit" value="搜索" class="input_button" />
+					</fieldset>
+				</form>
 			</div>
 		</div>
-		<div class="side">
-			<div class="hotNews">
-				<h2>热点文章列表
-					<span title="展开合起" class="bodyUp">展开合起</span>
-					<!-- span为控制展开合起标签，展开时样式为bodyUp，合起时为bodyDown -->
-				</h2>
-				<ul id="whats_hot">
+		<ul class="nav">
+		    <li class="current"><span><a href="index.html" onfocus="blur();">首页</a></span></li>
+			<li><span><a href="special.html" onfocus="blur();">舆论专题</a></span></li>
+			<li><span><a href="hot.html" onfocus="blur();">热点分布</a></span></li>
+			<li><span><a href="trend.html" onfocus="blur();">舆情趋势</a></span></li>
+			<li><span><a href="sensitive.html" onfocus="blur();">敏感信息</a></span></li>
+			<li><span><a href="statistic.html" onfocus="blur();">统计分析</a></span></li>
+			<li><span><a href="index.html" onfocus="blur();">舆情报告</a></span></li>
+			<li><span><a href="index.html" onfocus="blur();">系统设置</a></span></li>
+		</ul>
+	</div>
+	<div class="content">
+		<div class="columns clearfix">
+			<div class="column">
+				<div class="column_title">
+					<h2>国家领导人</h2>
+				</div>
+				<ul id="columnTab1" class="columnSort">
+					<li class="normal" onmouseover="nTabs(this,0)"><span><a href="#" onfocus="blur();">全部</a></span></li>
+					<li class="active" onmouseover="nTabs(this,1)"><span><a href="#" onfocus="blur();">正面</a></span></li>
+					<li class="normal" onmouseover="nTabs(this,2)"><span><a href="#" onfocus="blur();">负面</a></span></li>
 				</ul>
+				<div class="columnBody">
+					<ul id="columnTab1_Content0" class="peopleList clearfix">
+					</ul>
+					<ul id="columnTab1_Content1" class="peopleList clearfix none">
+					</ul>
+					<ul id="columnTab1_Content2" class="peopleList clearfix none">
+					</ul>
+				</div>
+				<div class="more"><a href="#">更多&gt;&gt;</a></div>
+			</div>
+			<div class="column">
+				<div class="column_title">
+					<h2>关注事件</h2>
+				</div>
+				<div class="columnBody">
+					<div class="attention">
+						<table>
+							<tr>
+								<th class="pd_left">事件</th>
+								<th width="10%">趋势</th>
+								<th width="15%">关注热度</th>
+							</tr>
+							<tr>
+								<td class="pd_left pd_top"><a href="#">美国对台军售</a></td>
+								<td class="pd_top"><span class="trend_up">上升</span></td>
+								<td class="pd_top"><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><a href="#">南沙群岛主权</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><a href="#">阿富汗战争</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td><a href="#">1132条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><a href="#">美国对台军售</a></td>
+								<td><span class="trend_up">上升</span></td>
+								<td><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><a href="#">南沙群岛主权</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td class="pd_left"><a href="#">阿富汗战争</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td><a href="#">1132条</a></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="more"><a href="#">更多&gt;&gt;</a></div>
+			</div>
+			<div class="column">
+				<div class="column_title">
+					<h2>重大社会事件</h2>
+				</div>
+				<ul id="columnTab2" class="columnSort">
+					<li class="active" onmouseover="nTabs(this,0)"><span><a href="#" onfocus="blur();">一周热点</a></span></li>
+					<li class="normal" onmouseover="nTabs(this,1)"><span><a href="#" onfocus="blur();">上升最快</a></span></li>
+				</ul>
+				<div class="columnBody">
+					<div id="columnTab2_Content0" class="event">
+						<table>
+							<tr>
+								<td width="5%"><em class="num01">1</em></td>
+								<td><a href="#">胡锦涛会见朝鲜劳动党代表团</a></td>
+								<td width="12%"><span class="trend_up">上升</span></td>
+								<td width="15%"><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td><em class="num02">2</em></td>
+								<td><a href="#">吴邦国主持第十一届人大常务会议</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td><em class="num03">3</em></td>
+								<td><a href="#">温家宝会见巴基斯坦和哈萨克斯坦外长</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td><a href="#">1132条</a></td>
+							</tr>
+							<tr>
+								<td><em class="num04">4</em></td>
+								<td><a href="#">胡锦涛会见朝鲜劳动党代表团</a></td>
+								<td><span class="trend_up">上升</span></td>
+								<td><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td><em class="num05">5</em></td>
+								<td><a href="#">吴邦国主持第十一届人大常务会议</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td><em class="num06">6</em></td>
+								<td><a href="#">温家宝会见巴基斯坦和哈萨克斯坦外长</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td><a href="#">1132条</a></td>
+							</tr>
+						</table>
+					</div>
+					<div id="columnTab2_Content1" class="event none">
+						<table>
+							<tr>
+								<td width="5%"><em class="num01">1</em></td>
+								<td><a href="#">吴邦国主持第十一届人大常务会议</a></td>
+								<td width="12%"><span class="trend_up">上升</span></td>
+								<td width="15%"><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td><em class="num02">2</em></td>
+								<td><a href="#">胡锦涛会见朝鲜劳动党代表团</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td><em class="num03">3</em></td>
+								<td><a href="#">温家宝会见巴基斯坦和哈萨克斯坦外长</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td><a href="#">1132条</a></td>
+							</tr>
+							<tr>
+								<td><em class="num04">4</em></td>
+								<td><a href="#">胡锦涛会见朝鲜劳动党代表团</a></td>
+								<td><span class="trend_up">上升</span></td>
+								<td><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td><em class="num05">5</em></td>
+								<td><a href="#">吴邦国主持第十一届人大常务会议</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td><em class="num06">6</em></td>
+								<td><a href="#">温家宝会见巴基斯坦和哈萨克斯坦外长</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td><a href="#">1132条</a></td>
+							</tr>
+						</table>
+					</div>
+					<div class="hot clearfix">
+						<dl>
+							<dt>一周热点分布</dt>
+							<dd><a href="#"><img src="images/photo.jpg" alt="" /></a></dd>
+						</dl>
+						<dl>
+							<dt>一周趋势分布</dt>
+							<dd><a href="#"><img src="images/photo.jpg" alt="" /></a></dd>
+						</dl>
+					</div>
+				</div>
+				<div class="more"><a href="#">更多&gt;&gt;</a></div>
+			</div>
+			<div class="column">
+				<div class="column_title">
+					<h2>重大案件</h2>
+				</div>
+				<ul id="columnTab3" class="columnSort">
+					<li class="active" onmouseover="nTabs(this,0)"><span><a href="#" onfocus="blur();">一周热点</a></span></li>
+					<li class="normal" onmouseover="nTabs(this,1)"><span><a href="#" onfocus="blur();">上升最快</a></span></li>
+				</ul>
+				<div class="columnBody">
+					<div id="columnTab3_Content0" class="event">
+						<table>
+							<tr>
+								<td width="5%"><em class="num01">1</em></td>
+								<td><a href="#">鬼影彤彤的黄光裕案</a></td>
+								<td width="12%"><span class="trend_up">上升</span></td>
+								<td width="15%"><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td><em class="num02">2</em></td>
+								<td><a href="#">今春首期火车票诈骗案</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td><em class="num03">3</em></td>
+								<td><a href="#">史上最大珠宝劫案</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td><a href="#">1132条</a></td>
+							</tr>
+							<tr>
+								<td><em class="num04">4</em></td>
+								<td><a href="#">鬼影彤彤的黄光裕案</a></td>
+								<td><span class="trend_up">上升</span></td>
+								<td><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td><em class="num05">5</em></td>
+								<td><a href="#">今春首期火车票诈骗案</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td><em class="num06" >6</em></td>
+								<td><a href="#">史上最大珠宝劫案</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td><a href="#">1132条</a></td>
+							</tr>
+						</table>
+					</div>
+					<div id="columnTab3_Content1" class="event none">
+						<table>
+							<tr>
+								<td width="5%"><em class="num01">1</em></td>
+								<td><a href="#">今春首期火车票诈骗案</a></td>
+								<td width="12%"><span class="trend_up">上升</span></td>
+								<td width="15%"><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td><em class="num02">2</em></td>
+								<td><a href="#">鬼影彤彤的黄光裕案</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td><em class="num03">3</em></td>
+								<td><a href="#">史上最大珠宝劫案</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td><a href="#">1132条</a></td>
+							</tr>
+							<tr>
+								<td><em class="num04">4</em></td>
+								<td><a href="#">鬼影彤彤的黄光裕案</a></td>
+								<td><span class="trend_up">上升</span></td>
+								<td><a href="#">26532条</a></td>
+							</tr>
+							<tr>
+								<td><em class="num05">5</em></td>
+								<td><a href="#">今春首期火车票诈骗案</a></td>
+								<td><span class="trend_down">下降</span></td>
+								<td><a href="#">16532条</a></td>
+							</tr>
+							<tr>
+								<td><em class="num06">6</em></td>
+								<td><a href="#">史上最大珠宝劫案</a></td>
+								<td><span class="trend_steady">平稳</span></td>
+								<td><a href="#">1132条</a></td>
+							</tr>
+						</table>
+					</div>
+					<div class="hot clearfix">
+						<dl>
+							<dt>一周热点分布</dt>
+							<dd><a href="#"><img src="images/photo.jpg" alt="" /></a></dd>
+						</dl>
+						<dl>
+							<dt>一周趋势分布</dt>
+							<dd><a href="#"><img src="images/photo.jpg" alt="" /></a></dd>
+						</dl>
+					</div>
+				</div>
+				<div class="more"><a href="#">更多&gt;&gt;</a></div>
 			</div>
 		</div>
 	</div>
-	<!-- 内容结束 -->
-	<!-- 版权开始 -->
-	<p id="footer">Copyright &copy; 2009-2014 Beijing People Co.,LTD 业务联系：Tel(86)10-58289500 京ICP证090267号</p>
-	<!-- 版权结束 -->
+	<p class="footer">Copyright &copy; 2009-2014 Beijing People Co.LTD &nbsp;&nbsp;业务联系:Tel (86)10-58289500&nbsp;&nbsp;京ICP证090267号</p>
 </div>
 </body>
 </html>

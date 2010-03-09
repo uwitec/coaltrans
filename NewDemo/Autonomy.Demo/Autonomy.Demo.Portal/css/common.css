@@ -5,7 +5,7 @@
 	table{border-collapse:collapse; border-spacing:0;}/* table 间距与重合 */ 
 	caption,cite,em,strong,b,th {font-style:normal; font-weight:normal;} /* 字体定义 */ 
 	caption, th {text-align:left;}/* 文本对齐方式 */ 
-	fieldset, img {border:none;} /* 边框 */
+	fieldset, img {border:0 none;} /* 边框 */
 	img {vertical-align:top;} /* 解决ie6下边间距bug */
 	ul,ol,li {list-style:none;}
 	input,button,select {color:#555; font:100% arial; vertical-align:middle; overflow:visible;}/* 解决表单元素与文本的对齐问题 */
@@ -24,5 +24,4 @@
 	.clear {clear:both;}
 	.clearfix:after {content:"."; display:block; height:0px; clear:both; visibility:hidden; }
 	.clearfix {zoom:1;}
-	
 	.none {display:none;}

@@ -1,0 +1,21 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*=== 页面布局 ===*/
+body {background:#fff; color:#000; font:12px SumSun, Arial, Helvetica, sans-serif; text-align:center; margin:0 auto;}
+#wrapper {width:1002px; text-align:left; margin:0 auto;}
+.loginBody1 {height:190px; background:url(../images/login_bg1.jpg) no-repeat;}
+.loginBody2 {height:237px; background:url(../images/login_bg2.jpg) no-repeat;}
+.loginBody3 {height:190px; background:url(../images/login_bg3.jpg) no-repeat;}
+.login {width:360px; padding:30px 0 0 318px;}
+.login h1 {width:290px; height:31px; background:url(../images/login_title.jpg) no-repeat; text-indent:-9999em; overflow:hidden; margin-bottom:20px;}
+.loginL1 {width:260px; float:left;}
+.loginL2 {width:100px; float:left;}
+.loginTable {width:100%;}
+.loginTable th,.loginTable td {height:35px; line-height:25px; vertical-align:top;}
+.loginTable th {width:30%; color:#fff; text-align:right;}
+.loginTable td {text-align:left;}
+.login .input_text {width:158px; height:15px; background:#fff; border:1px solid #9cc3fb; color:#000; font-size:12px; padding:4px 3px;}
+.login .input_text2 {width:58px; height:15px; background:#fff; border:1px solid #9cc3fb; color:#000; font-size:12px; padding:4px 3px;}
+.login .input_button {width:83px; height:65px; background:url(../images/login.png) no-repeat; border:none; overflow:hidden; cursor:pointer;}
+

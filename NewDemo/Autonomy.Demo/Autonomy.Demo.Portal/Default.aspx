@@ -45,7 +45,8 @@
     <input type="text" id="keywords" name="keywords" /><input type="button" id="btnSearch" name="btnSearch" value="搜索" />
     <br/>
     <a id="feiwen" name="feiwen" href="javascript:void(0);">绯闻</a>&nbsp;&nbsp;<a id="sanqiang" name="sanqiang" href="javascript:void(0);">三枪</a>
-    <div id="result"></div>
+    <div id="result">
+        </div>
     </div>
     </form>
 </body>

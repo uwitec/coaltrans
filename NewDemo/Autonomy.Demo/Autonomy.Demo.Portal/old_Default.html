@@ -1,0 +1,422 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>首页</title>
+<link href="css/common.css" type="text/css" rel="stylesheet" rev="stylesheet" media="all" />
+<link href="css/layout.css" type="text/css" rel="stylesheet" rev="stylesheet" media="all" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/util.js"></script>
+<script type="text/javascript" src="js/Default.js"></script>
+<script src="js/changeTab.js" type="text/javascript"></script>
+</head>
+
+<body>
+	<div id="wrapper">
+		<div class="header">
+			<h1 class="logo"><a href="#" title="网络舆情监控系统">网络舆情监控系统</a></h1>
+			<div class="userInfo">您好，<strong>张艺谋</strong>，今天是2010年3月6日， [ <a href="#">退出</a> ]</div>
+			<div class="search">
+				<ul id="searchTab" class="searchSort">
+					<li class="normal" onclick="nTabs(this,0)"><a href="javascript:void(0);" onfocus="blur()">全部</a></li>
+					<li class="active" onclick="nTabs(this,1)"><a href="javascript:void(0);" onfocus="blur()">新闻</a></li>
+					<li class="normal" onclick="nTabs(this,2)"><a href="javascript:void(0);" onfocus="blur()">博客</a></li>
+					<li class="normal" onclick="nTabs(this,3)"><a href="javascript:void(0);" onfocus="blur()">论坛</a></li>
+				</ul>
+				<div id="searchTab_Content0" class="searchBody">
+					<form name="search1" action="" method="post">
+						<fieldset>
+							<input name="keyword" type="text" class="input_text" />
+							<input name="searchButton" type="submit" value="搜索" class="input_button" />
+						</fieldset>
+					</form>
+				</div>
+				<div id="searchTab_Content1" class="searchBody none">
+					<form name="search2" action="" method="post">
+						<fieldset>
+							<input name="keyword" type="text" class="input_text" />
+							<input name="searchButton" type="submit" value="搜索" class="input_button" />
+						</fieldset>
+					</form>
+				</div>
+				<div id="searchTab_Content2" class="searchBody none">
+					<form name="search3" action="" method="post">
+						<fieldset>
+							<input name="keyword" type="text" class="input_text" />
+							<input name="searchButton" type="submit" value="搜索" class="input_button" />
+						</fieldset>
+					</form>
+				</div>
+				<div id="searchTab_Content3" class="searchBody none">
+					<form name="search" action="" method="post">
+						<fieldset>
+							<input name="keyword" type="text" class="input_text" />
+							<input name="searchButton" type="submit" value="搜索" class="input_button" />
+						</fieldset>
+					</form>
+				</div>
+			</div>
+			<ul class="nav">
+				<li class="current"><span><a href="#">舆论专题</a></span></li>
+				<li><span><a href="#">热点分布</a></span></li>
+				<li><span><a href="#">舆情趋势</a></span></li>
+				<li><span><a href="#">敏感信息</a></span></li>
+				<li><span><a href="#">统计分析</a></span></li>
+				<li><span><a href="#">舆情报告</a></span></li>
+				<li><span><a href="#">系统设置</a></span></li>
+			</ul>
+		</div>
+		<div class="content">
+			<div class="columns clearfix">
+				<div class="column">
+					<div class="column_title"><h2>国家领导人</h2></div>
+					<ul id="columnTab1" class="columnSort">
+						<li class="normal" onmouseover="nTabs(this,0)"><span><a href="#">全部</a></span></li>
+						<li class="active" onmouseover="nTabs(this,1)"><span><a href="#">正面</a></span></li>
+						<li class="normal" onmouseover="nTabs(this,2)"><span><a href="#">负面</a></span></li>
+					</ul>
+					<div class="columnBody">
+						<ul id="columnTab1_Content0" class="peopleList clearfix">
+							<!--<li><a href="#">胡锦涛</a>(123)</li>
+							<li><a href="#">温家宝</a>(123)</li>
+							<li><a href="#">李长春</a>(123)</li>
+							<li><a href="#">郭伯雄</a>(123)</li>
+							<li><a href="#">胡锦涛</a>(123)</li>
+							<li><a href="#">温家宝</a>(123)</li>
+							<li><a href="#">李长春</a>(123)</li>
+							<li><a href="#">郭伯雄</a>(123)</li>
+							<li><a href="#">胡锦涛</a>(123)</li>
+							<li><a href="#">温家宝</a>(123)</li>
+							<li><a href="#">李长春</a>(123)</li>
+							<li><a href="#">郭伯雄</a>(123)</li>
+							<li><a href="#">胡锦涛</a>(123)</li>
+							<li><a href="#">温家宝</a>(123)</li>
+							<li><a href="#">李长春</a>(123)</li>
+							<li><a href="#">郭伯雄</a>(123)</li>
+							<li><a href="#">胡锦涛</a>(123)</li>
+							<li><a href="#">温家宝</a>(123)</li>
+							<li><a href="#">李长春</a>(123)</li>
+							<li><a href="#">郭伯雄</a>(123)</li>
+							<li><a href="#">胡锦涛</a>(123)</li>
+							<li><a href="#">温家宝</a>(123)</li>
+							<li><a href="#">李长春</a>(123)</li>
+							<li><a href="#">郭伯雄</a>(123)</li>
+							<li><a href="#">胡锦涛</a>(123)</li>
+							<li><a href="#">温家宝</a>(123)</li>
+							<li><a href="#">李长春</a>(123)</li>
+							<li><a href="#">郭伯雄</a>(123)</li>-->
+						</ul>
+						<ul id="columnTab1_Content1" class="peopleList clearfix none">
+							<<!--li><a href="#">胡锦涛</a>(123)</li>
+							<li><a href="#">温家宝</a>(123)</li>
+							<li><a href="#">李长春</a>(123)</li>
+							<li><a href="#">郭伯雄</a>(123)</li>
+							<li><a href="#">胡锦涛</a>(123)</li>
+							<li><a href="#">温家宝</a>(123)</li>
+							<li><a href="#">李长春</a>(123)</li>
+							<li><a href="#">郭伯雄</a>(123)</li>
+							<li><a href="#">胡锦涛</a>(123)</li>
+							<li><a href="#">温家宝</a>(123)</li>
+							<li><a href="#">李长春</a>(123)</li>
+							<li><a href="#">郭伯雄</a>(123)</li>
+							<li><a href="#">胡锦涛</a>(123)</li>
+							<li><a href="#">温家宝</a>(123)</li>
+							<li><a href="#">李长春</a>(123)</li>
+							<li><a href="#">郭伯雄</a>(123)</li>
+							<li><a href="#">胡锦涛</a>(123)</li>
+							<li><a href="#">温家宝</a>(123)</li>
+							<li><a href="#">李长春</a>(123)</li>
+							<li><a href="#">郭伯雄</a>(123)</li>
+							<li><a href="#">胡锦涛</a>(123)</li>
+							<li><a href="#">温家宝</a>(123)</li>
+							<li><a href="#">李长春</a>(123)</li>
+							<li><a href="#">郭伯雄</a>(123)</li>
+							<li><a href="#">胡锦涛</a>(123)</li>
+							<li><a href="#">温家宝</a>(123)</li>
+							<li><a href="#">李长春</a>(123)</li>
+							<li><a href="#">郭伯雄</a>(123)</li>-->
+						</ul>
+						<ul id="columnTab1_Content2" class="peopleList clearfix none">
+							<!--<li><a href="#">胡锦涛</a>(123)</li>
+							<li><a href="#">温家宝</a>(123)</li>
+							<li><a href="#">李长春</a>(123)</li>
+							<li><a href="#">郭伯雄</a>(123)</li>
+							<li><a href="#">胡锦涛</a>(123)</li>
+							<li><a href="#">温家宝</a>(123)</li>
+							<li><a href="#">李长春</a>(123)</li>
+							<li><a href="#">郭伯雄</a>(123)</li>
+							<li><a href="#">胡锦涛</a>(123)</li>
+							<li><a href="#">温家宝</a>(123)</li>
+							<li><a href="#">李长春</a>(123)</li>
+							<li><a href="#">郭伯雄</a>(123)</li>
+							<li><a href="#">胡锦涛</a>(123)</li>
+							<li><a href="#">温家宝</a>(123)</li>
+							<li><a href="#">李长春</a>(123)</li>
+							<li><a href="#">郭伯雄</a>(123)</li>
+							<li><a href="#">胡锦涛</a>(123)</li>
+							<li><a href="#">温家宝</a>(123)</li>
+							<li><a href="#">李长春</a>(123)</li>
+							<li><a href="#">郭伯雄</a>(123)</li>
+							<li><a href="#">胡锦涛</a>(123)</li>
+							<li><a href="#">温家宝</a>(123)</li>
+							<li><a href="#">李长春</a>(123)</li>
+							<li><a href="#">郭伯雄</a>(123)</li>
+							<li><a href="#">胡锦涛</a>(123)</li>
+							<li><a href="#">温家宝</a>(123)</li>
+							<li><a href="#">李长春</a>(123)</li>
+							<li><a href="#">郭伯雄</a>(123)</li>-->
+						</ul>
+					</div>
+					<div class="more"><a href="#">更多&gt;&gt;</a></div>
+				</div>
+				<div class="column">
+					<div class="column_title"><h2>关注事件</h2></div>
+					<div class="columnBody">
+						<div class="attention">
+							<table>
+								<tr>
+									<th class="pd_left">事件</th>
+									<th width="10%">趋势</th>
+									<th width="15%">关注热度</th>
+								</tr>
+								<tr>
+									<td class="pd_left pd_top"><a href="#">美国对台军售</a></td>
+									<td class="pd_top"><span class="trend_up">上升</span></td>
+									<td class="pd_top"><a href="#">26532条</a></td>
+								</tr>
+								<tr>
+									<td class="pd_left"><a href="#">南沙群岛主权</a></td>
+									<td><span class="trend_down">下降</span></td>
+									<td><a href="#">16532条</a></td>
+								</tr>
+								<tr>
+									<td class="pd_left"><a href="#">阿富汗战争</a></td>
+									<td><span class="trend_steady">平稳</span></td>
+									<td><a href="#">1132条</a></td>
+								</tr>
+								<tr>
+									<td class="pd_left"><a href="#">美国对台军售</a></td>
+									<td><span class="trend_up">上升</span></td>
+									<td><a href="#">26532条</a></td>
+								</tr>
+								<tr>
+									<td class="pd_left"><a href="#">南沙群岛主权</a></td>
+									<td><span class="trend_down">下降</span></td>
+									<td><a href="#">16532条</a></td>
+								</tr>
+								<tr>
+									<td class="pd_left"><a href="#">阿富汗战争</a></td>
+									<td><span class="trend_steady">平稳</span></td>
+									<td><a href="#">1132条</a></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="more"><a href="#">更多&gt;&gt;</a></div>
+				</div>
+				<div class="column">
+					<div class="column_title"><h2>重大社会事件</h2></div>
+					<ul id="columnTab2" class="columnSort">
+						<li class="active" onmouseover="nTabs(this,0)"><span><a href="#">一周热点</a></span></li>
+						<li class="normal" onmouseover="nTabs(this,1)"><span><a href="#">上升最快</a></span></li>
+					</ul>
+					<div class="columnBody">
+						<div id="columnTab2_Content0" class="event">
+							<table>
+								<tr>
+									<td width="5%"><em class="num01">1</em></td>
+									<td><a href="#">胡锦涛会见朝鲜劳动党代表团</a></td>
+									<td width="12%"><span class="trend_up">上升</span></td>
+									<td width="15%"><a href="#">26532条</a></td>
+								</tr>
+								<tr>
+									<td><em class="num02">2</em></td>
+									<td><a href="#">吴邦国主持第十一届人大常务会议</a></td>
+									<td><span class="trend_down">下降</span></td>
+									<td><a href="#">16532条</a></td>
+								</tr>
+								<tr>
+									<td><em class="num03">3</em></td>
+									<td><a href="#">温家宝会见巴基斯坦和哈萨克斯坦外长</a></td>
+									<td><span class="trend_steady">平稳</span></td>
+									<td><a href="#">1132条</a></td>
+								</tr>
+								<tr>
+									<td><em class="num04">4</em></td>
+									<td><a href="#">胡锦涛会见朝鲜劳动党代表团</a></td>
+									<td><span class="trend_up">上升</span></td>
+									<td><a href="#">26532条</a></td>
+								</tr>
+								<tr>
+									<td><em class="num05">5</em></td>
+									<td><a href="#">吴邦国主持第十一届人大常务会议</a></td>
+									<td><span class="trend_down">下降</span></td>
+									<td><a href="#">16532条</a></td>
+								</tr>
+								<tr>
+									<td><em class="num06">6</em></td>
+									<td><a href="#">温家宝会见巴基斯坦和哈萨克斯坦外长</a></td>
+									<td><span class="trend_steady">平稳</span></td>
+									<td><a href="#">1132条</a></td>
+								</tr>
+							</table>
+						</div>
+						<div id="columnTab2_Content1" class="event none">
+							<table>
+								<tr>
+									<td width="5%"><em class="num01">1</em></td>
+									<td><a href="#">吴邦国主持第十一届人大常务会议</a></td>
+									<td width="12%"><span class="trend_up">上升</span></td>
+									<td width="15%"><a href="#">26532条</a></td>
+								</tr>
+								<tr>
+									<td><em class="num02">2</em></td>
+									<td><a href="#">胡锦涛会见朝鲜劳动党代表团</a></td>
+									<td><span class="trend_down">下降</span></td>
+									<td><a href="#">16532条</a></td>
+								</tr>
+								<tr>
+									<td><em class="num03">3</em></td>
+									<td><a href="#">温家宝会见巴基斯坦和哈萨克斯坦外长</a></td>
+									<td><span class="trend_steady">平稳</span></td>
+									<td><a href="#">1132条</a></td>
+								</tr>
+								<tr>
+									<td><em class="num04">4</em></td>
+									<td><a href="#">胡锦涛会见朝鲜劳动党代表团</a></td>
+									<td><span class="trend_up">上升</span></td>
+									<td><a href="#">26532条</a></td>
+								</tr>
+								<tr>
+									<td><em class="num05">5</em></td>
+									<td><a href="#">吴邦国主持第十一届人大常务会议</a></td>
+									<td><span class="trend_down">下降</span></td>
+									<td><a href="#">16532条</a></td>
+								</tr>
+								<tr>
+									<td><em class="num06">6</em></td>
+									<td><a href="#">温家宝会见巴基斯坦和哈萨克斯坦外长</a></td>
+									<td><span class="trend_steady">平稳</span></td>
+									<td><a href="#">1132条</a></td>
+								</tr>
+							</table>
+						</div>
+						<div class="hot clearfix">
+							<dl>
+								<dt>一周热点分布</dt>
+								<dd><a href="#"><img src="images/photo.jpg" alt="" /></a></dd>
+							</dl>
+							<dl>
+								<dt>一周趋势分布</dt>
+								<dd><a href="#"><img src="images/photo.jpg" alt="" /></a></dd>
+							</dl>
+						</div>
+					</div>
+					<div class="more"><a href="#">更多&gt;&gt;</a></div>
+				</div>
+				<div class="column">
+					<div class="column_title"><h2>重大案件</h2></div>
+					<ul id="columnTab3" class="columnSort">
+						<li class="active" onmouseover="nTabs(this,0)"><span><a href="#">一周热点</a></span></li>
+						<li class="normal" onmouseover="nTabs(this,1)"><span><a href="#">上升最快</a></span></li>
+					</ul>
+					<div class="columnBody">
+						<div id="columnTab3_Content0" class="event">
+							<table>
+								<tr>
+									<td width="5%"><em class="num01">1</em></td>
+									<td><a href="#">鬼影彤彤的黄光裕案</a></td>
+									<td width="12%"><span class="trend_up">上升</span></td>
+									<td width="15%"><a href="#">26532条</a></td>
+								</tr>
+								<tr>
+									<td><em class="num02">2</em></td>
+									<td><a href="#">今春首期火车票诈骗案</a></td>
+									<td><span class="trend_down">下降</span></td>
+									<td><a href="#">16532条</a></td>
+								</tr>
+								<tr>
+									<td><em class="num03">3</em></td>
+									<td><a href="#">史上最大珠宝劫案</a></td>
+									<td><span class="trend_steady">平稳</span></td>
+									<td><a href="#">1132条</a></td>
+								</tr>
+								<tr>
+									<td><em class="num04">4</em></td>
+									<td><a href="#">鬼影彤彤的黄光裕案</a></td>
+									<td><span class="trend_up">上升</span></td>
+									<td><a href="#">26532条</a></td>
+								</tr>
+								<tr>
+									<td><em class="num05">5</em></td>
+									<td><a href="#">今春首期火车票诈骗案</a></td>
+									<td><span class="trend_down">下降</span></td>
+									<td><a href="#">16532条</a></td>
+								</tr>
+								<tr>
+									<td><em class="num06" >6</em></td>
+									<td><a href="#">史上最大珠宝劫案</a></td>
+									<td><span class="trend_steady">平稳</span></td>
+									<td><a href="#">1132条</a></td>
+								</tr>
+							</table>
+						</div>
+						<div id="columnTab3_Content1" class="event none">
+							<table>
+								<tr>
+									<td width="5%"><em class="num01">1</em></td>
+									<td><a href="#">今春首期火车票诈骗案</a></td>
+									<td width="12%"><span class="trend_up">上升</span></td>
+									<td width="15%"><a href="#">26532条</a></td>
+								</tr>
+								<tr>
+									<td><em class="num02">2</em></td>
+									<td><a href="#">鬼影彤彤的黄光裕案</a></td>
+									<td><span class="trend_down">下降</span></td>
+									<td><a href="#">16532条</a></td>
+								</tr>
+								<tr>
+									<td><em class="num03">3</em></td>
+									<td><a href="#">史上最大珠宝劫案</a></td>
+									<td><span class="trend_steady">平稳</span></td>
+									<td><a href="#">1132条</a></td>
+								</tr>
+								<tr>
+									<td><em class="num04">4</em></td>
+									<td><a href="#">鬼影彤彤的黄光裕案</a></td>
+									<td><span class="trend_up">上升</span></td>
+									<td><a href="#">26532条</a></td>
+								</tr>
+								<tr>
+									<td><em class="num05">5</em></td>
+									<td><a href="#">今春首期火车票诈骗案</a></td>
+									<td><span class="trend_down">下降</span></td>
+									<td><a href="#">16532条</a></td>
+								</tr>
+								<tr>
+									<td><em class="num06">6</em></td>
+									<td><a href="#">史上最大珠宝劫案</a></td>
+									<td><span class="trend_steady">平稳</span></td>
+									<td><a href="#">1132条</a></td>
+								</tr>
+							</table>
+						</div>
+						<div class="hot clearfix">
+							<dl>
+								<dt>一周热点分布</dt>
+								<dd><a href="#"><img src="images/photo.jpg" alt="" /></a></dd>
+							</dl>
+							<dl>
+								<dt>一周趋势分布</dt>
+								<dd><a href="#"><img src="images/photo.jpg" alt="" /></a></dd>
+							</dl>
+						</div>
+					</div>
+					<div class="more"><a href="#">更多&gt;&gt;</a></div>
+				</div>
+			</div>
+		</div>
+		<p class="footer">Copyright &copy; 2009-2014 Beijing People Co.LTD &nbsp;&nbsp;业务联系:Tel (86)10-58289500&nbsp;&nbsp;京ICP证090267号</p>
+</div>
+</body>
+</html>

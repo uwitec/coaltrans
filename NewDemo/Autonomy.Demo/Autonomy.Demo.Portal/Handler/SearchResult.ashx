@@ -40,13 +40,12 @@ public class SearchResult : IHttpHandler {
             StringBuilder html = new StringBuilder();
            
             foreach (XmlNode hit in hits)
-            {
+            {   
                 XmlNode document = hit.ChildNodes[7].SelectSingleNode("DOCUMENT");
                 html.AppendFormat("<li><h2><a href=\"{0}\">", document.SelectSingleNode("DREREFERENCE").InnerText);
                 html.AppendFormat("{0}</a></h2>", document.SelectSingleNode("DRETITLE").InnerText);
                 html.Append("<div class=\"d\"><span>" + document.SelectSingleNode("MYSITENAME").InnerText + "</span> - " + document.SelectSingleNode("MYDATE").InnerText + "</div>");
-                html.AppendFormat("<p>{0}<b>...</b><br />", document.SelectSingleNode("DRECONTENT").InnerText);
-                html.AppendFormat("<cite>{0}</cite> - <span class=\"l\"><a href=\"#\">类似结果</a></span> </p>", document.SelectSingleNode("DREREFERENCE").InnerText);
+                html.AppendFormat("<p>{0}<b>...</b></p>", document.SelectSingleNode("DRECONTENT").InnerText);
                 html.Append("</li>");
             }
 
