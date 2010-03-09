@@ -16,6 +16,7 @@ namespace Coal.ViewModel
             set;
         }
 
+
         public string Title
         {
             get;
