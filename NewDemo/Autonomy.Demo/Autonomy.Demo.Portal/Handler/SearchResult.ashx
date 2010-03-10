@@ -7,6 +7,7 @@ using System.IO;
 using System.Xml;
 using System.Text;
 using System.Configuration;
+using Newtonsoft.Json;
 
 public class SearchResult : IHttpHandler {
     
@@ -14,8 +15,9 @@ public class SearchResult : IHttpHandler {
 
         string actUrl = string.Empty;
         string keyword = context.Request.QueryString["keyword"];
+        string Start = context.Request.QueryString["Start"];
 
-        actUrl = ConfigurationManager.AppSettings["IdolACIPort"] + "/action=query&text=" + keyword + "&databasematch=" + ConfigurationManager.AppSettings["DATABASE"] + "&print=all&LanguageType=chineseUTF8&start=1&maxresults=10&totalresults=true&minscore=60&outputencoding=utf8";
+        actUrl = ConfigurationManager.AppSettings["IdolACIPort"] + "/action=query&text=" + keyword + "&databasematch=" + ConfigurationManager.AppSettings["DATABASE"] + "&print=all&LanguageType=chineseUTF8&start=" + Start + "&maxresults=" + (9 + Convert.ToInt32(Start)) + "&totalresults=true&minscore=60&outputencoding=utf8";
         //actUrl = "http://localhost:9000/action=Query&text=" + keyword + "&minscore=60&languagetype=chineseUTF8&sort=Relevance&querysummary=true&summary=context&sentences=3&characters=300&print=all&xmlmeta=true&combine=Simple&outputencoding=utf8&anylanguage=false&spellcheck=true&databasematch=" + ConfigurationManager.AppSettings["DATABASE"] + "&start=1&maxresults=10&totalresults=true";
 
         if (actUrl != string.Empty)
@@ -37,6 +39,12 @@ public class SearchResult : IHttpHandler {
 
             //Select the book node with the matching attribute value.
             XmlNodeList hits = contentDoc.SelectNodes("autnresponse/responsedata/autn:hit", nsmgr);
+            XmlNode TotalNode = contentDoc.SelectSingleNode("autnresponse/responsedata/autn:totalhits", nsmgr);
+            string count = string.Empty;
+            if (TotalNode != null)
+            {
+                count = TotalNode.InnerText.ToString();
+            }
             StringBuilder html = new StringBuilder();
            
             foreach (XmlNode hit in hits)
@@ -50,7 +58,7 @@ public class SearchResult : IHttpHandler {
             }
 
             context.Response.ContentType = "text/plain";
-            context.Response.Write(html);
+            context.Response.Write(html + "※" + count);
         }
     }
  

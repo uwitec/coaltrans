@@ -27,6 +27,7 @@ namespace Autonomy.Demo.Dal
             public const string ID = "ID";
             public const string MainCateID = "MainCateID";
             public const string CateDisplay = "CateDisplay";
+            public const string CateType = "CateType";
             public const string TimeID = "TimeID";
             public const string FromTime = "FromTime";
             public const string ToTime = "ToTime";
@@ -47,13 +48,15 @@ namespace Autonomy.Demo.Dal
             sqlHelper = new SqlHelper(DBName);
         }
 
-        public StaticInfoEntity(long id, int maincateid, string catedisplay, int timeid, DateTime fromtime, DateTime totime, long todayhitcount, long yestodayhitcount, long thisweekhitcount, long sevendayhitcount, long thismonthitcount, long thirtydayhitcount, long totalhitcount, DateTime gendate)
+        public StaticInfoEntity(long id, int maincateid, string catedisplay, int catetype, int timeid, DateTime fromtime, DateTime totime, long todayhitcount, long yestodayhitcount, long thisweekhitcount, long sevendayhitcount, long thismonthitcount, long thirtydayhitcount, long totalhitcount, DateTime gendate)
         {
             this.ID = id;
 
             this.MainCateID = maincateid;
 
             this.CateDisplay = catedisplay;
+
+            this.CateType = catetype;
 
             this.TimeID = timeid;
 
@@ -103,6 +106,15 @@ namespace Autonomy.Demo.Dal
         /// 分类名称
         /// </summary>
         public string CateDisplay
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 分类类型
+        /// </summary>
+        public int? CateType
         {
             get;
             set;
@@ -224,12 +236,13 @@ namespace Autonomy.Demo.Dal
 
                 StringBuilder strSql = new StringBuilder();
                 strSql.Append("insert into StaticInfo(");
-                strSql.Append("MainCateID,CateDisplay,TimeID,FromTime,ToTime,TodayHitCount,YestodayHitCount,ThisWeekHitCount,SevendayHitCount,ThisMontHitCount,ThirtydayHitCount,TotalHitCount,GenDate)");
+                strSql.Append("MainCateID,CateDisplay,CateType,TimeID,FromTime,ToTime,TodayHitCount,YestodayHitCount,ThisWeekHitCount,SevendayHitCount,ThisMontHitCount,ThirtydayHitCount,TotalHitCount,GenDate)");
                 strSql.Append(" values (");
-                strSql.Append("@MainCateID,@CateDisplay,@TimeID,@FromTime,@ToTime,@TodayHitCount,@YestodayHitCount,@ThisWeekHitCount,@SevendayHitCount,@ThisMontHitCount,@ThirtydayHitCount,@TotalHitCount,@GenDate)");
+                strSql.Append("@MainCateID,@CateDisplay,@CateType,@TimeID,@FromTime,@ToTime,@TodayHitCount,@YestodayHitCount,@ThisWeekHitCount,@SevendayHitCount,@ThisMontHitCount,@ThirtydayHitCount,@TotalHitCount,@GenDate)");
                 SqlParameter[] parameters = {
 					new SqlParameter("@MainCateID",SqlDbType.Int),
 					new SqlParameter("@CateDisplay",SqlDbType.VarChar),
+					new SqlParameter("@CateType",SqlDbType.Int),
 					new SqlParameter("@TimeID",SqlDbType.Int),
 					new SqlParameter("@FromTime",SqlDbType.DateTime),
 					new SqlParameter("@ToTime",SqlDbType.DateTime),
@@ -244,17 +257,18 @@ namespace Autonomy.Demo.Dal
 					};
                 parameters[0].Value = entity.MainCateID;
                 parameters[1].Value = entity.CateDisplay;
-                parameters[2].Value = entity.TimeID;
-                parameters[3].Value = entity.FromTime;
-                parameters[4].Value = entity.ToTime;
-                parameters[5].Value = entity.TodayHitCount;
-                parameters[6].Value = entity.YestodayHitCount;
-                parameters[7].Value = entity.ThisWeekHitCount;
-                parameters[8].Value = entity.SevendayHitCount;
-                parameters[9].Value = entity.ThisMontHitCount;
-                parameters[10].Value = entity.ThirtydayHitCount;
-                parameters[11].Value = entity.TotalHitCount;
-                parameters[12].Value = entity.GenDate;
+                parameters[2].Value = entity.CateType;
+                parameters[3].Value = entity.TimeID;
+                parameters[4].Value = entity.FromTime;
+                parameters[5].Value = entity.ToTime;
+                parameters[6].Value = entity.TodayHitCount;
+                parameters[7].Value = entity.YestodayHitCount;
+                parameters[8].Value = entity.ThisWeekHitCount;
+                parameters[9].Value = entity.SevendayHitCount;
+                parameters[10].Value = entity.ThisMontHitCount;
+                parameters[11].Value = entity.ThirtydayHitCount;
+                parameters[12].Value = entity.TotalHitCount;
+                parameters[13].Value = entity.GenDate;
 
                 sqlHelper.ExecuteSql(strSql.ToString(), parameters);
             }
@@ -266,6 +280,7 @@ namespace Autonomy.Demo.Dal
                 strSql.Append("update StaticInfo set ");
                 strSql.Append("MainCateID=@MainCateID,");
                 strSql.Append("CateDisplay=@CateDisplay,");
+                strSql.Append("CateType=@CateType,");
                 strSql.Append("TimeID=@TimeID,");
                 strSql.Append("FromTime=@FromTime,");
                 strSql.Append("ToTime=@ToTime,");
@@ -283,6 +298,7 @@ namespace Autonomy.Demo.Dal
 					new SqlParameter("@ID",SqlDbType.BigInt),
 					new SqlParameter("@MainCateID",SqlDbType.Int),
 					new SqlParameter("@CateDisplay",SqlDbType.VarChar),
+					new SqlParameter("@CateType",SqlDbType.Int),
 					new SqlParameter("@TimeID",SqlDbType.Int),
 					new SqlParameter("@FromTime",SqlDbType.DateTime),
 					new SqlParameter("@ToTime",SqlDbType.DateTime),
@@ -298,17 +314,18 @@ namespace Autonomy.Demo.Dal
                 parameters[0].Value = entity.ID;
                 parameters[1].Value = entity.MainCateID;
                 parameters[2].Value = entity.CateDisplay;
-                parameters[3].Value = entity.TimeID;
-                parameters[4].Value = entity.FromTime;
-                parameters[5].Value = entity.ToTime;
-                parameters[6].Value = entity.TodayHitCount;
-                parameters[7].Value = entity.YestodayHitCount;
-                parameters[8].Value = entity.ThisWeekHitCount;
-                parameters[9].Value = entity.SevendayHitCount;
-                parameters[10].Value = entity.ThisMontHitCount;
-                parameters[11].Value = entity.ThirtydayHitCount;
-                parameters[12].Value = entity.TotalHitCount;
-                parameters[13].Value = entity.GenDate;
+                parameters[3].Value = entity.CateType;
+                parameters[4].Value = entity.TimeID;
+                parameters[5].Value = entity.FromTime;
+                parameters[6].Value = entity.ToTime;
+                parameters[7].Value = entity.TodayHitCount;
+                parameters[8].Value = entity.YestodayHitCount;
+                parameters[9].Value = entity.ThisWeekHitCount;
+                parameters[10].Value = entity.SevendayHitCount;
+                parameters[11].Value = entity.ThisMontHitCount;
+                parameters[12].Value = entity.ThirtydayHitCount;
+                parameters[13].Value = entity.TotalHitCount;
+                parameters[14].Value = entity.GenDate;
 
                 sqlHelper.ExecuteSql(strSql.ToString(), parameters);
             }
@@ -378,6 +395,10 @@ namespace Autonomy.Demo.Dal
                         entity.MainCateID = (int)row["MainCateID"];
                     }
                     entity.CateDisplay = row["CateDisplay"].ToString();
+                    if (!Convert.IsDBNull(row["CateType"]))
+                    {
+                        entity.CateType = (int)row["CateType"];
+                    }
                     if (!Convert.IsDBNull(row["TimeID"]))
                     {
                         entity.TimeID = (int)row["TimeID"];
@@ -430,16 +451,19 @@ namespace Autonomy.Demo.Dal
                 }
             }
 
-            public override List<StaticInfoEntity> Find(string strWhere, SqlParameter[] parameters)
+            public override List<StaticInfoEntity> Find(string strWhere, SqlParameter[] parameters, int top, string OrderBy)
             {
                 StringBuilder strSql = new StringBuilder();
-                strSql.Append("select *");
+                strSql.Append("select top(" + top + ") *");
                 strSql.Append(" FROM StaticInfo(nolock) ");
                 if (strWhere.Trim() != "")
                 {
                     strSql.Append(" where " + strWhere);
                 }
-
+                if (OrderBy.Trim() != "")
+                {
+                    strSql.Append("order by " + OrderBy);
+                }
                 DataSet ds = sqlHelper.ExecuteDateSet(strSql.ToString(), parameters);
                 if (ds != null && ds.Tables.Count > 0)
                 {
@@ -456,6 +480,10 @@ namespace Autonomy.Demo.Dal
                             entity.MainCateID = (int)row["MainCateID"];
                         }
                         entity.CateDisplay = row["CateDisplay"].ToString();
+                        if (!Convert.IsDBNull(row["CateType"]))
+                        {
+                            entity.CateType = (int)row["CateType"];
+                        }
                         if (!Convert.IsDBNull(row["TimeID"]))
                         {
                             entity.TimeID = (int)row["TimeID"];
@@ -592,51 +620,3 @@ namespace Autonomy.Demo.Dal
     }
 }
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                   .ForeColor">
-            <summary>
-            The mapped foreground color for the specified level
-            </summary>
-            <remarks>
-            <para>
-            Required property.
-            The mapped foreground color for the specified level
-            </para>
-            </remarks>
-        </member>
-        <member name="P:log4net.Appender.AnsiColorTerminalAppender.LevelColors.BackColor">
-            <summary>
-            The mapped background color for the specified level
-            </summary>
-            <remarks>
-            <para>
-            Required property.
-            The mapped background color for the specified level
-            </para>
-            </remarks>
-        </member>
-        <member name="P:log4net.Appender.AnsiColorTerminalAppender.LevelColors.Attributes">
-            <summary>
-            The color attributes for the specified level
-            </summary>
-            <remarks>
-            <para>
-            Required property.
-            The color attributes for the specified level
-            </para>
-            </remarks>
-        </member>
-        <member name="P:log4net.Appender.AnsiColorTerminalAppender.LevelColors.CombinedColor">
-            <summary>
-            The combined <see cref="P:log4net.Appender.AnsiColorTerminalAppender.LevelColors.ForeColor"/>, <see cref="P:log4net.Appender.AnsiColorTerminalAppender.LevelColors.BackColor"/> and
-            <see cref="P:log4net.Appender.AnsiColorTerminalAppender.LevelColors.Attributes"/> suitable for setting the ansi terminal color.
-            </summary>
-        </member>
-        <member name="T:log4net.Appender.AppenderCollection">
-            <summary>
-            A strongly-typed collection of <see cref="T:log4net.Appender.IAppender"/> objects.
-            </summary>
-            <author>Nicko Cadell</author>
-        </member>
-        <member name="M:log4net.Appender.AppenderCollection.ReadOnly(log4net.Appender.AppenderCollection)">
-            <summary>
-            Creates

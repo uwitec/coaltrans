@@ -8,14 +8,36 @@
 <script src="js/changeTab.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/jquery.query.js"></script>
+<script type="text/javascript" src="js/util.js"></script>
+<script type="text/javascript" src="js/Search.js"></script>
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function() {  
+              
         var keyword_value = $.query.get('keyword');
+        $("#DisKeyWord").html("\""+keyword_value+"\"");
         $("#keyword").val(keyword_value);
         //加载初始数据
-        $.get("Handler/SearchResult.ashx", { 'keyword': keyword_value },
+        $.get("Handler/SearchResult.ashx", { 'keyword': keyword_value,'Start':1 },
                     function(data) {
-                        $("#SearchResult").html(data);
+                        var Ldata=data.split('※');                        
+                        $("#SearchResult").html(Ldata[0]);
+                        var Count=Ldata[1];
+                        $("#TotalCount").html(Count+"条");
+                        if(Count>0)
+                        {
+                            var PageCount=Count/10;
+                            if(PageCount.toString().indexOf(".")>0)
+                            {
+                                var IntCount=PageCount.toString().split('.')[0];
+                                
+                                PageCount=parseInt(IntCount)+1;                                                                
+                            }
+                            GetPager(PageCount,keyword_value);
+                        }  
+                        else
+                        {
+                            $("#PagerList").html("对不起，没有数据！");
+                        }                      
                     });
     });
 </script>
@@ -78,7 +100,7 @@
 	<div class="content">
 		<div class="publicFeelSearch clearfix">
 			<dl class="publicFeelSort">
-				<dt>国家领导人</dt>
+				<dt id="Leader">国家领导人</dt>
 				<dd class="current"><a href="#">胡锦涛</a></dd>
 				<dd><a href="#">温家宝</a></dd>
 				<dt>国家机构</dt>
@@ -98,7 +120,7 @@
 				<dd><a href="#">藏独</a></dd>
 			</dl>
 			<div class="publicFeelSearchBody">
-				<div class="publicFeelNotice">搜索 <strong>过去一天</strong> 内的 <strong><b>藏独</b> 新闻</strong> ，获得 <strong>2345条</strong> 结果。</div>
+				<div class="publicFeelNotice">搜索 <strong>过去一天</strong> 内的 <strong><b id="DisKeyWord"></b> 新闻</strong> ，获得 <strong id="TotalCount"></strong> 结果。</div>
 				<ul class="publicFeelNav">
 					<li class="current"><span><a href="#" onfocus="blur();">全部</a></span></li>
 					<li><span><a href="#" onfocus="blur();">新闻</a></span></li>
@@ -108,7 +130,7 @@
 				<div class="publicFeelSearchContent">
 					<ol id="SearchResult" class="publicFeelSearchResult">
 					</ol>
-					<div class="publicFeelSearchPage"><span class="current">1</span> <a href="#10">[2]</a> <a href="#20">[3]</a> <a href="#30">[4]</a> <a href="#40">[5]</a> <a href="#50">[6]</a> <a href="#60">[7]</a> <a href="#70">[8]</a> <a href="#80">[9]</a> <a href="#90">[10]</a> <a href="#10">下一页</a> </div>
+					<div class="publicFeelSearchPage" id="PagerList"><a href="#10">上一页</a><span class="current" style="margin-left:10px;">1</span> <a href="#10">[2]</a> <a href="#20">[3]</a> <a href="#30">[4]</a> <a href="#40">[5]</a> <a href="#50">[6]</a> <a href="#60">[7]</a> <a href="#70">[8]</a> <a href="#80">[9]</a> <a href="#90">[10]</a> <a href="#10">下一页</a> </div>
 				</div>
 				<div class="publicFeelSearchOption">
 					<ul>
