@@ -28,27 +28,14 @@ StringBuffer.prototype.del = function(num) {
     this._strings = [];
     this._strings.push(str);
 }
-<<<<<<< .mine
 
+/*导航栏目数据*/
 var nav_data = { data: [{ href: "index.html", title: "首页"}
                , { href: "special.html", title: "舆论专题"}
                , { href: "hot.html", title: "热点分布" }
                , { href: "trend.html", title: "舆情趋势" }
                , { href: "sensitive.html", title: "敏感信息" }
                , { href: "statistic.html", title: "统计分析" }
-               , { href: "statistic.html", title: "舆情报告" }
+               , { href: "index.html", title: "舆情报告" }
                , { href: "index.html", title: "系统设置"}]
 };
-=======
-
-var nav_data = { data: [{ href: "index.html", title: "首页" }
-               , { href: "special.html", title: "舆论专题" }
-               , { href: "hot.html", title: "热点分布" }
-               , { href: "trend.html", title: "舆情趋势" }
-               , { href: "sensitive.html", title: "敏感信息" }
-               , { href: "statistic.html", title: "统计分析" }
-               , { href: "statistic.html", title: "舆情报告" }
-               , { href: "index.html", title: "系统设置"}]
-};
-
->>>>>>> .r83

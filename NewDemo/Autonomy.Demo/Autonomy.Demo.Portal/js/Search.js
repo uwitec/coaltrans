@@ -1,67 +1,43 @@
-﻿function initialize()
-{
+﻿function GetPager(page_count) {
     
-}
-function GetPager(PageCount,keyword)
-{
+    var display_page_count = 10;
+    if (page_count < 10) {
+        display_page_count = page_count;
+    }
     
-    if(PageCount>10)
+    var pager_content=new StringBuffer();
+    //pager_content.append("<span>上一页</span>");
+    pager_content.append("<span class=\"current\" id=\"Pager" + 1 + "\" style=\"margin-left:10px;\" >[" + 1 + "]</span>");
+
+    var keyword = $("#keyword").val();
+    for (var i = 2; i <= display_page_count; i++)
     {
-        var  PagerContent=new StringBuffer();
-        PagerContent.append("<span>上一页</span>");
-        for(var i=1;i<=PageCount;i++)
-        {
-            if(i==1)
-            {
-                PagerContent.append("<span class=\"current\" id=\"Pager"+i+"\" style=\"margin-left:10px;\" onclick=\"GetFocus('Pager',"+i+","+PageCount+",'"+keyword+"')\" >"+i+"</span>");
-            }
-            else
-            {
-                PagerContent.append("<span id=\"Pager"+i+"\" style=\"margin-left:10px;\" onclick=\"GetFocus('Pager',"+i+","+PageCount+",'"+keyword+"')\"><a href=\"javascript:void(null);\" >["+i+"]</a></span>");
-            }                        
-        }
-        PagerContent.append("<span><a href=\"javascript:void(null);\">下一页</a></span>");
-        $("#PagerList").html(PagerContent.toString());
+        pager_content.append("<span id=\"Pager" + i + "\" style=\"margin-left:10px;\" onclick=\"GetFocus('Pager'," + i + "," + page_count + ",'" + keyword + "')\"><a href=\"javascript:void(null);\" >[" + i + "]</a></span>");
     }
-    if(PageCount<=10)
-    {
-        var  PagerContent=new StringBuffer();
-        for(var i=1;i<=PageCount;i++)
-        {
-            if(i==1)
-            {
-                PagerContent.append("<span class=\"current\" id=\"Pager"+i+"\" style=\"margin-left:10px;\" onclick=\"GetFocus('Pager',"+i+","+PageCount+",'"+keyword+"')\" >"+i+"</span>");
-            }
-            else
-            {
-                PagerContent.append("<span id=\"Pager"+i+"\" style=\"margin-left:10px;\" onclick=\"GetFocus('Pager',"+i+","+PageCount+",'"+keyword+"')\"><a href=\"javascript:void(null);\" >["+i+"]</a></span>");
-            }
-            $("#PagerList").html(PagerContent.toString());
-            
-        }
-    }
+
+    //pager_content.append("<span><a href=\"javascript:void(null);\">下一页</a></span>");
+    $("#PagerList").html(pager_content.toString());
 }
-function GetFocus(obj,PagerIndex,Pagecout,keyword)
-{
-    $.get("Handler/SearchResult.ashx", { 'keyword': keyword.toString(),'Start':(PagerIndex-1)*10+1},
+
+function GetFocus(obj,current_page,page_count,keyword) {
+    var start = (current_page - 1) * 15 + 1;
+    $.get("Handler/SearchResult.ashx", { 'keyword': keyword.toString(), 'Start': start },
         function(data) {
-            var Ldata=data.split('※');     
-                              
-            $("#SearchResult").html(Ldata[0]);   
+            var a_data = data.split('※');
+            $("#SearchResult").html(a_data[0]);
         });
-    for(var one=1;one<=Pagecout;one++)
+        
+    if (current_page > 6) {
+        var pager_content = new StringBuffer();
+        for (var page_index = current_page - 5; page_index < current_page + 5; page_index++) {
+            pager_content.append("<span id=\"Pager" + page_index + "\" style=\"margin-left:10px;\" onclick=\"GetFocus('Pager'," + page_index + "," + page_count + ",'" + keyword + "')\"><a href=\"javascript:void(null);\" >[" + page_index + "]</a></span>");
+        }
+        $("#PagerList").empty().html(pager_content.toString());
+        $("#" + obj + current_page).attr("class", "current");
+    } 
+    else
     {
-        if(one==PagerIndex)
-        {
-            $("#"+obj+one).html(PagerIndex);
-            $("#"+obj+one).attr("class","current");
-            
-        }
-        else
-        {
-            $("#"+obj+one).html("<a href=\"javascript:void(null);\" >["+one+"]</a>");
-            $("#"+obj+one).attr("class","");
-        }
+        $("span[class='current']").removeClass("current");
+        $("#" + obj + current_page).attr("class", "current");
     }
-    
 }

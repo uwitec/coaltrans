@@ -9,35 +9,32 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/jquery.query.js"></script>
 <script type="text/javascript" src="js/util.js"></script>
+<script type="text/javascript" src="js/top.js"></script>
 <script type="text/javascript" src="js/Search.js"></script>
 <script type="text/javascript">
-    $(document).ready(function() {  
-              
+    $(document).ready(function() {
         var keyword_value = $.query.get('keyword');
-        $("#DisKeyWord").html("\""+keyword_value+"\"");
+        $("#DisKeyWord").html("\"" + keyword_value + "\"");
         $("#keyword").val(keyword_value);
+
         //加载初始数据
-        $.get("Handler/SearchResult.ashx", { 'keyword': keyword_value,'Start':1 },
+        $.get("Handler/SearchResult.ashx", { 'keyword': keyword_value, 'Start': 1 },
                     function(data) {
-                        var Ldata=data.split('※');                        
-                        $("#SearchResult").html(Ldata[0]);
-                        var Count=Ldata[1];
-                        $("#TotalCount").html(Count+"条");
-                        if(Count>0)
-                        {
-                            var PageCount=Count/10;
-                            if(PageCount.toString().indexOf(".")>0)
-                            {
-                                var IntCount=PageCount.toString().split('.')[0];
-                                
-                                PageCount=parseInt(IntCount)+1;                                                                
-                            }
-                            GetPager(PageCount,keyword_value);
-                        }  
-                        else
-                        {
+                        var a_data = data.split('※');
+                        //搜索结果
+                        $("#SearchResult").html(a_data[0]);
+                        //记录总数
+                        var count = a_data[1];
+                        $("#TotalCount").html(count + "条");
+                        //页数
+                        var page_count = a_data[2];
+
+                        if (count > 0) {
+                            GetPager(page_count);
+                        }
+                        else {
                             $("#PagerList").html("对不起，没有数据！");
-                        }                      
+                        }
                     });
     });
 </script>
@@ -57,7 +54,7 @@
 			<div id="searchTab_Content0" class="searchBody">
 				<form name="form1" action="search.html" method="get">
 					<fieldset>
-						<input name="keyword" type="text" class="input_text" />
+						<input id="keyword" name="keyword" type="text" class="input_text" />
 						<input name="searchButton" type="submit" value="搜索" class="input_button" />
 					</fieldset>
 				</form>
@@ -87,14 +84,7 @@
 				</form>
 			</div>
 		</div>
-		<ul class="nav">
-			<li class="current"><span><a href="#" onfocus="blur();">舆论专题</a></span></li>
-			<li><span><a href="#" onfocus="blur();">热点分布</a></span></li>
-			<li><span><a href="#" onfocus="blur();">舆情趋势</a></span></li>
-			<li><span><a href="#" onfocus="blur();">敏感信息</a></span></li>
-			<li><span><a href="#" onfocus="blur();">统计分析</a></span></li>
-			<li><span><a href="#" onfocus="blur();">舆情报告</a></span></li>
-			<li><span><a href="#" onfocus="blur();">系统设置</a></span></li>
+		<ul id="nav" class="nav">
 		</ul>
 	</div>
 	<div class="content">
@@ -130,7 +120,7 @@
 				<div class="publicFeelSearchContent">
 					<ol id="SearchResult" class="publicFeelSearchResult">
 					</ol>
-					<div class="publicFeelSearchPage" id="PagerList"><a href="#10">上一页</a><span class="current" style="margin-left:10px;">1</span> <a href="#10">[2]</a> <a href="#20">[3]</a> <a href="#30">[4]</a> <a href="#40">[5]</a> <a href="#50">[6]</a> <a href="#60">[7]</a> <a href="#70">[8]</a> <a href="#80">[9]</a> <a href="#90">[10]</a> <a href="#10">下一页</a> </div>
+					<div class="publicFeelSearchPage" id="PagerList"></div>
 				</div>
 				<div class="publicFeelSearchOption">
 					<ul>
