@@ -1,5 +1,7 @@
 ﻿
- $(document).ready(function(){
+$(document).ready(function() {
+    //设置该页面为当前导航
+    nav_data.data[0].is_current = true;
     GetLeaderInfo(0);
     GetLeaderInfo(1);
     GetLeaderInfo(2);
