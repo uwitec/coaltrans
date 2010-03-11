@@ -88,7 +88,7 @@ namespace Autonomy.Demo.Bll
             int end = Start + 14;
             string actUrl = ConfigUtil.GetAppSetting("IdolACIPort") + "/action=query&text=" + QueryParam
                           + "&databasematch=" + ConfigUtil.GetAppSetting("DATABASE") + "&print=all&LanguageType=chineseUTF8&start="
-                          + Start.ToString() + "&maxresults=" + end.ToString() + "&totalresults=true&minscore=60&outputencoding=utf8";
+                          + Start.ToString() + "&maxresults=" + end.ToString() + "&totalresults=true&minscore=60&Highlight=Terms&outputencoding=utf8";
             return actUrl;
         }
 
