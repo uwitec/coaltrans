@@ -10,7 +10,53 @@
 <script type="text/javascript" src="js/util.js"></script>
 <script type="text/javascript" src="js/top.js"></script>
 <script type="text/javascript">
-    nav_data.data[2].is_current = true;
+    $(document).ready(function() {
+        nav_data.data[2].is_current = true;
+        $.ajax({
+            type: "get",
+            url: "Handler/GetMapData.ashx",
+            beforeSend: function(XMLHttpRequest) {
+                $("#hot_image").html("热点数据加载中……");
+            },
+            success: function(data, textStatus) {
+                var map = $("#map");
+                map.after(data);
+                //隐藏文字说明
+                $(".node_text").each(function() {
+                    $(this).hide();
+                });
+
+                $(".node").each(function() {
+                    $(this).mouseover(function() {
+                        var num = $(this).attr("id").split("_")[1];
+                        $("#clustertitle_" + num).show();
+                    });
+
+                    $(this).mouseout(function() {
+                        var num = $(this).attr("id").split("_")[1];
+                        $("#clustertitle_" + num).hide();
+                    });
+
+                    $(this).click(function() {
+                        var cluster_id = $(this).attr("id").split("_")[1];
+                        $.get("Handler/GetClusterResults.ashx", { 'cluster_id': cluster_id },
+                                    function(data) {
+                                        $("#hot_prompt").empty();
+                                        $("#whats_hot").empty().html(data);
+                                        $("#whats_hot").show();
+                                    }
+                                );
+                    });
+                }); //each end
+            },
+            complete: function(XMLHttpRequest, textStatus) {
+                $("#hot_image").html("舆情热点图<br/>(点击红色方块，可在右侧区域获取文章列表)");
+            },
+            error: function() {
+                //请求出错处理
+            }
+        });
+    });
 </script>
 </head>
 <body>
@@ -74,47 +120,14 @@
 						<th class="ta_right"><a href="#" class="next">后一天</a></th>
 					</tr>
 				</table>
-				<div class="hotspotMapContent"><img src="images/photo2.jpg" alt="" /></div>
+				<div id="map" class="hotspotMapContent">
+				    <img src="http://121.101.220.143:9000/action=clusterserve2dmap&sourcejobname=myjob_clusters" alt="" />
+				    <h3 style="text-align:center"><a id="hot_image" href="#"></a></h3>
+				</div>
 			</div>
 			<div class="publicFeelSearchContent hotspotContent">
-				<ol class="publicFeelSearchResult">
-					<li>
-						<h2><a href="#">《团圆》启幕柏林电影节 张艺谋短片祝寿柏林影展</a></h2>
-						<div class="d"><span>千龙网</span> - 47分钟前</div>
-						<p>医生圈论坛—医学社区2008年，礼来的销售业绩继续保持了前两年快速增长的态势，尤其是在胰岛素领域的增长远远高于市场平均水平；勃林格殷格翰<b>...</b></p>
-					</li>
-					<li>
-						<h2><a href="#">《团圆》启幕柏林电影节 张艺谋短片祝寿柏林影展</a></h2>
-						<div class="d"><span>千龙网</span> - 47分钟前</div>
-						<p>医生圈论坛—医学社区2008年，礼来的销售业绩继续保持了前两年快速增长的态势，尤其是在胰岛素领域的增长远远高于市场平均水平；勃林格殷格翰<b>...</b></p>
-					</li>
-					<li>
-						<h2><a href="#">《团圆》启幕柏林电影节 张艺谋短片祝寿柏林影展</a></h2>
-						<div class="d"><span>千龙网</span> - 47分钟前</div>
-						<p>医生圈论坛—医学社区2008年，礼来的销售业绩继续保持了前两年快速增长的态势，尤其是在胰岛素领域的增长远远高于市场平均水平；勃林格殷格翰<b>...</b></p>
-					</li>
-					<li>
-						<h2><a href="#">《团圆》启幕柏林电影节 张艺谋短片祝寿柏林影展</a></h2>
-						<div class="d"><span>千龙网</span> - 47分钟前</div>
-						<p>医生圈论坛—医学社区2008年，礼来的销售业绩继续保持了前两年快速增长的态势，尤其是在胰岛素领域的增长远远高于市场平均水平；勃林格殷格翰<b>...</b></p>
-					</li>
-					<li>
-						<h2><a href="#">《团圆》启幕柏林电影节 张艺谋短片祝寿柏林影展</a></h2>
-						<div class="d"><span>千龙网</span> - 47分钟前</div>
-						<p>医生圈论坛—医学社区2008年，礼来的销售业绩继续保持了前两年快速增长的态势，尤其是在胰岛素领域的增长远远高于市场平均水平；勃林格殷格翰<b>...</b></p>
-					</li>
-					<li>
-						<h2><a href="#">《团圆》启幕柏林电影节 张艺谋短片祝寿柏林影展</a></h2>
-						<div class="d"><span>千龙网</span> - 47分钟前</div>
-						<p>医生圈论坛—医学社区2008年，礼来的销售业绩继续保持了前两年快速增长的态势，尤其是在胰岛素领域的增长远远高于市场平均水平；勃林格殷格翰<b>...</b></p>
-					</li>
-					<li>
-						<h2><a href="#">《团圆》启幕柏林电影节 张艺谋短片祝寿柏林影展</a></h2>
-						<div class="d"><span>千龙网</span> - 47分钟前</div>
-						<p>医生圈论坛—医学社区2008年，礼来的销售业绩继续保持了前两年快速增长的态势，尤其是在胰岛素领域的增长远远高于市场平均水平；勃林格殷格翰<b>...</b></p>
-					</li>
-				</ol>
-				<div class="publicFeelSearchPage"><span class="current">1</span> <a href="#10">[2]</a> <a href="#20">[3]</a> <a href="#30">[4]</a> <a href="#40">[5]</a> <a href="#50">[6]</a> <a href="#60">[7]</a> <a href="#70">[8]</a> <a href="#80">[9]</a> <a href="#90">[10]</a> <a href="#10">下一页</a> </div>
+			    <span id="hot_prompt" style=" margin-left:50px; font-weight:bold">点击左侧图中红色方块，可在此区域获取文章列表</span>
+				<ol id="whats_hot" class="publicFeelSearchResult"></ol>
 			</div>
 		</div>
 	</div>
