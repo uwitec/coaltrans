@@ -23,7 +23,6 @@ public class SearchResult : IHttpHandler {
                 + start.ToString() + "&maxresults=" + end.ToString() + "&totalresults=true&minscore=60&outputencoding=utf8";
 
             //actUrl = "http://localhost:9000/action=Query&text=" + keyword + "&minscore=60&languagetype=chineseUTF8&sort=Relevance&querysummary=true&summary=context&sentences=3&characters=300&print=all&xmlmeta=true&combine=Simple&outputencoding=utf8&anylanguage=false&spellcheck=true&databasematch=" + ConfigurationManager.AppSettings["DATABASE"] + "&start=1&maxresults=10&totalresults=true";
-
             if (actUrl != string.Empty)
             {
                 HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(actUrl);
