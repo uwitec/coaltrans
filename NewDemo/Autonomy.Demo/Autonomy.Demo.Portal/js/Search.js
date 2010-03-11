@@ -48,8 +48,4 @@ function GetFocus(obj,current_page,page_count,keyword) {
         }
         $("#PagerList").empty().html(pager_content.toString());
         $("#" + obj + current_page).attr("class", "current");
-
-
-//        $("span[class='current']").removeClass("current");
-//        $("#" + obj + current_page).attr("class", "current");
 }

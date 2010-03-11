@@ -13,12 +13,19 @@
 <script type="text/javascript" src="js/Search.js"></script>
 <script type="text/javascript">
     var keyword_value = $.query.get('keyword');
+    var p_query_type = $.query.get('query_type');
     $(document).ready(function() {
-        $("#DisKeyWord").html("\"" + keyword_value + "\"");
-        $("#keyword").val(keyword_value);
+        var query_type = 1;
+        if (p_query_type > 1) {
+            query_type = p_query_type;
+        }
+        else {
+            $("#DisKeyWord").html("\"" + keyword_value + "\"");
+            $("#keyword").val(keyword_value);
+        }
 
         //加载初始数据
-        $.get("Handler/SearchResult.ashx", { 'keyword': keyword_value, 'query_type': 1, 'start': 1 },
+        $.get("Handler/SearchResult.ashx", { 'keyword': keyword_value, 'query_type': query_type, 'start': 1 },
                     function(data) {
                         var a_data = data.split('※');
                         //搜索结果
