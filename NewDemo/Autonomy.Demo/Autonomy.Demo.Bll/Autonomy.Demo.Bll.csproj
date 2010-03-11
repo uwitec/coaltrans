@@ -47,6 +47,17 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Autonomy.Demo.Dal\Autonomy.Demo.Dal.csproj">
+      <Project>{C5E24EFA-52C6-45E0-9D61-AFAD5D2792F1}</Project>
+      <Name>Autonomy.Demo.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Autonomy.Demo.Util\Autonomy.Demo.Util.csproj">
+      <Project>{BE2DF040-080A-4CE9-9CD9-E8055DC6A591}</Project>
+      <Name>Autonomy.Demo.Util</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

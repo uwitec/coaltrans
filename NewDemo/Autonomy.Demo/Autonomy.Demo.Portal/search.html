@@ -12,13 +12,13 @@
 <script type="text/javascript" src="js/top.js"></script>
 <script type="text/javascript" src="js/Search.js"></script>
 <script type="text/javascript">
+    var keyword_value = $.query.get('keyword');
     $(document).ready(function() {
-        var keyword_value = $.query.get('keyword');
         $("#DisKeyWord").html("\"" + keyword_value + "\"");
         $("#keyword").val(keyword_value);
 
         //加载初始数据
-        $.get("Handler/SearchResult.ashx", { 'keyword': keyword_value, 'Start': 1 },
+        $.get("Handler/SearchResult.ashx", { 'keyword': keyword_value, 'query_type': 1, 'start': 1 },
                     function(data) {
                         var a_data = data.split('※');
                         //搜索结果

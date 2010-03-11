@@ -2,20 +2,22 @@
 /* CSS Document */
 
 /*=== 页面布局 ===*/
-body {background:#fff; color:#000; font:12px SumSun, Arial, Helvetica, sans-serif; text-align:center; margin:0 auto;}
-#wrapper {width:1002px; text-align:left; margin:0 auto;}
-.loginBody1 {height:190px; background:url(../images/login_bg1.jpg) no-repeat;}
-.loginBody2 {height:237px; background:url(../images/login_bg2.jpg) no-repeat;}
-.loginBody3 {height:190px; background:url(../images/login_bg3.jpg) no-repeat;}
-.login {width:360px; padding:30px 0 0 318px;}
-.login h1 {width:290px; height:31px; background:url(../images/login_title.jpg) no-repeat; text-indent:-9999em; overflow:hidden; margin-bottom:20px;}
-.loginL1 {width:260px; float:left;}
-.loginL2 {width:100px; float:left;}
-.loginTable {width:100%;}
-.loginTable th,.loginTable td {height:35px; line-height:25px; vertical-align:top;}
-.loginTable th {width:30%; color:#fff; text-align:right;}
+body {background:#fff url(../images/login_body_bg.gif) repeat-x left top; color:#404040; font:12px SumSun, Arial, Helvetica, sans-serif; text-align:center; margin:0 auto;}
+
+/*=== 登录 ===*/
+.login {width:602px; margin:100px auto; text-align:left;}
+.logo {width:238px; height:47px; padding-left:30px; overflow:hidden;}
+.loginBody {width:362px; height:245px; background:url(../images/login_bg.gif) no-repeat; padding-left:240px;}
+.loginNotice {height:35px; color:#0053AB; font-size:20px; font-weight:bold; font-family:"黑体"; text-align:center; padding-top:20px; }
+.loginTable {width:100%; color:#666666; line-height:24px;}
+.loginTable th,.loginTable td {vertical-align:top; padding-bottom:10px;}
+.loginTable th {width:22%; text-align:right;}
 .loginTable td {text-align:left;}
-.login .input_text {width:158px; height:15px; background:#fff; border:1px solid #9cc3fb; color:#000; font-size:12px; padding:4px 3px;}
-.login .input_text2 {width:58px; height:15px; background:#fff; border:1px solid #9cc3fb; color:#000; font-size:12px; padding:4px 3px;}
-.login .input_button {width:83px; height:65px; background:url(../images/login.png) no-repeat; border:none; overflow:hidden; cursor:pointer;}
+.login .input_text {width:170px; height:14px; background:#fff; border:1px solid #B8B8B8; padding:4px;}
+.login .input_button {width:82px; height:32px; background:url(../images/btn_bg.gif) no-repeat; border:none; color:#fff; font-size:14px; font-weight:bold; line-height:32px; cursor:pointer;}
+.loginTable .alert {height:16px; background:url(../images/alert_bg.gif) no-repeat left top; color:#fe0000; line-height:16px; padding-left:20px; display:block; margin-top:6px;}
+
+
+/*=== 版权 ===*/
+.footer {height:160px; background:url(../images/login_footer_bg.gif) repeat-x left top; font-family:Arial, Helvetica, sans-serif; line-height:60px; text-align:center;}
 

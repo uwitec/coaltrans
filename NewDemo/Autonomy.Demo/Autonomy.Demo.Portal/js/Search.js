@@ -21,23 +21,35 @@
 
 function GetFocus(obj,current_page,page_count,keyword) {
     var start = (current_page - 1) * 15 + 1;
-    $.get("Handler/SearchResult.ashx", { 'keyword': keyword.toString(), 'Start': start },
+    $.get("Handler/SearchResult.ashx", { 'keyword': keyword.toString(), 'query_type': 1, 'start': start },
         function(data) {
             var a_data = data.split('※');
             $("#SearchResult").html(a_data[0]);
         });
+
+        var start_index = 1;
+
+        if (current_page >= 6 && current_page <= page_count - 4) {
+            start_index = current_page - 5;
+            end_index = current_page + 4;
+        }
+        else if (current_page < 6) {
+            start_index = 1;
+            end_index = 10;
+        }
+        else{
+            start_index = page_count - 9;
+            end_index = page_count;
+        }
         
-    if (current_page > 6) {
         var pager_content = new StringBuffer();
-        for (var page_index = current_page - 5; page_index < current_page + 5; page_index++) {
+        for (var page_index = start_index; page_index <= end_index; page_index++) {
             pager_content.append("<span id=\"Pager" + page_index + "\" style=\"margin-left:10px;\" onclick=\"GetFocus('Pager'," + page_index + "," + page_count + ",'" + keyword + "')\"><a href=\"javascript:void(null);\" >[" + page_index + "]</a></span>");
         }
         $("#PagerList").empty().html(pager_content.toString());
         $("#" + obj + current_page).attr("class", "current");
-    } 
-    else
-    {
-        $("span[class='current']").removeClass("current");
-        $("#" + obj + current_page).attr("class", "current");
-    }
+
+
+//        $("span[class='current']").removeClass("current");
+//        $("#" + obj + current_page).attr("class", "current");
 }

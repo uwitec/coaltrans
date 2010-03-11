@@ -6,7 +6,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Autonomy.Demo.Portal", "Autonomy.Demo.Portal\", "{336E8D93-458A-4948-B7A1-6306DCBC6856}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFramework = "3.5"
-		ProjectReferences = "{C5E24EFA-52C6-45E0-9D61-AFAD5D2792F1}|Autonomy.Demo.Dal.dll;{BE2DF040-080A-4CE9-9CD9-E8055DC6A591}|Autonomy.Demo.Util.dll;"
+		ProjectReferences = "{C5E24EFA-52C6-45E0-9D61-AFAD5D2792F1}|Autonomy.Demo.Dal.dll;{BE2DF040-080A-4CE9-9CD9-E8055DC6A591}|Autonomy.Demo.Util.dll;{A968C99B-7086-4A50-A3A8-B2D46AB5B0B3}|Autonomy.Demo.Bll.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/Autonomy.Demo.Portal"
 		Debug.AspNetCompiler.PhysicalPath = "Autonomy.Demo.Portal\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Autonomy.Demo.Portal\"
@@ -28,6 +28,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autonomy.Demo.Bll", "Autonomy.Demo.Bll\Autonomy.Demo.Bll.csproj", "{A968C99B-7086-4A50-A3A8-B2D46AB5B0B3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autonomy.Demo.Util", "Autonomy.Demo.Util\Autonomy.Demo.Util.csproj", "{BE2DF040-080A-4CE9-9CD9-E8055DC6A591}"
+EndProject
+Project("{2CFEAB61-6A3B-4EB8-B523-560B4BEEF521}") = "Autonomy.Demo.Portal_deploy", "..\..\AutoDemoPublish\Autonomy.Demo.Portal_deploy\Autonomy.Demo.Portal_deploy.wdproj", "{8D74C5C9-EF42-4647-9793-D5C49FF40F3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{BE2DF040-080A-4CE9-9CD9-E8055DC6A591}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE2DF040-080A-4CE9-9CD9-E8055DC6A591}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE2DF040-080A-4CE9-9CD9-E8055DC6A591}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D74C5C9-EF42-4647-9793-D5C49FF40F3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D74C5C9-EF42-4647-9793-D5C49FF40F3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D74C5C9-EF42-4647-9793-D5C49FF40F3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D74C5C9-EF42-4647-9793-D5C49FF40F3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
