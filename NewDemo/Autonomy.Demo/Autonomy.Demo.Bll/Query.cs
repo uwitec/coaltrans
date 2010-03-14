@@ -17,7 +17,7 @@ namespace Autonomy.Demo.Bll
         public int Start { get; set; }
 
         public abstract string GetQueryCommand();
-        public abstract string GetResult();
+        public abstract string GetResult(XmlDocument contentDoc);
 
         public string DoQuery()
         {
@@ -35,44 +35,7 @@ namespace Autonomy.Demo.Bll
                 string content = reader.ReadToEnd();
                 XmlDocument contentDoc = new XmlDocument();
                 contentDoc.LoadXml(content);
-
-                //Create an XmlNamespaceManager for resolving namespaces.
-                XmlNamespaceManager nsmgr = new XmlNamespaceManager(contentDoc.NameTable);
-                nsmgr.AddNamespace("autn", "http://schemas.autonomy.com/aci/");
-
-                //Select the book node with the matching attribute value.
-                XmlNodeList hits = contentDoc.SelectNodes("autnresponse/responsedata/autn:hit", nsmgr);
-                XmlNode TotalNode = contentDoc.SelectSingleNode("autnresponse/responsedata/autn:totalhits", nsmgr);
-
-                int totalCount = 0;
-                int pageCount = 0;
-                int pageSize = 15;
-
-                if (TotalNode != null && !string.IsNullOrEmpty(TotalNode.InnerText))
-                {
-                    totalCount = int.Parse(TotalNode.InnerText);
-                    int remainder;
-                    pageCount = Math.DivRem(totalCount, pageSize, out remainder);
-                    if (remainder > 0)
-                    {
-                        pageCount++;
-                    }
-                }
-
-                StringBuilder html = new StringBuilder();
-                foreach (XmlNode hit in hits)
-                {
-                    XmlNode document = hit.ChildNodes[7].SelectSingleNode("DOCUMENT");
-                    html.AppendFormat("<li><h2><a href=\"{0}\">", document.SelectSingleNode("DREREFERENCE").InnerText);
-                    html.AppendFormat("{0}</a></h2>", document.SelectSingleNode("DRETITLE").InnerText);
-                    html.Append("<div class=\"d\"><span>" + document.SelectSingleNode("MYSITENAME").InnerText + "</span> - " + document.SelectSingleNode("MYDATE").InnerText + "</div>");
-                    html.AppendFormat("<p>{0}<b>...</b></p>", document.SelectSingleNode("DRECONTENT").InnerText);
-                    html.Append("</li>");
-                }
-
-                html.Append("※").Append(totalCount).Append("※").Append(pageCount);
-
-                return html.ToString();
+                return  GetResult(contentDoc);
             }
             else
             {
@@ -87,14 +50,50 @@ namespace Autonomy.Demo.Bll
         {
             int end = Start + 14;
             string actUrl = ConfigUtil.GetAppSetting("IdolACIPort") + "/action=query&text=" + QueryParam
-                          + "&databasematch=" + ConfigUtil.GetAppSetting("DATABASE") + "&print=all&LanguageType=chineseUTF8&start="
+                          + "&print=all&LanguageType=chineseUTF8&start="
                           + Start.ToString() + "&maxresults=" + end.ToString() + "&totalresults=true&minscore=60&Highlight=Terms&outputencoding=utf8";
             return actUrl;
         }
 
-        public override string GetResult()
+        public override string GetResult(XmlDocument contentDoc)
         {
-            throw new NotImplementedException();
+            //Create an XmlNamespaceManager for resolving namespaces.
+            XmlNamespaceManager nsmgr = new XmlNamespaceManager(contentDoc.NameTable);
+            nsmgr.AddNamespace("autn", "http://schemas.autonomy.com/aci/");
+
+            //Select the book node with the matching attribute value.
+            XmlNodeList hits = contentDoc.SelectNodes("autnresponse/responsedata/autn:hit", nsmgr);
+            XmlNode TotalNode = contentDoc.SelectSingleNode("autnresponse/responsedata/autn:totalhits", nsmgr);
+
+            int totalCount = 0;
+            int pageCount = 0;
+            int pageSize = 15;
+
+            if (TotalNode != null && !string.IsNullOrEmpty(TotalNode.InnerText))
+            {
+                totalCount = int.Parse(TotalNode.InnerText);
+                int remainder;
+                pageCount = Math.DivRem(totalCount, pageSize, out remainder);
+                if (remainder > 0)
+                {
+                    pageCount++;
+                }
+            }
+
+            StringBuilder html = new StringBuilder();
+            foreach (XmlNode hit in hits)
+            {
+                XmlNode document = hit.ChildNodes[7].SelectSingleNode("DOCUMENT");
+                html.AppendFormat("<li><h2><a href=\"{0}\" target=\"_blank\">", document.SelectSingleNode("DREREFERENCE").InnerText);
+                html.AppendFormat("{0}</a></h2>", document.SelectSingleNode("DRETITLE").InnerText);
+                html.Append("<div class=\"d\"><span>" + document.SelectSingleNode("MYSITENAME").InnerText + "</span> - " + document.SelectSingleNode("MYDATE").InnerText + "</div>");
+                html.AppendFormat("<p>{0}<b>...</b></p>", document.SelectSingleNode("DRECONTENT").InnerText);
+                html.Append("</li>");
+            }
+
+            html.Append("※").Append(totalCount).Append("※").Append(pageCount);
+
+            return html.ToString();
         }
     }
 
@@ -104,14 +103,49 @@ namespace Autonomy.Demo.Bll
         {
             int end = 15;
             string actUrl = ConfigUtil.GetAppSetting("IdolACIPort") + "/action=CategoryQuery&category="
-                          + QueryParam + "&Databases=" + ConfigUtil.GetAppSetting("DATABASE")
-                          + "&start=" + Start + "&numresults=" + end + "&Params=print&Values=all";
+                          + QueryParam + "&start=" + Start + "&totalresults=true&numresults=" + end + "&Params=print&Values=all";
             return actUrl;
         }
 
-        public override string GetResult()
+        public override string GetResult(XmlDocument contentDoc)
         {
-            throw new NotImplementedException();
+              //Create an XmlNamespaceManager for resolving namespaces.
+            XmlNamespaceManager nsmgr = new XmlNamespaceManager(contentDoc.NameTable);
+            nsmgr.AddNamespace("autn", "http://schemas.autonomy.com/aci/");
+
+            //Select the book node with the matching attribute value.
+            XmlNodeList hits = contentDoc.SelectNodes("autnresponse/responsedata/autn:hit", nsmgr);
+            XmlNode TotalNode = contentDoc.SelectSingleNode("autnresponse/responsedata/autn:totalhits", nsmgr);
+
+            int totalCount = 0;
+            int pageCount = 0;
+            int pageSize = 15;
+
+            if (TotalNode != null && !string.IsNullOrEmpty(TotalNode.InnerText))
+            {
+                totalCount = int.Parse(TotalNode.InnerText);
+                int remainder;
+                pageCount = Math.DivRem(totalCount, pageSize, out remainder);
+                if (remainder > 0)
+                {
+                    pageCount++;
+                }
+            }
+
+            StringBuilder html = new StringBuilder();
+            foreach (XmlNode hit in hits)
+            {
+                XmlNode document = hit.ChildNodes[9].SelectSingleNode("DOCUMENT");
+                html.AppendFormat("<li><h2><a href=\"{0}\" target=\"_blank\">", document.SelectSingleNode("DREREFERENCE").InnerText);
+                html.AppendFormat("{0}</a></h2>", document.SelectSingleNode("DRETITLE").InnerText);
+                html.Append("<div class=\"d\"><span>" + document.SelectSingleNode("MYSITENAME").InnerText + "</span> - " + document.SelectSingleNode("MYDATE").InnerText + "</div>");
+                html.AppendFormat("<p>{0}<b>...</b></p>", document.SelectSingleNode("DRECONTENT").InnerText);
+                html.Append("</li>");
+            }
+
+            html.Append("※").Append(totalCount).Append("※").Append(pageCount);
+
+            return html.ToString();
         }
     }
 

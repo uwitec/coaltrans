@@ -7,7 +7,7 @@
    $("#loginButton").click(function(){
         Btnclick();
    });
-   $(window).keydown(function(event){
+   $(document).keydown(function(event){
         if(event.keyCode==13) {
             Btnclick();
         }

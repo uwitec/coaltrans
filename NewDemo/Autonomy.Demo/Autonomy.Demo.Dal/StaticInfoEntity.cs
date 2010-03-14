@@ -48,7 +48,7 @@ namespace Autonomy.Demo.Dal
             sqlHelper = new SqlHelper(DBName);
         }
 
-        public StaticInfoEntity(long id, int maincateid, string catedisplay, int catetype, int timeid, DateTime fromtime, DateTime totime, long todayhitcount, long yestodayhitcount, long thisweekhitcount, long sevendayhitcount, long thismonthitcount, long thirtydayhitcount, long totalhitcount, DateTime gendate)
+        public StaticInfoEntity(long id, string maincateid, string catedisplay, int catetype, int timeid, DateTime fromtime, DateTime totime, long todayhitcount, long yestodayhitcount, long thisweekhitcount, long sevendayhitcount, long thismonthitcount, long thirtydayhitcount, long totalhitcount, DateTime gendate)
         {
             this.ID = id;
 
@@ -96,7 +96,7 @@ namespace Autonomy.Demo.Dal
         /// <summary>
         /// 分类ID
         /// </summary>
-        public int? MainCateID
+        public string MainCateID
         {
             get;
             set;
@@ -240,7 +240,7 @@ namespace Autonomy.Demo.Dal
                 strSql.Append(" values (");
                 strSql.Append("@MainCateID,@CateDisplay,@CateType,@TimeID,@FromTime,@ToTime,@TodayHitCount,@YestodayHitCount,@ThisWeekHitCount,@SevendayHitCount,@ThisMontHitCount,@ThirtydayHitCount,@TotalHitCount,@GenDate)");
                 SqlParameter[] parameters = {
-					new SqlParameter("@MainCateID",SqlDbType.Int),
+					new SqlParameter("@MainCateID",SqlDbType.VarChar),
 					new SqlParameter("@CateDisplay",SqlDbType.VarChar),
 					new SqlParameter("@CateType",SqlDbType.Int),
 					new SqlParameter("@TimeID",SqlDbType.Int),
@@ -296,7 +296,7 @@ namespace Autonomy.Demo.Dal
                 strSql.Append(" where ID=@ID");
                 SqlParameter[] parameters = {
 					new SqlParameter("@ID",SqlDbType.BigInt),
-					new SqlParameter("@MainCateID",SqlDbType.Int),
+					new SqlParameter("@MainCateID",SqlDbType.VarChar),
 					new SqlParameter("@CateDisplay",SqlDbType.VarChar),
 					new SqlParameter("@CateType",SqlDbType.Int),
 					new SqlParameter("@TimeID",SqlDbType.Int),
@@ -390,10 +390,7 @@ namespace Autonomy.Demo.Dal
                     {
                         entity.ID = (long)row["ID"];
                     }
-                    if (!Convert.IsDBNull(row["MainCateID"]))
-                    {
-                        entity.MainCateID = (int)row["MainCateID"];
-                    }
+                    entity.MainCateID = row["MainCateID"].ToString();
                     entity.CateDisplay = row["CateDisplay"].ToString();
                     if (!Convert.IsDBNull(row["CateType"]))
                     {
@@ -454,7 +451,14 @@ namespace Autonomy.Demo.Dal
             public override List<StaticInfoEntity> Find(string strWhere, SqlParameter[] parameters, int top, string OrderBy)
             {
                 StringBuilder strSql = new StringBuilder();
-                strSql.Append("select top(" + top + ") *");
+                if (top != 0)
+                {
+                    strSql.Append("select top(" + top + ") *");
+                }
+                else
+                {
+                    strSql.Append("select *");
+                }
                 strSql.Append(" FROM StaticInfo(nolock) ");
                 if (strWhere.Trim() != "")
                 {
@@ -462,8 +466,9 @@ namespace Autonomy.Demo.Dal
                 }
                 if (OrderBy.Trim() != "")
                 {
-                    strSql.Append("order by " + OrderBy);
+                    strSql.Append(" order by " + OrderBy);
                 }
+
                 DataSet ds = sqlHelper.ExecuteDateSet(strSql.ToString(), parameters);
                 if (ds != null && ds.Tables.Count > 0)
                 {
@@ -475,10 +480,7 @@ namespace Autonomy.Demo.Dal
                         {
                             entity.ID = (long)row["ID"];
                         }
-                        if (!Convert.IsDBNull(row["MainCateID"]))
-                        {
-                            entity.MainCateID = (int)row["MainCateID"];
-                        }
+                        entity.MainCateID = row["MainCateID"].ToString();
                         entity.CateDisplay = row["CateDisplay"].ToString();
                         if (!Convert.IsDBNull(row["CateType"]))
                         {
