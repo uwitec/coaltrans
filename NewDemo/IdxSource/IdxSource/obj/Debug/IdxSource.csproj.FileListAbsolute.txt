@@ -1,2 +1,0 @@
-C:\Autonomy\WebApp\IdxSource\IdxSource\obj\Debug\IdxSource.exe
-C:\Autonomy\WebApp\IdxSource\IdxSource\obj\Debug\IdxSource.pdb

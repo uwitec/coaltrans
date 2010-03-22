@@ -1,8 +1,0 @@
-C:\Autonomy\WebApp\IdxSource\IdxSource\obj\Debug\ResolveAssemblyReference.cache
-C:\Autonomy\WebApp\IdxSource\IdxSource\obj\Debug\IdxSource.Form1.resources
-C:\Autonomy\WebApp\IdxSource\IdxSource\obj\Debug\IdxSource.Properties.Resources.resources
-C:\Autonomy\WebApp\IdxSource\IdxSource\obj\Debug\IdxSource.csproj.GenerateResource.Cache
-C:\Autonomy\WebApp\IdxSource\IdxSource\bin\Debug\IdxSource.exe
-C:\Autonomy\WebApp\IdxSource\IdxSource\bin\Debug\IdxSource.pdb
-C:\Autonomy\WebApp\IdxSource\IdxSource\obj\Debug\IdxSource.exe
-C:\Autonomy\WebApp\IdxSource\IdxSource\obj\Debug\IdxSource.pdb
