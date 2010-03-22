@@ -15,6 +15,8 @@ namespace Autonomy.Demo.Bll
     {
         public string QueryParam { get; set; }
         public int Start { get; set; }
+        public string dateStr { get; set; }
+        public string sortStr { get; set; }
 
         public abstract string GetQueryCommand();
         public abstract string GetResult(XmlDocument contentDoc);
@@ -48,9 +50,9 @@ namespace Autonomy.Demo.Bll
     {
         public override string GetQueryCommand()
         {
-            int end = Start + 14;
+            int end = Start + 9;
             string actUrl = ConfigUtil.GetAppSetting("IdolACIPort") + "/action=query&text=" + QueryParam
-                          + "&print=all&LanguageType=chineseUTF8&start="
+                          + "&print=all&MinDate=" + dateStr + "&Sort=" + sortStr + "&LanguageType=chineseUTF8&start="
                           + Start.ToString() + "&maxresults=" + end.ToString() + "&totalresults=true&minscore=60&Highlight=Terms&outputencoding=utf8";
             return actUrl;
         }
@@ -67,7 +69,7 @@ namespace Autonomy.Demo.Bll
 
             int totalCount = 0;
             int pageCount = 0;
-            int pageSize = 15;
+            int pageSize = 10;
 
             if (TotalNode != null && !string.IsNullOrEmpty(TotalNode.InnerText))
             {
@@ -101,9 +103,9 @@ namespace Autonomy.Demo.Bll
     {
         public override string GetQueryCommand()
         {
-            int end = 15;
+            int end = 10;
             string actUrl = ConfigUtil.GetAppSetting("IdolACIPort") + "/action=CategoryQuery&category="
-                          + QueryParam + "&start=" + Start + "&totalresults=true&numresults=" + end + "&Params=print&Values=all";
+                          + QueryParam + "&start=" + Start + "&totalresults=true&numresults=" + end + "&Params=Print,Sort,MinDate&Values=all," + sortStr + "," + dateStr;
             return actUrl;
         }
 
@@ -119,7 +121,7 @@ namespace Autonomy.Demo.Bll
 
             int totalCount = 0;
             int pageCount = 0;
-            int pageSize = 15;
+            int pageSize = 10;
 
             if (TotalNode != null && !string.IsNullOrEmpty(TotalNode.InnerText))
             {

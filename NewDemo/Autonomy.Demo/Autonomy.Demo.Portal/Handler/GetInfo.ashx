@@ -55,16 +55,20 @@ public class GetInfo : IHttpHandler {
                 //获取当前主题分类
                 string correStrwhere = " CateType=" + cateType;                
                 IList<StaticInfoEntity> correList = menuStaticDao.Find(correStrwhere, null, 0, correOrderStr);
-                ht.Add("correList",correList);
+                ht.Add("relevanceList", correList);
                 //获取其他主题
                 
                 //拼接json字符串
                 StringBuilder menuContent = new StringBuilder();
                 menuContent.Append("{");
+                int count = 1;
                 foreach (string key in ht.Keys)
                 {
                     menuContent.Append("\"" + key + "\":");
-                    menuContent.Append(JavaScriptConvert.SerializeObject(ht[key]).ToString() + ",");
+                    menuContent.Append(JavaScriptConvert.SerializeObject(ht[key]).ToString());
+                    if (count < ht.Count)
+                        menuContent.Append(",");
+                    count++;
                 }                
                 menuContent.Append("}");
                 context.Response.Write(menuContent.ToString());

@@ -41,10 +41,10 @@ var nav_data = { data: [{ href: "index.html", title: "首页"}
 };
 
 /* 验证用户是否登录 */
-window.onload = function() {
+$(document).ready(function() {
     if (GetCookie("user_login") == null)
         location.href = "Login.html";
-};
+});
 
 /* 获取名称为name的cookie值 */
 function GetCookie (name) {  

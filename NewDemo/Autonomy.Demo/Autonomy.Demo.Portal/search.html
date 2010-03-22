@@ -27,11 +27,11 @@
 
         //加载左边的菜单
         if (cate_type != "") {
-            keyword_value = keyword_value.slice(0, keyword_value.length - 1);
-            alert(keyword_value);
+            keyword_value = keyword_value.slice(0, keyword_value.length - 1);            
             GetMenu(query_type, keyword_value, cate_type);
         }
-
+        //初始化条件选择按钮
+        BtnInnit();
         //加载初始数据
         LoadData(keyword_value, query_type);
     });
@@ -108,7 +108,7 @@
 				<dd><a href="#">藏独</a></dd>-->
 			</dl>
 			<div class="publicFeelSearchBody">
-				<div class="publicFeelNotice">搜索 <strong>过去一天</strong> 内的 <strong><b id="DisKeyWord"></b> 新闻</strong> ，获得 <strong id="TotalCount"></strong> 结果。</div>
+				<div class="publicFeelNotice">搜索 <strong id="date_condition">过去一天</strong> 内关于 <strong><b id="DisKeyWord"></b> 新闻</strong> ，获得 <strong id="TotalCount"></strong> 结果。</div>
 				<ul class="publicFeelNav">
 					<li class="current"><span><a href="#" onfocus="blur();">全部</a></span></li>
 					<li><span><a href="#" onfocus="blur();">新闻</a></span></li>
@@ -121,14 +121,15 @@
 					<div class="publicFeelSearchPage" id="PagerList"></div>
 				</div>
 				<div class="publicFeelSearchOption">
-					<ul>
-						<li class="current"><a href="#">过去一天</a></li>
-						<li><a href="#">过去一周</a></li>
-						<li><a href="#">过去一月</a></li>
+					<ul id="DataSelect">
+						<li class="current" date="1"><a href="#">过去一天</a></li>
+						<li date="7"><a href="#" >过去一周</a></li>
+						<li date="30"><a href="#" >过去一月</a></li>
+						<li date="180"><a href="#" >过去半年</a></li>
 					</ul>
-					<ul>
-						<li class="current"><a href="#">按相关性排序</a></li>
-						<li><a href="#">按日期排序</a></li>
+					<ul id="CorreSort">
+						<li class="current" sort="1"><a href="#">按相关性排序</a></li>
+						<li sort="2"><a href="#">按日期排序</a></li>
 					</ul>
 				</div>
 			</div>

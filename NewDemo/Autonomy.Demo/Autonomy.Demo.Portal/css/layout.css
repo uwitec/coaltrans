@@ -199,8 +199,7 @@ body {background:#edf1f4; color:#404040; font:12px SumSun, Arial, Helvetica, san
 .publicTopicList {width:136px; padding:10px 0 50px 15px; display:inline; float:left; margin-left:-151px; overflow:hidden;}
 .publicTopicList ul {padding:0;}
 .publicTopicList li {width:127px; height:24px; background:url(../images/dot3.gif) no-repeat 0 10px; line-height:24px; padding-left:8px; overflow:hidden;}
-.publicTopicList a:link,
-.publicTopicList a:visited {color:#0134cd; text-decoration:none;}
+.subcurrent a{color:#ca3200; text-decoration:none; font-weight:bold;}
 .publicTopicList a:hover {color:#ca3200; text-decoration:underline;}
 .publicTopicMap {width:160px; padding:20px 20px 0 0; display:inline; float:right; overflow:hidden;}
 .publicTopicMap dt {height:30px; color:#0134cd; line-height:30px; text-align:center;}

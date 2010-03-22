@@ -1,4 +1,9 @@
-﻿/* 分页初始化 */
+﻿var key_word;
+var date_select;
+var condition_sort;
+var a_query_type;
+var title_list=["关注事件","重大社会事件","重大案件"];
+/* 分页初始化 */
 function GetPager(page_count,query_type) {
     
     var display_page_count = 10;
@@ -10,7 +15,7 @@ function GetPager(page_count,query_type) {
     //pager_content.append("<span>上一页</span>");
     pager_content.append("<span class=\"current\" id=\"Pager" + 1 + "\" style=\"margin-left:10px;\" >[" + 1 + "]</span>");
 
-    var keyword = $("#keyword").val();
+    var keyword = key_word;
     for (var i = 2; i <= display_page_count; i++)
     {
         pager_content.append("<span id=\"Pager" + i + "\" style=\"margin-left:10px;\" onclick=\"GetFocus('Pager'," + i + "," + page_count + ",'" + keyword + "',"+query_type+")\"><a href=\"javascript:void(null);\" >[" + i + "]</a></span>");
@@ -21,8 +26,8 @@ function GetPager(page_count,query_type) {
 }
 /* 分页按钮事件 */
 function GetFocus(obj,current_page,page_count,keyword,query_type) {
-    var start = (current_page - 1) * 15 + 1;
-    $.get("Handler/SearchResult.ashx", { 'keyword': keyword.toString(), 'query_type': query_type, 'start': start },
+    var start = (current_page - 1) * 10 + 1;
+    $.get("Handler/SearchResult.ashx", { 'keyword': keyword.toString(), 'query_type': query_type, 'start': start, 'RangeDate':date_select,'sort':condition_sort},
         function(data) {
             var a_data = data.split('※');
             $("#SearchResult").html(a_data[0]);
@@ -71,10 +76,11 @@ function GetMenu(query_type,keyword_value,cate_type)
                         {
                             if(i==0)
                             {
-                                Content.append("<dt>"+cate_list[i]["CateType"]+"</dt>");
+                                Content.append("<dt>"+title_list[parseInt(cate_list[i]["CateType"])-1]+"</dt>");
                             }
                             if(cate_list[i]["MainCateID"]==keyword_value)
                             {
+                                $("#DisKeyWord").html("\""+cate_list[i]["CateDisplay"].substring(0,10)+"\"");
                                 Content.append("<dd pid=\""+cate_list[i]["MainCateID"]+","+query_type+"\" class=\"current\"><a href=\"javascript:void(null);\" title=\""+cate_list[i]["CateDisplay"]+"\">" +cate_list[i]["CateDisplay"]+ "</a></dd>");
                             }
                             else
@@ -93,22 +99,28 @@ function GetMenu(query_type,keyword_value,cate_type)
 function setClickofPublicLeftMenu()
 {
     var dd_list=$("#PublicLeftMenu").find("dd");
-    
-    $(dd_list).each(function(){    
-           
-        var search_param=$(this).attr("pid").split(',');
-        $(this).click(function(){
-           $(dd_list).attr("class",""); 
-           $(this).attr("class","current");
-           LoadData(search_param[0],search_param[1]);
+
+    $(dd_list).each(function() {
+
+        var search_param = $(this).attr("pid").split(',');
+        $(this).click(function() {
+            $(dd_list).attr("class", "");
+            $(this).attr("class", "current");
+            $("#DisKeyWord").html("\"" + $(this).children("a").html().substring(0, 10) + "\"");
+            alert(search_param[0]);
+            alert(search_param[1]);
+            LoadData(search_param[0], search_param[1]);
         });
     });
 }
 /* 页面数据加载  keyword_value查询关键字或分类ID,query_type为查询类型 */
 function LoadData(keyword_value,query_type)
 {
+    GetCondition();
+    key_word=keyword_value;
+    a_query_type=query_type;
     //$("#keyword").val(keyword_value);
-    $.get("Handler/SearchResult.ashx", { 'keyword': keyword_value, 'query_type': query_type, 'start': 1 },
+    $.get("Handler/SearchResult.ashx", { 'keyword': keyword_value, 'query_type': query_type, 'start': 1,'RangeDate':date_select,'sort':condition_sort },
             function(data) {
                 var a_data = data.split('※');
                 //搜索结果
@@ -126,4 +138,33 @@ function LoadData(keyword_value,query_type)
                     $("#PagerList").html("对不起，没有数据！");
                 }
             });
+}
+/* 获取查询条件 */
+/* 为全局变量date_select和condition_sort赋值 */
+function GetCondition()
+{
+    date_select=$("#DataSelect").children(".current").attr("date"); 
+    $("#date_condition").html($("#DataSelect").children(".current").children("a").html());    
+    condition_sort=$("#CorreSort").children(".current").attr("sort");
+}
+/* 为条件增加按钮事件 */
+function BtnConditionClick(object_name,curren_class_name)
+{
+    $("#"+object_name).children().each(function(){        
+        $(this).click(function(){
+            if($(this).attr("class")!="current")
+            {                
+                $("#"+object_name).children().removeClass(curren_class_name);
+                $(this).addClass(curren_class_name);
+                GetCondition();            
+                LoadData(key_word,a_query_type);
+            }
+        });
+    });    
+}
+/* 条件按钮初始化 */
+function BtnInnit()
+{
+    BtnConditionClick("DataSelect","current");
+    BtnConditionClick("CorreSort","current");
 }

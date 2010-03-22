@@ -1,0 +1,5 @@
+E:\rensq\NewDemo\job\2DMap\Export2DMap\Export2DMap\bin\Release\Export2DMap.dll
+E:\rensq\NewDemo\job\2DMap\Export2DMap\Export2DMap\bin\Release\Export2DMap.pdb
+E:\rensq\NewDemo\job\2DMap\Export2DMap\Export2DMap\obj\Release\ResolveAssemblyReference.cache
+E:\rensq\NewDemo\job\2DMap\Export2DMap\Export2DMap\obj\Release\Export2DMap.dll
+E:\rensq\NewDemo\job\2DMap\Export2DMap\Export2DMap\obj\Release\Export2DMap.pdb
