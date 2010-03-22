@@ -1,9 +1,0 @@
-&bt=1267113600&y0=2010&m0=2&d0=26&y1=2010&m1=3&d1=3&et=1267631999&begin_date=2010-2-26&end_date=2010-3-3
-
-string URLSeed = @"http://news.baidu.com/ns?word={0}&si=&rn=100&tn=newsdy&ie=gb2312&ct=1&cl=3&pn={1}";
-
-pageCount = 6;
-
-string regtex = @"<td class="text"><a href="([\s\S]+?) "  mon="a=5[\s\S]+?<span><b>([\s\S]+?)</b></span></a> <font color=#6f6f6f> <nobr>([\s\S]+?) ([\s\S]+?)</nobr></font><br><font size=-1>([\s\S]+?)\.\.\.</font>";
-
-string fileSeed=@"C:\outPut_{0}_{1}.xml"
