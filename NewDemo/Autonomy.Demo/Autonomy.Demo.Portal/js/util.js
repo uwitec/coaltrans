@@ -37,7 +37,7 @@ var nav_data = { data: [{ href: "index.html", title: "首页"}
                , { href: "sensitive.html", title: "敏感信息" }
                , { href: "statistic.html", title: "统计分析" }
                , { href: "index.html", title: "舆情报告" }
-               , { href: "index.html", title: "系统设置"}]
+               , { href: "training.html", title: "分类训练"}]
 };
 
 /* 验证用户是否登录 */

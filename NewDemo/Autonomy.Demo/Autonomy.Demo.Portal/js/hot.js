@@ -14,18 +14,17 @@ function get2dMapData(l_map_time_id,select_index,date_time)
     $.ajax({
         type: "get",
         url: "Handler/GetMapData.ashx",
-        data:"map_time_id="+l_map_time_id+"&select_index="+select_index+"&date_time="+date_time,
+        data: "map_time_id=" + l_map_time_id + "&select_index=" + select_index + "&date_time=" + date_time,
         beforeSend: function(XMLHttpRequest) {
             $("#hot_image").html("热点数据加载中……");
         },
         success: function(data, textStatus) {
-            var data_list=data.split('※');     
-            $("#input_data").val(data_list[2]);   
-             
-            if(data_list[0]!="")
-            {                
+            var data_list = data.split('※');
+            $("#input_data").val(data_list[2]);
+
+            if (data_list[0] != "") {
                 var map = $("#mapData");
-                map_time_id=data_list[1];  
+                map_time_id = data_list[1];
                 map.html(data_list[0]);
                 //隐藏文字说明
                 $(".node_text").each(function() {
@@ -46,8 +45,8 @@ function get2dMapData(l_map_time_id,select_index,date_time)
                     $(this).click(function() {
                         var cluster_id = $(this).attr("id").split("_")[1];
                         $.get("Handler/GetClusterResults.ashx", { 'cluster_id': cluster_id },
-                                    function(data) {                                        
-                                        $("#hot_prompt").empty();                                        
+                                    function(data) {
+                                        $("#hot_prompt").empty();
                                         $("#whats_hot").empty().html(data);
                                         $("#whats_hot").show();
                                     }
@@ -55,11 +54,11 @@ function get2dMapData(l_map_time_id,select_index,date_time)
                     });
                 }); //each end
             }
-            else
-            {       
-                get2dMapData(data_list[1],"self",date_time);
+            else {
+                alert("已经到达最后一页");
+                //get2dMapData(data_list[1], "self", date_time);
             }
-            $("#hot_img").attr("src","http://121.101.220.143:8081/2DMap/"+data_list[1]+".jpeg");
+            $("#hot_img").attr("src", "http://121.101.220.143:8081/2DMap/" + data_list[1] + ".jpeg");
         },
         complete: function(XMLHttpRequest, textStatus) {
             $("#hot_image").html("舆情热点图<br/>(点击红色方块，可在右侧区域获取文章列表)");

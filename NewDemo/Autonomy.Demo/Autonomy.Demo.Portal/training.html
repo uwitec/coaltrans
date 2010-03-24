@@ -2,45 +2,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>舆情搜索</title>
+<title>敏感信息</title>
 <link href="css/common.css" type="text/css" rel="stylesheet" rev="stylesheet" media="all" />
 <link href="css/layout.css" type="text/css" rel="stylesheet" rev="stylesheet" media="all" />
 <script src="js/changeTab.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/jquery.query.js"></script>
-<script type="text/javascript" src="js/util.js"></script>
-<script type="text/javascript" src="js/top.js"></script>
-<script type="text/javascript" src="js/Search.js"></script>
-<script type="text/javascript">
-    var keyword_value = $.query.get('keyword'); 
-    var p_query_type = $.query.get('query_type');    
-    var cate_type = $.query.get('cate_type');
-    $(document).ready(function() {
-        var query_type = 1;
-        if (p_query_type > 1) {
-            query_type = p_query_type;
-        }
-        else {
-            $("#DisKeyWord").html("\"" + keyword_value + "\"");
-            $("#keyword").val(keyword_value);
-        }
 
-        //加载左边的菜单
-        if (cate_type != "") {
-            keyword_value = keyword_value.slice(0, keyword_value.length - 1);            
-            GetMenu(query_type, keyword_value, cate_type);
-        }
-        //初始化条件选择按钮
-        BtnInnit();
-        //加载初始数据
-        LoadData(keyword_value, query_type);
-    });
+<script type="text/javascript" src="js/top.js"></script>
+<script type="text/javascript">
+    nav_data.data[7].is_current = true;
 </script>
 </head>
 <body>
 <div id="wrapper">
 	<div class="header">
-		<h1 class="logo"><a href="index.html" title="网络舆情监控系统">网络舆情监控系统</a></h1>
+		<h1 class="logo"><a href="#" title="网络舆情监控系统">网络舆情监控系统</a></h1>
 		<div id="user_info" class="userInfo"></div>
 		<div class="search">
 			<ul id="searchTab" class="searchSort">
@@ -50,9 +26,9 @@
 				<li class="normal" onclick="nTabs(this,3)"><a href="javascript:void(0);" onfocus="blur()">论坛</a></li>
 			</ul>
 			<div id="searchTab_Content0" class="searchBody">
-				<form name="form1" action="search.html" method="get">
+				<form name="search1" action="" method="post">
 					<fieldset>
-						<input id="keyword" name="keyword" type="text" class="input_text" />
+						<input name="keyword" type="text" class="input_text" />
 						<input name="searchButton" type="submit" value="搜索" class="input_button" />
 					</fieldset>
 				</form>
@@ -87,9 +63,9 @@
 	</div>
 	<div class="content">
 		<div class="publicFeelSearch clearfix">
-			<dl class="publicFeelSort" id="PublicLeftMenu">
-				<!--<dt>国家领导人</dt>
-				<dd class="current"><a href="#">胡锦涛</a></dd>
+			<dl class="publicFeelSort">
+				<dt>国家领导人</dt>
+				<dd><a href="#">胡锦涛</a></dd>
 				<dd><a href="#">温家宝</a></dd>
 				<dt>国家机构</dt>
 				<dd><a href="#">国家安全部</a></dd>
@@ -105,32 +81,27 @@
 				<dd><a href="#">6.4事件</a></dd>
 				<dt>敏感信息</dt>
 				<dd><a href="#">法轮功</a></dd>
-				<dd><a href="#">藏独</a></dd>-->
+				<dd class="current"><a href="#">藏独</a></dd>
 			</dl>
 			<div class="publicFeelSearchBody">
-				<div class="publicFeelNotice">搜索 <strong id="date_condition">过去一天</strong> 内关于 <strong><b id="DisKeyWord"></b> 新闻</strong> ，获得 <strong id="TotalCount"></strong> 结果。</div>
-				<ul class="publicFeelNav">
-					<li class="current"><span><a href="#" onfocus="blur();">全部</a></span></li>
-					<li><span><a href="#" onfocus="blur();">新闻</a></span></li>
-					<li><span><a href="#" onfocus="blur();">博客</a></span></li>
-					<li><span><a href="#" onfocus="blur();">论坛</a></span></li>
-				</ul>
 				<div class="publicFeelSearchContent">
-					<ol id="SearchResult" class="publicFeelSearchResult">
-					</ol>
-					<div class="publicFeelSearchPage" id="PagerList"></div>
-				</div>
-				<div class="publicFeelSearchOption">
-					<ul id="DataSelect">
-						<li date="1"><a href="javascript:void(null);">过去一天</a></li>
-						<li date="7"><a href="javascript:void(null);" >过去一周</a></li>
-						<li date="30"><a href="javascript:void(null);" >过去一月</a></li>
-						<li class="current" date="180"><a href="javascript:void(null);" >过去半年</a></li>
-					</ul>
-					<ul id="CorreSort">
-						<li sort="1"><a href="javascript:void(null);">按相关性排序</a></li>
-						<li class="current" sort="2"><a href="javascript:void(null);">按日期排序</a></li>
-					</ul>
+					<div class="searchRule">
+						<h3>基于语义规则</h3>
+						<p class="ruleBody">请输入布尔表达式：<input id="rule" name="rule" /></p>
+						<h3>基于统计原理</h3>
+						<ol class="publicFeelSearchResult">
+							<li>
+								<h2><input id="chk1" name="chk1" type="checkbox" /><a href="#">《团圆》启幕柏林电影节 张艺谋短片祝寿柏林影展</a></h2>
+								<div class="d"><span>千龙网</span> - 47分钟前</div>
+								<p>医生圈论坛—医学社区2008年，礼来的销售业绩继续保持了前两年快速增长的态势，尤其是在胰岛素领域的增长远远高于市场平均水平；勃林格殷格翰<b>...</b></p>
+							</li>
+							<li>
+								<h2><input id="chk2" name="chk2" type="checkbox" /><a href="#">《团圆》启幕柏林电影节 张艺谋短片祝寿柏林影展</a></h2>
+								<div class="d"><span>千龙网</span> - 47分钟前</div>
+								<p>医生圈论坛—医学社区2008年，礼来的销售业绩继续保持了前两年快速增长的态势，尤其是在胰岛素领域的增长远远高于市场平均水平；勃林格殷格翰<b>...</b></p>
+							</li>
+						</ol>
+					</div>
 				</div>
 			</div>
 		</div>

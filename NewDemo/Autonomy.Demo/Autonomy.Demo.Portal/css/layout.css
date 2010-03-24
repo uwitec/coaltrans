@@ -114,7 +114,7 @@ body {background:#edf1f4; color:#404040; font:12px SumSun, Arial, Helvetica, san
 .publicFeelNav li a:visited,
 .publicFeelNav li a:hover {color:#223770; text-decoration:none;}
 .publicFeelSearchContent {width:590px; padding:20px 0 20px 20px; display:inline; float:left; overflow:hidden;}
-.publicFeelSearchResult  {height:auto; min-height:656px; _height:656px;}
+.publicFeelSearchResult  {height:auto;}
 .publicFeelSearchResult li {margin-bottom:20px; position:relative;}
 .publicFeelSearchResult h2 {width:430px; height:22px; font-size:14px; overflow:hidden;}
 .publicFeelSearchResult h2 a:link,.publicFeelSearchResult h2 a:visited {color:#0035cb; text-decoration:underline;}

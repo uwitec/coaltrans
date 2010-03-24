@@ -12,11 +12,10 @@ using System.Configuration;
 using log4net;
 using Autonomy.Demo.Dal;
 
-public class GetMapData : IHttpHandler {
-    
+public class GetMapData : IHttpHandler 
+{
     public void ProcessRequest (HttpContext context) 
     {       
-
         string mapTimeId = string.Empty;
         string selectIndex = string.Empty;
         string dateTimeStr = System.DateTime.Now.ToString("yyyy-MM-dd");
@@ -41,11 +40,9 @@ public class GetMapData : IHttpHandler {
                     break;
                 case "prev":
                     strWhere = " MapTimeId=(select PreClusterTimeId from Cluster2DMap where ClusterTimeId=" + mapTimeId + ")";
-                    dateTimeStr = Convert.ToDateTime(dateTimeStr).AddDays(-1).ToString("yyyy-MM-dd");
                     break;
                 case "next":
                     strWhere = " MapTimeId=(select ClusterTimeId from Cluster2DMap where PreClusterTimeId=" + mapTimeId + ")";
-                    dateTimeStr = Convert.ToDateTime(dateTimeStr).AddDays(1).ToString("yyyy-MM-dd");
                     break;
                 default:
                     break;
@@ -86,6 +83,19 @@ public class GetMapData : IHttpHandler {
                 clusterNum++;
 
             }
+        
+            //如果取到数据，那么改变日期的值 否则 不改变
+            switch (selectIndex)
+            {
+                case "prev":
+                    dateTimeStr = Convert.ToDateTime(dateTimeStr).AddDays(-1).ToString("yyyy-MM-dd");
+                    break;
+                case "next":
+                    dateTimeStr = Convert.ToDateTime(dateTimeStr).AddDays(1).ToString("yyyy-MM-dd");
+                    break;
+                default:
+                    break;
+            }          
         }
         else
         {

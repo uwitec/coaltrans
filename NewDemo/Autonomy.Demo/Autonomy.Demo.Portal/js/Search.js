@@ -107,8 +107,6 @@ function setClickofPublicLeftMenu()
             $(dd_list).attr("class", "");
             $(this).attr("class", "current");
             $("#DisKeyWord").html("\"" + $(this).children("a").html().substring(0, 10) + "\"");
-            alert(search_param[0]);
-            alert(search_param[1]);
             LoadData(search_param[0], search_param[1]);
         });
     });
