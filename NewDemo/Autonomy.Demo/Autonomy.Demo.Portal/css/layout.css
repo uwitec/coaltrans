@@ -206,6 +206,13 @@ body {background:#edf1f4; color:#404040; font:12px SumSun, Arial, Helvetica, san
 .publicTopicMap dd {width:158px; border:1px solid #8c8c8c; margin-bottom:30px;}
 .publicTopicMap dd img {width:158px;}
 
+/*=== 分类 ===*/
+.searchRule {padding:20px 0;}
+.searchRule h3 {color:#000; font-size:14px; font-weight:bold; line-height:25px;}
+.searchRule .ruleBody {border-bottom:1px dashed #ccc; padding:10px 10px 20px; margin-bottom:15px;}
+.searchRule ol {padding:10px;}
+
+
 
 
 /*=== 版权 ===*/
