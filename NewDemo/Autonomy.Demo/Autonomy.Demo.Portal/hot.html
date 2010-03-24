@@ -9,55 +9,7 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/util.js"></script>
 <script type="text/javascript" src="js/top.js"></script>
-<script type="text/javascript">
-    nav_data.data[2].is_current = true;
-    $(document).ready(function() { 
-        $.ajax({
-            type: "get",
-            url: "Handler/GetMapData.ashx",
-            beforeSend: function(XMLHttpRequest) {
-                $("#hot_image").html("热点数据加载中……");
-            },
-            success: function(data, textStatus) {
-                var map = $("#map");
-                map.after(data);
-                //隐藏文字说明
-                $(".node_text").each(function() {
-                    $(this).hide();
-                });
-
-                $(".node").each(function() {
-                    $(this).mouseover(function() {
-                        var num = $(this).attr("id").split("_")[1];
-                        $("#clustertitle_" + num).show();
-                    });
-
-                    $(this).mouseout(function() {
-                        var num = $(this).attr("id").split("_")[1];
-                        $("#clustertitle_" + num).hide();
-                    });
-
-                    $(this).click(function() {
-                        var cluster_id = $(this).attr("id").split("_")[1];
-                        $.get("Handler/GetClusterResults.ashx", { 'cluster_id': cluster_id },
-                                    function(data) {
-                                        $("#hot_prompt").empty();
-                                        $("#whats_hot").empty().html(data);
-                                        $("#whats_hot").show();
-                                    }
-                                );
-                    });
-                }); //each end
-            },
-            complete: function(XMLHttpRequest, textStatus) {
-                $("#hot_image").html("舆情热点图<br/>(点击红色方块，可在右侧区域获取文章列表)");
-            },
-            error: function() {
-                //请求出错处理
-            }
-        });
-    });
-</script>
+<script type="text/javascript" src="js/hot.js"></script>
 </head>
 <body>
 <div id="wrapper">
@@ -115,14 +67,15 @@
 			<div class="hotspotMap">
 				<table class="hotspotMapOption">
 					<tr>
-						<th><a href="#" class="pre">前一天</a></th>
-						<th class="ta_center"><input name="date" type="text" value="2010-03-09" class="input_text2" /></th>
-						<th class="ta_right"><a href="#" class="next">后一天</a></th>
+						<th><a href="#" class="pre" name="BtnClickList" pid="prev">前一天</a></th>
+						<th class="ta_center"><input id="input_data" name="date" type="text" value="" class="input_text2" /></th>
+						<th class="ta_right"><a href="#" class="next" name="BtnClickList" pid="next" >后一天</a></th>
 					</tr>
 				</table>
 				<div id="map" class="hotspotMapContent">
-				    <img src="http://121.101.220.143:9000/action=clusterserve2dmap&sourcejobname=myjob_clusters" alt="" />
+				    <img id="hot_img" src="http://121.101.220.143:9000/action=clusterserve2dmap&sourcejobname=myjob_clusters" alt="" />
 				    <h3 style="text-align:center"><a id="hot_image" href="#"></a></h3>
+				    <div id="mapData"></div>
 				</div>
 			</div>
 			<div class="publicFeelSearchContent hotspotContent">
