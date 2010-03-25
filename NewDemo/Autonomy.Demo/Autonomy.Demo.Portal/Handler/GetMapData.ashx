@@ -58,14 +58,14 @@ public class GetMapData : IHttpHandler
         string nodeTitleId;
         string nodeTitle;
         
-        int clusterNum = 0;
+        //int clusterNum = 0;
         StringBuilder html = new StringBuilder();
         if (clusterEntityList.Count > 0)
         {
             foreach (Cluster2DPointEntity entity in clusterEntityList)
             {
-                nodeId = "clusternode_" + clusterNum.ToString();
-                nodeTitleId = "clustertitle_" + clusterNum.ToString();
+                nodeId = "clusternode_" + entity.PointId.ToString();
+                nodeTitleId = "clustertitle_" + entity.PointId.ToString();
                 nodeTitle = entity.ClusterTitle;
                 nodeLeft = (int)Math.Ceiling(entity.ClusterX.Value * 0.68) + 165;
                 nodeTop = (int)Math.Ceiling(entity.ClusterY.Value * 0.68) + 250;
@@ -76,13 +76,14 @@ public class GetMapData : IHttpHandler
                 html.Append("<td nowrap=\"nowrap\" style=\"background-color:#FFFF00;color:#000000;border:solid #000000 1px;font-size:9pt;font-family:sans-serif\">");
                 html.AppendFormat("<b>{0}</b><br/>50 documents</td></tr></table></div>", nodeTitle);
 
-                if (clusterNum == clusterEntityList.Count - 1)
-                {
-                    html.Append("※" + entity.MapTimeId.Value);
-                }
-                clusterNum++;
-
+                //if (clusterNum == clusterEntityList.Count - 1)
+                //{
+                //    html.Append("※" + entity.MapTimeId.Value);
+                //}
+                //clusterNum++;
             }
+
+            html.Append("※" + clusterEntityList[0].MapTimeId.Value);
         
             //如果取到数据，那么改变日期的值 否则 不改变
             switch (selectIndex)

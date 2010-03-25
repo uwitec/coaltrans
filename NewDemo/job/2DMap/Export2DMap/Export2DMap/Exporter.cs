@@ -19,7 +19,7 @@ namespace Export2DMap
             long preTimeStamp = 0;
 
             //备份底图文件
-            //BackUpFile(ref latestTimeStamp, ref preTimeStamp);
+            BackUpFile(ref latestTimeStamp, ref preTimeStamp);
 
             //备份数据
             Cluster2DMapEntity map = new Cluster2DMapEntity();

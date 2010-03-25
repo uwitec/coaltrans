@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="CategoryEntity.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="Cluster2DDocEntity.cs" />
     <Compile Include="Cluster2DMapEntity.cs" />
     <Compile Include="Cluster2DPointEntity.cs" />
     <Compile Include="DataModelEntity.cs" />

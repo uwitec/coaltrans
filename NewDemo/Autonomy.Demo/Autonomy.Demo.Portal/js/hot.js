@@ -43,8 +43,8 @@ function get2dMapData(l_map_time_id,select_index,date_time)
                     });
 
                     $(this).click(function() {
-                        var cluster_id = $(this).attr("id").split("_")[1];
-                        $.get("Handler/GetClusterResults.ashx", { 'cluster_id': cluster_id },
+                        var point_id = $(this).attr("id").split("_")[1];
+                        $.get("Handler/GetClusterResults.ashx", { 'point_id': point_id },
                                     function(data) {
                                         $("#hot_prompt").empty();
                                         $("#whats_hot").empty().html(data);
