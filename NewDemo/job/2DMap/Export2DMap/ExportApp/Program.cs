@@ -10,7 +10,7 @@ namespace ExportApp
     {
         static void Main(string[] args)
         {
-            Class1 export2DMap = new Class1();
+            Exporter export2DMap = new Exporter();
             export2DMap.Save();
         }
     }
