@@ -43,6 +43,7 @@ namespace Export2DMap
                 string insertPoint = string.Format("insert into Cluster2DPoint (MapTimeId,ClusterX,ClusterY,ClusterTitle) values ({0},{1},{2},'{3}');"
                                                  , latestTimeStamp, nodeLeft, nodeTop, nodeTitle);
                 batchSql.Append(insertPoint);
+
             }
 
             string connStr = ConfigurationManager.AppSettings["ConnStr"].ToString();
@@ -60,7 +61,7 @@ namespace Export2DMap
 
         private XmlDocument Query()
         {
-            string actUrl = ConfigurationManager.AppSettings["IdolACIPort"] + "/action=ClusterResults&SourceJobname=myjob_clusters&MaxTerms=0&NumResults=0";
+            string actUrl = ConfigurationManager.AppSettings["IdolACIPort"] + "/action=ClusterResults&SourceJobname=myjob_clusters&MaxTerms=0&NumResults=200";
             HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(actUrl);
             myRequest.Method = "GET";
             myRequest.ContentType = "application/x-www-form-urlencoded";
