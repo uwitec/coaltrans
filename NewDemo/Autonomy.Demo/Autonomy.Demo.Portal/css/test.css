@@ -1,0 +1,5 @@
+﻿/*menu.aspx*/
+.Menulist1{ width:150px; height:20px; line-height:20px; background:url(../images/menulibg.gif) no-repeat; float:left;  margin-left:2px; padding-left:15px; }
+.Menulist1 a{ text-decoration:none; color:Black;}
+.NoMenulist1{ width:150px; height:20px; line-height:20px; background:url(../images/menulibg1.gif) no-repeat; float:left; margin-left:2px; padding-left:15px; }
+.NoMenulist1 a{ text-decoration:none; color:Black;}
