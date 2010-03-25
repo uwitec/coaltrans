@@ -36,6 +36,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -46,8 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Cluster2DDocEntity.cs" />
+    <Compile Include="Cluster2DMapEntity.cs" />
+    <Compile Include="Cluster2DPointEntity.cs" />
+    <Compile Include="DBHelper\DAO.cs" />
+    <Compile Include="DBHelper\IDAO.cs" />
+    <Compile Include="DBHelper\SqlHelper.cs" />
+    <Compile Include="DBHelper\SqlServerDAO.cs" />
+    <Compile Include="Exporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\ConfigUtil.cs" />
+    <Compile Include="Util\DESEncrypt.cs" />
+    <Compile Include="Util\LogWriter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

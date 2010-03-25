@@ -7,20 +7,26 @@ using System.Configuration;
 using System.Net;
 using System.IO;
 using System.Xml;
+using Autonomy.Demo.Dal;
 
 namespace Export2DMap
 {
-    public class Class1
+    public class Exporter
     {
         public void Save()
         {
-            StringBuilder batchSql = new StringBuilder();
             long latestTimeStamp = 0;
             long preTimeStamp = 0;
-            BackUpFile(ref latestTimeStamp, ref preTimeStamp);
-            string insertMap = string.Format("insert into Cluster2DMap (ClusterTimeId,PreClusterTimeId) values ({0},{1});"
-                                                 , latestTimeStamp, preTimeStamp);
-            batchSql.Append(insertMap);
+
+            //备份底图文件
+            //BackUpFile(ref latestTimeStamp, ref preTimeStamp);
+
+            //备份数据
+            Cluster2DMapEntity map = new Cluster2DMapEntity();
+            map.ClusterTimeId = latestTimeStamp;
+            map.PreClusterTimeId = preTimeStamp;
+            Cluster2DMapEntity.Cluster2DMapDAO mapDao = new Cluster2DMapEntity.Cluster2DMapDAO();
+            mapDao.Add(map);
 
             XmlDocument contentDoc = Query();
             //Create an XmlNamespaceManager for resolving namespaces.
@@ -40,21 +46,26 @@ namespace Export2DMap
                 nodeTitle = cluster.SelectSingleNode("autn:title", nsmgr).InnerText;
                 nodeLeft = int.Parse(cluster.SelectSingleNode("autn:x_coord", nsmgr).InnerText);
                 nodeTop =  int.Parse(cluster.SelectSingleNode("autn:y_coord", nsmgr).InnerText);
-                string insertPoint = string.Format("insert into Cluster2DPoint (MapTimeId,ClusterX,ClusterY,ClusterTitle) values ({0},{1},{2},'{3}');"
-                                                 , latestTimeStamp, nodeLeft, nodeTop, nodeTitle);
-                batchSql.Append(insertPoint);
+               
+                Cluster2DPointEntity point = new Cluster2DPointEntity();
+                point.MapTimeId = latestTimeStamp;
+                point.ClusterX = nodeLeft;
+                point.ClusterY = nodeTop;
+                point.ClusterTitle = nodeTitle;
+                Cluster2DPointEntity.Cluster2DPointDAO pointDao = new Cluster2DPointEntity.Cluster2DPointDAO();
+                long pointId = pointDao.Add(point);
 
-            }
-
-            string connStr = ConfigurationManager.AppSettings["ConnStr"].ToString();
-            using (SqlConnection conn = new SqlConnection(connStr))
-            {
-                using (SqlCommand comm = new SqlCommand())
+                foreach (XmlNode docNode in cluster.SelectNodes("autn:docs/autn:doc", nsmgr))
                 {
-                    comm.Connection = conn;
-                    comm.CommandText = batchSql.ToString();
-                    comm.Connection.Open();
-                    comm.ExecuteNonQuery();
+                    string title = docNode.SelectSingleNode("autn:title", nsmgr).InnerText;
+                    string reference = docNode.SelectSingleNode("autn:ref", nsmgr).InnerText;
+
+                    Cluster2DDocEntity doc = new Cluster2DDocEntity();
+                    doc.DocRef = reference;
+                    doc.DocTitle = title;
+                    doc.PointId = pointId;
+                    Cluster2DDocEntity.Cluster2DDocDAO docDao = new Cluster2DDocEntity.Cluster2DDocDAO();
+                    docDao.Add(doc);
                 }
             }
         }
