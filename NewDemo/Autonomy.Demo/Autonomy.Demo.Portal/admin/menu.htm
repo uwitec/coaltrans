@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>无标题页</title>
+    <link href="css/Style.css" rel="Stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+
+    <script type="text/javascript" src="js/public.js"></script>
+
+    <script type="text/javascript">
+    
+        $(document).ready(function(){  
+            var div_list=$("#MenuList").children("div");
+            setMenu(div_list);            
+        });                 
+    </script>
+
+</head>
+<body>
+    <div class="Menu">
+        <div>
+            <a href="javascript:void(null);" class="link" id="Menu">菜单</a></div>
+        <div>
+            <a href="javascript:void(null);" class="nolink" id="Help">帮助</a></div>
+    </div>
+    <div style="clear: both;">
+    </div>
+    <div class="MenuFrame" id="MenuList">
+        <div class="Menulist1" style="display: block">
+            <a href="javascript:void(null);">分类管理</a><div class="NoMenulist1" style="display: none;">
+                <a href="javascript:void(null);" pid="category/categoryList.aspx">分类列表</a></div>
+            <div class="NoMenulist1" style="display: none;">
+                <a href="javascript:void(null);" pid="7">模块一</a></div>
+        </div>        
+        <div class="Menulist1" style="display: block">
+            <a href="javascript:void(null);">另外模块</a><div class="NoMenulist1" style="display: none;">
+                <a href="javascript:void(null);" pid="6">模块二</a></div>
+        </div>
+    </div>
+    <div style="width: 90%; height: auto; border: 1px solid red; margin-left: 2px; display: none;
+        padding: 2px;">
+    </div>
+    <div class="MenuBottom">
+        版权所有：国科安信</div>
+</body>
+</html>

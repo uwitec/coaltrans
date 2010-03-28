@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>无标题页</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var height=$(document).height();
+            $("#ShrinkBtn").css({"margin-top": height*0.48});
+            $("#ShrinkBtn").css({"cursor":"hand"});
+            setInterval(SetWindow,100);          
+            $("#ShrinkBtn").click(function(){ 
+                var obj= parent.document.getElementById("frame-body");
+                if(obj.cols=="200, 10, *")
+                {
+                    $(this).attr("src","images/arrow_right.gif");
+                    obj.cols="0, 10, *";
+                    $(this).parents("a").attr("title","展开工作区");
+                }
+                else
+                {
+                    $(this).attr("src","images/arrow_left.gif");
+                    obj.cols="200, 10, *";
+                    $(this).parents("a").attr("title","关闭工作区");
+                    
+                }
+                
+            });
+            
+        });
+        function SetWindow()
+        {
+            var Lheight=$(document).height();
+            $("#ShrinkBtn").css({"margin-top": Lheight*0.48});            
+        }
+        
+    </script>
+</head>
+<body style="background-color:#ababab; margin:0px;">
+    <img id="ShrinkBtn" src="images/arrow_left.gif" width="10px" height="30px" border="0" />
+</body>
+</html>

@@ -1,0 +1,110 @@
+﻿body 
+{
+	margin:0px;
+	font-size:12px;
+}
+a 
+{
+	text-decoration:none; 
+	color:Black;
+}
+
+/*Top.aspx*/
+.TopBar
+{
+	background-color:#f4f5f4; 
+	text-align:right; 
+	vertical-align:bottom; 
+	padding-right:50px; 
+	padding-bottom:10px;
+}
+/*menu.aspx*/
+.Menu
+{
+	width:95%; 
+	height:35px;
+	margin-bottom:10px;
+	}
+.Menu div
+{
+	display:inline;
+	height:35px;
+	line-height:35px;
+	width:45%;
+	background:url(../images/menu.gif) repeat-x;
+	float:left;
+	border:1px solid gray;
+	margin-left:5px;
+	text-align:center;
+	
+	}
+.link
+{
+	font-size:14px;
+	font-weight:bolder;
+	color:#9f1313;
+	}	
+.nolink
+{
+	font-size:14px;
+	color:Black;
+	font-weight:100;
+	}
+	
+.MenuFrame{width:90%; height:auto; border:1px solid red; margin-left:2px; padding:2px; overflow:hidden;}
+.MenuBottom{width:95%;  height:35px; background-color:#f5dcdc; margin-left:2px; border:1px solid #cfcbcb; margin-top:10px; line-height:35px; text-align:center; font-weight:bold;}
+.Menulist1{ width:150px;  line-height:20px; background:url(../images/menulibg.gif) no-repeat; float:left;  margin-left:2px; padding-left:15px; }
+.Menulist1 a{ text-decoration:none; color:Black;}
+.NoMenulist1{ width:150px; line-height:20px; background:url(../images/menulibg1.gif) no-repeat; float:left; margin-left:2px; padding-left:15px; }
+.NoMenulist1 a{ text-decoration:none; color:Black;}
+
+/*public*/
+.MainBody{ background-color:#f8e6ef; font-size:12px; color:Black;}
+.MainBody a{ text-decoration:none;}
+.MainBody img{border:none;}
+.HeadBar{ width:98%; background-color:White; height:35px; border:1px solid red; margin:10px auto; line-height:35px;}
+.HeadBarNav{ margin-left:20px; font-weight:bolder; font-size:14px; float:left;}
+.HeadBarNav span{ color:Gray;}
+.HeadBarOperate{ float:right; margin-right:20px; }
+.Btn_Style1 
+{
+	 background:url(../images/icon_add.gif) no-repeat left #fbdadc;
+	 padding-left:10px;
+	 width:100px;
+	 height:20px;
+	 border-top:1px solid #f16670;
+	 border-left:1px solid #f16670; 
+	 border-right:2px solid #f16670;
+	 border-bottom:2px solid #f16670;
+	 margin-top:5px;
+	 line-height:20px;
+	 text-align:center;
+}
+.SearchBar{width:98%; height:30px; background:url(../images/icon_search.gif) no-repeat 10px center White;  border:1px solid red; margin:10px auto; line-height:30px;}
+.SearchBar div{ float:left; margin-left:20px; }
+.Btn_Style2{ background:url(../images/icon_view.gif) no-repeat left #fbdadc;
+	 padding-left:10px;
+	 width:60px;
+	 height:20px;
+	 border-top:1px solid #f16670;
+	 border-left:1px solid #f16670; 
+	 border-right:2px solid #f16670;
+	 border-bottom:2px solid #f16670;
+	 margin-top:5px;
+	 line-height:20px;
+	 text-align:center;}
+.DataList{width:98%; height:390px; background:white;   border:1px solid red; margin:10px auto; }
+.MainBottom{width:98%; height:20px; background:white; line-height:20px;  border:1px solid gray; margin:0px auto;   }
+.DealList{width:98%; height:30px;    margin:10px auto; line-height:30px;}
+.Btn_Style3{ border:1px solid gray; width:90px; background-color:Blue; height:25px; background:url(../images/button.gif) repeat-x; color:White; }
+.ListTable{ width:100%; font-size:12px;  height:auto;}
+.ListTable td{border-right:1px solid #d5dfe9;border-bottom:1px solid #d5dfe9;}
+.ListTableHead td{ background-color:#fbdadc; height:30px; line-height:30px; text-align:center; }
+.Pager{  height:20px; line-height:20px; color:blue;  }
+.MainBottom div{ float:right; width:300px; }
+.ListTableBody{ height:25px; line-height:25px; background-color:#e9eef4;}
+.LinkListTableBody{height:25px; line-height:25px; background-color:#a8e1c4;}
+.EditTable{ margin-top:30px;}
+.EditTable td{ height:30px; font-weight:bold;}
+.EditTable td span{ color:Red; font-weight:normal;}
+

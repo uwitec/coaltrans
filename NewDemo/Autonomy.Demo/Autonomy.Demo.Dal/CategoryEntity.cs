@@ -26,7 +26,7 @@ namespace Autonomy.Demo.Dal
         {
             public const string ID = "ID";
             public const string CategoryID = "CategoryID";
-            public const string DataBase = "DataBase";
+            public const string DataBaseId = "DataBaseId";
             public const string CategoryName = "CategoryName";
             public const string CateDisplay = "CateDisplay";
             public const string ParentCate = "ParentCate";
@@ -45,13 +45,13 @@ namespace Autonomy.Demo.Dal
             sqlHelper = new SqlHelper(DBName);
         }
 
-        public CategoryEntity(int id, int categoryid, string database, string categoryname, string catedisplay, int parentcate, string catepath, string createby, DateTime createtime, int catetype, string catesource, string catetraininfo)
+        public CategoryEntity(int id, int categoryid, string databaseid, string categoryname, string catedisplay, int parentcate, string catepath, string createby, DateTime createtime, int catetype, string catesource, string catetraininfo)
         {
             this.ID = id;
 
             this.CategoryID = categoryid;
 
-            this.DataBase = database;
+            this.DataBaseId = databaseid;
 
             this.CategoryName = categoryname;
 
@@ -96,7 +96,7 @@ namespace Autonomy.Demo.Dal
         /// <summary>
         /// ÊâÄÂ±ûË°®Âêç
         /// </summary>
-        public string DataBase
+        public string DataBaseId
         {
             get;
             set;
@@ -200,12 +200,12 @@ namespace Autonomy.Demo.Dal
 
                 StringBuilder strSql = new StringBuilder();
                 strSql.Append("insert into Category(");
-                strSql.Append("CategoryID,DataBase,CategoryName,CateDisplay,ParentCate,CatePath,CreateBy,CreateTime,CateType,CateSource,CateTrainInfo)");
+                strSql.Append("CategoryID,DataBaseId,CategoryName,CateDisplay,ParentCate,CatePath,CreateBy,CreateTime,CateType,CateSource,CateTrainInfo)");
                 strSql.Append(" values (");
-                strSql.Append("@CategoryID,@DataBase,@CategoryName,@CateDisplay,@ParentCate,@CatePath,@CreateBy,@CreateTime,@CateType,@CateSource,@CateTrainInfo)");
+                strSql.Append("@CategoryID,@DataBaseId,@CategoryName,@CateDisplay,@ParentCate,@CatePath,@CreateBy,@CreateTime,@CateType,@CateSource,@CateTrainInfo)");
                 SqlParameter[] parameters = {
 					new SqlParameter("@CategoryID",SqlDbType.Int),
-					new SqlParameter("@DataBase",SqlDbType.VarChar),
+					new SqlParameter("@DataBaseId",SqlDbType.VarChar),
 					new SqlParameter("@CategoryName",SqlDbType.VarChar),
 					new SqlParameter("@CateDisplay",SqlDbType.VarChar),
 					new SqlParameter("@ParentCate",SqlDbType.Int),
@@ -217,7 +217,7 @@ namespace Autonomy.Demo.Dal
 					new SqlParameter("@CateTrainInfo",SqlDbType.VarChar)
 					};
                 parameters[0].Value = entity.CategoryID;
-                parameters[1].Value = entity.DataBase;
+                parameters[1].Value = entity.DataBaseId;
                 parameters[2].Value = entity.CategoryName;
                 parameters[3].Value = entity.CateDisplay;
                 parameters[4].Value = entity.ParentCate;
@@ -237,7 +237,7 @@ namespace Autonomy.Demo.Dal
                 StringBuilder strSql = new StringBuilder();
                 strSql.Append("update Category set ");
                 strSql.Append("CategoryID=@CategoryID,");
-                strSql.Append("DataBase=@DataBase,");
+                strSql.Append("DataBaseId=@DataBaseId,");
                 strSql.Append("CategoryName=@CategoryName,");
                 strSql.Append("CateDisplay=@CateDisplay,");
                 strSql.Append("ParentCate=@ParentCate,");
@@ -252,7 +252,7 @@ namespace Autonomy.Demo.Dal
                 SqlParameter[] parameters = {
 					new SqlParameter("@ID",SqlDbType.Int),
 					new SqlParameter("@CategoryID",SqlDbType.Int),
-					new SqlParameter("@DataBase",SqlDbType.VarChar),
+					new SqlParameter("@DataBaseId",SqlDbType.VarChar),
 					new SqlParameter("@CategoryName",SqlDbType.VarChar),
 					new SqlParameter("@CateDisplay",SqlDbType.VarChar),
 					new SqlParameter("@ParentCate",SqlDbType.Int),
@@ -265,7 +265,7 @@ namespace Autonomy.Demo.Dal
 					};
                 parameters[0].Value = entity.ID;
                 parameters[1].Value = entity.CategoryID;
-                parameters[2].Value = entity.DataBase;
+                parameters[2].Value = entity.DataBaseId;
                 parameters[3].Value = entity.CategoryName;
                 parameters[4].Value = entity.CateDisplay;
                 parameters[5].Value = entity.ParentCate;
@@ -343,7 +343,7 @@ namespace Autonomy.Demo.Dal
                     {
                         entity.CategoryID = (int)row["CategoryID"];
                     }
-                    entity.DataBase = row["DataBase"].ToString();
+                    entity.DataBaseId = row["DataBaseId"].ToString();
                     entity.CategoryName = row["CategoryName"].ToString();
                     entity.CateDisplay = row["CateDisplay"].ToString();
                     if (!Convert.IsDBNull(row["ParentCate"]))
@@ -395,7 +395,7 @@ namespace Autonomy.Demo.Dal
                         {
                             entity.CategoryID = (int)row["CategoryID"];
                         }
-                        entity.DataBase = row["DataBase"].ToString();
+                        entity.DataBaseId = row["DataBaseId"].ToString();
                         entity.CategoryName = row["CategoryName"].ToString();
                         entity.CateDisplay = row["CateDisplay"].ToString();
                         if (!Convert.IsDBNull(row["ParentCate"]))
@@ -506,4 +506,3 @@ namespace Autonomy.Demo.Dal
     }
 }
 
-                                                                                                                                                                                                                                 r :   c o n f i g u r i n g   r e p o s i t o r y   [  9]   u s i n g   . c o n f i g   f i l e   s e c t i o n  [X m l C o n f i g u r a t o r :   A p p l i c a t i o n   c o n f i g   f i l e   i s   [  sX m l C o n f i g u r a t o r :   A p p l i c a t i o n   c o n f i g   f i l e   l o c a t i o n   u n k n o w n  l o g 4 n e t  ÇgX m l C o n f i g u r a t o r :   F a i l e d   t o   f i n d   c o n f i g u r a t i o n   s e c t i o n   ' l o g 4 n e t '   i n   t h e   a p p l i c a t i o n ' s   . c o n f i g   f i l e .   C h e c k   y o u r   . c o n f i g   f i l e   f o r   t h e   < l o g 4 n e t >   a n d   < c o n f i g S e c t i o n s >   e l e m e n t s .   T h e   c o n f i g u r a t i o n   s e c t i o n   s h o u l d   l o o k   l i k e :   < s e c t i o n   n a m e = " l o g 4 n e t "   t y p e = " l o g 4 n e t . C o n f i g . L o g 4 N e t C o n f i g u r a t i o n S e c t i o n H a n d l e r , l o g 4 n e t "   / > )U n r e c o g n i z e d   e l e m e n t  Ä≥X m l C o n f i g u r a t o r :   F a i l e d   t o   p a r s e   c o n f i g   f i l e .   C h e c k   y o u r   . c o n f i g   f i l e   i s   w e l l   f o r m e d   X M L .  Ä°< s e c t i o n   n a m e = " l o g 4 n e t "   t y p e = " l o g 4 n e t . C o n f i g . L o g 4 N e t C o n f i g u r a t i o n S e c t i o n H a n d l e r ,  	"   / >  Ä©X m l C o n f i g u r a t o r :   F a i l e d   t o   p a r s e   c o n f i g   f i l e .   I s   t h e   < c o n f i g S e c t i o n s >   s p e c i f i e d   a s :    ']   u s i n g   X M L   e l e m e n t  ]   u s i n g   f i l e   [  ÄÖX m l C o n f i g u r a t o r :   C o n f i g u r e   c a l l e d   w i t h   n u l l   ' c o n f i g F i l e '   p a r a m e t e r cX m l C o n f i g u r a t o r :   F a i l e d   t o   o p e n   X M L   c o n f i g   f i l e   [  =X m l C o n f i g u r a t o r :   c o n f i g   f i l e   [  K]   n o t   f o u n d .   C o n f i g u r a t i o n   u n c h a n g e d .  ]   u s i n g   U R I   [  ÄÉX m l C o n f i g u r a t o r :   C o n f i g u r e  
