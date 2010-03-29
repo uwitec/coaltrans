@@ -69,3 +69,17 @@ function SetChildHeight(obj)
     });
     $(obj).height(height);
 }
+/* 异步删除 */
+function remove(primarykey,msg,condition)
+{
+    if(confirm(msg))
+    {
+        var url=window.location.href;
+         $.post(url,
+            { "is_ajax": "1","id":primarykey,"act":condition },
+            function(data, textStatus) {
+                location.reload();
+            }, "json");  
+    }
+}
+/*  */

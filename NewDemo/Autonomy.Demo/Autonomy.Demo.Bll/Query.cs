@@ -151,6 +151,63 @@ namespace Autonomy.Demo.Bll
         }
     }
 
+    public class QueryforCategory : Query
+    {
+        public override string GetQueryCommand()
+        {
+            int end = Start + 9;
+            string actUrl = ConfigUtil.GetAppSetting("IdolACIPort") + "/action=query&text=" + QueryParam
+                          + "&print=all&MinDate=" + dateStr + "&Sort=" + sortStr + "&LanguageType=chineseUTF8&start="
+                          + Start.ToString() + "&maxresults=" + end.ToString() + "&totalresults=true&minscore=60&Highlight=Terms&outputencoding=utf8";
+            return actUrl;
+        }
+
+        public override string GetResult(XmlDocument contentDoc)
+        {
+            //Create an XmlNamespaceManager for resolving namespaces.
+            XmlNamespaceManager nsmgr = new XmlNamespaceManager(contentDoc.NameTable);
+            nsmgr.AddNamespace("autn", "http://schemas.autonomy.com/aci/");
+
+            //Select the book node with the matching attribute value.
+            XmlNodeList hits = contentDoc.SelectNodes("autnresponse/responsedata/autn:hit", nsmgr);
+            XmlNode TotalNode = contentDoc.SelectSingleNode("autnresponse/responsedata/autn:totalhits", nsmgr);
+
+            int totalCount = 0;
+            int pageCount = 0;
+            int pageSize = 10;
+
+            if (TotalNode != null && !string.IsNullOrEmpty(TotalNode.InnerText))
+            {
+                totalCount = int.Parse(TotalNode.InnerText);
+                int remainder;
+                pageCount = Math.DivRem(totalCount, pageSize, out remainder);
+                if (remainder > 0)
+                {
+                    pageCount++;
+                }
+            }
+
+            StringBuilder html = new StringBuilder();
+            foreach (XmlNode hit in hits)
+            {
+                string weight = hit.ChildNodes[3].InnerText;
+                string docId = hit.ChildNodes[1].InnerText;
+                html.Append("<tr><td style=\"width:100px;\" valign=\"top\"><input name=\"train_article_list\" type=\"checkbox\" id=\"article_" + docId + "\"/>" + weight + "%</td>");
+                XmlNode document = hit.ChildNodes[7].SelectSingleNode("DOCUMENT");
+                html.AppendFormat("<td style=\"line-height:15px;\"><a href=\"{0}\" target=\"_blank\">", document.SelectSingleNode("DREREFERENCE").InnerText);
+                html.AppendFormat("{0}</a>&nbsp;&nbsp;&nbsp;&nbsp;", document.SelectSingleNode("DRETITLE").InnerText);
+                html.AppendFormat("{0}-----{1}<br />", document.SelectSingleNode("MYSITENAME").InnerText, document.SelectSingleNode("MYDATE").InnerText);
+                html.AppendFormat("{0}<br />", document.SelectSingleNode("DRECONTENT").InnerText);
+                html.AppendFormat("{0}", document.SelectSingleNode("DREREFERENCE").InnerText);
+                html.Append("</td></tr>");
+            }
+
+            html.Append("※").Append(totalCount).Append("※").Append(pageCount);
+
+            return html.ToString();
+        }
+    }
+
     public class QueryFactory
     {
         public static Query GetQuery(QueryType queryType)
@@ -161,6 +218,8 @@ namespace Autonomy.Demo.Bll
                     return new SearchQuery();
                 case QueryType.Category:
                     return new CategoryQuery();
+                case QueryType.QueryforCategory:
+                    return new QueryforCategory();
                 default:
                     return null;
             }
@@ -170,7 +229,8 @@ namespace Autonomy.Demo.Bll
     public enum QueryType
     {
         Search = 1,
-        Category = 2
+        Category = 2,
+        QueryforCategory=3
     }
 }
 

@@ -1,5 +1,5 @@
-﻿$(document).ready(function() {     
-    get2dMapData("","","");
+﻿$(document).ready(function() {
+    get2dMapData("", "", "");
 });
 
 function get2dMapData(l_map_time_id,select_index,date_time)
@@ -14,31 +14,28 @@ function get2dMapData(l_map_time_id,select_index,date_time)
         success: function(data, textStatus) {
             var map = $("#mapData");
             map.html(data);
+
             //隐藏文字说明
             $(".node_text").each(function() {
                 $(this).hide();
             });
-
-            $(".node").each(function() {
+            
+            $(".node").each(function(n) {
                 $(this).mouseover(function() {
                     var num = $(this).attr("id").split("_")[1];
                     $("#clustertitle_" + num).show();
+                    $(this).css("border-left","2px solid rgb(255, 255, 255)").css("border-right","2px solid rgb(255, 255, 255)");
                 });
 
                 $(this).mouseout(function() {
                     var num = $(this).attr("id").split("_")[1];
                     $("#clustertitle_" + num).hide();
+                    $(this).css("border-left", "").css("border-right", "");
                 });
 
                 $(this).click(function() {
-                    var point_id = $(this).attr("id").split("_")[1];
-                    $.get("Handler/GetClusterResults.ashx", { 'point_id': point_id },
-                                function(data) {
-                                    $("#hot_prompt").empty();
-                                    $("#whats_hot").empty().html(data);
-                                    $("#whats_hot").show();
-                                }
-                            );
+                    var info_list = $(this).attr("pid").split("※");
+                    getSGDataResults(info_list[0], info_list[1], info_list[2]);
                 });
             }); //each end
         },
@@ -49,4 +46,13 @@ function get2dMapData(l_map_time_id,select_index,date_time)
             //请求出错处理
         }
     });
+}
+function getSGDataResults(point_id,from_time_id,end_time_id)
+{
+    $.get("Handler/GetSGDataResults.ashx", { 'point_id': point_id,"from_time_id":from_time_id,"end_time_id": end_time_id},
+        function(data) {
+            $("#hot_prompt").empty();
+            $("#doc_list").empty().html(data);            
+        }
+    );
 }

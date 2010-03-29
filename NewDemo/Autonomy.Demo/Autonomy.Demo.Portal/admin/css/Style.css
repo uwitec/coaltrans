@@ -108,3 +108,15 @@ a
 .EditTable td{ height:30px; font-weight:bold;}
 .EditTable td span{ color:Red; font-weight:normal;}
 
+
+.publicFeelSearchPage {color:#0035cb; font-size:14px; word-spacing:5px; text-align:center; padding:20px;}
+.publicFeelSearchPage .current {font-weight:bold;}
+.publicFeelSearchPage a:link,
+.publicFeelSearchPage a:visited {color:#0035cb; text-decoration:none; margin-left:5px;}
+.publicFeelSearchPage a:hover {color:#ca3200; text-decoration:underline;}
+
+
+.choose_article{width:200px; height:100px; border:1px solid black; overflow:auto;}
+.choose_article ul{ margin:0px; padding:0px;}
+.choose_article ul li{ list-style:none; height:15px; line-height:15px;}
+.choose_article ul li a:link{ color:Red;}

@@ -50,7 +50,7 @@ public partial class demo_admin_category_categoryList : System.Web.UI.Page
             htmlStr.Append("<div class=\"NoMenulist1\" style=\"" + style + "\"><a href=\"javascript:void(null);\">" + CategoryName + "</a><span style=\"margin-left:200px;\">");
             htmlStr.Append("<a href=\"javascript:void(null);\" title=\"查看\" onclick=\"\"><img src=\"../images/icon_view.gif\" alt=\"\" /></a>&nbsp;");
             htmlStr.Append("<a href=\"categoryedit.aspx?ID=" + parentId + "&act=edit\" title=\"编辑\" onclick=\"\"><img src=\"../images/icon_edit.gif\" alt=\"\" /></a>&nbsp;");
-            htmlStr.Append("<a href=\"javascript:void(null);\" title=\"删除\" onclick=\"javascript:listTable.remove(" + parentId.ToString() + ",'您确定要删除该记录么？','remove');location.reload();\"><img src=\"../images/icon_drop.gif\" alt=\"\" /></a>&nbsp;");
+            htmlStr.Append("<a href=\"javascript:void(null);\" title=\"删除\" onclick=\"javascript:remove(" + parentId.ToString() + ",'您确定要删除该记录么？','remove');\"><img src=\"../images/icon_drop.gif\" alt=\"\" /></a>&nbsp;");
             htmlStr.Append("</span>");
             foreach (CategoryEntity entity in entityList)
             {
@@ -63,7 +63,7 @@ public partial class demo_admin_category_categoryList : System.Web.UI.Page
             htmlStr.Append("<div class=\"NoMenulist1\" style=\"" + style + "\"><a href=\"javascript:void(null);\" pid=\"\">" + CategoryName + "</a><span style=\"margin-left:200px;\">");
             htmlStr.Append("<a href=\"javascript:void(null);\" title=\"查看\" onclick=\"\"><img src=\"../images/icon_view.gif\" alt=\"\" /></a>&nbsp;");
             htmlStr.Append("<a href=\"categoryedit.aspx?ID=" + parentId + "&act=edit\" title=\"编辑\" onclick=\"\"><img src=\"../images/icon_edit.gif\" alt=\"\" /></a>&nbsp;");
-            htmlStr.Append("<a href=\"javascript:void(null);\" title=\"删除\" onclick=\"javascript:listTable.remove("+parentId.ToString()+",'您确定要删除该记录么？','remove');location.reload();\"><img src=\"../images/icon_drop.gif\" alt=\"\" /></a>&nbsp;");
+            htmlStr.Append("<a href=\"javascript:void(null);\" title=\"删除\" onclick=\"javascript:remove("+parentId.ToString()+",'您确定要删除该记录么？','remove');\"><img src=\"../images/icon_drop.gif\" alt=\"\" /></a>&nbsp;");
             htmlStr.Append("</span></div>");
         }
     }
@@ -72,11 +72,11 @@ public partial class demo_admin_category_categoryList : System.Web.UI.Page
     /// </summary>
     private void ajax()
     {
-        if ((!string.IsNullOrEmpty(Request["is_ajax"])) && (Request["is_ajax"].ToString() == "1"))
+        if ((!string.IsNullOrEmpty(Request.Form["is_ajax"])) && (Request.Form["is_ajax"].ToString() == "1"))
         {
             string res = "";
-            string act = Request["act"].ToString();
-            string id = Request["id"].ToString();
+            string act = Request.Form["act"].ToString();
+            string id = Request.Form["id"].ToString();
             try
             {                               
                 switch (act)
@@ -87,6 +87,7 @@ public partial class demo_admin_category_categoryList : System.Web.UI.Page
                     default:
                         break;
                 }
+                res = "{\"error\":0,\"message\":\"操作成功！\",\"content\":0}";
             }
             catch
             {
