@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>分类训练</title>
+<title>舆论专题-新增分类</title>
 <link href="css/common.css" type="text/css" rel="stylesheet" rev="stylesheet" media="all" />
 <link href="css/layout.css" type="text/css" rel="stylesheet" rev="stylesheet" media="all" />
 <link href="css/test.css" rel="Stylesheet" type="text/css" rev="stylesheet" media="all" />
@@ -63,122 +63,95 @@
 		</ul>
 	</div>
 	<div class="content">
-		<div class="publicFeelSearch clearfix">
-			<div class="publicFeelSort" id="MenuList">
-				<!--<dt>国家领导人</dt>
-				<dd><a href="#">胡锦涛</a></dd>
-				<dd><a href="#">温家宝</a></dd>
-				<dt>国家机构</dt>
-				<dd><a href="#">国家安全部</a></dd>
-				<dd><a href="#">最高人民法院</a></dd>
-				<dt>重大社会事件</dt>
-				<dd><a href="#">谷歌退出中国</a></dd>
-				<dd><a href="#">7.5打砸抢烧事件</a></dd>
-				<dt>重大案件</dt>
-				<dd><a href="#">重庆扫黑</a></dd>
-				<dd><a href="#">黄光裕案件</a></dd>
-				<dt>关注事件</dt>
-				<dd><a href="#">美国对台军售</a></dd>
-				<dd><a href="#">6.4事件</a></dd>
-				<dt>敏感信息</dt>
-				<dd><a href="#">法轮功</a></dd>
-				<dd class="current"><a href="#">藏独</a></dd>-->
+		<div id="publicTopic" class="publicFeelSearch clearfix">
+			<div class="publicTopicList" id="MenuList">
+				
 			</div>
 			<div class="publicFeelSearchBody">
-				<div class="publicFeelSearchContent">
-					<div class="searchRule">
-					    <table width="600" border="0" cellpadding="0" cellspacing="0">
-                          <tr>
-                            <td width="100" align="right">当前位置：</td>
-                            <td ><span id="markLable">新增分类</span></td>
-                            <td ><a href="#G" id="add_new_catagory">新增分类</a></td>
-                          </tr>
-                          <tr>
-                            <td align="right">分类名称：</td>
-                            <td width="370"><input type="text" id="CategoryName" /><span>*</span></td>
-                            <td width="150">&nbsp;</td>
-                          </tr>
-                          <tr>
-                            <td align="right">分类路径：</td>
-                            <td><input type="text" id="CatePath" /><span>*</span></td>
-                            <td>&nbsp;</td>
-                          </tr>
-                          <tr>
-                            <td align="right">分类训练信息：</td>
-                            <td><textarea id="CateTrainInfo" rows="3" cols="30" ></textarea><span>*</span></td>
-                            <td>&nbsp;</td>
-                          </tr>
-                          <tr>
-                            <td align="right">父级栏目：</td>
-                            <td><select id="ParentCate">
-                                <option value="0">根目录</option>
-                            </select></td>
-                            <td>&nbsp;</td>
-                          </tr>
-                          <tr>
-                            <td align="right"></td>
-                            <td>&nbsp;&nbsp;<input type="button" value="确定" id="btnSubmit" pid="add" />&nbsp;&nbsp;<input type="button" value="保存训练信息" id="btnSaveInfo" /></td>
-                            <td><span style="color:Red;" id="Message"></span></td>
-                          </tr>
-                          
-                        </table>
-                        <hr />
-                        <table border="0" cellpadding="0" cellspacing="0">
-                          <tr>
-                            <td align="right">训练文章：</td>
-                            <td colspan="3"></td>
-                            <td align="right"><input type="text" id="key_words" /></td>
-                            <td><a href="#g">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="BtnSearch" value="搜索" /></a></td>            
-                          </tr>
-                          
-                          <tr>
-                            <td align="right">选中文章：</td>                       
-                            <td colspan="5"><div class="choose_article">
-                                <ul id="choose_article_list_id">
-                                    
-                                </ul>
-                            </div></td>
-                          </tr>
-                          <tr >                                 
-                            <td colspan="6" >&nbsp;</td>
-                          </tr>
-                          <tr>                                  
-                            <td align="right" valign="top">文章列表：</td>
-                            <td colspan="5">
-                                <div style="width:500px; height:350px; border:1px solid black; overflow:auto;" >
-                                    <table>
-                                        <tbody id="SearchResult">
-                                            <tr>
-                                                <td />请搜索文章</td>                            
-                                            </tr> 
-                                        </tbody>
-                                    </table>
-                                    <div class="publicFeelSearchPage" id="PagerList"></div>
-                                </div>            
-                            </td>
-                          </tr> 
-                          <tr>                                  
-                            <td align="right" valign="top">全选：<input type="checkbox" id="choose_all" /></td>
-                            <td colspan="5"><input type="button" value="保存选中文章" id="save_docs" /></td>
-                          </tr>         
-                        </table>
-						<!--<h3>基于语义规则</h3>
-						<p class="ruleBody">请输入布尔表达式：<input id="rule" name="rule" /></p>
-						<h3>基于统计原理</h3>
-						<ol class="publicFeelSearchResult">
-							<li>
-								<h2><input id="chk1" name="chk1" type="checkbox" /><a href="#">《团圆》启幕柏林电影节 张艺谋短片祝寿柏林影展</a></h2>
-								<div class="d"><span>千龙网</span> - 47分钟前</div>
-								<p>医生圈论坛—医学社区2008年，礼来的销售业绩继续保持了前两年快速增长的态势，尤其是在胰岛素领域的增长远远高于市场平均水平；勃林格殷格翰<b>...</b></p>
-							</li>
-							<li>
-								<h2><input id="chk2" name="chk2" type="checkbox" /><a href="#">《团圆》启幕柏林电影节 张艺谋短片祝寿柏林影展</a></h2>
-								<div class="d"><span>千龙网</span> - 47分钟前</div>
-								<p>医生圈论坛—医学社区2008年，礼来的销售业绩继续保持了前两年快速增长的态势，尤其是在胰岛素领域的增长远远高于市场平均水平；勃林格殷格翰<b>...</b></p>
-							</li>
-						</ol>-->
+				<div class="crumbs">
+					<div class="crumbsTitle"><div class="nowposition">当前位置：<a href="#">舆论专题</a> <span>&gt;&gt;</span> <strong id="markLable"></strong></div>
+					<div><a href="#g" id="add_new_catagory" class="addnew">新增分类</a></div>
 					</div>
 				</div>
+				<!--新建分类 start-->
+				<div class="publicTopicSort">
+					<div class="newTopic clearfix">
+						<div class="newTopicBody">
+							<table>
+								<tr>
+									<th width="20%">分类名称：</th>
+									<td><input name="text" type="text" id="CategoryName" class="input_text31" /></td>
+								</tr>
+								<tr>
+									<th class="tab_title">初始训练：</th>
+									<td class="tab_title">&nbsp;</td>
+								</tr>
+								<tr>
+									<th class="pd_top">分类描述：</th>
+									<td class="pd_top"><textarea name="textarea" cols="" rows="" class="textarea31" id="CatePath"></textarea></td>
+								</tr>
+								<tr>
+									<th>分类条件：</th>
+									<td><textarea name="textarea2" cols="" rows="" class="textarea32" id="CateTrainInfo"></textarea></td>
+								</tr>
+								<tr>
+									<th>父级分类：</th>
+									<td><select id="ParentCate">
+									<option value="0">根目录</option>
+                                    </select></td>
+								</tr>
+								<tr>
+									<th>&nbsp;</th>
+									<td><input name="button" type="button" value="确定" id="btnSubmit" pid="add" class="input_button31" /> <input name="button2" type="button" value="使用文章训练" class="input_button32" />&nbsp;&nbsp;<span style="color:Red;" id="Message"></span> </td>
+								</tr>
+							</table>
+						</div>
+						<div class="newTopicInfo">
+							<div class="weight_head"><div class="weight_head_title">分类概念定义及权重：</div><div class="add_more"><a href="#g" id="add_more">增加权重</a></div></div>
+							<table>
+								<tr>
+									<th width="15%" class="tp_right">概念</th>
+									<th width="25%">权重</th>
+									<th><span class="dataStand">标准</span></th>
+								</tr>						    
+							    <tr id="weight_list" style="display:none;">
+								    <td class="tp_right"></td>
+								    <td></td>
+								    <td align="right"><input name="button" type="button" value="保存权重" id="save_weght" class="input_button31" />	</td>
+							    </tr>
+							</table>
+						</div>
+					</div>
+					<div class="publicTopicTrain">
+						<div class="trainTitle clearfix">
+							<h3>训练文章：</h3>
+							<div class="trainSearch">
+								
+									<input name="text" type="text" class="input_text34" />
+									<input name="searchButton" type="button" value="搜索" id="BtnSearch" class="input_button35" />
+								
+							</div>
+						</div>
+						<div class="publicFeelSearchContent trainBody">
+							<ol class="publicFeelSearchResult" id="SearchResult">
+								<!--<li>
+									<div class="trainSelect"><input  type="checkbox" name="train_article_list" /> 34%</div>
+									<h2><a href="#">《团圆》启幕柏林电影节 张艺谋短片祝寿柏林影展</a></h2>
+									<div class="d"><span>千龙网</span> - 47分钟前</div>
+									<p>医生圈论坛—医学社区2008年，礼来的销售业绩继续保持了前两年快速增长的态势，尤其是在胰岛素领域的增长远远高于市场平均水平；勃林格殷格翰<b>...</b></p>
+								</li>	-->
+								<li><center>请搜索文章......</center></li>
+															
+							</ol>
+							<div class="publicFeelSearchPage" id="PagerList"></div>
+							<div class="trainOperate">
+								<div class="trainSelect"><label><input name="checkAll" type="checkbox" id="choose_all" /> 全选</label></div>
+								<input name="train" type="button" value="使用选中的文章进行训练" class="input_button33" id="save_docs" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--新建分类 end-->
 			</div>
 		</div>
 	</div>

@@ -192,14 +192,13 @@ namespace Autonomy.Demo.Bll
             {
                 string weight = hit.ChildNodes[3].InnerText;
                 string docId = hit.ChildNodes[1].InnerText;
-                html.Append("<tr><td style=\"width:100px;\" valign=\"top\"><input name=\"train_article_list\" type=\"checkbox\" id=\"article_" + docId + "\"/>" + weight + "%</td>");
+                html.Append("<li><div class=\"trainSelect\"><input  type=\"checkbox\" name=\"train_article_list\" id=\"article_" + docId + "\"/>" + weight + "%</div>");                
                 XmlNode document = hit.ChildNodes[7].SelectSingleNode("DOCUMENT");
-                html.AppendFormat("<td style=\"line-height:15px;\"><a href=\"{0}\" target=\"_blank\">", document.SelectSingleNode("DREREFERENCE").InnerText);
-                html.AppendFormat("{0}</a>&nbsp;&nbsp;&nbsp;&nbsp;", document.SelectSingleNode("DRETITLE").InnerText);
-                html.AppendFormat("{0}-----{1}<br />", document.SelectSingleNode("MYSITENAME").InnerText, document.SelectSingleNode("MYDATE").InnerText);
-                html.AppendFormat("{0}<br />", document.SelectSingleNode("DRECONTENT").InnerText);
-                html.AppendFormat("{0}", document.SelectSingleNode("DREREFERENCE").InnerText);
-                html.Append("</td></tr>");
+                html.AppendFormat("<h2><a href=\"{0}\" target=\"_blank\">", document.SelectSingleNode("DREREFERENCE").InnerText);
+                html.AppendFormat("{0}</a></h2>", document.SelectSingleNode("DRETITLE").InnerText);
+                html.AppendFormat("<div class=\"d\"><span>{0}</span> - {1}</div>", document.SelectSingleNode("MYSITENAME").InnerText, document.SelectSingleNode("MYDATE").InnerText);
+                html.AppendFormat("<p>{0}<b>...</b></p>", document.SelectSingleNode("DRECONTENT").InnerText);                
+                html.Append("</li>");
             }
 
             html.Append("※").Append(totalCount).Append("※").Append(pageCount);
