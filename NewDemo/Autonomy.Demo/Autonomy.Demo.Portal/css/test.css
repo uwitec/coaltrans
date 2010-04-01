@@ -3,3 +3,9 @@
 .Menulist1 a{ text-decoration:none; color:Black;}
 .NoMenulist1{ width:150px; height:20px; line-height:20px; background:url(../images/menulibg1.gif) no-repeat; float:left; margin-left:2px; padding-left:15px; }
 .NoMenulist1 a{ text-decoration:none; color:Black;}
+
+
+.choose_article{width:200px; height:100px; border:1px solid black; overflow:auto;}
+.choose_article ul{ margin:0px; padding:0px;}
+.choose_article ul li{ list-style:none; height:15px; line-height:15px;}
+.choose_article ul li a:link{ color:Red;}

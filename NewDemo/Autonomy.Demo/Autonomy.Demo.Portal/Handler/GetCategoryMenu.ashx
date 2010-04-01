@@ -40,7 +40,7 @@ public class getCategoryMenu : IHttpHandler {
             style = "display:block";
         if (entityList.Count > 0)
         {
-            htmlStr.Append("<div class=\"Menulist1\" style=\"" + style + "\"><a href=\"javascript:void(null);\">" + CategoryName + "</a>");
+            htmlStr.Append("<div class=\"Menulist1\" id=\"menulist_" + parentId + "\" style=\"" + style + "\"><a href=\"javascript:void(null);\" id=\"menulist_" + parentId + "\">" + CategoryName + "</a>");
             foreach (CategoryEntity entity in entityList)
             {
                 MenuChildList(ref htmlStr, entity.ID.Value, level, entity.CategoryName, entity.CategoryID.Value.ToString());
@@ -49,7 +49,7 @@ public class getCategoryMenu : IHttpHandler {
         }
         else
         {
-            htmlStr.Append("<div class=\"NoMenulist1\" style=\"" + style + "\"><a href=\"javascript:void(null);\" pid=\"" + CategoryID + "\">" + CategoryName + "</a></div>");
+            htmlStr.Append("<div class=\"NoMenulist1\"  style=\"" + style + "\"><a href=\"javascript:void(null);\" pid=\"" + CategoryID + "\" id=\"menulist_" + parentId + "\">" + CategoryName + "</a></div>");
         }
     }
     public bool IsReusable {
