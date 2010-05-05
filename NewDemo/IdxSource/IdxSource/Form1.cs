@@ -69,6 +69,31 @@ namespace IdxSource
             _pageSize = pageSize;
             _encoding = Encoding.GetEncoding("gb2312");
         }
+
+        private void SetBaiduParam()
+        {
+
+            string URLSeed = @"http://www.baidu.com/s?wd={0}&pn={1}&rn=100";
+            int pageCount = 3;
+            int pageSize = 100;
+            //<table border="0" cellpadding="0" cellspacing="0" [\s\S]+? href="([\s\S]+?)"  target="_blank" ><font size="3">([\s\S]+?)</font></a><br><font size=-1>([\s\S]+?)<br><font color="#008000">([\s\S]+?( \.\.\. )?[\S]+?( \.\.\. )?) ([\S]+?) ( |·±Με)</font>([\s\S]+?) <br></font></td></tr></table><br>
+            string regtex = "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" [\\s\\S]+? href=\"([\\S]+?)\"  target=\"_blank\" ><font size=\"3\">([\\s\\S]+?)</font></a><br><font size=-1>([\\s\\S]+?)<br><font color=\"#008000\">([\\s\\S]+?( \\.\\.\\. )?[\\S]+?( \\.\\.\\. )?) ([\\S]+?) ( |·±Με)</font>([\\s\\S]+?) <br></font></td></tr></table><br>";
+            string fileSeed = @"C:\Autonomy\outPut_{0}_{1}.xml";
+            XMLNodeMode nodeMode = XMLNodeMode.Baidu;
+
+            tb_path1.Text = @"C:\Autonomy\baiduhot\hot_{0}.xml";
+            //richTextBox_hot.Text = "</span><a target=\"_blank\" href=\"([\\s\\S]+?)\" mon=\"r=1\">([\\s\\S]+?)</a></li>";
+            tb_pageCount.Text = pageCount.ToString();
+            tb_URLSeed.Text = URLSeed;
+            tb_fileSeed.Text = fileSeed;
+            richTextBox_RegExpress.Text = regtex;
+            _emNodeMode = nodeMode;
+            _maxPageCount = pageCount;
+
+            _pageSize = pageSize;
+            _encoding = Encoding.GetEncoding("gb2312");
+        }
+
         private void ShowBaiduNews()
         {
             
@@ -250,7 +275,7 @@ namespace IdxSource
             char[] charSeparators = new char[] { ';' };
             string[] words = tb_KeyWords.Text.Split(charSeparators);
 
-            Pagetoxml.Do(urlSeed, words, pageSize, pageCount, fileSeed, regtex, nodeMode, _encoding);
+            Pagetoxml.Do(urlSeed, words, pageSize, pageCount, fileSeed, regtex, nodeMode, _encoding,false);
         }
 
         private void tb_urlparam_TextChanged(object sender, EventArgs e)
@@ -327,6 +352,36 @@ namespace IdxSource
                 
                 Pagetoxml.GenerateXml(new100url, richTextBox_RegExpress.Text, string.Format(tb_path1.Text, keyword), XMLNodeMode.BaiduNews, keyword,true);
             }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            DateTime oldDate = new DateTime(1970, 1, 1);
+            DateTime newDate = dateTimePicker1.Value;//DateTime.Now;
+
+            // Difference in days, hours, and minutes.
+            TimeSpan ts = newDate - oldDate;
+
+            double differenceInSeconds = ts.TotalSeconds;
+            //MessageBox.Show(differenceInSeconds.ToString());
+            tb_seconds.Text = differenceInSeconds.ToString();
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            double totalSecond;
+            double.TryParse(tb_seconds.Text, out totalSecond);
+            TimeSpan ts = new TimeSpan((long)totalSecond * TimeSpan.TicksPerSecond);
+            textBox_ts.Text = ts.ToString();
+            DateTime oldDate = new DateTime(1970, 1, 1);
+            DateTime newDate = oldDate.Add(ts);
+            dateTimePicker1.Value = newDate;
+        }
+
+        private void radioBaidu_CheckedChanged(object sender, EventArgs e)
+        {
+            SetBaiduParam();
         }
 
 

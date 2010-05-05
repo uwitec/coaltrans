@@ -79,6 +79,11 @@
             this.button5 = new System.Windows.Forms.Button();
             this.richTextBox_RegSameNews = new System.Windows.Forms.RichTextBox();
             this.label17 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.button6 = new System.Windows.Forms.Button();
+            this.tb_seconds = new System.Windows.Forms.TextBox();
+            this.button7 = new System.Windows.Forms.Button();
+            this.textBox_ts = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -168,6 +173,7 @@
             this.radioBaidu.TabStop = true;
             this.radioBaidu.Text = "百度";
             this.radioBaidu.UseVisualStyleBackColor = true;
+            this.radioBaidu.CheckedChanged += new System.EventHandler(this.radioBaidu_CheckedChanged);
             // 
             // tb_path1
             // 
@@ -558,11 +564,59 @@
             this.label17.TabIndex = 33;
             this.label17.Text = "相同正则";
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(41, 587);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(179, 21);
+            this.dateTimePicker1.TabIndex = 35;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(226, 585);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 36;
+            this.button6.Text = "button6";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // tb_seconds
+            // 
+            this.tb_seconds.Location = new System.Drawing.Point(321, 585);
+            this.tb_seconds.Name = "tb_seconds";
+            this.tb_seconds.Size = new System.Drawing.Size(183, 21);
+            this.tb_seconds.TabIndex = 37;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(510, 583);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 38;
+            this.button7.Text = "button7";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // textBox_ts
+            // 
+            this.textBox_ts.Location = new System.Drawing.Point(591, 585);
+            this.textBox_ts.Name = "textBox_ts";
+            this.textBox_ts.Size = new System.Drawing.Size(171, 21);
+            this.textBox_ts.TabIndex = 39;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(927, 611);
+            this.ClientSize = new System.Drawing.Size(927, 626);
+            this.Controls.Add(this.textBox_ts);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.tb_seconds);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.richTextBox_RegSameNews);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.button5);
@@ -662,6 +716,11 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.RichTextBox richTextBox_RegSameNews;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.TextBox tb_seconds;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.TextBox textBox_ts;
     }
 }
 
