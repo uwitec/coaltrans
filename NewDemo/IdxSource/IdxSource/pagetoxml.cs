@@ -9,10 +9,17 @@ using System.Web;
 
 namespace IdxSource
 {
-    public enum XMLNodeMode { BaiduNews,SogouNews,TianyaGoogle };
+    public enum XMLNodeMode { BaiduNews,Baidu,SogouNews,TianyaGoogle };
 
-    class Pagetoxml
+    public class Pagetoxml
     {
+        static string RegBaiduNews = "<td class=\"text\"><a href=\"([\\s\\S]+?) \"  mon=\"a=5[\\s\\S]+?<span><b>([\\s\\S]+?)</b></span></a> <font color=#6f6f6f> <nobr>([\\s\\S]+?) ([\\s\\S]+?)</nobr></font><br><font size=-1>([\\s\\S]+?)\\.\\.\\.</font>";
+        static string RegSameBaiduNews = "<a href=\"/ns\\?([\\s\\S]+?) \"><font color=#008000>(\\d+)条相同新闻";
+        static string RegBaiduWeb = "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" [\\s\\S]+? href=\"([\\S]+?)\"  target=\"_blank\" ><font size=\"3\">([\\s\\S]+?)</font></a><br><font size=-1>([\\s\\S]+?)<br><font color=\"#008000\">([\\s\\S]+?( \\.\\.\\. )?[\\S]+?( \\.\\.\\. )?) ([\\S]+?) ( |繁体)</font>([\\s\\S]+?) <br></font></td></tr></table><br>";
+        //RegBaiduWeb = <table border="0" cellpadding="0" cellspacing="0" [\s\S]+? href="([\S]+?)"  target="_blank" ><font size="3">([\s\S]+?)</font></a><br><font size=-1>([\s\S]+?)<br><font color="#008000">([\s\S]+?( \.\.\. )?[\S]+?( \.\.\. )?) ([\S]+?) [ |繁体]</font> ([\s\S]+?) <br></font></td></tr></table><br>
+        static string RegSogouNews = "<a class=\"pp\" href=\"([\\s\\S]+?)\"[\\s\\S]+?<b>([\\s\\S]+?)</b>[\\s\\S]+?<p class=\"newstime\">([\\s\\S]+?) &nbsp;([\\s\\S]+?)</p>[\\s\\S]+?<p>([\\s\\S]+?)</p></td>";
+
+
         /// <summary>
         /// 关键字+页数的方式
         /// </summary>
@@ -22,7 +29,7 @@ namespace IdxSource
         /// <param name="FileSeed"></param>
         /// <param name="srcReg"></param>
         /// <param name="nodeMode"></param>
-        public static void Do(string URLSeed,string[] wordList,int pageSize,int pageCount,string FileSeed,string srcReg,XMLNodeMode nodeMode,Encoding encoding)
+        public static void Do(string URLSeed,string[] wordList,int pageSize,int pageCount,string FileSeed,string srcReg,XMLNodeMode nodeMode,Encoding encoding,bool genSame)
         {
             for (int i = 0; i < wordList.Length; i++)
             {
@@ -33,7 +40,7 @@ namespace IdxSource
                     string srcUrl = string.Format(URLSeed, urlword, (page * pageSize).ToString());
                     string fileName = string.Format(FileSeed, keyWord, page.ToString());
 
-                    GenerateXml(srcUrl, srcReg, fileName, nodeMode, keyWord,true);
+                    GenerateXml(srcUrl, srcReg, fileName, nodeMode, keyWord, genSame);
                 }
             }
         }
@@ -102,9 +109,9 @@ namespace IdxSource
             {
                 string tmpurl = samem.Groups[1].Value;
                 string sameNumber = samem.Groups[2].Value;
-                if (int.Parse(sameNumber) > 9)
+                if (int.Parse(sameNumber) > 29)
                 {
-                    string tmp100url = tmpurl.Replace(@"&rn=30", @"&rn=100");
+                    string tmp100url = tmpurl.Replace(@"&rn=30", @"&rn=10");
                     string sameUrl = "http://news.baidu.com/ns?" + tmp100url;
 
                     string samecontent = GetPageContent(sameUrl);
@@ -136,7 +143,8 @@ namespace IdxSource
             StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.Default);
             string content = reader.ReadToEnd();
             return content;
-        }
+        }       
+
 
         /// <summary>
         /// IGetNode入口：根据正则匹配结果 改造 xml节点元素
@@ -154,6 +162,8 @@ namespace IdxSource
                     return GetSogouNewsNode(m);
                 case XMLNodeMode.TianyaGoogle:
                     return GetTianyaGoogleNode(m);
+                case XMLNodeMode.Baidu:
+                    return GetBaiduNode(m, keyWord);
                 default:
                     throw new Exception("GetNodeValue(XMLNodeMode) 未定义");
             }
@@ -191,6 +201,26 @@ namespace IdxSource
             //按照现有的<font color=#cc0033>拆迁</font>模式,政府部门根本不用与.........
             xmlNode.Append("<doc_content><![CDATA[").Append(NoHTML(m.Groups[6].Value)).Append("]]></doc_content>");
 
+            xmlNode.Append("</doc>");
+
+            return xmlNode.ToString();
+        }
+
+        /// <summary>
+        /// IGetNode具体实现。百度搜索的映射关系实现
+        /// </summary>
+        /// <param name="m"></param>
+        /// <param name="keyWord"></param>
+        /// <returns></returns>
+        public static string GetBaiduNode(Match m, string keyWord)
+        {
+            StringBuilder xmlNode = new StringBuilder();
+            xmlNode.Append("<doc>");
+            xmlNode.Append("<doc_url><![CDATA[").Append(m.Groups[1].Value).Append("]]></doc_url>");
+            xmlNode.Append("<doc_myKeyword><![CDATA[").Append(keyWord).Append("]]></doc_myKeyword>");
+            xmlNode.Append("<doc_title><![CDATA[").Append(NoHTML(m.Groups[2].Value)).Append("]]></doc_title>");
+            xmlNode.Append("<doc_MyDate><![CDATA[").Append(m.Groups[7].Value).Append("]]></doc_MyDate>");
+            xmlNode.Append("<doc_content><![CDATA[").Append(NoHTML(m.Groups[3].Value)).Append("]]></doc_content>");
             xmlNode.Append("</doc>");
 
             return xmlNode.ToString();
