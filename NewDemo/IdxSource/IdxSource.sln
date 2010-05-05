@@ -24,6 +24,14 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebSource", "WebSource\", "
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDXJob", "IDXJob\IDXJob.csproj", "{FFC2A239-377E-48F1-A02E-184C9E355EFF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{41392141-616B-460B-83F8-5BE1BAEEA668} = {41392141-616B-460B-83F8-5BE1BAEEA668}
+		{7DC918FD-1AF6-4E51-98A7-3D7535B85DD0} = {7DC918FD-1AF6-4E51-98A7-3D7535B85DD0}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdolACINet", "IdolACINet\IdolACINet.csproj", "{7DC918FD-1AF6-4E51-98A7-3D7535B85DD0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
@@ -54,6 +62,26 @@ Global
 		{E4FE91BD-7768-4330-B406-8C16AE766076}.Release|Any CPU.ActiveCfg = Debug|.NET
 		{E4FE91BD-7768-4330-B406-8C16AE766076}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
 		{E4FE91BD-7768-4330-B406-8C16AE766076}.Release|Mixed Platforms.Build.0 = Debug|.NET
+		{FFC2A239-377E-48F1-A02E-184C9E355EFF}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{FFC2A239-377E-48F1-A02E-184C9E355EFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFC2A239-377E-48F1-A02E-184C9E355EFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFC2A239-377E-48F1-A02E-184C9E355EFF}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{FFC2A239-377E-48F1-A02E-184C9E355EFF}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{FFC2A239-377E-48F1-A02E-184C9E355EFF}.Release|.NET.ActiveCfg = Release|Any CPU
+		{FFC2A239-377E-48F1-A02E-184C9E355EFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFC2A239-377E-48F1-A02E-184C9E355EFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFC2A239-377E-48F1-A02E-184C9E355EFF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{FFC2A239-377E-48F1-A02E-184C9E355EFF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7DC918FD-1AF6-4E51-98A7-3D7535B85DD0}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{7DC918FD-1AF6-4E51-98A7-3D7535B85DD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DC918FD-1AF6-4E51-98A7-3D7535B85DD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DC918FD-1AF6-4E51-98A7-3D7535B85DD0}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7DC918FD-1AF6-4E51-98A7-3D7535B85DD0}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7DC918FD-1AF6-4E51-98A7-3D7535B85DD0}.Release|.NET.ActiveCfg = Release|Any CPU
+		{7DC918FD-1AF6-4E51-98A7-3D7535B85DD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DC918FD-1AF6-4E51-98A7-3D7535B85DD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DC918FD-1AF6-4E51-98A7-3D7535B85DD0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7DC918FD-1AF6-4E51-98A7-3D7535B85DD0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
